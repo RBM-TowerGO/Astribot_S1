@@ -1,0 +1,116 @@
+{
+  "verified": false,
+  "coordinate_contract": "both_raw_topics_already_in_front_lidar_frame",
+  "bag": "/home/astribot/TowerGO/workspace/data/bags/static_lidar_20260923_193825/bag",
+  "driver_config_sha256": "395a0c6d22152fa34a112b2bd00a90ee16a2bf508fe230e09d1b51d84d9f6e44",
+  "driver_config": {
+    "lidar_summary_info": {
+      "lidar_type": 8
+    },
+    "MID360": {
+      "lidar_net_info": {
+        "cmd_data_port": 56100,
+        "push_msg_port": 56200,
+        "point_data_port": 56300,
+        "imu_data_port": 56400,
+        "log_data_port": 56500
+      },
+      "host_net_info": {
+        "cmd_data_ip": "192.168.0.11",
+        "cmd_data_port": 56101,
+        "push_msg_ip": "192.168.0.11",
+        "push_msg_port": 56201,
+        "point_data_ip": "192.168.0.11",
+        "point_data_port": 56301,
+        "imu_data_ip": "192.168.0.11",
+        "imu_data_port": 56401,
+        "log_data_ip": "",
+        "log_data_port": 56501
+      }
+    },
+    "lidar_configs": [
+      {
+        "ip": "192.168.0.12",
+        "pcl_data_type": 1,
+        "pattern_mode": 0,
+        "extrinsic_parameter": {
+          "roll": 0.0,
+          "pitch": 0.0,
+          "yaw": 0.0,
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "ip": "192.168.0.13",
+        "pcl_data_type": 1,
+        "pattern_mode": 0,
+        "extrinsic_parameter": {
+          "roll": 0.06689474873885548,
+          "pitch": -0.5368355615673054,
+          "yaw": -178.19509698755792,
+          "x": 1,
+          "y": -496,
+          "z": 84
+        }
+      }
+    ]
+  },
+  "frames": {
+    "/livox/lidar_back": "livox_frame",
+    "/livox/lidar_front": "livox_frame"
+  },
+  "points": [
+    72394,
+    74264
+  ],
+  "overlap_registration_check": {
+    "translation_m": [
+      0.0041350310772992485,
+      0.006826197286316508,
+      0.009788324991542858
+    ],
+    "translation_norm_m": 0.012629598471131532,
+    "rotation_deg": 1.3580710106793081,
+    "overlap_pairs": 33136,
+    "initial_overlap_rmse_m": 0.0718903272645853,
+    "refined_overlap_rmse_m": 0.04872244779959029
+  },
+  "raw_alignment": {
+    "median_m": 0.28662510642568495,
+    "p90_m": 3.5464633751636696,
+    "within_10cm": 0.34471614779704834,
+    "symmetric_within_10cm": 0.34603959446652705
+  },
+  "applying_extrinsic_again": {
+    "median_m": 0.44559979457042165,
+    "p90_m": 2.512144076338671,
+    "within_10cm": 0.09027254120435205,
+    "symmetric_within_10cm": 0.0897601344582967
+  },
+  "inverse_extrinsic": {
+    "median_m": 0.44428058241229873,
+    "p90_m": 2.4948489759168813,
+    "within_10cm": 0.08492674781859312,
+    "symmetric_within_10cm": 0.08701126461847136
+  },
+  "nearest_header_skew_ms": [
+    0.00108,
+    0.007953,
+    0.016674,
+    0.019014
+  ],
+  "point_span_ns": {
+    "/livox/lidar_back": [
+      0.0,
+      100317952.0
+    ],
+    "/livox/lidar_front": [
+      0.0,
+      100314368.0
+    ]
+  },
+  "method": "100 static frames per lidar; 5 cm voxel; 1-15 m range; unfitted comparison plus diagnostic local ICP; compare raw vs repeated/inverse driver transform; >=25% rear within 10 cm (partial FOV); >15 percentage point symmetric margin; local overlap correction <3 cm and <0.3 deg; fitted correction is diagnostic only",
+  "hardware_commands_sent": false
+}

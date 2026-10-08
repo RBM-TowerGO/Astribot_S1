@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import select
 import signal
+import struct
 import sys
 import termios
 import threading
@@ -16,6 +17,37 @@ import tty
 HZ = 100.0
 LEASE = 0.2
 MAX_CYCLE = 0.1
+
+
+class SessionHealth:
+    """Optional inherited pipe, containing sender monotonic timestamps."""
+    def __init__(self, fd=None):
+        self.fd, self.buffer, self.latest = fd, b'', None
+        if fd is not None:
+            os.set_blocking(fd, False)
+
+    def check(self, now):
+        if self.fd is None:
+            return
+        while True:
+            try:
+                data = os.read(self.fd, 4096)
+            except BlockingIOError:
+                break
+            if not data:
+                raise RuntimeError('建图会话健康连接关闭；退出遥操')
+            self.buffer += data
+            while len(self.buffer) >= 8:
+                self.latest = struct.unpack('!d', self.buffer[:8])[0]
+                self.buffer = self.buffer[8:]
+        # A heartbeat may arrive between taking 'now' and reading the pipe.
+        if self.latest is None or not math.isfinite(self.latest) or not -.02 <= now-self.latest <= .5:
+            raise RuntimeError('建图会话心跳超过 0.5 秒未更新；退出遥操')
+
+    def close(self):
+        if self.fd is not None:
+            os.close(self.fd)
+            self.fd = None
 
 
 def speed(value, low, high):
@@ -260,6 +292,7 @@ def run(args):
     if not os.isatty(fd):
         raise RuntimeError('需要交互终端，请使用 ssh -t S1；不接受管道输入')
     keys = Keys(args.linear_speed, args.angular_speed)
+    health = SessionHealth(getattr(args, 'session_fd', None))
     backend = driver = None
     saved = termios.tcgetattr(fd)
     handlers = {}
@@ -273,6 +306,7 @@ def run(args):
             handlers[sig] = signal.signal(sig, halt)
         with SessionLock():
             try:
+                health.check(time.monotonic())
                 others = conflicts(include_teleop=not args.dry_run)
                 if others:
                     raise RuntimeError('检测到其他底盘控制进程 PID=%s，请先退出该程序' % ','.join(others))
@@ -281,6 +315,7 @@ def run(args):
                 backend = FakeBackend() if args.dry_run else SDKBackend()
                 if keys.quit:
                     return 128 + signaled[0] if signaled else 0
+                health.check(time.monotonic())
                 driver = Driver(backend, time.monotonic())
                 configure_terminal(fd)
                 print('READY | W/S 前后 · Q/E 左右转 · A/D 预留 · 空格保持 · +/- 调速 · X 退出', flush=True)
@@ -291,6 +326,7 @@ def run(args):
                     # Always wait one fresh period: never catch up delayed cycles.
                     time.sleep(1. / HZ)
                     now = time.monotonic()
+                    health.check(now)
                     if select.select([fd], [], [], 0)[0]:
                         data = os.read(fd, 4096)
                         if not data:
@@ -310,6 +346,7 @@ def run(args):
                 if backend:
                     finish(driver, backend, args.dry_run)
     finally:
+        health.close()
         try:
             termios.tcsetattr(fd, termios.TCSANOW, saved)
         except (OSError, termios.error):
@@ -323,6 +360,7 @@ def main():
     parser.add_argument('--linear-speed', type=lambda x: speed(x, .01, .15), default=.05)
     parser.add_argument('--angular-speed', type=lambda x: speed(x, .025, .25), default=.10)
     parser.add_argument('--dry-run', action='store_true', help='不加载 SDK，仅演练键盘与目标积分')
+    parser.add_argument('--session-fd', type=int, default=None, help=argparse.SUPPRESS)
     args = parser.parse_args()
     try:
         return run(args)

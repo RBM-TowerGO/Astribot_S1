@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "coordinate_contract": "both_raw_topics_already_in_front_lidar_frame",
+  "frame_convention_verified": true,
+  "live_alignment_verified": false,
+  "driver_config_sha256": "395a0c6d22152fa34a112b2bd00a90ee16a2bf508fe230e09d1b51d84d9f6e44",
+  "reason": "Raw points are already in the front lidar frame; independent static captures show residual local ICP rotation 1.36 and 1.39 degrees. This is not an approved replacement extrinsic. Alignment diagnostics are informational and do not restrict online startup.",
+  "evidence_files": [
+    "static_first.json",
+    "static_second.json"
+  ],
+  "driver_config_path": "/opt/astribot_ros/software/livox_ros_driver2/share/config/MID360_config.json",
+  "calibration_script": "/opt/astribot_ros/software/livox_lidar_calib/lib/livox_lidar_calib/astribot_lidar_calib.py",
+  "existing_static_mapping_script": "/home/astribot/TowerGO/workspace/src/astribot_navigation/scripts/build_static_map.py"
+}
