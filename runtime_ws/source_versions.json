@@ -1,0 +1,8 @@
+{
+  "fast_lio": {
+    "url": "https://github.com/Ericsii/FAST_LIO_ROS2.git",
+    "commit": "2fffc570a25d0df172720bac034fbdb6a13d2162",
+    "submodules": "e2e3f4e9d3b95a9e66b1ba83dc98d4a05ed8a3c4 include/ikd-Tree (remotes/origin/fast_lio)"
+  },
+  "livox_interfaces": "CustomMsg/CustomPoint wire definitions only; system driver unchanged"
+}

@@ -1,0 +1,79 @@
+[0.000000] (-) TimerEvent: {}
+[0.000123] (towergo_livox_adapter) JobQueued: {'identifier': 'towergo_livox_adapter', 'dependencies': OrderedDict()}
+[0.000247] (towergo_real) JobQueued: {'identifier': 'towergo_real', 'dependencies': OrderedDict()}
+[0.000746] (towergo_livox_adapter) JobStarted: {'identifier': 'towergo_livox_adapter'}
+[0.022450] (towergo_livox_adapter) JobProgress: {'identifier': 'towergo_livox_adapter', 'progress': 'cmake'}
+[0.023224] (towergo_livox_adapter) Command: {'cmd': ['/usr/local/bin/cmake', '/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_livox_adapter', '-DCMAKE_BUILD_TYPE=Release', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/astribot/TowerGO/runtime_ws/install/towergo_livox_adapter'], 'cwd': '/home/astribot/TowerGO/runtime_ws/build/towergo_livox_adapter', 'env': OrderedDict([('CMAKE_BUILD_PARALLEL_LEVEL', '2'), ('USER', 'astribot'), ('SSH_CLIENT', '10.7.156.121 49462 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/astribot_ros/software/livox_ros_driver2/lib:/opt/astribot_ros/software/camera_subscriber_py/lib:/opt/astribot_ros/software/astribot_camera/lib:/opt/astribot_ros/software/jetson_nvcodec/lib:/opt/astribot_ros/software/compress_subscriber_py/lib:/opt/astribot_ros/software/astribot_recorder/lib:/opt/astribot_ros/software/astribot_data_processor/lib:/opt/astribot_ros/software/astribot_rosbag2_transport/lib:/opt/astribot_ros/software/astribot_rosbag2_storage/lib:/opt/astribot_ros/software/astribot_base/lib:/opt/astribot_ros/software/astribot_msgs/lib:/opt/astribot_ros/software/astribot_common_proto/lib:/opt/astribot_ros/software/astribot_camera_sdk/lib:/opt/astribot_ros/software/astribot_base_third_party/lib:/opt/astribot_ros/third_pkg/pcl_ros/lib:/opt/astribot_ros/third_pkg/pcl_msgs/lib:/opt/astribot_ros/middle_ware/opt/rviz_ogre_vendor/lib:/opt/astribot_ros/middle_ware/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/astribot'), ('OLDPWD', '/home/astribot'), ('ROS_PYTHON_VERSION', '3'), ('LC_CTYPE', 'C.UTF-8'), ('MAKEFLAGS', '-j2'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/opt/astribot_ros/software:/opt/astribot_ros/third_pkg:/opt/astribot_ros/middle_ware'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'astribot'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/opt/astribot_ros/middle_ware/lib/aarch64-linux-gnu/pkgconfig:/opt/astribot_ros/middle_ware/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('XDG_SESSION_ID', '574'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/astribot_ros/software/astribot_camera/bin:/opt/astribot_ros/software/astribot_data_processor/bin:/opt/astribot_ros/middle_ware/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('AMENT_PREFIX_PATH', '/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_launch:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware'), ('SHELL', '/bin/bash'), ('PWD', '/home/astribot/TowerGO/runtime_ws/build/towergo_livox_adapter'), ('LC_ALL', 'C.UTF-8'), ('SSH_CONNECTION', '10.7.156.121 49462 10.7.154.109 22'), ('PYTHONPATH', '/opt/astribot_ros/software/ptp_sync_time/lib/python3.10/site-packages:/opt/astribot_ros/software/livox_ros_driver2/local/lib/python3.10/dist-packages:/opt/astribot_ros/software/camera_subscriber_py/lib/python3/site-packages:/opt/astribot_ros/software/astribot_camera/lib/python3/site-packages:/opt/astribot_ros/software/compress_subscriber_py/lib/python3/site-packages:/opt/astribot_ros/software/astribot_ros_middleware/lib/python3.10/site-packages:/opt/astribot_ros/software/astribot_msgs/local/lib/python3.10/dist-packages:/opt/astribot_ros/software/astribot_launch/lib/python3.10/site-packages:/opt/astribot_ros/software/astribot_common_proto/lib/pyproto:/opt/astribot_ros/third_pkg/pcl_msgs/local/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/local/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/lib/python3.10/site-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch')]), 'shell': False}
+[0.099615] (-) TimerEvent: {}
+[0.145678] (towergo_livox_adapter) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.199729] (-) TimerEvent: {}
+[0.240670] (towergo_livox_adapter) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.256626] (towergo_livox_adapter) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.299856] (-) TimerEvent: {}
+[0.330349] (towergo_livox_adapter) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.341691] (towergo_livox_adapter) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.342179] (towergo_livox_adapter) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.342863] (towergo_livox_adapter) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.348012] (towergo_livox_adapter) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.399972] (-) TimerEvent: {}
+[0.435966] (towergo_livox_adapter) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.447952] (towergo_livox_adapter) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.448299] (towergo_livox_adapter) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.448960] (towergo_livox_adapter) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.459373] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.9 (/opt/astribot_ros/middle_ware/share/ament_cmake/cmake)\n'}
+[0.500086] (-) TimerEvent: {}
+[0.600347] (-) TimerEvent: {}
+[0.700581] (-) TimerEvent: {}
+[0.800795] (-) TimerEvent: {}
+[0.901047] (-) TimerEvent: {}
+[0.983966] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[1.001144] (-) TimerEvent: {}
+[1.097497] (towergo_livox_adapter) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[1.101168] (-) TimerEvent: {}
+[1.179033] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found rclcpp: 16.0.9 (/opt/astribot_ros/middle_ware/share/rclcpp/cmake)\n'}
+[1.201268] (-) TimerEvent: {}
+[1.285049] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.5 (/opt/astribot_ros/middle_ware/share/rosidl_generator_c/cmake)\n'}
+[1.298340] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.5 (/opt/astribot_ros/middle_ware/share/rosidl_adapter/cmake)\n'}
+[1.301326] (-) TimerEvent: {}
+[1.318604] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.5 (/opt/astribot_ros/middle_ware/share/rosidl_generator_cpp/cmake)\n'}
+[1.350827] (towergo_livox_adapter) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[1.396885] (towergo_livox_adapter) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.401393] (-) TimerEvent: {}
+[1.501526] (-) TimerEvent: {}
+[1.548130] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/astribot_ros/middle_ware/share/rmw_implementation_cmake/cmake)\n'}
+[1.556830] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.6 (/opt/astribot_ros/middle_ware/share/rmw_fastrtps_cpp/cmake)\n'}
+[1.601591] (-) TimerEvent: {}
+[1.701773] (-) TimerEvent: {}
+[1.737710] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[1.783425] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found FastRTPS: /opt/astribot_ros/middle_ware/include  \n'}
+[1.801853] (-) TimerEvent: {}
+[1.862729] (towergo_livox_adapter) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[1.887707] (towergo_livox_adapter) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[1.901941] (-) TimerEvent: {}
+[1.974814] (towergo_livox_adapter) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[1.976638] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[2.002046] (-) TimerEvent: {}
+[2.102246] (-) TimerEvent: {}
+[2.202451] (-) TimerEvent: {}
+[2.250105] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found sensor_msgs: 4.2.4 (/opt/astribot_ros/middle_ware/share/sensor_msgs/cmake)\n'}
+[2.302516] (-) TimerEvent: {}
+[2.402655] (-) TimerEvent: {}
+[2.461066] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found diagnostic_msgs: 4.2.4 (/opt/astribot_ros/middle_ware/share/diagnostic_msgs/cmake)\n'}
+[2.502726] (-) TimerEvent: {}
+[2.531587] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found livox_ros_driver2: 1.0.0 (/opt/astribot_ros/software/livox_ros_driver2/share/livox_ros_driver2/cmake)\n'}
+[2.602819] (-) TimerEvent: {}
+[2.692286] (towergo_livox_adapter) StderrLine: {'line': b'CMake Error at /opt/astribot_ros/software/livox_ros_driver2/share/livox_ros_driver2/cmake/ament_cmake_export_libraries-extras.cmake:48 (message):\n'}
+[2.692702] (towergo_livox_adapter) StderrLine: {'line': b"  Package 'livox_ros_driver2' exports the library 'livox_ros_driver2_node'\n"}
+[2.692809] (towergo_livox_adapter) StderrLine: {'line': b"  which couldn't be found\n"}
+[2.692899] (towergo_livox_adapter) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[2.692984] (towergo_livox_adapter) StderrLine: {'line': b'  /opt/astribot_ros/software/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2Config.cmake:41 (include)\n'}
+[2.693084] (towergo_livox_adapter) StderrLine: {'line': b'  CMakeLists.txt:9 (find_package)\n'}
+[2.693185] (towergo_livox_adapter) StderrLine: {'line': b'\n'}
+[2.693268] (towergo_livox_adapter) StderrLine: {'line': b'\n'}
+[2.693344] (towergo_livox_adapter) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[2.693427] (towergo_livox_adapter) StdoutLine: {'line': b'See also "/home/astribot/TowerGO/runtime_ws/build/towergo_livox_adapter/CMakeFiles/CMakeOutput.log".\n'}
+[2.702888] (-) TimerEvent: {}
+[2.709483] (towergo_livox_adapter) CommandEnded: {'returncode': 1}
+[2.733865] (towergo_livox_adapter) JobEnded: {'identifier': 'towergo_livox_adapter', 'rc': 1}
+[2.744346] (towergo_real) JobSkipped: {'identifier': 'towergo_real'}
+[2.744421] (-) EventReactorShutdown: {}

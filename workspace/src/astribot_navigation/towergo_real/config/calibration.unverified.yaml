@@ -1,0 +1,28 @@
+# T_A_B transforms coordinates from B to A. No identity-transform fallback.
+verified: false
+reviewed_by: null
+reviewed_at: null
+base_from_lidar: null
+# MID-360 manufacturer geometry, manual printed p.15 (PDF p.17).
+# Whole calibration remains unverified until base mounting and other fields are known.
+imu_from_lidar:
+  - [1.0, 0.0, 0.0, -0.011]
+  - [0.0, 1.0, 0.0, -0.02329]
+  - [0.0, 0.0, 1.0, 0.04412]
+  - [0.0, 0.0, 0.0, 1.0]
+body_polygon: null
+obstacle_height_min: null
+obstacle_height_max: null
+range_min: null
+range_max: null
+max_pose_step_m: null
+max_pose_step_rad: null
+point_timestamp_unit: absolute_ns
+imu_acceleration_unit: g
+imu_gyro_unit: rad_s
+evidence:
+  base_lidar_extrinsic: {path: null, sha256: null}
+  lidar_imu_extrinsic: {path: ../../../../data/reports/hardware_interface_review_20260923/sources/Livox_Mid-360_User_Manual_EN.pdf, sha256: 3f202c845330023d50eee086cc522918ec8b1279446c4286ea3d38722400cab2}
+  imu_units: {path: ../../../../data/reports/hardware_interface_review_20260923/sensor_findings.md, sha256: b6ec7bd1497c06bbd4361e666558067308b869f1cd57e53be6f66afe8c13c3b0}
+  body_filter: {path: null, sha256: null}
+  clock_alignment: {path: null, sha256: null}

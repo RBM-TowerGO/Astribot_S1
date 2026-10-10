@@ -27,7 +27,7 @@ def topic_names(prefix):
     return {key: prefix+'/'+suffix for key,suffix in {
         'lidar':'lidar', 'imu':'imu', 'odom':'odometry', 'cloud':'cloud_registered',
         'fault':'fault', 'diagnostics':'diagnostics', 'tf':'tf', 'tf_static':'tf_static',
-        'path':'path', 'body':'cloud_body', 'map':'laser_map', 'effect':'cloud_effected'}.items()}
+        'occupancy':'occupancy', 'path':'path', 'body':'cloud_body', 'map':'laser_map', 'effect':'cloud_effected'}.items()}
 
 
 def parameters(base, topics, replay):
@@ -90,7 +90,7 @@ class ROSObserver:
                     if state.frame is not None and state.frame != m.header.frame_id:
                         raise ValueError('LIO cloud/odometry frames disagree')
                     state.frame=m.header.frame_id
-                    state.preview.cloud(pts)
+                    pass  # Slice worker owns the displayed navigation map.
             except Exception as exc: state.error=str(exc)
         self.node.create_subscription(Odometry,topics['odom'],odom,q)
         self.node.create_subscription(PointCloud2,topics['cloud'],cloud,q)
@@ -152,9 +152,10 @@ class Session:
         self.state=State(self.run_id)
         self.procs={}; self.observer=self.server=None
         self.health_write=None; self.signal=None; self.owned_lidar=False
+        self.last_slice_read=0.
         self.report={'run_id':self.run_id,'status':'initializing','error':None,'topics':self.topics,
                      'replay':self.replay,'hardware_commands_sent':False,'lidar_started':False,
-                     'navigation_map':False,'shutdown_errors':[],
+                     'navigation_map':True,'shutdown_errors':[],
                      'lidar_mode':'dual','imu_source':'front',
                      'fusion_parameters':{'window_ns':100000000,'max_buffer_ns':1000000000,'lines':8,
                                           'rear_transform_applied_by_adapter':False}}
@@ -182,6 +183,18 @@ class Session:
         free=shutil.disk_usage(self.run).free/1024**3
         self.state.free_gib=round(free,2)
         if free<3: raise RuntimeError('Less than 3 GiB free disk space')
+        if 'slice' in self.procs and time.monotonic()-self.last_slice_read>=.5:
+            self.last_slice_read=time.monotonic()
+            try:
+                data=json.loads((self.run/'slice_live.json').read_text())
+                with self.state.lock: self.state.slice=data
+                if data.get('error'): raise RuntimeError('Slice worker: '+data['error'])
+                if require_streams and self.state.stamps.get('odom',0)-data.get('stamp_ns',0)>2000000000:
+                    raise RuntimeError('Slice observations lag LIO by more than 2 seconds')
+                if require_streams and time.time()-data['worker_updated']>3:
+                    raise RuntimeError('Slice worker has not updated for 3 seconds')
+            except FileNotFoundError:
+                if require_streams: raise RuntimeError('Slice worker has no status')
         if self.state.error: raise RuntimeError(self.state.error)
         if require_streams and not self.state.healthy():
             raise RuntimeError('Sensor/LIO stream stale for more than 2 seconds')
@@ -232,6 +245,12 @@ class Session:
         base=Path(get_package_share_directory('fast_lio'))/'config/mid360.yaml'
         (self.run/'lio_params.yaml').write_text(yaml.safe_dump(parameters(base,self.topics,self.replay),sort_keys=False))
         shutil.copyfile(base,self.run/'base_mid360.yaml')
+        try: shutil.copyfile('/etc/config/sensor_calib.json',self.run/'sensor_calib.json')
+        except OSError: pass
+        from mapping_slice_finalize import configuration
+        config=configuration(self.run,getattr(self.args,'slice_offset',0.),getattr(self.args,'slice_thickness',.1))
+        atomic_json(self.run/'slice_config.json',config)
+        self.report['slice_parameters']=config
         self.report['git_commit']=subprocess.check_output(['git','-C',str(HERE),'rev-parse','HEAD'],text=True).strip()
         self.report['git_status']=subprocess.check_output(['git','-C',str(HERE),'status','--short'],text=True)
         self.report['frames']='FAST-LIO world; trajectory follows IMU, not chassis'
@@ -247,11 +266,13 @@ class Session:
             if not existing:
                 self.observer.lidar(True); self.owned_lidar=True; self.report['lidar_started']=True
         topics=self.topics
+        self.spawn('slice',[sys.executable,str(HERE/'mapping_slice_node.py'),str(self.run)])
         qos={t:{'reliability':'reliable' if self.replay else 'best_effort','durability':'volatile','history':'keep_last','depth':100}
              for t in RAW_TOPICS+[topics['odom'],topics['cloud']]}
+        qos[topics['occupancy']]={'reliability':'reliable','durability':'transient_local','history':'keep_last','depth':1}
         (self.run/'record_qos.yaml').write_text(yaml.safe_dump(qos))
         for name,directory,selected in [('raw_record','raw_bag',RAW_TOPICS),
-                                        ('lio_record','lio_bag',[topics['odom'],topics['cloud']])]:
+                                        ('lio_record','lio_bag',[topics['odom'],topics['cloud'],topics['occupancy']])]:
             self.spawn(name,['ros2','bag','record','-s','mcap','-o',str(self.run/directory),
                              '--max-cache-size','33554432','--qos-profile-overrides-path',str(self.run/'record_qos.yaml'),*selected])
         sim='true' if self.replay else 'false'
@@ -282,7 +303,8 @@ class Session:
         deadline=self.recording_started+60
         while time.monotonic()<deadline:
             self.check()
-            if self.state.ready(time.monotonic(),self.recording_started): return
+            if (self.state.ready(time.monotonic(),self.recording_started)
+                    and self.state.slice.get('statistics',{}).get('frames',0)>0): return
             time.sleep(.1)
         raise RuntimeError('Initialization timed out (60 seconds); no driving enabled')
 
@@ -359,7 +381,7 @@ class Session:
             if self.run.exists():
                 try:
                     self.report['raw_counts']=check_metadata(self.run/'raw_bag',REQUIRED_RAW_TOPICS)
-                    self.report['lio_counts']=check_metadata(self.run/'lio_bag',[self.topics['odom'],self.topics['cloud']])
+                    self.report['lio_counts']=check_metadata(self.run/'lio_bag',[self.topics['odom'],self.topics['cloud'],self.topics['occupancy']])
                 except Exception as exc:
                     self.report['status']='incomplete'; self.report['recording_error']=str(exc)
                 if (self.report.get('error') == 'LiDAR adapter reports a session fault'
@@ -369,14 +391,16 @@ class Session:
                 with self.state.lock:
                     self.report['fusion_statistics']=dict(self.state.fusion)
                     self.report['fusion_last_diagnostic']=self.state.fusion_reason
+                    self.report['slice_statistics']=self.state.slice.get('statistics',{})
                 self.report['acceptance']='software_replay_only' if self.replay else 'onsite_pending'
                 atomic_json(self.run/'session.json',self.report)
             try:
                 if self.report['status']=='recorded' and not self.signal:
                     self.state.status='finalizing'
                     print('录包已关闭，正在生成地图和轨迹…',flush=True)
-                    from mapping_finalize import finalize
-                    self.report['products']=finalize(self.run,cancelled=lambda:bool(self.signal))
+                    from mapping_slice_finalize import finalize_slice
+                    self.report['products']=finalize_slice(self.run,output=self.run/'navigation',
+                        export_pcd=getattr(self.args,'export_pcd',False),cancelled=lambda:bool(self.signal))
                     self.report['status']='complete'
             except Exception as exc:
                 self.report['status']='incomplete'; self.report['finalize_error']=str(exc)
@@ -402,15 +426,25 @@ def main():
     from tg_teleop import speed
     parser.add_argument('--linear-speed',type=lambda x:speed(x,.01,.15),default=.05)
     parser.add_argument('--angular-speed',type=lambda x:speed(x,.025,.25),default=.10)
+    parser.add_argument('--slice-offset',type=float,default=None,help='切片相对前雷达初始中心的高度偏移，默认 0 m')
+    parser.add_argument('--slice-thickness',type=float,default=None,help='水平切片厚度，默认 0.10 m')
+    parser.add_argument('--export-pcd',action='store_true',help='另外保存三维 PCD')
+    parser.add_argument('--output-directory',help='finalize 的新输出目录，不覆盖已有目录')
     args=parser.parse_args()
+    from mapping_slice import defaults
+    defaults(0. if args.slice_offset is None else args.slice_offset,.1 if args.slice_thickness is None else args.slice_thickness)
     if not 1<=args.port<=65535: parser.error('Invalid port')
     if args.replay_seconds and (not args.replay or not 15<=args.replay_seconds<=86400):
         parser.error('--replay-seconds requires --replay and 15..86400 seconds')
     if args.command=='finalize':
         if not args.directory: parser.error('finalize requires a session directory')
-        from mapping_finalize import finalize
-        print(json.dumps(finalize(args.directory),ensure_ascii=False)); return 0
+        from mapping_slice_finalize import finalize_slice
+        print(json.dumps(finalize_slice(args.directory,output=args.output_directory,offset=args.slice_offset,
+            thickness=args.slice_thickness,export_pcd=args.export_pcd),ensure_ascii=False)); return 0
     if args.directory: parser.error('Unexpected session directory')
+    if args.output_directory: parser.error('--output-directory is only for finalize')
+    if args.slice_offset is None: args.slice_offset=0.
+    if args.slice_thickness is None: args.slice_thickness=.1
     # Separate lock per ROS domain; no controller or sensor is touched by locking.
     with open('/tmp/towergo-mapping-%d-%s.lock'%(os.getuid(),os.environ.get('ROS_DOMAIN_ID','unset')),'a') as lock:
         try: fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)

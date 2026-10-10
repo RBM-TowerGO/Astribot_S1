@@ -1,8 +1,15 @@
 """End-to-end C++ scan conversion and pairing tests, run in the offline image."""
 import math,os,subprocess,time
+from pathlib import Path
 import pytest
+if not (Path('/.dockerenv').is_file() and os.environ.get('ROS_DOMAIN_ID') == '125'
+        and os.environ.get('ROS_LOCALHOST_ONLY') == '1'):
+    pytest.skip('Simulation ROS integration requires the isolated offline container (Domain 125, localhost)',
+                allow_module_level=True)
 rclpy=pytest.importorskip('rclpy')
 pytest.importorskip('sensor_msgs_py')
+from ament_index_python.packages import get_package_prefix
+get_package_prefix('astribot_nav_sensors')
 from rclpy.node import Node
 from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import PointCloud2,LaserScan
@@ -14,7 +21,6 @@ from builtin_interfaces.msg import Time
 from tf2_ros import StaticTransformBroadcaster
 
 def test_scan_transform_sync_and_stale_clouds():
-    if os.environ.get('ROS_DOMAIN_ID')!='125':pytest.skip('Needs isolated offline domain 125')
     rclpy.init();node=Node('scan_contract_test');received=[]
     process=subprocess.Popen(['ros2','run','astribot_nav_sensors','scan_processor','--ros-args','-p','use_sim_time:=true','-p','scan_source:=dual'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
     try:

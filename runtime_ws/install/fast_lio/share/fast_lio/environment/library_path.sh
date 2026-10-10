@@ -1,0 +1,1 @@
+/opt/astribot_ros/middle_ware/lib/python3.10/site-packages/ament_package/template/environment_hook/library_path.sh

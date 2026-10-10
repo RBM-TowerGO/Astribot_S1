@@ -89,6 +89,7 @@ class State:
         self.fusion = {}
         self.fusion_reason = None
         self.validation_warning = None
+        self.slice = {}
 
     def seen(self, key, stamp, now=None):
         now = time.monotonic() if now is None else now
@@ -115,7 +116,7 @@ class State:
 
     def snapshot(self):
         with self.lock:
-            return {'run_id': self.run_id, 'status': self.status, 'error': self.error,
+            return {'slice': self.slice, 'run_id': self.run_id, 'status': self.status, 'error': self.error,
                     'elapsed': round(time.monotonic()-self.started, 1), 'free_gib': self.free_gib,
                     'ages': {k: round(time.monotonic()-v, 2) for k,v in self.receipts.items()},
                     'counts': dict(self.counts), 'frame': self.frame,
@@ -202,7 +203,7 @@ class OwnedProcess:
 
 def shutdown_order(processes):
     # Stop driving first, preserve the recorders until mapping has stopped.
-    return [k for k in ('teleop', 'player', 'fastlio', 'adapter', 'lio_record', 'raw_record') if k in processes]
+    return [k for k in ('teleop', 'player', 'fastlio', 'adapter', 'slice', 'lio_record', 'raw_record') if k in processes]
 
 
 def check_metadata(bag, required):

@@ -1,7 +1,15 @@
 import os,time,subprocess
+from pathlib import Path
 import pytest
+if not (Path('/.dockerenv').is_file() and os.environ.get('ROS_DOMAIN_ID') == '125'
+        and os.environ.get('ROS_LOCALHOST_ONLY') == '1'):
+    pytest.skip('Simulation ROS integration requires the isolated offline container (Domain 125, localhost)',
+                allow_module_level=True)
 rclpy=pytest.importorskip('rclpy')
 pytest.importorskip('sensor_msgs_py')
+from ament_index_python.packages import get_package_prefix
+# A missing simulation overlay inside the test container is an error, not a skip.
+get_package_prefix('astribot_nav_bridge')
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import LaserScan
@@ -10,7 +18,6 @@ from builtin_interfaces.msg import Time
 from rclpy.qos import qos_profile_sensor_data
 
 def test_command_guard_stale_scan_invalid_twist_and_clock_jump():
-    if os.environ.get('ROS_DOMAIN_ID')!='125':pytest.skip('Offline container only')
     rclpy.init();n=Node('guard_test');out=[]
     p=subprocess.Popen(['ros2','run','astribot_nav_bridge','command_guard','--ros-args','-p','use_sim_time:=true'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
     try:

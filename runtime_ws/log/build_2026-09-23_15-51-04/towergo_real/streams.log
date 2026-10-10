@@ -1,0 +1,23 @@
+[1.485s] Invoking command in '/home/astribot/TowerGO/runtime_ws/build/towergo_real': PYTHONPATH=/home/astribot/TowerGO/runtime_ws/build/towergo_real/prefix_override:/home/astribot/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/astribot/TowerGO/runtime_ws/build/towergo_real/build --no-deps symlink_data
+[2.073s] running develop
+[2.509s] running egg_info
+[2.537s] writing towergo_real.egg-info/PKG-INFO
+[2.538s] writing dependency_links to towergo_real.egg-info/dependency_links.txt
+[2.538s] writing entry points to towergo_real.egg-info/entry_points.txt
+[2.538s] writing requirements to towergo_real.egg-info/requires.txt
+[2.538s] writing top-level names to towergo_real.egg-info/top_level.txt
+[2.598s] reading manifest file 'towergo_real.egg-info/SOURCES.txt'
+[2.600s] writing manifest file 'towergo_real.egg-info/SOURCES.txt'
+[2.711s] running build_ext
+[2.711s] Creating /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/python3.10/site-packages/towergo-real.egg-link (link to .)
+[2.712s] Installing audit_capture script to /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/towergo_real
+[2.713s] Installing chassis script to /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/towergo_real
+[2.713s] Installing keyboard script to /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/towergo_real
+[2.713s] Installing lio_adapter script to /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/towergo_real
+[2.714s] Installing map_viewer script to /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/towergo_real
+[2.714s] Installing preflight script to /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/towergo_real
+[2.714s] Installing session script to /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/towergo_real
+[2.715s] 
+[2.715s] Installed /home/astribot/TowerGO/runtime_ws/build/towergo_real
+[2.715s] running symlink_data
+[2.802s] Invoked command in '/home/astribot/TowerGO/runtime_ws/build/towergo_real' returned '0': PYTHONPATH=/home/astribot/TowerGO/runtime_ws/build/towergo_real/prefix_override:/home/astribot/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/astribot/TowerGO/runtime_ws/build/towergo_real/build --no-deps symlink_data

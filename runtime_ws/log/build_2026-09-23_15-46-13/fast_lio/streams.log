@@ -1,0 +1,321 @@
+[0.022s] Invoking command in '/home/astribot/TowerGO/runtime_ws/build/fast_lio': AMENT_PREFIX_PATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2:/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch LD_LIBRARY_PATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/local/bin/cmake /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/astribot/TowerGO/runtime_ws/install/fast_lio
+[0.095s] -- The C compiler identification is GNU 11.4.0
+[0.169s] -- The CXX compiler identification is GNU 11.4.0
+[0.184s] -- Detecting C compiler ABI info
+[0.258s] -- Detecting C compiler ABI info - done
+[0.269s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.270s] -- Detecting C compile features
+[0.270s] -- Detecting C compile features - done
+[0.275s] -- Detecting CXX compiler ABI info
+[0.358s] -- Detecting CXX compiler ABI info - done
+[0.369s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.370s] -- Detecting CXX compile features
+[0.370s] -- Detecting CXX compile features - done
+[0.372s] Current CPU archtecture: aarch64
+[0.783s] -- Found PythonLibs: /usr/lib/aarch64-linux-gnu/libpython3.10.so (found version "3.10.12") 
+[0.790s] -- Found ament_cmake: 1.3.9 (/opt/astribot_ros/middle_ware/share/ament_cmake/cmake)
+[1.326s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[1.433s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[1.511s] -- Found rclcpp: 16.0.9 (/opt/astribot_ros/middle_ware/share/rclcpp/cmake)
+[1.607s] -- Found rosidl_generator_c: 3.1.5 (/opt/astribot_ros/middle_ware/share/rosidl_generator_c/cmake)
+[1.622s] -- Found rosidl_adapter: 3.1.5 (/opt/astribot_ros/middle_ware/share/rosidl_adapter/cmake)
+[1.644s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/astribot_ros/middle_ware/share/rosidl_generator_cpp/cmake)
+[1.677s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.722s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.875s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/astribot_ros/middle_ware/share/rmw_implementation_cmake/cmake)
+[1.883s] -- Found rmw_fastrtps_cpp: 6.2.6 (/opt/astribot_ros/middle_ware/share/rmw_fastrtps_cpp/cmake)
+[2.066s] -- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[2.108s] -- Found FastRTPS: /opt/astribot_ros/middle_ware/include  
+[2.189s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[2.213s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[2.294s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[2.296s] -- Found Threads: TRUE  
+[2.563s] -- Found rclcpp_components: 16.0.9 (/opt/astribot_ros/middle_ware/share/rclcpp_components/cmake)
+[2.681s] -- Found geometry_msgs: 4.2.4 (/opt/astribot_ros/middle_ware/share/geometry_msgs/cmake)
+[2.754s] -- Found nav_msgs: 4.2.4 (/opt/astribot_ros/middle_ware/share/nav_msgs/cmake)
+[2.889s] -- Found sensor_msgs: 4.2.4 (/opt/astribot_ros/middle_ware/share/sensor_msgs/cmake)
+[3.022s] -- Found std_srvs: 4.2.4 (/opt/astribot_ros/middle_ware/share/std_srvs/cmake)
+[3.058s] -- Found visualization_msgs: 4.2.4 (/opt/astribot_ros/middle_ware/share/visualization_msgs/cmake)
+[3.245s] -- Found pcl_ros: 2.4.5 (/opt/astribot_ros/third_pkg/pcl_ros/share/pcl_ros/cmake)
+[3.484s] -- Checking for module 'eigen3'
+[3.506s] --   Found eigen3, version 3.4.0
+[3.557s] -- Found Eigen: /usr/include/eigen3 (Required is at least version "3.1") 
+[3.557s] -- Eigen found (include: /usr/include/eigen3, version: 3.4.0)
+[3.645s] -- Checking for module 'flann'
+[3.668s] --   Found flann, version 1.9.1
+[3.730s] -- Found FLANN: /usr/lib/aarch64-linux-gnu/libflann_cpp.so  
+[3.731s] -- FLANN found (include: /usr/include, lib: /usr/lib/aarch64-linux-gnu/libflann_cpp.so)
+[5.106s] -- Checking for module 'libusb-1.0'
+[5.132s] --   Found libusb-1.0, version 1.0.25
+[5.191s] -- Found libusb: /usr/lib/aarch64-linux-gnu/libusb-1.0.so  
+[5.193s] -- OpenNI found (version: 1.5.4.0, include: /usr/include/ni, lib: /usr/lib/libOpenNI.so;libusb::libusb)
+[5.290s] -- OpenNI2 found (version: 2.2.0.33, include: /usr/include/openni2, lib: /usr/lib/aarch64-linux-gnu/libOpenNI2.so;libusb::libusb)
+[5.589s] -- Eigen found (include: /usr/include/eigen3, version: 3.4.0)
+[5.600s] -- OpenNI found (version: 1.5.4.0, include: /usr/include/ni, lib: /usr/lib/libOpenNI.so;libusb::libusb)
+[5.610s] -- OpenNI2 found (version: 2.2.0.33, include: /usr/include/openni2, lib: /usr/lib/aarch64-linux-gnu/libOpenNI2.so;libusb::libusb)
+[5.909s] -- Found Qhull version 8.0.2
+[6.205s] -- OpenNI found (version: 1.5.4.0, include: /usr/include/ni, lib: /usr/lib/libOpenNI.so;libusb::libusb)
+[6.492s] -- Found PCL_COMMON: /usr/lib/aarch64-linux-gnu/libpcl_common.so  
+[6.493s] -- Found PCL_KDTREE: /usr/lib/aarch64-linux-gnu/libpcl_kdtree.so  
+[6.494s] -- Found PCL_OCTREE: /usr/lib/aarch64-linux-gnu/libpcl_octree.so  
+[6.495s] -- Found PCL_SEARCH: /usr/lib/aarch64-linux-gnu/libpcl_search.so  
+[6.497s] -- Found PCL_SAMPLE_CONSENSUS: /usr/lib/aarch64-linux-gnu/libpcl_sample_consensus.so  
+[6.499s] -- Found PCL_FILTERS: /usr/lib/aarch64-linux-gnu/libpcl_filters.so  
+[6.499s] -- Found PCL_2D: /usr/include/pcl-1.12  
+[6.500s] -- Found PCL_GEOMETRY: /usr/include/pcl-1.12  
+[6.501s] -- Found PCL_IO: /usr/lib/aarch64-linux-gnu/libpcl_io.so  
+[6.503s] -- Found PCL_FEATURES: /usr/lib/aarch64-linux-gnu/libpcl_features.so  
+[6.504s] -- Found PCL_ML: /usr/lib/aarch64-linux-gnu/libpcl_ml.so  
+[6.506s] -- Found PCL_SEGMENTATION: /usr/lib/aarch64-linux-gnu/libpcl_segmentation.so  
+[6.507s] -- Found PCL_VISUALIZATION: /usr/lib/aarch64-linux-gnu/libpcl_visualization.so  
+[6.509s] -- Found PCL_SURFACE: /usr/lib/aarch64-linux-gnu/libpcl_surface.so  
+[6.510s] -- Found PCL_REGISTRATION: /usr/lib/aarch64-linux-gnu/libpcl_registration.so  
+[6.512s] -- Found PCL_KEYPOINTS: /usr/lib/aarch64-linux-gnu/libpcl_keypoints.so  
+[6.513s] -- Found PCL_TRACKING: /usr/lib/aarch64-linux-gnu/libpcl_tracking.so  
+[6.515s] -- Found PCL_RECOGNITION: /usr/lib/aarch64-linux-gnu/libpcl_recognition.so  
+[6.516s] -- Found PCL_STEREO: /usr/lib/aarch64-linux-gnu/libpcl_stereo.so  
+[6.518s] -- Found PCL_APPS: /usr/lib/aarch64-linux-gnu/libpcl_apps.so  
+[6.519s] -- Found PCL_IN_HAND_SCANNER: /usr/include/pcl-1.12  
+[6.520s] -- Found PCL_MODELER: /usr/include/pcl-1.12  
+[6.524s] -- Found PCL_POINT_CLOUD_EDITOR: /usr/include/pcl-1.12  
+[6.525s] -- Found PCL_OUTOFCORE: /usr/lib/aarch64-linux-gnu/libpcl_outofcore.so  
+[6.527s] -- Found PCL_PEOPLE: /usr/lib/aarch64-linux-gnu/libpcl_people.so  
+[6.907s] -- Found eigen3_cmake_module: 0.1.1 (/opt/astribot_ros/middle_ware/share/eigen3_cmake_module/cmake)
+[6.909s] -- Found Eigen3: TRUE (found version "3.4.0") 
+[6.909s] -- Ensuring Eigen3 include directory is part of orocos-kdl CMake target
+[7.414s] -- Found livox_ros_driver2: 1.0.0 (/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake)
+[7.488s] -- Found rosidl_default_generators: 1.2.0 (/opt/astribot_ros/middle_ware/share/rosidl_default_generators/cmake)
+[7.512s] CMake Warning (dev) at CMakeLists.txt:81 (find_package):
+[7.512s]   Policy CMP0074 is not set: find_package uses <PackageName>_ROOT variables.
+[7.512s]   Run "cmake --help-policy CMP0074" for policy details.  Use the cmake_policy
+[7.512s]   command to set the policy and suppress this warning.
+[7.512s] 
+[7.513s]   CMake variable PCL_ROOT is set to:
+[7.513s] 
+[7.513s]     /usr
+[7.513s] 
+[7.513s]   For compatibility, CMake is ignoring the variable.
+[7.513s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[7.513s] 
+[7.524s] Eigen:/usr/include/eigen3
+[7.524s] -- PCL: /usr/include/pcl-1.12
+[7.821s] -- Found ament_cmake_ros: 0.10.0 (/opt/astribot_ros/middle_ware/share/ament_cmake_ros/cmake)
+[8.076s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[8.174s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[8.216s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") 
+[8.221s] -- Found python_cmake_module: 0.10.0 (/opt/astribot_ros/middle_ware/share/python_cmake_module/cmake)
+[8.264s] -- Found PythonLibs: /usr/lib/aarch64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") 
+[8.264s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[8.264s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+[8.264s] -- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.10.so
+[8.301s] -- Found PythonExtra: .so  
+[8.576s] -- Configuring done
+[8.713s] -- Generating done
+[8.749s] -- Build files have been written to: /home/astribot/TowerGO/runtime_ws/build/fast_lio
+[8.801s] Invoked command in '/home/astribot/TowerGO/runtime_ws/build/fast_lio' returned '0': AMENT_PREFIX_PATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2:/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch LD_LIBRARY_PATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/local/bin/cmake /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/astribot/TowerGO/runtime_ws/install/fast_lio
+[8.802s] Invoking command in '/home/astribot/TowerGO/runtime_ws/build/fast_lio': AMENT_PREFIX_PATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2:/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch LD_LIBRARY_PATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/local/bin/cmake --build /home/astribot/TowerGO/runtime_ws/build/fast_lio
+[8.835s] [  2%] Generating C code for ROS interfaces
+[8.842s] [  5%] Generating C++ code for ROS interfaces
+[9.318s] [  5%] Built target fast_lio__cpp
+[9.322s] [  8%] Building C object CMakeFiles/fast_lio__rosidl_generator_c.dir/rosidl_generator_c/fast_lio/msg/detail/pose6_d__functions.c.o
+[9.334s] [  8%] Built target ament_cmake_python_symlink_fast_lio
+[9.340s] [ 11%] Generating C++ type support dispatch for ROS interfaces
+[9.457s] [ 14%] Linking C shared library libfast_lio__rosidl_generator_c.so
+[9.486s] [ 14%] Built target fast_lio__rosidl_generator_c
+[9.492s] [ 17%] Generating C++ type support for eProsima Fast-RTPS
+[9.770s] [ 20%] Building CXX object CMakeFiles/fast_lio__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/fast_lio/msg/pose6_d__type_support.cpp.o
+[9.945s] [ 22%] Building CXX object CMakeFiles/fast_lio__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/fast_lio/msg/detail/dds_fastrtps/pose6_d__type_support.cpp.o
+[10.160s] [ 25%] Linking CXX shared library libfast_lio__rosidl_typesupport_cpp.so
+[10.195s] [ 25%] Built target fast_lio__rosidl_typesupport_cpp
+[10.201s] [ 28%] Generating C introspection for ROS interfaces
+[10.550s] [ 31%] Linking CXX shared library libfast_lio__rosidl_typesupport_fastrtps_cpp.so
+[10.641s] [ 31%] Built target fast_lio__rosidl_typesupport_fastrtps_cpp
+[10.647s] [ 34%] Generating C type support dispatch for ROS interfaces
+[10.663s] [ 37%] Building C object CMakeFiles/fast_lio__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/fast_lio/msg/detail/pose6_d__type_support.c.o
+[10.743s] [ 40%] Linking C shared library libfast_lio__rosidl_typesupport_introspection_c.so
+[10.768s] [ 40%] Built target fast_lio__rosidl_typesupport_introspection_c
+[10.774s] [ 42%] Generating C++ introspection for ROS interfaces
+[11.079s] [ 45%] Building CXX object CMakeFiles/fast_lio__rosidl_typesupport_c.dir/rosidl_typesupport_c/fast_lio/msg/pose6_d__type_support.cpp.o
+[11.115s] [ 48%] Linking CXX shared library libfast_lio__rosidl_typesupport_c.so
+[11.148s] [ 48%] Built target fast_lio__rosidl_typesupport_c
+[11.224s] [ 51%] Building CXX object CMakeFiles/fast_lio__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/fast_lio/msg/detail/pose6_d__type_support.cpp.o
+[11.490s] running egg_info
+[11.520s] creating fast_lio.egg-info
+[11.520s] writing fast_lio.egg-info/PKG-INFO
+[11.520s] writing dependency_links to fast_lio.egg-info/dependency_links.txt
+[11.521s] writing top-level names to fast_lio.egg-info/top_level.txt
+[11.521s] writing manifest file 'fast_lio.egg-info/SOURCES.txt'
+[11.607s] reading manifest file 'fast_lio.egg-info/SOURCES.txt'
+[11.608s] writing manifest file 'fast_lio.egg-info/SOURCES.txt'
+[11.656s] [ 51%] Built target ament_cmake_python_build_fast_lio_egg
+[11.671s] [ 54%] Building CXX object CMakeFiles/fastlio_mapping.dir/src/laserMapping.cpp.o
+[11.887s] [ 57%] Linking CXX shared library libfast_lio__rosidl_typesupport_introspection_cpp.so
+[11.924s] [ 57%] Built target fast_lio__rosidl_typesupport_introspection_cpp
+[11.929s] [ 60%] Building CXX object CMakeFiles/fastlio_mapping.dir/include/ikd-Tree/ikd_Tree.cpp.o
+[19.485s] [ 62%] Building CXX object CMakeFiles/fastlio_mapping.dir/src/preprocess.cpp.o
+[21.805s] In file included from /usr/include/boost/smart_ptr/detail/sp_thread_sleep.hpp:22,
+[21.805s]                  from /usr/include/boost/smart_ptr/detail/yield_k.hpp:23,
+[21.805s]                  from /usr/include/boost/smart_ptr/detail/spinlock_gcc_atomic.hpp:14,
+[21.805s]                  from /usr/include/boost/smart_ptr/detail/spinlock.hpp:42,
+[21.805s]                  from /usr/include/boost/smart_ptr/detail/spinlock_pool.hpp:25,
+[21.806s]                  from /usr/include/boost/smart_ptr/shared_ptr.hpp:29,
+[21.806s]                  from /usr/include/boost/shared_ptr.hpp:17,
+[21.806s]                  from /usr/include/boost/date_time/microsec_time_clock.hpp:18,
+[21.806s]                  from /usr/include/boost/interprocess/detail/posix_time_types_wrk.hpp:31,
+[21.806s]                  from /usr/include/boost/interprocess/detail/os_thread_functions.hpp:36,
+[21.806s]                  from /usr/include/boost/interprocess/sync/file_lock.hpp:26,
+[21.806s]                  from /usr/include/pcl-1.12/pcl/io/pcd_io.h:46,
+[21.806s]                  from /opt/astribot_ros/third_pkg/pcl_conversions/include/pcl_conversions/pcl_conversions/pcl_conversions.h:73,
+[21.806s]                  from /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/src/IMU_Processing.hpp:18,
+[21.806s]                  from /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/src/laserMapping.cpp:47:
+[21.806s] /usr/include/boost/bind.hpp:36:1: note: ‘#pragma message: The practice of declaring the Bind placeholders (_1, _2, ...) in the global namespace is deprecated. Please use <boost/bind/bind.hpp> + using namespace boost::placeholders, or define BOOST_BIND_GLOBAL_PLACEHOLDERS to retain the current behavior.’
+[21.807s]    36 | BOOST_PRAGMA_MESSAGE(
+[21.807s]       | ^~~~~~~~~~~~~~~~~~~~
+[31.092s] In file included from /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/IKFoM_toolkit/esekfom/../mtk/types/SOn.hpp:83,
+[31.092s]                  from /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/IKFoM_toolkit/esekfom/esekfom.hpp:49,
+[31.092s]                  from /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/use-ikfom.hpp:4,
+[31.093s]                  from /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/src/IMU_Processing.hpp:22,
+[31.093s]                  from /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/src/laserMapping.cpp:47:
+[31.093s] /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/IKFoM_toolkit/esekfom/../mtk/types/../src/mtkmath.hpp: In instantiation of ‘std::pair<_FIter, _FIter> MTK::cos_sinc_sqrt(const scalar&) [with scalar = double]’:
+[31.093s] /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/IKFoM_toolkit/esekfom/../mtk/types/../src/mtkmath.hpp:252:52:   required from ‘scalar MTK::exp(MTK::vectview<scalar, dim>, MTK::vectview<const scalar, dim>, const scalar&) [with scalar = double; int n = 3]’
+[31.093s] /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/IKFoM_toolkit/esekfom/../mtk/types/S2.hpp:140:32:   required from ‘void MTK::S2<_scalar, den, num, S2_typ>::boxplus(MTK::vectview<const _scalar, 2>, MTK::S2<_scalar, den, num, S2_typ>::scalar) [with _scalar = double; int den = 98090; int num = 10000; int S2_typ = 1; MTK::S2<_scalar, den, num, S2_typ>::scalar = double]’
+[31.093s] /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/use-ikfom.hpp:12:1:   required from here
+[31.093s] /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/IKFoM_toolkit/esekfom/../mtk/types/../src/mtkmath.hpp:143:27: note: parameter passing for argument of type ‘std::pair<double, double>’ when C++17 is enabled changed to match C++14 in GCC 10.1
+[31.093s]   143 | std::pair<scalar, scalar> cos_sinc_sqrt(const scalar &x2){
+[31.093s]       |                           ^~~~~~~~~~~~~
+[31.995s] [ 65%] Generating C type support for eProsima Fast-RTPS
+[32.456s] [ 68%] Building CXX object CMakeFiles/fast_lio__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/fast_lio/msg/detail/pose6_d__type_support_c.cpp.o
+[32.964s] [ 71%] Linking CXX shared library libfast_lio__rosidl_typesupport_fastrtps_c.so
+[33.053s] [ 71%] Built target fast_lio__rosidl_typesupport_fastrtps_c
+[33.066s] [ 71%] Built target fast_lio
+[33.079s] [ 74%] Generating Python code for ROS interfaces
+[33.777s] [ 74%] Built target fast_lio__py
+[33.790s] [ 77%] Building C object CMakeFiles/fast_lio__rosidl_generator_py.dir/rosidl_generator_py/fast_lio/msg/_pose6_d_s.c.o
+[33.990s] [ 80%] Linking C shared library rosidl_generator_py/fast_lio/libfast_lio__rosidl_generator_py.so
+[34.025s] [ 80%] Built target fast_lio__rosidl_generator_py
+[34.038s] [ 82%] Building C object CMakeFiles/fast_lio__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/fast_lio/_fast_lio_s.ep.rosidl_typesupport_fastrtps_c.c.o
+[34.193s] [ 85%] Linking C shared library rosidl_generator_py/fast_lio/fast_lio_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+[34.223s] [ 85%] Built target fast_lio__rosidl_typesupport_fastrtps_c__pyext
+[34.236s] [ 88%] Building C object CMakeFiles/fast_lio__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/fast_lio/_fast_lio_s.ep.rosidl_typesupport_introspection_c.c.o
+[34.390s] [ 91%] Linking C shared library rosidl_generator_py/fast_lio/fast_lio_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+[34.419s] [ 91%] Built target fast_lio__rosidl_typesupport_introspection_c__pyext
+[34.431s] [ 94%] Building C object CMakeFiles/fast_lio__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/fast_lio/_fast_lio_s.ep.rosidl_typesupport_c.c.o
+[34.580s] [ 97%] Linking C shared library rosidl_generator_py/fast_lio/fast_lio_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+[34.607s] [ 97%] Built target fast_lio__rosidl_typesupport_c__pyext
+[121.588s] [100%] Linking CXX executable fastlio_mapping
+[123.826s] [100%] Built target fastlio_mapping
+[123.833s] Invoked command in '/home/astribot/TowerGO/runtime_ws/build/fast_lio' returned '0': AMENT_PREFIX_PATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2:/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch LD_LIBRARY_PATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/local/bin/cmake --build /home/astribot/TowerGO/runtime_ws/build/fast_lio
+[123.835s] Invoking command in '/home/astribot/TowerGO/runtime_ws/build/fast_lio': AMENT_PREFIX_PATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2:/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch LD_LIBRARY_PATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/local/bin/cmake --install /home/astribot/TowerGO/runtime_ws/build/fast_lio
+[123.839s] -- Install configuration: "Release"
+[123.840s] -- Execute custom install script
+[123.840s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/ament_index/resource_index/rosidl_interfaces/fast_lio
+[123.845s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/detail/pose6_d__functions.h
+[123.848s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/detail/pose6_d__struct.h
+[123.851s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/detail/pose6_d__type_support.h
+[123.855s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/pose6_d.h
+[123.857s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/rosidl_generator_c__visibility_control.h
+[123.861s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/environment/library_path.sh
+[123.863s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/environment/library_path.dsv
+[123.867s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/detail/pose6_d__rosidl_typesupport_fastrtps_c.h
+[123.870s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[123.874s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/detail/pose6_d__builder.hpp
+[123.877s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/detail/pose6_d__struct.hpp
+[123.880s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/detail/pose6_d__traits.hpp
+[123.883s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/pose6_d.hpp
+[123.887s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/detail/pose6_d__rosidl_typesupport_fastrtps_cpp.hpp
+[123.890s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[123.894s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/detail/pose6_d__rosidl_typesupport_introspection_c.h
+[123.897s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[123.901s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/detail/pose6_d__rosidl_typesupport_introspection_cpp.hpp
+[123.903s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/environment/pythonpath.sh
+[123.907s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/environment/pythonpath.dsv
+[123.911s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio-0.0.0-py3.10.egg-info/PKG-INFO
+[123.914s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio-0.0.0-py3.10.egg-info/SOURCES.txt
+[123.917s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio-0.0.0-py3.10.egg-info/dependency_links.txt
+[123.920s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio-0.0.0-py3.10.egg-info/top_level.txt
+[123.924s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/__init__.py
+[123.927s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/_fast_lio_s.ep.rosidl_typesupport_c.c
+[123.930s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/_fast_lio_s.ep.rosidl_typesupport_fastrtps_c.c
+[123.934s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/_fast_lio_s.ep.rosidl_typesupport_introspection_c.c
+[123.936s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/fast_lio_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+[123.940s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/fast_lio_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+[123.943s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/fast_lio_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+[123.946s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/libfast_lio__rosidl_generator_py.so
+[123.949s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/msg/__init__.py
+[123.952s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/msg/_pose6_d.py
+[123.955s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/msg/_pose6_d_s.c
+[123.959s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/fast_lio_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+[123.959s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/fast_lio_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+[123.959s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/fast_lio_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+[123.960s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/msg/Pose6D.idl
+[123.963s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/msg/Pose6D.msg
+[123.967s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/fast_lio/fastlio_mapping
+[123.970s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/config/avia.yaml
+[123.973s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/config/horizon.yaml
+[123.976s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/config/mid360.yaml
+[123.979s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/config/ouster64.yaml
+[123.982s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/config/velodyne.yaml
+[123.986s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/launch/gdb_debug_example.launch
+[123.989s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/launch/mapping.launch.py
+[123.993s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/rviz/fastlio.rviz
+[123.996s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/ament_index/resource_index/package_run_dependencies/fast_lio
+[123.999s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/ament_index/resource_index/parent_prefix_path/fast_lio
+[124.003s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/environment/ament_prefix_path.sh
+[124.007s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/environment/ament_prefix_path.dsv
+[124.010s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/environment/path.sh
+[124.013s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/environment/path.dsv
+[124.016s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/local_setup.bash
+[124.020s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/local_setup.sh
+[124.023s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/local_setup.zsh
+[124.026s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/local_setup.dsv
+[124.029s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/package.dsv
+[124.033s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/ament_index/resource_index/packages/fast_lio
+[124.036s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/rosidl_cmake-extras.cmake
+[124.039s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/ament_cmake_export_include_directories-extras.cmake
+[124.042s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/ament_cmake_export_libraries-extras.cmake
+[124.044s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/ament_cmake_export_targets-extras.cmake
+[124.047s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[124.050s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/ament_cmake_export_dependencies-extras.cmake
+[124.053s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[124.056s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/fast_lioConfig.cmake
+[124.058s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/fast_lioConfig-version.cmake
+[124.061s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/package.xml
+[124.064s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_generator_c.so
+[124.065s] -- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_generator_c.so" to ""
+[124.065s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_fastrtps_c.so
+[124.065s] -- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_fastrtps_c.so" to ""
+[124.066s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_fastrtps_cpp.so
+[124.066s] -- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_fastrtps_cpp.so" to ""
+[124.066s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_introspection_c.so
+[124.066s] -- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_introspection_c.so" to ""
+[124.067s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_c.so
+[124.067s] -- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_c.so" to ""
+[124.067s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_introspection_cpp.so
+[124.067s] -- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_introspection_cpp.so" to ""
+[124.068s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_cpp.so
+[124.068s] -- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_cpp.so" to ""
+[124.128s] Listing '/home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio'...
+[124.128s] Compiling '/home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/__init__.py'...
+[124.128s] Listing '/home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/msg'...
+[124.128s] Compiling '/home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/msg/__init__.py'...
+[124.128s] Compiling '/home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/msg/_pose6_d.py'...
+[124.136s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_generator_py.so
+[124.137s] -- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_generator_py.so" to ""
+[124.137s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/export_fast_lio__rosidl_generator_cExport.cmake
+[124.137s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/export_fast_lio__rosidl_generator_cExport-release.cmake
+[124.137s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/export_fast_lio__rosidl_typesupport_fastrtps_cExport.cmake
+[124.137s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/export_fast_lio__rosidl_typesupport_fastrtps_cExport-release.cmake
+[124.137s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/export_fast_lio__rosidl_generator_cppExport.cmake
+[124.138s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/export_fast_lio__rosidl_typesupport_fastrtps_cppExport.cmake
+[124.138s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/export_fast_lio__rosidl_typesupport_fastrtps_cppExport-release.cmake
+[124.138s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/fast_lio__rosidl_typesupport_introspection_cExport.cmake
+[124.138s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/fast_lio__rosidl_typesupport_introspection_cExport-release.cmake
+[124.138s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/fast_lio__rosidl_typesupport_cExport.cmake
+[124.139s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/fast_lio__rosidl_typesupport_cExport-release.cmake
+[124.139s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/fast_lio__rosidl_typesupport_introspection_cppExport.cmake
+[124.139s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/fast_lio__rosidl_typesupport_introspection_cppExport-release.cmake
+[124.139s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/fast_lio__rosidl_typesupport_cppExport.cmake
+[124.139s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/fast_lio__rosidl_typesupport_cppExport-release.cmake
+[124.140s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/export_fast_lio__rosidl_generator_pyExport.cmake
+[124.140s] -- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/export_fast_lio__rosidl_generator_pyExport-release.cmake
+[124.143s] Invoked command in '/home/astribot/TowerGO/runtime_ws/build/fast_lio' returned '0': AMENT_PREFIX_PATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2:/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch LD_LIBRARY_PATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/local/bin/cmake --install /home/astribot/TowerGO/runtime_ws/build/fast_lio

@@ -1,0 +1,19 @@
+{
+  "package_name": "fast_lio",
+  "output_dir": "/home/astribot/TowerGO/runtime_ws/build/fast_lio/rosidl_typesupport_fastrtps_cpp/fast_lio",
+  "template_dir": "/opt/astribot_ros/middle_ware/share/rosidl_typesupport_fastrtps_cpp/resource",
+  "idl_tuples": [
+    "/home/astribot/TowerGO/runtime_ws/build/fast_lio/rosidl_adapter/fast_lio:msg/Pose6D.idl"
+  ],
+  "target_dependencies": [
+    "/opt/astribot_ros/middle_ware/lib/rosidl_typesupport_fastrtps_cpp/rosidl_typesupport_fastrtps_cpp",
+    "/opt/astribot_ros/middle_ware/local/lib/python3.10/dist-packages/rosidl_typesupport_fastrtps_cpp/__init__.py",
+    "/opt/astribot_ros/middle_ware/share/rosidl_typesupport_fastrtps_cpp/resource/idl__rosidl_typesupport_fastrtps_cpp.hpp.em",
+    "/opt/astribot_ros/middle_ware/share/rosidl_typesupport_fastrtps_cpp/resource/idl__type_support.cpp.em",
+    "/opt/astribot_ros/middle_ware/share/rosidl_typesupport_fastrtps_cpp/resource/msg__rosidl_typesupport_fastrtps_cpp.hpp.em",
+    "/opt/astribot_ros/middle_ware/share/rosidl_typesupport_fastrtps_cpp/resource/msg__type_support.cpp.em",
+    "/opt/astribot_ros/middle_ware/share/rosidl_typesupport_fastrtps_cpp/resource/srv__rosidl_typesupport_fastrtps_cpp.hpp.em",
+    "/opt/astribot_ros/middle_ware/share/rosidl_typesupport_fastrtps_cpp/resource/srv__type_support.cpp.em",
+    "/home/astribot/TowerGO/runtime_ws/build/fast_lio/rosidl_adapter/fast_lio/msg/Pose6D.idl"
+  ]
+}

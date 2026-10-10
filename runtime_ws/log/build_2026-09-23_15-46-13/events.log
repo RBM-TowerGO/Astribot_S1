@@ -1,0 +1,1973 @@
+[0.000000] (-) TimerEvent: {}
+[0.000213] (livox_ros_driver2) JobQueued: {'identifier': 'livox_ros_driver2', 'dependencies': OrderedDict()}
+[0.000416] (towergo_real) JobQueued: {'identifier': 'towergo_real', 'dependencies': OrderedDict()}
+[0.000773] (fast_lio) JobQueued: {'identifier': 'fast_lio', 'dependencies': OrderedDict([('livox_ros_driver2', '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2')])}
+[0.000948] (towergo_livox_adapter) JobQueued: {'identifier': 'towergo_livox_adapter', 'dependencies': OrderedDict([('livox_ros_driver2', '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2')])}
+[0.001139] (livox_ros_driver2) JobStarted: {'identifier': 'livox_ros_driver2'}
+[0.021371] (livox_ros_driver2) JobProgress: {'identifier': 'livox_ros_driver2', 'progress': 'cmake'}
+[0.022373] (livox_ros_driver2) Command: {'cmd': ['/usr/local/bin/cmake', '/home/astribot/TowerGO/workspace/data/cache/real_dependencies/livox_ros_driver2', '-DCMAKE_BUILD_TYPE=Release', '-DBUILD_TESTING=OFF', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2'], 'cwd': '/home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2', 'env': OrderedDict([('CMAKE_BUILD_PARALLEL_LEVEL', '2'), ('USER', 'astribot'), ('SSH_CLIENT', '10.7.156.121 53070 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/astribot_ros/software/livox_ros_driver2/lib:/opt/astribot_ros/software/camera_subscriber_py/lib:/opt/astribot_ros/software/astribot_camera/lib:/opt/astribot_ros/software/jetson_nvcodec/lib:/opt/astribot_ros/software/compress_subscriber_py/lib:/opt/astribot_ros/software/astribot_recorder/lib:/opt/astribot_ros/software/astribot_data_processor/lib:/opt/astribot_ros/software/astribot_rosbag2_transport/lib:/opt/astribot_ros/software/astribot_rosbag2_storage/lib:/opt/astribot_ros/software/astribot_base/lib:/opt/astribot_ros/software/astribot_msgs/lib:/opt/astribot_ros/software/astribot_common_proto/lib:/opt/astribot_ros/software/astribot_camera_sdk/lib:/opt/astribot_ros/software/astribot_base_third_party/lib:/opt/astribot_ros/third_pkg/pcl_ros/lib:/opt/astribot_ros/third_pkg/pcl_msgs/lib:/opt/astribot_ros/middle_ware/opt/rviz_ogre_vendor/lib:/opt/astribot_ros/middle_ware/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/astribot'), ('OLDPWD', '/home/astribot'), ('ROS_PYTHON_VERSION', '3'), ('LC_CTYPE', 'C.UTF-8'), ('MAKEFLAGS', '-j2'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/opt/astribot_ros/software:/opt/astribot_ros/third_pkg:/opt/astribot_ros/middle_ware'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'astribot'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/opt/astribot_ros/middle_ware/lib/aarch64-linux-gnu/pkgconfig:/opt/astribot_ros/middle_ware/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('XDG_SESSION_ID', '711'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/astribot_ros/software/astribot_camera/bin:/opt/astribot_ros/software/astribot_data_processor/bin:/opt/astribot_ros/middle_ware/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('AMENT_PREFIX_PATH', '/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_launch:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware'), ('SHELL', '/bin/bash'), ('PWD', '/home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2'), ('LC_ALL', 'C.UTF-8'), ('SSH_CONNECTION', '10.7.156.121 53070 10.7.154.109 22'), ('PYTHONPATH', '/home/astribot/TowerGO/runtime_ws/build_python:/opt/astribot_ros/software/ptp_sync_time/lib/python3.10/site-packages:/opt/astribot_ros/software/livox_ros_driver2/local/lib/python3.10/dist-packages:/opt/astribot_ros/software/camera_subscriber_py/lib/python3/site-packages:/opt/astribot_ros/software/astribot_camera/lib/python3/site-packages:/opt/astribot_ros/software/compress_subscriber_py/lib/python3/site-packages:/opt/astribot_ros/software/astribot_ros_middleware/lib/python3.10/site-packages:/opt/astribot_ros/software/astribot_msgs/local/lib/python3.10/dist-packages:/opt/astribot_ros/software/astribot_launch/lib/python3.10/site-packages:/opt/astribot_ros/software/astribot_common_proto/lib/pyproto:/opt/astribot_ros/third_pkg/pcl_msgs/local/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/local/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/lib/python3.10/site-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch')]), 'shell': False}
+[0.033946] (livox_ros_driver2) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.9 (/opt/astribot_ros/middle_ware/share/ament_cmake/cmake)\n'}
+[0.099599] (-) TimerEvent: {}
+[0.178337] (livox_ros_driver2) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[0.188576] (livox_ros_driver2) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.2.0 (/opt/astribot_ros/middle_ware/share/rosidl_default_generators/cmake)\n'}
+[0.196640] (livox_ros_driver2) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.199659] (-) TimerEvent: {}
+[0.200991] (livox_ros_driver2) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.5 (/opt/astribot_ros/middle_ware/share/rosidl_adapter/cmake)\n'}
+[0.252652] (livox_ros_driver2) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.297828] (livox_ros_driver2) StdoutLine: {'line': b'-- Found std_msgs: 4.2.4 (/opt/astribot_ros/middle_ware/share/std_msgs/cmake)\n'}
+[0.299742] (-) TimerEvent: {}
+[0.399921] (-) TimerEvent: {}
+[0.500169] (-) TimerEvent: {}
+[0.600448] (-) TimerEvent: {}
+[0.700709] (-) TimerEvent: {}
+[0.729379] (livox_ros_driver2) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.10.0 (/opt/astribot_ros/middle_ware/share/ament_cmake_ros/cmake)\n'}
+[0.800833] (-) TimerEvent: {}
+[0.901097] (-) TimerEvent: {}
+[0.945640] (livox_ros_driver2) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[1.001219] (-) TimerEvent: {}
+[1.101483] (-) TimerEvent: {}
+[1.201737] (-) TimerEvent: {}
+[1.212000] (livox_ros_driver2) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.250625] (livox_ros_driver2) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") \n'}
+[1.255981] (livox_ros_driver2) StdoutLine: {'line': b'-- Found python_cmake_module: 0.10.0 (/opt/astribot_ros/middle_ware/share/python_cmake_module/cmake)\n'}
+[1.301854] (-) TimerEvent: {}
+[1.302212] (livox_ros_driver2) StdoutLine: {'line': b'-- Found PythonLibs: /usr/lib/aarch64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") \n'}
+[1.302529] (livox_ros_driver2) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[1.302641] (livox_ros_driver2) StdoutLine: {'line': b'-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10\n'}
+[1.302744] (livox_ros_driver2) StdoutLine: {'line': b'-- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.10.so\n'}
+[1.340969] (livox_ros_driver2) StdoutLine: {'line': b'-- Found PythonExtra: .so  \n'}
+[1.401975] (-) TimerEvent: {}
+[1.464701] (livox_ros_driver2) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.502080] (-) TimerEvent: {}
+[1.518798] (livox_ros_driver2) StdoutLine: {'line': b'-- Generating done\n'}
+[1.537362] (livox_ros_driver2) StdoutLine: {'line': b'-- Build files have been written to: /home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2\n'}
+[1.546553] (livox_ros_driver2) CommandEnded: {'returncode': 0}
+[1.547291] (livox_ros_driver2) JobProgress: {'identifier': 'livox_ros_driver2', 'progress': 'build'}
+[1.548107] (livox_ros_driver2) Command: {'cmd': ['/usr/local/bin/cmake', '--build', '/home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2'], 'cwd': '/home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2', 'env': OrderedDict([('CMAKE_BUILD_PARALLEL_LEVEL', '2'), ('USER', 'astribot'), ('SSH_CLIENT', '10.7.156.121 53070 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/astribot_ros/software/livox_ros_driver2/lib:/opt/astribot_ros/software/camera_subscriber_py/lib:/opt/astribot_ros/software/astribot_camera/lib:/opt/astribot_ros/software/jetson_nvcodec/lib:/opt/astribot_ros/software/compress_subscriber_py/lib:/opt/astribot_ros/software/astribot_recorder/lib:/opt/astribot_ros/software/astribot_data_processor/lib:/opt/astribot_ros/software/astribot_rosbag2_transport/lib:/opt/astribot_ros/software/astribot_rosbag2_storage/lib:/opt/astribot_ros/software/astribot_base/lib:/opt/astribot_ros/software/astribot_msgs/lib:/opt/astribot_ros/software/astribot_common_proto/lib:/opt/astribot_ros/software/astribot_camera_sdk/lib:/opt/astribot_ros/software/astribot_base_third_party/lib:/opt/astribot_ros/third_pkg/pcl_ros/lib:/opt/astribot_ros/third_pkg/pcl_msgs/lib:/opt/astribot_ros/middle_ware/opt/rviz_ogre_vendor/lib:/opt/astribot_ros/middle_ware/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/astribot'), ('OLDPWD', '/home/astribot'), ('ROS_PYTHON_VERSION', '3'), ('LC_CTYPE', 'C.UTF-8'), ('MAKEFLAGS', '-j2'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/opt/astribot_ros/software:/opt/astribot_ros/third_pkg:/opt/astribot_ros/middle_ware'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'astribot'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/opt/astribot_ros/middle_ware/lib/aarch64-linux-gnu/pkgconfig:/opt/astribot_ros/middle_ware/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('XDG_SESSION_ID', '711'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/astribot_ros/software/astribot_camera/bin:/opt/astribot_ros/software/astribot_data_processor/bin:/opt/astribot_ros/middle_ware/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('AMENT_PREFIX_PATH', '/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_launch:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware'), ('SHELL', '/bin/bash'), ('PWD', '/home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2'), ('LC_ALL', 'C.UTF-8'), ('SSH_CONNECTION', '10.7.156.121 53070 10.7.154.109 22'), ('PYTHONPATH', '/home/astribot/TowerGO/runtime_ws/build_python:/opt/astribot_ros/software/ptp_sync_time/lib/python3.10/site-packages:/opt/astribot_ros/software/livox_ros_driver2/local/lib/python3.10/dist-packages:/opt/astribot_ros/software/camera_subscriber_py/lib/python3/site-packages:/opt/astribot_ros/software/astribot_camera/lib/python3/site-packages:/opt/astribot_ros/software/compress_subscriber_py/lib/python3/site-packages:/opt/astribot_ros/software/astribot_ros_middleware/lib/python3.10/site-packages:/opt/astribot_ros/software/astribot_msgs/local/lib/python3.10/dist-packages:/opt/astribot_ros/software/astribot_launch/lib/python3.10/site-packages:/opt/astribot_ros/software/astribot_common_proto/lib/pyproto:/opt/astribot_ros/third_pkg/pcl_msgs/local/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/local/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/lib/python3.10/site-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch')]), 'shell': False}
+[1.573086] (livox_ros_driver2) StdoutLine: {'line': b'[  2%] Generating C code for ROS interfaces\n'}
+[1.579383] (livox_ros_driver2) StdoutLine: {'line': b'[  5%] Generating C++ code for ROS interfaces\n'}
+[1.602195] (-) TimerEvent: {}
+[1.702453] (-) TimerEvent: {}
+[1.802722] (-) TimerEvent: {}
+[1.902995] (-) TimerEvent: {}
+[2.003267] (-) TimerEvent: {}
+[2.011994] (livox_ros_driver2) StdoutLine: {'line': b'[  5%] Built target livox_ros_driver2__cpp\n'}
+[2.027040] (livox_ros_driver2) StdoutLine: {'line': b'[  5%] Built target ament_cmake_python_symlink_livox_ros_driver2\n'}
+[2.033556] (livox_ros_driver2) StdoutLine: {'line': b'[  7%] Building C object CMakeFiles/livox_ros_driver2__rosidl_generator_c.dir/rosidl_generator_c/livox_ros_driver2/msg/detail/custom_msg__functions.c.o\n'}
+[2.033812] (livox_ros_driver2) StdoutLine: {'line': b'[ 10%] Generating C++ type support dispatch for ROS interfaces\n'}
+[2.103384] (-) TimerEvent: {}
+[2.179548] (livox_ros_driver2) StdoutLine: {'line': b'[ 12%] Building C object CMakeFiles/livox_ros_driver2__rosidl_generator_c.dir/rosidl_generator_c/livox_ros_driver2/msg/detail/custom_point__functions.c.o\n'}
+[2.203485] (-) TimerEvent: {}
+[2.299574] (livox_ros_driver2) StdoutLine: {'line': b'[ 15%] Linking C shared library liblivox_ros_driver2__rosidl_generator_c.so\n'}
+[2.303545] (-) TimerEvent: {}
+[2.331160] (livox_ros_driver2) StdoutLine: {'line': b'[ 15%] Built target livox_ros_driver2__rosidl_generator_c\n'}
+[2.337641] (livox_ros_driver2) StdoutLine: {'line': b'[ 17%] Generating C++ type support for eProsima Fast-RTPS\n'}
+[2.389782] (livox_ros_driver2) StdoutLine: {'line': b'[ 20%] Building CXX object CMakeFiles/livox_ros_driver2__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/livox_ros_driver2/msg/custom_msg__type_support.cpp.o\n'}
+[2.403656] (-) TimerEvent: {}
+[2.503890] (-) TimerEvent: {}
+[2.604172] (-) TimerEvent: {}
+[2.704471] (-) TimerEvent: {}
+[2.749206] (livox_ros_driver2) StdoutLine: {'line': b'[ 23%] Building CXX object CMakeFiles/livox_ros_driver2__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/livox_ros_driver2/msg/detail/dds_fastrtps/custom_msg__type_support.cpp.o\n'}
+[2.804605] (-) TimerEvent: {}
+[2.812067] (livox_ros_driver2) StdoutLine: {'line': b'[ 25%] Building CXX object CMakeFiles/livox_ros_driver2__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/livox_ros_driver2/msg/custom_point__type_support.cpp.o\n'}
+[2.904732] (-) TimerEvent: {}
+[3.005012] (-) TimerEvent: {}
+[3.105305] (-) TimerEvent: {}
+[3.202529] (livox_ros_driver2) StdoutLine: {'line': b'[ 28%] Linking CXX shared library liblivox_ros_driver2__rosidl_typesupport_cpp.so\n'}
+[3.205381] (-) TimerEvent: {}
+[3.237240] (livox_ros_driver2) StdoutLine: {'line': b'[ 28%] Built target livox_ros_driver2__rosidl_typesupport_cpp\n'}
+[3.243760] (livox_ros_driver2) StdoutLine: {'line': b'[ 30%] Generating C++ introspection for ROS interfaces\n'}
+[3.305499] (-) TimerEvent: {}
+[3.405770] (-) TimerEvent: {}
+[3.441341] (livox_ros_driver2) StdoutLine: {'line': b'[ 33%] Building CXX object CMakeFiles/livox_ros_driver2__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/livox_ros_driver2/msg/detail/dds_fastrtps/custom_point__type_support.cpp.o\n'}
+[3.505891] (-) TimerEvent: {}
+[3.606173] (-) TimerEvent: {}
+[3.630280] (livox_ros_driver2) StdoutLine: {'line': b'[ 35%] Building CXX object CMakeFiles/livox_ros_driver2__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/livox_ros_driver2/msg/detail/custom_msg__type_support.cpp.o\n'}
+[3.706296] (-) TimerEvent: {}
+[3.806561] (-) TimerEvent: {}
+[3.906841] (-) TimerEvent: {}
+[4.007131] (-) TimerEvent: {}
+[4.034326] (livox_ros_driver2) StdoutLine: {'line': b'[ 38%] Linking CXX shared library liblivox_ros_driver2__rosidl_typesupport_fastrtps_cpp.so\n'}
+[4.107266] (-) TimerEvent: {}
+[4.123596] (livox_ros_driver2) StdoutLine: {'line': b'[ 38%] Built target livox_ros_driver2__rosidl_typesupport_fastrtps_cpp\n'}
+[4.207386] (-) TimerEvent: {}
+[4.301348] (livox_ros_driver2) StdoutLine: {'line': b'[ 41%] Building CXX object CMakeFiles/livox_ros_driver2__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/livox_ros_driver2/msg/detail/custom_point__type_support.cpp.o\n'}
+[4.307495] (-) TimerEvent: {}
+[4.407755] (-) TimerEvent: {}
+[4.470699] (livox_ros_driver2) StdoutLine: {'line': b'running egg_info\n'}
+[4.500388] (livox_ros_driver2) StdoutLine: {'line': b'creating livox_ros_driver2.egg-info\n'}
+[4.500726] (livox_ros_driver2) StdoutLine: {'line': b'writing livox_ros_driver2.egg-info/PKG-INFO\n'}
+[4.501191] (livox_ros_driver2) StdoutLine: {'line': b'writing dependency_links to livox_ros_driver2.egg-info/dependency_links.txt\n'}
+[4.501643] (livox_ros_driver2) StdoutLine: {'line': b'writing top-level names to livox_ros_driver2.egg-info/top_level.txt\n'}
+[4.501878] (livox_ros_driver2) StdoutLine: {'line': b"writing manifest file 'livox_ros_driver2.egg-info/SOURCES.txt'\n"}
+[4.507846] (-) TimerEvent: {}
+[4.589603] (livox_ros_driver2) StdoutLine: {'line': b"reading manifest file 'livox_ros_driver2.egg-info/SOURCES.txt'\n"}
+[4.590865] (livox_ros_driver2) StdoutLine: {'line': b"writing manifest file 'livox_ros_driver2.egg-info/SOURCES.txt'\n"}
+[4.607985] (-) TimerEvent: {}
+[4.639760] (livox_ros_driver2) StdoutLine: {'line': b'[ 41%] Built target ament_cmake_python_build_livox_ros_driver2_egg\n'}
+[4.646153] (livox_ros_driver2) StdoutLine: {'line': b'[ 43%] Generating C type support for eProsima Fast-RTPS\n'}
+[4.708103] (-) TimerEvent: {}
+[4.808879] (-) TimerEvent: {}
+[4.868112] (livox_ros_driver2) StdoutLine: {'line': b'[ 46%] Linking CXX shared library liblivox_ros_driver2__rosidl_typesupport_introspection_cpp.so\n'}
+[4.909003] (-) TimerEvent: {}
+[4.957794] (livox_ros_driver2) StdoutLine: {'line': b'[ 46%] Built target livox_ros_driver2__rosidl_typesupport_introspection_cpp\n'}
+[4.963906] (livox_ros_driver2) StdoutLine: {'line': b'[ 48%] Generating C introspection for ROS interfaces\n'}
+[5.009119] (-) TimerEvent: {}
+[5.056140] (livox_ros_driver2) StdoutLine: {'line': b'[ 51%] Building CXX object CMakeFiles/livox_ros_driver2__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/livox_ros_driver2/msg/detail/custom_msg__type_support_c.cpp.o\n'}
+[5.109238] (-) TimerEvent: {}
+[5.209509] (-) TimerEvent: {}
+[5.309784] (-) TimerEvent: {}
+[5.372899] (livox_ros_driver2) StdoutLine: {'line': b'[ 53%] Building C object CMakeFiles/livox_ros_driver2__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/livox_ros_driver2/msg/detail/custom_msg__type_support.c.o\n'}
+[5.409916] (-) TimerEvent: {}
+[5.443729] (livox_ros_driver2) StdoutLine: {'line': b'[ 56%] Building C object CMakeFiles/livox_ros_driver2__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/livox_ros_driver2/msg/detail/custom_point__type_support.c.o\n'}
+[5.491289] (livox_ros_driver2) StdoutLine: {'line': b'[ 58%] Linking C shared library liblivox_ros_driver2__rosidl_typesupport_introspection_c.so\n'}
+[5.510036] (-) TimerEvent: {}
+[5.515953] (livox_ros_driver2) StdoutLine: {'line': b'[ 58%] Built target livox_ros_driver2__rosidl_typesupport_introspection_c\n'}
+[5.522299] (livox_ros_driver2) StdoutLine: {'line': b'[ 61%] Generating C type support dispatch for ROS interfaces\n'}
+[5.591582] (livox_ros_driver2) StdoutLine: {'line': b'[ 64%] Building CXX object CMakeFiles/livox_ros_driver2__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/livox_ros_driver2/msg/detail/custom_point__type_support_c.cpp.o\n'}
+[5.610153] (-) TimerEvent: {}
+[5.710417] (-) TimerEvent: {}
+[5.810670] (-) TimerEvent: {}
+[5.910928] (-) TimerEvent: {}
+[5.913307] (livox_ros_driver2) StdoutLine: {'line': b'[ 66%] Building CXX object CMakeFiles/livox_ros_driver2__rosidl_typesupport_c.dir/rosidl_typesupport_c/livox_ros_driver2/msg/custom_msg__type_support.cpp.o\n'}
+[5.954039] (livox_ros_driver2) StdoutLine: {'line': b'[ 69%] Building CXX object CMakeFiles/livox_ros_driver2__rosidl_typesupport_c.dir/rosidl_typesupport_c/livox_ros_driver2/msg/custom_point__type_support.cpp.o\n'}
+[5.990034] (livox_ros_driver2) StdoutLine: {'line': b'[ 71%] Linking CXX shared library liblivox_ros_driver2__rosidl_typesupport_c.so\n'}
+[6.011057] (-) TimerEvent: {}
+[6.024610] (livox_ros_driver2) StdoutLine: {'line': b'[ 71%] Built target livox_ros_driver2__rosidl_typesupport_c\n'}
+[6.096356] (livox_ros_driver2) StdoutLine: {'line': b'[ 74%] Linking CXX shared library liblivox_ros_driver2__rosidl_typesupport_fastrtps_c.so\n'}
+[6.111152] (-) TimerEvent: {}
+[6.180075] (livox_ros_driver2) StdoutLine: {'line': b'[ 74%] Built target livox_ros_driver2__rosidl_typesupport_fastrtps_c\n'}
+[6.191895] (livox_ros_driver2) StdoutLine: {'line': b'[ 74%] Built target livox_ros_driver2\n'}
+[6.204305] (livox_ros_driver2) StdoutLine: {'line': b'[ 76%] Generating Python code for ROS interfaces\n'}
+[6.211224] (-) TimerEvent: {}
+[6.311419] (-) TimerEvent: {}
+[6.411665] (-) TimerEvent: {}
+[6.511915] (-) TimerEvent: {}
+[6.612161] (-) TimerEvent: {}
+[6.712418] (-) TimerEvent: {}
+[6.793399] (livox_ros_driver2) StdoutLine: {'line': b'[ 76%] Built target livox_ros_driver2__py\n'}
+[6.805718] (livox_ros_driver2) StdoutLine: {'line': b'[ 79%] Building C object CMakeFiles/livox_ros_driver2__rosidl_generator_py.dir/rosidl_generator_py/livox_ros_driver2/msg/_custom_msg_s.c.o\n'}
+[6.806016] (livox_ros_driver2) StdoutLine: {'line': b'[ 82%] Building C object CMakeFiles/livox_ros_driver2__rosidl_generator_py.dir/rosidl_generator_py/livox_ros_driver2/msg/_custom_point_s.c.o\n'}
+[6.812522] (-) TimerEvent: {}
+[6.912749] (-) TimerEvent: {}
+[7.012995] (-) TimerEvent: {}
+[7.027801] (livox_ros_driver2) StdoutLine: {'line': b'[ 84%] Linking C shared library rosidl_generator_py/livox_ros_driver2/liblivox_ros_driver2__rosidl_generator_py.so\n'}
+[7.063492] (livox_ros_driver2) StdoutLine: {'line': b'[ 84%] Built target livox_ros_driver2__rosidl_generator_py\n'}
+[7.076734] (livox_ros_driver2) StdoutLine: {'line': b'[ 89%] Building C object CMakeFiles/livox_ros_driver2__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/livox_ros_driver2/_livox_ros_driver2_s.ep.rosidl_typesupport_introspection_c.c.o\n'}
+[7.077023] (livox_ros_driver2) StdoutLine: {'line': b'[ 89%] Building C object CMakeFiles/livox_ros_driver2__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/livox_ros_driver2/_livox_ros_driver2_s.ep.rosidl_typesupport_fastrtps_c.c.o\n'}
+[7.113129] (-) TimerEvent: {}
+[7.213409] (-) TimerEvent: {}
+[7.262171] (livox_ros_driver2) StdoutLine: {'line': b'[ 94%] Linking C shared library rosidl_generator_py/livox_ros_driver2/livox_ros_driver2_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[7.262480] (livox_ros_driver2) StdoutLine: {'line': b'[ 94%] Linking C shared library rosidl_generator_py/livox_ros_driver2/livox_ros_driver2_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[7.298868] (livox_ros_driver2) StdoutLine: {'line': b'[ 94%] Built target livox_ros_driver2__rosidl_typesupport_introspection_c__pyext\n'}
+[7.299171] (livox_ros_driver2) StdoutLine: {'line': b'[ 94%] Built target livox_ros_driver2__rosidl_typesupport_fastrtps_c__pyext\n'}
+[7.311508] (livox_ros_driver2) StdoutLine: {'line': b'[ 97%] Building C object CMakeFiles/livox_ros_driver2__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/livox_ros_driver2/_livox_ros_driver2_s.ep.rosidl_typesupport_c.c.o\n'}
+[7.313461] (-) TimerEvent: {}
+[7.413629] (-) TimerEvent: {}
+[7.484575] (livox_ros_driver2) StdoutLine: {'line': b'[100%] Linking C shared library rosidl_generator_py/livox_ros_driver2/livox_ros_driver2_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[7.513759] (-) TimerEvent: {}
+[7.518356] (livox_ros_driver2) StdoutLine: {'line': b'[100%] Built target livox_ros_driver2__rosidl_typesupport_c__pyext\n'}
+[7.524901] (livox_ros_driver2) CommandEnded: {'returncode': 0}
+[7.525779] (livox_ros_driver2) JobProgress: {'identifier': 'livox_ros_driver2', 'progress': 'install'}
+[7.530044] (livox_ros_driver2) Command: {'cmd': ['/usr/local/bin/cmake', '--install', '/home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2'], 'cwd': '/home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2', 'env': OrderedDict([('CMAKE_BUILD_PARALLEL_LEVEL', '2'), ('USER', 'astribot'), ('SSH_CLIENT', '10.7.156.121 53070 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/astribot_ros/software/livox_ros_driver2/lib:/opt/astribot_ros/software/camera_subscriber_py/lib:/opt/astribot_ros/software/astribot_camera/lib:/opt/astribot_ros/software/jetson_nvcodec/lib:/opt/astribot_ros/software/compress_subscriber_py/lib:/opt/astribot_ros/software/astribot_recorder/lib:/opt/astribot_ros/software/astribot_data_processor/lib:/opt/astribot_ros/software/astribot_rosbag2_transport/lib:/opt/astribot_ros/software/astribot_rosbag2_storage/lib:/opt/astribot_ros/software/astribot_base/lib:/opt/astribot_ros/software/astribot_msgs/lib:/opt/astribot_ros/software/astribot_common_proto/lib:/opt/astribot_ros/software/astribot_camera_sdk/lib:/opt/astribot_ros/software/astribot_base_third_party/lib:/opt/astribot_ros/third_pkg/pcl_ros/lib:/opt/astribot_ros/third_pkg/pcl_msgs/lib:/opt/astribot_ros/middle_ware/opt/rviz_ogre_vendor/lib:/opt/astribot_ros/middle_ware/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/astribot'), ('OLDPWD', '/home/astribot'), ('ROS_PYTHON_VERSION', '3'), ('LC_CTYPE', 'C.UTF-8'), ('MAKEFLAGS', '-j2'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/opt/astribot_ros/software:/opt/astribot_ros/third_pkg:/opt/astribot_ros/middle_ware'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'astribot'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/opt/astribot_ros/middle_ware/lib/aarch64-linux-gnu/pkgconfig:/opt/astribot_ros/middle_ware/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('XDG_SESSION_ID', '711'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/astribot_ros/software/astribot_camera/bin:/opt/astribot_ros/software/astribot_data_processor/bin:/opt/astribot_ros/middle_ware/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('AMENT_PREFIX_PATH', '/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_launch:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware'), ('SHELL', '/bin/bash'), ('PWD', '/home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2'), ('LC_ALL', 'C.UTF-8'), ('SSH_CONNECTION', '10.7.156.121 53070 10.7.154.109 22'), ('PYTHONPATH', '/home/astribot/TowerGO/runtime_ws/build_python:/opt/astribot_ros/software/ptp_sync_time/lib/python3.10/site-packages:/opt/astribot_ros/software/livox_ros_driver2/local/lib/python3.10/dist-packages:/opt/astribot_ros/software/camera_subscriber_py/lib/python3/site-packages:/opt/astribot_ros/software/astribot_camera/lib/python3/site-packages:/opt/astribot_ros/software/compress_subscriber_py/lib/python3/site-packages:/opt/astribot_ros/software/astribot_ros_middleware/lib/python3.10/site-packages:/opt/astribot_ros/software/astribot_msgs/local/lib/python3.10/dist-packages:/opt/astribot_ros/software/astribot_launch/lib/python3.10/site-packages:/opt/astribot_ros/software/astribot_common_proto/lib/pyproto:/opt/astribot_ros/third_pkg/pcl_msgs/local/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/local/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/lib/python3.10/site-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch')]), 'shell': False}
+[7.534381] (livox_ros_driver2) StdoutLine: {'line': b'-- Install configuration: "Release"\n'}
+[7.535152] (livox_ros_driver2) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[7.535657] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/ament_index/resource_index/rosidl_interfaces/livox_ros_driver2\n'}
+[7.539975] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/custom_msg.h\n'}
+[7.543076] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/custom_point.h\n'}
+[7.546471] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_msg__functions.h\n'}
+[7.549817] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_msg__struct.h\n'}
+[7.552932] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_msg__type_support.h\n'}
+[7.555949] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_point__functions.h\n'}
+[7.558868] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_point__struct.h\n'}
+[7.562084] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_point__type_support.h\n'}
+[7.565066] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/rosidl_generator_c__visibility_control.h\n'}
+[7.568649] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/environment/library_path.sh\n'}
+[7.571737] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/environment/library_path.dsv\n'}
+[7.575413] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_msg__rosidl_typesupport_fastrtps_c.h\n'}
+[7.578447] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_point__rosidl_typesupport_fastrtps_c.h\n'}
+[7.581274] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[7.584369] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_msg__rosidl_typesupport_introspection_c.h\n'}
+[7.587805] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_point__rosidl_typesupport_introspection_c.h\n'}
+[7.590825] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[7.594623] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/custom_msg.hpp\n'}
+[7.598000] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/custom_point.hpp\n'}
+[7.600740] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_msg__builder.hpp\n'}
+[7.603812] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_msg__struct.hpp\n'}
+[7.606529] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_msg__traits.hpp\n'}
+[7.609753] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_point__builder.hpp\n'}
+[7.612663] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_point__struct.hpp\n'}
+[7.613804] (-) TimerEvent: {}
+[7.615689] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_point__traits.hpp\n'}
+[7.618973] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_msg__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[7.621894] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_point__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[7.624837] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[7.628082] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_msg__rosidl_typesupport_introspection_cpp.hpp\n'}
+[7.630921] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_point__rosidl_typesupport_introspection_cpp.hpp\n'}
+[7.634048] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/environment/pythonpath.sh\n'}
+[7.636897] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/environment/pythonpath.dsv\n'}
+[7.640355] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2-1.0.0-py3.10.egg-info/PKG-INFO\n'}
+[7.643152] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2-1.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[7.645868] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2-1.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[7.648672] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2-1.0.0-py3.10.egg-info/top_level.txt\n'}
+[7.652081] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/__init__.py\n'}
+[7.655379] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/_livox_ros_driver2_s.ep.rosidl_typesupport_c.c\n'}
+[7.658590] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/_livox_ros_driver2_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[7.661363] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/_livox_ros_driver2_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[7.664284] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/liblivox_ros_driver2__rosidl_generator_py.so\n'}
+[7.667034] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/livox_ros_driver2_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[7.669755] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/livox_ros_driver2_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[7.672674] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/livox_ros_driver2_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[7.675887] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/msg/__init__.py\n'}
+[7.678847] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/msg/_custom_msg.py\n'}
+[7.681890] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/msg/_custom_msg_s.c\n'}
+[7.684716] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/msg/_custom_point.py\n'}
+[7.687475] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/msg/_custom_point_s.c\n'}
+[7.690943] (livox_ros_driver2) StdoutLine: {'line': b'-- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/livox_ros_driver2_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[7.691296] (livox_ros_driver2) StdoutLine: {'line': b'-- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/livox_ros_driver2_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[7.691639] (livox_ros_driver2) StdoutLine: {'line': b'-- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/livox_ros_driver2_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[7.692001] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/msg/CustomMsg.idl\n'}
+[7.695813] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/msg/CustomPoint.idl\n'}
+[7.699055] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/msg/CustomMsg.msg\n'}
+[7.702312] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/msg/CustomPoint.msg\n'}
+[7.705222] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/ament_index/resource_index/package_run_dependencies/livox_ros_driver2\n'}
+[7.708364] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/ament_index/resource_index/parent_prefix_path/livox_ros_driver2\n'}
+[7.711310] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/environment/ament_prefix_path.sh\n'}
+[7.713873] (-) TimerEvent: {}
+[7.714515] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/environment/ament_prefix_path.dsv\n'}
+[7.717320] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/environment/path.sh\n'}
+[7.720039] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/environment/path.dsv\n'}
+[7.722787] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/local_setup.bash\n'}
+[7.725516] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/local_setup.sh\n'}
+[7.728786] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/local_setup.zsh\n'}
+[7.731933] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/local_setup.dsv\n'}
+[7.735410] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/package.dsv\n'}
+[7.738651] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/ament_index/resource_index/packages/livox_ros_driver2\n'}
+[7.741535] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/rosidl_cmake-extras.cmake\n'}
+[7.744251] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[7.746974] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[7.749673] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[7.752390] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[7.755705] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[7.758836] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[7.762036] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2Config.cmake\n'}
+[7.765075] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2Config-version.cmake\n'}
+[7.767809] (livox_ros_driver2) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/package.xml\n'}
+[7.770633] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_generator_c.so\n'}
+[7.771150] (livox_ros_driver2) StdoutLine: {'line': b'-- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_generator_c.so" to ""\n'}
+[7.771325] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_typesupport_fastrtps_c.so\n'}
+[7.771947] (livox_ros_driver2) StdoutLine: {'line': b'-- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_typesupport_fastrtps_c.so" to ""\n'}
+[7.772128] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_typesupport_introspection_c.so\n'}
+[7.772555] (livox_ros_driver2) StdoutLine: {'line': b'-- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_typesupport_introspection_c.so" to ""\n'}
+[7.772725] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_typesupport_c.so\n'}
+[7.773017] (livox_ros_driver2) StdoutLine: {'line': b'-- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_typesupport_c.so" to ""\n'}
+[7.773186] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_typesupport_fastrtps_cpp.so\n'}
+[7.773568] (livox_ros_driver2) StdoutLine: {'line': b'-- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_typesupport_fastrtps_cpp.so" to ""\n'}
+[7.773717] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_typesupport_introspection_cpp.so\n'}
+[7.774120] (livox_ros_driver2) StdoutLine: {'line': b'-- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_typesupport_introspection_cpp.so" to ""\n'}
+[7.774271] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_typesupport_cpp.so\n'}
+[7.774619] (livox_ros_driver2) StdoutLine: {'line': b'-- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_typesupport_cpp.so" to ""\n'}
+[7.814017] (-) TimerEvent: {}
+[7.833661] (livox_ros_driver2) StdoutLine: {'line': b"Listing '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2'...\n"}
+[7.833973] (livox_ros_driver2) StdoutLine: {'line': b"Compiling '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/__init__.py'...\n"}
+[7.834108] (livox_ros_driver2) StdoutLine: {'line': b"Listing '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/msg'...\n"}
+[7.834220] (livox_ros_driver2) StdoutLine: {'line': b"Compiling '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/msg/__init__.py'...\n"}
+[7.834329] (livox_ros_driver2) StdoutLine: {'line': b"Compiling '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/msg/_custom_msg.py'...\n"}
+[7.834429] (livox_ros_driver2) StdoutLine: {'line': b"Compiling '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/msg/_custom_point.py'...\n"}
+[7.841815] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_generator_py.so\n'}
+[7.842225] (livox_ros_driver2) StdoutLine: {'line': b'-- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_generator_py.so" to ""\n'}
+[7.842446] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/export_livox_ros_driver2__rosidl_generator_cExport.cmake\n'}
+[7.842635] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/export_livox_ros_driver2__rosidl_generator_cExport-release.cmake\n'}
+[7.842831] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/export_livox_ros_driver2__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[7.843041] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/export_livox_ros_driver2__rosidl_typesupport_fastrtps_cExport-release.cmake\n'}
+[7.843267] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2__rosidl_typesupport_introspection_cExport.cmake\n'}
+[7.843484] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2__rosidl_typesupport_introspection_cExport-release.cmake\n'}
+[7.843707] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2__rosidl_typesupport_cExport.cmake\n'}
+[7.843920] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2__rosidl_typesupport_cExport-release.cmake\n'}
+[7.844146] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/export_livox_ros_driver2__rosidl_generator_cppExport.cmake\n'}
+[7.844399] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/export_livox_ros_driver2__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[7.844621] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/export_livox_ros_driver2__rosidl_typesupport_fastrtps_cppExport-release.cmake\n'}
+[7.844866] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[7.845101] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2__rosidl_typesupport_introspection_cppExport-release.cmake\n'}
+[7.845307] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2__rosidl_typesupport_cppExport.cmake\n'}
+[7.845532] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2__rosidl_typesupport_cppExport-release.cmake\n'}
+[7.845752] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/export_livox_ros_driver2__rosidl_generator_pyExport.cmake\n'}
+[7.845980] (livox_ros_driver2) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/export_livox_ros_driver2__rosidl_generator_pyExport-release.cmake\n'}
+[7.848016] (livox_ros_driver2) CommandEnded: {'returncode': 0}
+[7.881288] (livox_ros_driver2) JobEnded: {'identifier': 'livox_ros_driver2', 'rc': 0}
+[7.882509] (towergo_real) JobStarted: {'identifier': 'towergo_real'}
+[7.914103] (-) TimerEvent: {}
+[8.014327] (-) TimerEvent: {}
+[8.114571] (-) TimerEvent: {}
+[8.214811] (-) TimerEvent: {}
+[8.315062] (-) TimerEvent: {}
+[8.415317] (-) TimerEvent: {}
+[8.515570] (-) TimerEvent: {}
+[8.615828] (-) TimerEvent: {}
+[8.716096] (-) TimerEvent: {}
+[8.816370] (-) TimerEvent: {}
+[8.916618] (-) TimerEvent: {}
+[9.016866] (-) TimerEvent: {}
+[9.117117] (-) TimerEvent: {}
+[9.217387] (-) TimerEvent: {}
+[9.249478] (towergo_real) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/astribot/TowerGO/runtime_ws/build/towergo_real/build', '--no-deps', 'symlink_data'], 'cwd': '/home/astribot/TowerGO/runtime_ws/build/towergo_real', 'env': {'CMAKE_BUILD_PARALLEL_LEVEL': '2', 'USER': 'astribot', 'SSH_CLIENT': '10.7.156.121 53070 22', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/astribot_ros/software/livox_ros_driver2/lib:/opt/astribot_ros/software/camera_subscriber_py/lib:/opt/astribot_ros/software/astribot_camera/lib:/opt/astribot_ros/software/jetson_nvcodec/lib:/opt/astribot_ros/software/compress_subscriber_py/lib:/opt/astribot_ros/software/astribot_recorder/lib:/opt/astribot_ros/software/astribot_data_processor/lib:/opt/astribot_ros/software/astribot_rosbag2_transport/lib:/opt/astribot_ros/software/astribot_rosbag2_storage/lib:/opt/astribot_ros/software/astribot_base/lib:/opt/astribot_ros/software/astribot_msgs/lib:/opt/astribot_ros/software/astribot_common_proto/lib:/opt/astribot_ros/software/astribot_camera_sdk/lib:/opt/astribot_ros/software/astribot_base_third_party/lib:/opt/astribot_ros/third_pkg/pcl_ros/lib:/opt/astribot_ros/third_pkg/pcl_msgs/lib:/opt/astribot_ros/middle_ware/opt/rviz_ogre_vendor/lib:/opt/astribot_ros/middle_ware/lib', 'MOTD_SHOWN': 'pam', 'HOME': '/home/astribot', 'OLDPWD': '/home/astribot', 'ROS_PYTHON_VERSION': '3', 'LC_CTYPE': 'C.UTF-8', 'MAKEFLAGS': '-j2', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLCON_PREFIX_PATH': '/opt/astribot_ros/software:/opt/astribot_ros/third_pkg:/opt/astribot_ros/middle_ware', 'ROS_DISTRO': 'humble', 'LOGNAME': 'astribot', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'PKG_CONFIG_PATH': '/opt/astribot_ros/middle_ware/lib/aarch64-linux-gnu/pkgconfig:/opt/astribot_ros/middle_ware/lib/pkgconfig', 'XDG_SESSION_CLASS': 'user', 'XDG_SESSION_ID': '711', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/astribot_ros/software/astribot_camera/bin:/opt/astribot_ros/software/astribot_data_processor/bin:/opt/astribot_ros/middle_ware/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'en_US.UTF-8', 'AMENT_PREFIX_PATH': '/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_launch:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware', 'SHELL': '/bin/bash', 'PWD': '/home/astribot/TowerGO/runtime_ws/build/towergo_real', 'LC_ALL': 'C.UTF-8', 'SSH_CONNECTION': '10.7.156.121 53070 10.7.154.109 22', 'PYTHONPATH': '/home/astribot/TowerGO/runtime_ws/build/towergo_real/prefix_override:/home/astribot/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/python3.10/site-packages:/home/astribot/TowerGO/runtime_ws/build_python:/opt/astribot_ros/software/ptp_sync_time/lib/python3.10/site-packages:/opt/astribot_ros/software/livox_ros_driver2/local/lib/python3.10/dist-packages:/opt/astribot_ros/software/camera_subscriber_py/lib/python3/site-packages:/opt/astribot_ros/software/astribot_camera/lib/python3/site-packages:/opt/astribot_ros/software/compress_subscriber_py/lib/python3/site-packages:/opt/astribot_ros/software/astribot_ros_middleware/lib/python3.10/site-packages:/opt/astribot_ros/software/astribot_msgs/local/lib/python3.10/dist-packages:/opt/astribot_ros/software/astribot_launch/lib/python3.10/site-packages:/opt/astribot_ros/software/astribot_common_proto/lib/pyproto:/opt/astribot_ros/third_pkg/pcl_msgs/local/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/local/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/lib/python3.10/site-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware'}, 'shell': False}
+[9.317500] (-) TimerEvent: {}
+[9.417755] (-) TimerEvent: {}
+[9.518015] (-) TimerEvent: {}
+[9.618265] (-) TimerEvent: {}
+[9.718528] (-) TimerEvent: {}
+[9.792707] (towergo_real) StdoutLine: {'line': b'running develop\n'}
+[9.818615] (-) TimerEvent: {}
+[9.918832] (-) TimerEvent: {}
+[10.019090] (-) TimerEvent: {}
+[10.119360] (-) TimerEvent: {}
+[10.169927] (towergo_real) StdoutLine: {'line': b'running egg_info\n'}
+[10.197100] (towergo_real) StdoutLine: {'line': b'creating towergo_real.egg-info\n'}
+[10.197594] (towergo_real) StdoutLine: {'line': b'writing towergo_real.egg-info/PKG-INFO\n'}
+[10.197978] (towergo_real) StdoutLine: {'line': b'writing dependency_links to towergo_real.egg-info/dependency_links.txt\n'}
+[10.198233] (towergo_real) StdoutLine: {'line': b'writing entry points to towergo_real.egg-info/entry_points.txt\n'}
+[10.198467] (towergo_real) StdoutLine: {'line': b'writing requirements to towergo_real.egg-info/requires.txt\n'}
+[10.198628] (towergo_real) StdoutLine: {'line': b'writing top-level names to towergo_real.egg-info/top_level.txt\n'}
+[10.198825] (towergo_real) StdoutLine: {'line': b"writing manifest file 'towergo_real.egg-info/SOURCES.txt'\n"}
+[10.219468] (-) TimerEvent: {}
+[10.255429] (towergo_real) StdoutLine: {'line': b"reading manifest file 'towergo_real.egg-info/SOURCES.txt'\n"}
+[10.256946] (towergo_real) StdoutLine: {'line': b"writing manifest file 'towergo_real.egg-info/SOURCES.txt'\n"}
+[10.319575] (-) TimerEvent: {}
+[10.362243] (towergo_real) StdoutLine: {'line': b'running build_ext\n'}
+[10.362513] (towergo_real) StdoutLine: {'line': b'Creating /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/python3.10/site-packages/towergo-real.egg-link (link to .)\n'}
+[10.363836] (towergo_real) StdoutLine: {'line': b'Installing audit_capture script to /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/towergo_real\n'}
+[10.364219] (towergo_real) StdoutLine: {'line': b'Installing chassis script to /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/towergo_real\n'}
+[10.364451] (towergo_real) StdoutLine: {'line': b'Installing keyboard script to /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/towergo_real\n'}
+[10.364652] (towergo_real) StdoutLine: {'line': b'Installing lio_adapter script to /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/towergo_real\n'}
+[10.364863] (towergo_real) StdoutLine: {'line': b'Installing map_viewer script to /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/towergo_real\n'}
+[10.365064] (towergo_real) StdoutLine: {'line': b'Installing preflight script to /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/towergo_real\n'}
+[10.365258] (towergo_real) StdoutLine: {'line': b'Installing session script to /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/towergo_real\n'}
+[10.365617] (towergo_real) StdoutLine: {'line': b'\n'}
+[10.365767] (towergo_real) StdoutLine: {'line': b'Installed /home/astribot/TowerGO/runtime_ws/build/towergo_real\n'}
+[10.365869] (towergo_real) StdoutLine: {'line': b'running symlink_data\n'}
+[10.366244] (towergo_real) StdoutLine: {'line': b'creating /home/astribot/TowerGO/runtime_ws/install/towergo_real/share/ament_index/resource_index/packages\n'}
+[10.366737] (towergo_real) StdoutLine: {'line': b'symbolically linking /home/astribot/TowerGO/runtime_ws/build/towergo_real/resource/towergo_real -> /home/astribot/TowerGO/runtime_ws/install/towergo_real/share/ament_index/resource_index/packages\n'}
+[10.367119] (towergo_real) StdoutLine: {'line': b'symbolically linking /home/astribot/TowerGO/runtime_ws/build/towergo_real/package.xml -> /home/astribot/TowerGO/runtime_ws/install/towergo_real/share/towergo_real\n'}
+[10.367310] (towergo_real) StdoutLine: {'line': b'creating /home/astribot/TowerGO/runtime_ws/install/towergo_real/share/towergo_real/config\n'}
+[10.367589] (towergo_real) StdoutLine: {'line': b'symbolically linking /home/astribot/TowerGO/runtime_ws/build/towergo_real/config/hardware.unverified.yaml -> /home/astribot/TowerGO/runtime_ws/install/towergo_real/share/towergo_real/config\n'}
+[10.367774] (towergo_real) StdoutLine: {'line': b'symbolically linking /home/astribot/TowerGO/runtime_ws/build/towergo_real/config/calibration.unverified.yaml -> /home/astribot/TowerGO/runtime_ws/install/towergo_real/share/towergo_real/config\n'}
+[10.367970] (towergo_real) StdoutLine: {'line': b'symbolically linking /home/astribot/TowerGO/runtime_ws/build/towergo_real/config/slam_real.yaml -> /home/astribot/TowerGO/runtime_ws/install/towergo_real/share/towergo_real/config\n'}
+[10.368155] (towergo_real) StdoutLine: {'line': b'creating /home/astribot/TowerGO/runtime_ws/install/towergo_real/share/towergo_real/launch\n'}
+[10.368462] (towergo_real) StdoutLine: {'line': b'symbolically linking /home/astribot/TowerGO/runtime_ws/build/towergo_real/launch/real_mapping.launch.py -> /home/astribot/TowerGO/runtime_ws/install/towergo_real/share/towergo_real/launch\n'}
+[10.368642] (towergo_real) StdoutLine: {'line': b'creating /home/astribot/TowerGO/runtime_ws/install/towergo_real/share/towergo_real/web\n'}
+[10.368912] (towergo_real) StdoutLine: {'line': b'symbolically linking /home/astribot/TowerGO/runtime_ws/build/towergo_real/web/index.html -> /home/astribot/TowerGO/runtime_ws/install/towergo_real/share/towergo_real/web\n'}
+[10.419691] (-) TimerEvent: {}
+[10.447708] (towergo_real) CommandEnded: {'returncode': 0}
+[10.459245] (towergo_real) JobEnded: {'identifier': 'towergo_real', 'rc': 0}
+[10.460538] (fast_lio) JobStarted: {'identifier': 'fast_lio'}
+[10.480718] (fast_lio) JobProgress: {'identifier': 'fast_lio', 'progress': 'cmake'}
+[10.481444] (fast_lio) Command: {'cmd': ['/usr/local/bin/cmake', '/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio', '-DCMAKE_BUILD_TYPE=Release', '-DBUILD_TESTING=OFF', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/astribot/TowerGO/runtime_ws/install/fast_lio'], 'cwd': '/home/astribot/TowerGO/runtime_ws/build/fast_lio', 'env': OrderedDict([('CMAKE_BUILD_PARALLEL_LEVEL', '2'), ('USER', 'astribot'), ('SSH_CLIENT', '10.7.156.121 53070 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib:/opt/astribot_ros/software/livox_ros_driver2/lib:/opt/astribot_ros/software/camera_subscriber_py/lib:/opt/astribot_ros/software/astribot_camera/lib:/opt/astribot_ros/software/jetson_nvcodec/lib:/opt/astribot_ros/software/compress_subscriber_py/lib:/opt/astribot_ros/software/astribot_recorder/lib:/opt/astribot_ros/software/astribot_data_processor/lib:/opt/astribot_ros/software/astribot_rosbag2_transport/lib:/opt/astribot_ros/software/astribot_rosbag2_storage/lib:/opt/astribot_ros/software/astribot_base/lib:/opt/astribot_ros/software/astribot_msgs/lib:/opt/astribot_ros/software/astribot_common_proto/lib:/opt/astribot_ros/software/astribot_camera_sdk/lib:/opt/astribot_ros/software/astribot_base_third_party/lib:/opt/astribot_ros/third_pkg/pcl_ros/lib:/opt/astribot_ros/third_pkg/pcl_msgs/lib:/opt/astribot_ros/middle_ware/opt/rviz_ogre_vendor/lib:/opt/astribot_ros/middle_ware/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/astribot'), ('OLDPWD', '/home/astribot'), ('ROS_PYTHON_VERSION', '3'), ('LC_CTYPE', 'C.UTF-8'), ('MAKEFLAGS', '-j2'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/opt/astribot_ros/software:/opt/astribot_ros/third_pkg:/opt/astribot_ros/middle_ware'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'astribot'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/opt/astribot_ros/middle_ware/lib/aarch64-linux-gnu/pkgconfig:/opt/astribot_ros/middle_ware/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('XDG_SESSION_ID', '711'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/astribot_ros/software/astribot_camera/bin:/opt/astribot_ros/software/astribot_data_processor/bin:/opt/astribot_ros/middle_ware/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('AMENT_PREFIX_PATH', '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_launch:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware'), ('SHELL', '/bin/bash'), ('PWD', '/home/astribot/TowerGO/runtime_ws/build/fast_lio'), ('LC_ALL', 'C.UTF-8'), ('SSH_CONNECTION', '10.7.156.121 53070 10.7.154.109 22'), ('PYTHONPATH', '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages:/home/astribot/TowerGO/runtime_ws/build_python:/opt/astribot_ros/software/ptp_sync_time/lib/python3.10/site-packages:/opt/astribot_ros/software/livox_ros_driver2/local/lib/python3.10/dist-packages:/opt/astribot_ros/software/camera_subscriber_py/lib/python3/site-packages:/opt/astribot_ros/software/astribot_camera/lib/python3/site-packages:/opt/astribot_ros/software/compress_subscriber_py/lib/python3/site-packages:/opt/astribot_ros/software/astribot_ros_middleware/lib/python3.10/site-packages:/opt/astribot_ros/software/astribot_msgs/local/lib/python3.10/dist-packages:/opt/astribot_ros/software/astribot_launch/lib/python3.10/site-packages:/opt/astribot_ros/software/astribot_common_proto/lib/pyproto:/opt/astribot_ros/third_pkg/pcl_msgs/local/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/local/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/lib/python3.10/site-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2:/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch')]), 'shell': False}
+[10.519815] (-) TimerEvent: {}
+[10.555047] (fast_lio) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[10.619951] (-) TimerEvent: {}
+[10.629794] (fast_lio) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[10.644369] (fast_lio) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[10.718295] (fast_lio) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[10.719998] (-) TimerEvent: {}
+[10.729716] (fast_lio) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[10.730126] (fast_lio) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[10.730703] (fast_lio) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[10.735453] (fast_lio) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[10.818074] (fast_lio) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[10.820082] (-) TimerEvent: {}
+[10.829790] (fast_lio) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[10.830231] (fast_lio) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[10.830959] (fast_lio) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[10.832025] (fast_lio) StderrLine: {'line': b'Current CPU archtecture: aarch64\n'}
+[10.920229] (-) TimerEvent: {}
+[11.020507] (-) TimerEvent: {}
+[11.120783] (-) TimerEvent: {}
+[11.221056] (-) TimerEvent: {}
+[11.243488] (fast_lio) StdoutLine: {'line': b'-- Found PythonLibs: /usr/lib/aarch64-linux-gnu/libpython3.10.so (found version "3.10.12") \n'}
+[11.250412] (fast_lio) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.9 (/opt/astribot_ros/middle_ware/share/ament_cmake/cmake)\n'}
+[11.321164] (-) TimerEvent: {}
+[11.421425] (-) TimerEvent: {}
+[11.521701] (-) TimerEvent: {}
+[11.621952] (-) TimerEvent: {}
+[11.722267] (-) TimerEvent: {}
+[11.785869] (fast_lio) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[11.822385] (-) TimerEvent: {}
+[11.893546] (fast_lio) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[11.922455] (-) TimerEvent: {}
+[11.970945] (fast_lio) StdoutLine: {'line': b'-- Found rclcpp: 16.0.9 (/opt/astribot_ros/middle_ware/share/rclcpp/cmake)\n'}
+[12.022545] (-) TimerEvent: {}
+[12.067765] (fast_lio) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.5 (/opt/astribot_ros/middle_ware/share/rosidl_generator_c/cmake)\n'}
+[12.082686] (fast_lio) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.5 (/opt/astribot_ros/middle_ware/share/rosidl_adapter/cmake)\n'}
+[12.103986] (fast_lio) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.5 (/opt/astribot_ros/middle_ware/share/rosidl_generator_cpp/cmake)\n'}
+[12.122643] (-) TimerEvent: {}
+[12.137120] (fast_lio) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[12.182076] (fast_lio) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[12.222730] (-) TimerEvent: {}
+[12.322908] (-) TimerEvent: {}
+[12.335084] (fast_lio) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/astribot_ros/middle_ware/share/rmw_implementation_cmake/cmake)\n'}
+[12.343592] (fast_lio) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.6 (/opt/astribot_ros/middle_ware/share/rmw_fastrtps_cpp/cmake)\n'}
+[12.423023] (-) TimerEvent: {}
+[12.523274] (-) TimerEvent: {}
+[12.525920] (fast_lio) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[12.567922] (fast_lio) StdoutLine: {'line': b'-- Found FastRTPS: /opt/astribot_ros/middle_ware/include  \n'}
+[12.623394] (-) TimerEvent: {}
+[12.649294] (fast_lio) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[12.673628] (fast_lio) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[12.723502] (-) TimerEvent: {}
+[12.754561] (fast_lio) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[12.756407] (fast_lio) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[12.823615] (-) TimerEvent: {}
+[12.923849] (-) TimerEvent: {}
+[13.023578] (fast_lio) StdoutLine: {'line': b'-- Found rclcpp_components: 16.0.9 (/opt/astribot_ros/middle_ware/share/rclcpp_components/cmake)\n'}
+[13.023868] (-) TimerEvent: {}
+[13.124046] (-) TimerEvent: {}
+[13.141735] (fast_lio) StdoutLine: {'line': b'-- Found geometry_msgs: 4.2.4 (/opt/astribot_ros/middle_ware/share/geometry_msgs/cmake)\n'}
+[13.214422] (fast_lio) StdoutLine: {'line': b'-- Found nav_msgs: 4.2.4 (/opt/astribot_ros/middle_ware/share/nav_msgs/cmake)\n'}
+[13.224104] (-) TimerEvent: {}
+[13.324266] (-) TimerEvent: {}
+[13.349139] (fast_lio) StdoutLine: {'line': b'-- Found sensor_msgs: 4.2.4 (/opt/astribot_ros/middle_ware/share/sensor_msgs/cmake)\n'}
+[13.424371] (-) TimerEvent: {}
+[13.482853] (fast_lio) StdoutLine: {'line': b'-- Found std_srvs: 4.2.4 (/opt/astribot_ros/middle_ware/share/std_srvs/cmake)\n'}
+[13.518364] (fast_lio) StdoutLine: {'line': b'-- Found visualization_msgs: 4.2.4 (/opt/astribot_ros/middle_ware/share/visualization_msgs/cmake)\n'}
+[13.524432] (-) TimerEvent: {}
+[13.624605] (-) TimerEvent: {}
+[13.705069] (fast_lio) StdoutLine: {'line': b'-- Found pcl_ros: 2.4.5 (/opt/astribot_ros/third_pkg/pcl_ros/share/pcl_ros/cmake)\n'}
+[13.724704] (-) TimerEvent: {}
+[13.824918] (-) TimerEvent: {}
+[13.925145] (-) TimerEvent: {}
+[13.944716] (fast_lio) StdoutLine: {'line': b"-- Checking for module 'eigen3'\n"}
+[13.966775] (fast_lio) StdoutLine: {'line': b'--   Found eigen3, version 3.4.0\n'}
+[14.017475] (fast_lio) StdoutLine: {'line': b'-- Found Eigen: /usr/include/eigen3 (Required is at least version "3.1") \n'}
+[14.017783] (fast_lio) StdoutLine: {'line': b'-- Eigen found (include: /usr/include/eigen3, version: 3.4.0)\n'}
+[14.025202] (-) TimerEvent: {}
+[14.105270] (fast_lio) StdoutLine: {'line': b"-- Checking for module 'flann'\n"}
+[14.125324] (-) TimerEvent: {}
+[14.128275] (fast_lio) StdoutLine: {'line': b'--   Found flann, version 1.9.1\n'}
+[14.190764] (fast_lio) StdoutLine: {'line': b'-- Found FLANN: /usr/lib/aarch64-linux-gnu/libflann_cpp.so  \n'}
+[14.191071] (fast_lio) StdoutLine: {'line': b'-- FLANN found (include: /usr/include, lib: /usr/lib/aarch64-linux-gnu/libflann_cpp.so)\n'}
+[14.225438] (-) TimerEvent: {}
+[14.325694] (-) TimerEvent: {}
+[14.425958] (-) TimerEvent: {}
+[14.526233] (-) TimerEvent: {}
+[14.626475] (-) TimerEvent: {}
+[14.726725] (-) TimerEvent: {}
+[14.826999] (-) TimerEvent: {}
+[14.927269] (-) TimerEvent: {}
+[15.027537] (-) TimerEvent: {}
+[15.127818] (-) TimerEvent: {}
+[15.228093] (-) TimerEvent: {}
+[15.328389] (-) TimerEvent: {}
+[15.428667] (-) TimerEvent: {}
+[15.528956] (-) TimerEvent: {}
+[15.566367] (fast_lio) StdoutLine: {'line': b"-- Checking for module 'libusb-1.0'\n"}
+[15.592060] (fast_lio) StdoutLine: {'line': b'--   Found libusb-1.0, version 1.0.25\n'}
+[15.629078] (-) TimerEvent: {}
+[15.651194] (fast_lio) StdoutLine: {'line': b'-- Found libusb: /usr/lib/aarch64-linux-gnu/libusb-1.0.so  \n'}
+[15.653134] (fast_lio) StdoutLine: {'line': b'-- OpenNI found (version: 1.5.4.0, include: /usr/include/ni, lib: /usr/lib/libOpenNI.so;libusb::libusb)\n'}
+[15.729202] (-) TimerEvent: {}
+[15.750083] (fast_lio) StdoutLine: {'line': b'-- OpenNI2 found (version: 2.2.0.33, include: /usr/include/openni2, lib: /usr/lib/aarch64-linux-gnu/libOpenNI2.so;libusb::libusb)\n'}
+[15.829323] (-) TimerEvent: {}
+[15.929582] (-) TimerEvent: {}
+[16.029831] (-) TimerEvent: {}
+[16.049626] (fast_lio) StdoutLine: {'line': b'-- Eigen found (include: /usr/include/eigen3, version: 3.4.0)\n'}
+[16.060458] (fast_lio) StdoutLine: {'line': b'-- OpenNI found (version: 1.5.4.0, include: /usr/include/ni, lib: /usr/lib/libOpenNI.so;libusb::libusb)\n'}
+[16.070791] (fast_lio) StdoutLine: {'line': b'-- OpenNI2 found (version: 2.2.0.33, include: /usr/include/openni2, lib: /usr/lib/aarch64-linux-gnu/libOpenNI2.so;libusb::libusb)\n'}
+[16.129950] (-) TimerEvent: {}
+[16.230225] (-) TimerEvent: {}
+[16.330521] (-) TimerEvent: {}
+[16.369281] (fast_lio) StdoutLine: {'line': b'-- Found Qhull version 8.0.2\n'}
+[16.430642] (-) TimerEvent: {}
+[16.530916] (-) TimerEvent: {}
+[16.631180] (-) TimerEvent: {}
+[16.665374] (fast_lio) StdoutLine: {'line': b'-- OpenNI found (version: 1.5.4.0, include: /usr/include/ni, lib: /usr/lib/libOpenNI.so;libusb::libusb)\n'}
+[16.731308] (-) TimerEvent: {}
+[16.831581] (-) TimerEvent: {}
+[16.931834] (-) TimerEvent: {}
+[16.951924] (fast_lio) StdoutLine: {'line': b'-- Found PCL_COMMON: /usr/lib/aarch64-linux-gnu/libpcl_common.so  \n'}
+[16.953196] (fast_lio) StdoutLine: {'line': b'-- Found PCL_KDTREE: /usr/lib/aarch64-linux-gnu/libpcl_kdtree.so  \n'}
+[16.954496] (fast_lio) StdoutLine: {'line': b'-- Found PCL_OCTREE: /usr/lib/aarch64-linux-gnu/libpcl_octree.so  \n'}
+[16.955913] (fast_lio) StdoutLine: {'line': b'-- Found PCL_SEARCH: /usr/lib/aarch64-linux-gnu/libpcl_search.so  \n'}
+[16.957534] (fast_lio) StdoutLine: {'line': b'-- Found PCL_SAMPLE_CONSENSUS: /usr/lib/aarch64-linux-gnu/libpcl_sample_consensus.so  \n'}
+[16.958962] (fast_lio) StdoutLine: {'line': b'-- Found PCL_FILTERS: /usr/lib/aarch64-linux-gnu/libpcl_filters.so  \n'}
+[16.959686] (fast_lio) StdoutLine: {'line': b'-- Found PCL_2D: /usr/include/pcl-1.12  \n'}
+[16.960406] (fast_lio) StdoutLine: {'line': b'-- Found PCL_GEOMETRY: /usr/include/pcl-1.12  \n'}
+[16.961842] (fast_lio) StdoutLine: {'line': b'-- Found PCL_IO: /usr/lib/aarch64-linux-gnu/libpcl_io.so  \n'}
+[16.963398] (fast_lio) StdoutLine: {'line': b'-- Found PCL_FEATURES: /usr/lib/aarch64-linux-gnu/libpcl_features.so  \n'}
+[16.964939] (fast_lio) StdoutLine: {'line': b'-- Found PCL_ML: /usr/lib/aarch64-linux-gnu/libpcl_ml.so  \n'}
+[16.966321] (fast_lio) StdoutLine: {'line': b'-- Found PCL_SEGMENTATION: /usr/lib/aarch64-linux-gnu/libpcl_segmentation.so  \n'}
+[16.967863] (fast_lio) StdoutLine: {'line': b'-- Found PCL_VISUALIZATION: /usr/lib/aarch64-linux-gnu/libpcl_visualization.so  \n'}
+[16.969384] (fast_lio) StdoutLine: {'line': b'-- Found PCL_SURFACE: /usr/lib/aarch64-linux-gnu/libpcl_surface.so  \n'}
+[16.970823] (fast_lio) StdoutLine: {'line': b'-- Found PCL_REGISTRATION: /usr/lib/aarch64-linux-gnu/libpcl_registration.so  \n'}
+[16.972347] (fast_lio) StdoutLine: {'line': b'-- Found PCL_KEYPOINTS: /usr/lib/aarch64-linux-gnu/libpcl_keypoints.so  \n'}
+[16.973850] (fast_lio) StdoutLine: {'line': b'-- Found PCL_TRACKING: /usr/lib/aarch64-linux-gnu/libpcl_tracking.so  \n'}
+[16.975295] (fast_lio) StdoutLine: {'line': b'-- Found PCL_RECOGNITION: /usr/lib/aarch64-linux-gnu/libpcl_recognition.so  \n'}
+[16.976948] (fast_lio) StdoutLine: {'line': b'-- Found PCL_STEREO: /usr/lib/aarch64-linux-gnu/libpcl_stereo.so  \n'}
+[16.978342] (fast_lio) StdoutLine: {'line': b'-- Found PCL_APPS: /usr/lib/aarch64-linux-gnu/libpcl_apps.so  \n'}
+[16.979683] (fast_lio) StdoutLine: {'line': b'-- Found PCL_IN_HAND_SCANNER: /usr/include/pcl-1.12  \n'}
+[16.980336] (fast_lio) StdoutLine: {'line': b'-- Found PCL_MODELER: /usr/include/pcl-1.12  \n'}
+[16.984081] (fast_lio) StdoutLine: {'line': b'-- Found PCL_POINT_CLOUD_EDITOR: /usr/include/pcl-1.12  \n'}
+[16.985629] (fast_lio) StdoutLine: {'line': b'-- Found PCL_OUTOFCORE: /usr/lib/aarch64-linux-gnu/libpcl_outofcore.so  \n'}
+[16.987075] (fast_lio) StdoutLine: {'line': b'-- Found PCL_PEOPLE: /usr/lib/aarch64-linux-gnu/libpcl_people.so  \n'}
+[17.031891] (-) TimerEvent: {}
+[17.132014] (-) TimerEvent: {}
+[17.232176] (-) TimerEvent: {}
+[17.332399] (-) TimerEvent: {}
+[17.366921] (fast_lio) StdoutLine: {'line': b'-- Found eigen3_cmake_module: 0.1.1 (/opt/astribot_ros/middle_ware/share/eigen3_cmake_module/cmake)\n'}
+[17.369377] (fast_lio) StdoutLine: {'line': b'-- Found Eigen3: TRUE (found version "3.4.0") \n'}
+[17.369642] (fast_lio) StdoutLine: {'line': b'-- Ensuring Eigen3 include directory is part of orocos-kdl CMake target\n'}
+[17.432464] (-) TimerEvent: {}
+[17.532646] (-) TimerEvent: {}
+[17.632840] (-) TimerEvent: {}
+[17.733044] (-) TimerEvent: {}
+[17.833286] (-) TimerEvent: {}
+[17.874188] (fast_lio) StdoutLine: {'line': b'-- Found livox_ros_driver2: 1.0.0 (/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake)\n'}
+[17.933379] (-) TimerEvent: {}
+[17.948850] (fast_lio) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.2.0 (/opt/astribot_ros/middle_ware/share/rosidl_default_generators/cmake)\n'}
+[17.972572] (fast_lio) StderrLine: {'line': b'CMake Warning (dev) at CMakeLists.txt:81 (find_package):\n'}
+[17.972705] (fast_lio) StderrLine: {'line': b'  Policy CMP0074 is not set: find_package uses <PackageName>_ROOT variables.\n'}
+[17.972812] (fast_lio) StderrLine: {'line': b'  Run "cmake --help-policy CMP0074" for policy details.  Use the cmake_policy\n'}
+[17.972912] (fast_lio) StderrLine: {'line': b'  command to set the policy and suppress this warning.\n'}
+[17.973008] (fast_lio) StderrLine: {'line': b'\n'}
+[17.973101] (fast_lio) StderrLine: {'line': b'  CMake variable PCL_ROOT is set to:\n'}
+[17.973193] (fast_lio) StderrLine: {'line': b'\n'}
+[17.973283] (fast_lio) StderrLine: {'line': b'    /usr\n'}
+[17.973370] (fast_lio) StderrLine: {'line': b'\n'}
+[17.973457] (fast_lio) StderrLine: {'line': b'  For compatibility, CMake is ignoring the variable.\n'}
+[17.973544] (fast_lio) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[17.973631] (fast_lio) StderrLine: {'line': b'\n'}
+[17.984214] (fast_lio) StderrLine: {'line': b'Eigen:/usr/include/eigen3\n'}
+[17.984473] (fast_lio) StdoutLine: {'line': b'-- PCL: /usr/include/pcl-1.12\n'}
+[18.033499] (-) TimerEvent: {}
+[18.133757] (-) TimerEvent: {}
+[18.234007] (-) TimerEvent: {}
+[18.281490] (fast_lio) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.10.0 (/opt/astribot_ros/middle_ware/share/ament_cmake_ros/cmake)\n'}
+[18.334119] (-) TimerEvent: {}
+[18.434377] (-) TimerEvent: {}
+[18.534626] (-) TimerEvent: {}
+[18.536207] (fast_lio) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[18.634729] (fast_lio) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[18.635044] (-) TimerEvent: {}
+[18.675931] (fast_lio) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") \n'}
+[18.681239] (fast_lio) StdoutLine: {'line': b'-- Found python_cmake_module: 0.10.0 (/opt/astribot_ros/middle_ware/share/python_cmake_module/cmake)\n'}
+[18.724219] (fast_lio) StdoutLine: {'line': b'-- Found PythonLibs: /usr/lib/aarch64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") \n'}
+[18.724533] (fast_lio) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[18.724648] (fast_lio) StdoutLine: {'line': b'-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10\n'}
+[18.724776] (fast_lio) StdoutLine: {'line': b'-- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.10.so\n'}
+[18.735163] (-) TimerEvent: {}
+[18.761485] (fast_lio) StdoutLine: {'line': b'-- Found PythonExtra: .so  \n'}
+[18.835294] (-) TimerEvent: {}
+[18.935551] (-) TimerEvent: {}
+[19.035795] (-) TimerEvent: {}
+[19.036422] (fast_lio) StdoutLine: {'line': b'-- Configuring done\n'}
+[19.135913] (-) TimerEvent: {}
+[19.173774] (fast_lio) StdoutLine: {'line': b'-- Generating done\n'}
+[19.209587] (fast_lio) StdoutLine: {'line': b'-- Build files have been written to: /home/astribot/TowerGO/runtime_ws/build/fast_lio\n'}
+[19.235974] (-) TimerEvent: {}
+[19.260912] (fast_lio) CommandEnded: {'returncode': 0}
+[19.261808] (fast_lio) JobProgress: {'identifier': 'fast_lio', 'progress': 'build'}
+[19.262341] (fast_lio) Command: {'cmd': ['/usr/local/bin/cmake', '--build', '/home/astribot/TowerGO/runtime_ws/build/fast_lio'], 'cwd': '/home/astribot/TowerGO/runtime_ws/build/fast_lio', 'env': OrderedDict([('CMAKE_BUILD_PARALLEL_LEVEL', '2'), ('USER', 'astribot'), ('SSH_CLIENT', '10.7.156.121 53070 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib:/opt/astribot_ros/software/livox_ros_driver2/lib:/opt/astribot_ros/software/camera_subscriber_py/lib:/opt/astribot_ros/software/astribot_camera/lib:/opt/astribot_ros/software/jetson_nvcodec/lib:/opt/astribot_ros/software/compress_subscriber_py/lib:/opt/astribot_ros/software/astribot_recorder/lib:/opt/astribot_ros/software/astribot_data_processor/lib:/opt/astribot_ros/software/astribot_rosbag2_transport/lib:/opt/astribot_ros/software/astribot_rosbag2_storage/lib:/opt/astribot_ros/software/astribot_base/lib:/opt/astribot_ros/software/astribot_msgs/lib:/opt/astribot_ros/software/astribot_common_proto/lib:/opt/astribot_ros/software/astribot_camera_sdk/lib:/opt/astribot_ros/software/astribot_base_third_party/lib:/opt/astribot_ros/third_pkg/pcl_ros/lib:/opt/astribot_ros/third_pkg/pcl_msgs/lib:/opt/astribot_ros/middle_ware/opt/rviz_ogre_vendor/lib:/opt/astribot_ros/middle_ware/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/astribot'), ('OLDPWD', '/home/astribot'), ('ROS_PYTHON_VERSION', '3'), ('LC_CTYPE', 'C.UTF-8'), ('MAKEFLAGS', '-j2'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/opt/astribot_ros/software:/opt/astribot_ros/third_pkg:/opt/astribot_ros/middle_ware'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'astribot'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/opt/astribot_ros/middle_ware/lib/aarch64-linux-gnu/pkgconfig:/opt/astribot_ros/middle_ware/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('XDG_SESSION_ID', '711'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/astribot_ros/software/astribot_camera/bin:/opt/astribot_ros/software/astribot_data_processor/bin:/opt/astribot_ros/middle_ware/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('AMENT_PREFIX_PATH', '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_launch:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware'), ('SHELL', '/bin/bash'), ('PWD', '/home/astribot/TowerGO/runtime_ws/build/fast_lio'), ('LC_ALL', 'C.UTF-8'), ('SSH_CONNECTION', '10.7.156.121 53070 10.7.154.109 22'), ('PYTHONPATH', '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages:/home/astribot/TowerGO/runtime_ws/build_python:/opt/astribot_ros/software/ptp_sync_time/lib/python3.10/site-packages:/opt/astribot_ros/software/livox_ros_driver2/local/lib/python3.10/dist-packages:/opt/astribot_ros/software/camera_subscriber_py/lib/python3/site-packages:/opt/astribot_ros/software/astribot_camera/lib/python3/site-packages:/opt/astribot_ros/software/compress_subscriber_py/lib/python3/site-packages:/opt/astribot_ros/software/astribot_ros_middleware/lib/python3.10/site-packages:/opt/astribot_ros/software/astribot_msgs/local/lib/python3.10/dist-packages:/opt/astribot_ros/software/astribot_launch/lib/python3.10/site-packages:/opt/astribot_ros/software/astribot_common_proto/lib/pyproto:/opt/astribot_ros/third_pkg/pcl_msgs/local/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/local/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/lib/python3.10/site-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2:/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch')]), 'shell': False}
+[19.295260] (fast_lio) StdoutLine: {'line': b'[  2%] Generating C code for ROS interfaces\n'}
+[19.302359] (fast_lio) StdoutLine: {'line': b'[  5%] Generating C++ code for ROS interfaces\n'}
+[19.336119] (-) TimerEvent: {}
+[19.436403] (-) TimerEvent: {}
+[19.536667] (-) TimerEvent: {}
+[19.636934] (-) TimerEvent: {}
+[19.737255] (-) TimerEvent: {}
+[19.778152] (fast_lio) StdoutLine: {'line': b'[  5%] Built target fast_lio__cpp\n'}
+[19.782072] (fast_lio) StdoutLine: {'line': b'[  8%] Building C object CMakeFiles/fast_lio__rosidl_generator_c.dir/rosidl_generator_c/fast_lio/msg/detail/pose6_d__functions.c.o\n'}
+[19.793976] (fast_lio) StdoutLine: {'line': b'[  8%] Built target ament_cmake_python_symlink_fast_lio\n'}
+[19.800688] (fast_lio) StdoutLine: {'line': b'[ 11%] Generating C++ type support dispatch for ROS interfaces\n'}
+[19.837343] (-) TimerEvent: {}
+[19.916983] (fast_lio) StdoutLine: {'line': b'[ 14%] Linking C shared library libfast_lio__rosidl_generator_c.so\n'}
+[19.937474] (-) TimerEvent: {}
+[19.946367] (fast_lio) StdoutLine: {'line': b'[ 14%] Built target fast_lio__rosidl_generator_c\n'}
+[19.952077] (fast_lio) StdoutLine: {'line': b'[ 17%] Generating C++ type support for eProsima Fast-RTPS\n'}
+[20.037589] (-) TimerEvent: {}
+[20.137849] (-) TimerEvent: {}
+[20.230370] (fast_lio) StdoutLine: {'line': b'[ 20%] Building CXX object CMakeFiles/fast_lio__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/fast_lio/msg/pose6_d__type_support.cpp.o\n'}
+[20.237910] (-) TimerEvent: {}
+[20.338080] (-) TimerEvent: {}
+[20.404946] (fast_lio) StdoutLine: {'line': b'[ 22%] Building CXX object CMakeFiles/fast_lio__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/fast_lio/msg/detail/dds_fastrtps/pose6_d__type_support.cpp.o\n'}
+[20.438214] (-) TimerEvent: {}
+[20.538497] (-) TimerEvent: {}
+[20.619863] (fast_lio) StdoutLine: {'line': b'[ 25%] Linking CXX shared library libfast_lio__rosidl_typesupport_cpp.so\n'}
+[20.638616] (-) TimerEvent: {}
+[20.655119] (fast_lio) StdoutLine: {'line': b'[ 25%] Built target fast_lio__rosidl_typesupport_cpp\n'}
+[20.661230] (fast_lio) StdoutLine: {'line': b'[ 28%] Generating C introspection for ROS interfaces\n'}
+[20.738738] (-) TimerEvent: {}
+[20.839025] (-) TimerEvent: {}
+[20.939312] (-) TimerEvent: {}
+[21.010389] (fast_lio) StdoutLine: {'line': b'[ 31%] Linking CXX shared library libfast_lio__rosidl_typesupport_fastrtps_cpp.so\n'}
+[21.039439] (-) TimerEvent: {}
+[21.101131] (fast_lio) StdoutLine: {'line': b'[ 31%] Built target fast_lio__rosidl_typesupport_fastrtps_cpp\n'}
+[21.107301] (fast_lio) StdoutLine: {'line': b'[ 34%] Generating C type support dispatch for ROS interfaces\n'}
+[21.123128] (fast_lio) StdoutLine: {'line': b'[ 37%] Building C object CMakeFiles/fast_lio__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/fast_lio/msg/detail/pose6_d__type_support.c.o\n'}
+[21.139564] (-) TimerEvent: {}
+[21.203692] (fast_lio) StdoutLine: {'line': b'[ 40%] Linking C shared library libfast_lio__rosidl_typesupport_introspection_c.so\n'}
+[21.228171] (fast_lio) StdoutLine: {'line': b'[ 40%] Built target fast_lio__rosidl_typesupport_introspection_c\n'}
+[21.234310] (fast_lio) StdoutLine: {'line': b'[ 42%] Generating C++ introspection for ROS interfaces\n'}
+[21.239659] (-) TimerEvent: {}
+[21.339895] (-) TimerEvent: {}
+[21.440174] (-) TimerEvent: {}
+[21.539446] (fast_lio) StdoutLine: {'line': b'[ 45%] Building CXX object CMakeFiles/fast_lio__rosidl_typesupport_c.dir/rosidl_typesupport_c/fast_lio/msg/pose6_d__type_support.cpp.o\n'}
+[21.540218] (-) TimerEvent: {}
+[21.574856] (fast_lio) StdoutLine: {'line': b'[ 48%] Linking CXX shared library libfast_lio__rosidl_typesupport_c.so\n'}
+[21.608762] (fast_lio) StdoutLine: {'line': b'[ 48%] Built target fast_lio__rosidl_typesupport_c\n'}
+[21.640353] (-) TimerEvent: {}
+[21.684448] (fast_lio) StdoutLine: {'line': b'[ 51%] Building CXX object CMakeFiles/fast_lio__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/fast_lio/msg/detail/pose6_d__type_support.cpp.o\n'}
+[21.740465] (-) TimerEvent: {}
+[21.840760] (-) TimerEvent: {}
+[21.941034] (-) TimerEvent: {}
+[21.950450] (fast_lio) StdoutLine: {'line': b'running egg_info\n'}
+[21.979942] (fast_lio) StdoutLine: {'line': b'creating fast_lio.egg-info\n'}
+[21.980347] (fast_lio) StdoutLine: {'line': b'writing fast_lio.egg-info/PKG-INFO\n'}
+[21.980857] (fast_lio) StdoutLine: {'line': b'writing dependency_links to fast_lio.egg-info/dependency_links.txt\n'}
+[21.981297] (fast_lio) StdoutLine: {'line': b'writing top-level names to fast_lio.egg-info/top_level.txt\n'}
+[21.981518] (fast_lio) StdoutLine: {'line': b"writing manifest file 'fast_lio.egg-info/SOURCES.txt'\n"}
+[22.041143] (-) TimerEvent: {}
+[22.067339] (fast_lio) StdoutLine: {'line': b"reading manifest file 'fast_lio.egg-info/SOURCES.txt'\n"}
+[22.068637] (fast_lio) StdoutLine: {'line': b"writing manifest file 'fast_lio.egg-info/SOURCES.txt'\n"}
+[22.116608] (fast_lio) StdoutLine: {'line': b'[ 51%] Built target ament_cmake_python_build_fast_lio_egg\n'}
+[22.131807] (fast_lio) StdoutLine: {'line': b'[ 54%] Building CXX object CMakeFiles/fastlio_mapping.dir/src/laserMapping.cpp.o\n'}
+[22.141247] (-) TimerEvent: {}
+[22.241486] (-) TimerEvent: {}
+[22.341773] (-) TimerEvent: {}
+[22.347495] (fast_lio) StdoutLine: {'line': b'[ 57%] Linking CXX shared library libfast_lio__rosidl_typesupport_introspection_cpp.so\n'}
+[22.384840] (fast_lio) StdoutLine: {'line': b'[ 57%] Built target fast_lio__rosidl_typesupport_introspection_cpp\n'}
+[22.389407] (fast_lio) StdoutLine: {'line': b'[ 60%] Building CXX object CMakeFiles/fastlio_mapping.dir/include/ikd-Tree/ikd_Tree.cpp.o\n'}
+[22.441901] (-) TimerEvent: {}
+[22.542178] (-) TimerEvent: {}
+[22.642460] (-) TimerEvent: {}
+[22.742736] (-) TimerEvent: {}
+[22.843016] (-) TimerEvent: {}
+[22.943294] (-) TimerEvent: {}
+[23.043578] (-) TimerEvent: {}
+[23.143863] (-) TimerEvent: {}
+[23.244157] (-) TimerEvent: {}
+[23.344447] (-) TimerEvent: {}
+[23.444746] (-) TimerEvent: {}
+[23.545038] (-) TimerEvent: {}
+[23.645332] (-) TimerEvent: {}
+[23.745621] (-) TimerEvent: {}
+[23.845911] (-) TimerEvent: {}
+[23.946195] (-) TimerEvent: {}
+[24.046468] (-) TimerEvent: {}
+[24.146741] (-) TimerEvent: {}
+[24.247006] (-) TimerEvent: {}
+[24.347276] (-) TimerEvent: {}
+[24.447543] (-) TimerEvent: {}
+[24.547806] (-) TimerEvent: {}
+[24.648072] (-) TimerEvent: {}
+[24.748380] (-) TimerEvent: {}
+[24.848647] (-) TimerEvent: {}
+[24.948921] (-) TimerEvent: {}
+[25.049212] (-) TimerEvent: {}
+[25.149494] (-) TimerEvent: {}
+[25.249776] (-) TimerEvent: {}
+[25.350075] (-) TimerEvent: {}
+[25.450370] (-) TimerEvent: {}
+[25.550686] (-) TimerEvent: {}
+[25.650991] (-) TimerEvent: {}
+[25.751296] (-) TimerEvent: {}
+[25.851703] (-) TimerEvent: {}
+[25.952006] (-) TimerEvent: {}
+[26.052272] (-) TimerEvent: {}
+[26.152542] (-) TimerEvent: {}
+[26.252810] (-) TimerEvent: {}
+[26.353086] (-) TimerEvent: {}
+[26.453369] (-) TimerEvent: {}
+[26.553644] (-) TimerEvent: {}
+[26.653922] (-) TimerEvent: {}
+[26.754222] (-) TimerEvent: {}
+[26.854510] (-) TimerEvent: {}
+[26.954794] (-) TimerEvent: {}
+[27.055084] (-) TimerEvent: {}
+[27.155352] (-) TimerEvent: {}
+[27.255625] (-) TimerEvent: {}
+[27.355893] (-) TimerEvent: {}
+[27.456179] (-) TimerEvent: {}
+[27.556466] (-) TimerEvent: {}
+[27.656730] (-) TimerEvent: {}
+[27.756997] (-) TimerEvent: {}
+[27.857269] (-) TimerEvent: {}
+[27.957542] (-) TimerEvent: {}
+[28.057814] (-) TimerEvent: {}
+[28.158078] (-) TimerEvent: {}
+[28.258349] (-) TimerEvent: {}
+[28.358623] (-) TimerEvent: {}
+[28.458896] (-) TimerEvent: {}
+[28.559177] (-) TimerEvent: {}
+[28.659458] (-) TimerEvent: {}
+[28.759732] (-) TimerEvent: {}
+[28.860018] (-) TimerEvent: {}
+[28.960283] (-) TimerEvent: {}
+[29.060553] (-) TimerEvent: {}
+[29.160829] (-) TimerEvent: {}
+[29.261104] (-) TimerEvent: {}
+[29.361375] (-) TimerEvent: {}
+[29.461647] (-) TimerEvent: {}
+[29.561928] (-) TimerEvent: {}
+[29.662194] (-) TimerEvent: {}
+[29.762466] (-) TimerEvent: {}
+[29.862748] (-) TimerEvent: {}
+[29.945351] (fast_lio) StdoutLine: {'line': b'[ 62%] Building CXX object CMakeFiles/fastlio_mapping.dir/src/preprocess.cpp.o\n'}
+[29.962868] (-) TimerEvent: {}
+[30.063140] (-) TimerEvent: {}
+[30.163420] (-) TimerEvent: {}
+[30.263701] (-) TimerEvent: {}
+[30.363976] (-) TimerEvent: {}
+[30.464262] (-) TimerEvent: {}
+[30.564538] (-) TimerEvent: {}
+[30.664819] (-) TimerEvent: {}
+[30.765100] (-) TimerEvent: {}
+[30.865377] (-) TimerEvent: {}
+[30.965660] (-) TimerEvent: {}
+[31.065941] (-) TimerEvent: {}
+[31.166233] (-) TimerEvent: {}
+[31.266521] (-) TimerEvent: {}
+[31.366817] (-) TimerEvent: {}
+[31.467127] (-) TimerEvent: {}
+[31.567419] (-) TimerEvent: {}
+[31.667702] (-) TimerEvent: {}
+[31.767984] (-) TimerEvent: {}
+[31.868288] (-) TimerEvent: {}
+[31.968584] (-) TimerEvent: {}
+[32.068880] (-) TimerEvent: {}
+[32.169170] (-) TimerEvent: {}
+[32.265270] (fast_lio) StderrLine: {'line': b'In file included from /usr/include/boost/smart_ptr/detail/sp_thread_sleep.hpp:22,\n'}
+[32.265630] (fast_lio) StderrLine: {'line': b'                 from /usr/include/boost/smart_ptr/detail/yield_k.hpp:23,\n'}
+[32.265754] (fast_lio) StderrLine: {'line': b'                 from /usr/include/boost/smart_ptr/detail/spinlock_gcc_atomic.hpp:14,\n'}
+[32.265889] (fast_lio) StderrLine: {'line': b'                 from /usr/include/boost/smart_ptr/detail/spinlock.hpp:42,\n'}
+[32.265987] (fast_lio) StderrLine: {'line': b'                 from /usr/include/boost/smart_ptr/detail/spinlock_pool.hpp:25,\n'}
+[32.266081] (fast_lio) StderrLine: {'line': b'                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:29,\n'}
+[32.266173] (fast_lio) StderrLine: {'line': b'                 from /usr/include/boost/shared_ptr.hpp:17,\n'}
+[32.266262] (fast_lio) StderrLine: {'line': b'                 from /usr/include/boost/date_time/microsec_time_clock.hpp:18,\n'}
+[32.266352] (fast_lio) StderrLine: {'line': b'                 from /usr/include/boost/interprocess/detail/posix_time_types_wrk.hpp:31,\n'}
+[32.266441] (fast_lio) StderrLine: {'line': b'                 from /usr/include/boost/interprocess/detail/os_thread_functions.hpp:36,\n'}
+[32.266529] (fast_lio) StderrLine: {'line': b'                 from /usr/include/boost/interprocess/sync/file_lock.hpp:26,\n'}
+[32.266617] (fast_lio) StderrLine: {'line': b'                 from /usr/include/pcl-1.12/pcl/io/pcd_io.h:46,\n'}
+[32.266702] (fast_lio) StderrLine: {'line': b'                 from /opt/astribot_ros/third_pkg/pcl_conversions/include/pcl_conversions/pcl_conversions/pcl_conversions.h:73,\n'}
+[32.266790] (fast_lio) StderrLine: {'line': b'                 from /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/src/IMU_Processing.hpp:18,\n'}
+[32.266876] (fast_lio) StderrLine: {'line': b'                 from /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/src/laserMapping.cpp:47:\n'}
+[32.266961] (fast_lio) StderrLine: {'line': b'/usr/include/boost/bind.hpp:36:1: note: \xe2\x80\x98#pragma message: The practice of declaring the Bind placeholders (_1, _2, ...) in the global namespace is deprecated. Please use <boost/bind/bind.hpp> + using namespace boost::placeholders, or define BOOST_BIND_GLOBAL_PLACEHOLDERS to retain the current behavior.\xe2\x80\x99\n'}
+[32.267055] (fast_lio) StderrLine: {'line': b'   36 | BOOST_PRAGMA_MESSAGE(\n'}
+[32.267140] (fast_lio) StderrLine: {'line': b'      | ^~~~~~~~~~~~~~~~~~~~\n'}
+[32.269237] (-) TimerEvent: {}
+[32.369437] (-) TimerEvent: {}
+[32.469734] (-) TimerEvent: {}
+[32.570029] (-) TimerEvent: {}
+[32.670317] (-) TimerEvent: {}
+[32.770615] (-) TimerEvent: {}
+[32.870912] (-) TimerEvent: {}
+[32.971199] (-) TimerEvent: {}
+[33.071496] (-) TimerEvent: {}
+[33.171774] (-) TimerEvent: {}
+[33.272067] (-) TimerEvent: {}
+[33.372367] (-) TimerEvent: {}
+[33.472647] (-) TimerEvent: {}
+[33.572924] (-) TimerEvent: {}
+[33.673215] (-) TimerEvent: {}
+[33.773513] (-) TimerEvent: {}
+[33.873809] (-) TimerEvent: {}
+[33.974104] (-) TimerEvent: {}
+[34.074399] (-) TimerEvent: {}
+[34.174683] (-) TimerEvent: {}
+[34.274972] (-) TimerEvent: {}
+[34.375275] (-) TimerEvent: {}
+[34.475564] (-) TimerEvent: {}
+[34.575844] (-) TimerEvent: {}
+[34.676138] (-) TimerEvent: {}
+[34.776443] (-) TimerEvent: {}
+[34.876729] (-) TimerEvent: {}
+[34.977016] (-) TimerEvent: {}
+[35.077302] (-) TimerEvent: {}
+[35.177600] (-) TimerEvent: {}
+[35.277871] (-) TimerEvent: {}
+[35.378134] (-) TimerEvent: {}
+[35.478402] (-) TimerEvent: {}
+[35.578663] (-) TimerEvent: {}
+[35.678929] (-) TimerEvent: {}
+[35.779195] (-) TimerEvent: {}
+[35.879460] (-) TimerEvent: {}
+[35.979723] (-) TimerEvent: {}
+[36.079994] (-) TimerEvent: {}
+[36.180284] (-) TimerEvent: {}
+[36.280564] (-) TimerEvent: {}
+[36.380832] (-) TimerEvent: {}
+[36.481104] (-) TimerEvent: {}
+[36.581377] (-) TimerEvent: {}
+[36.681660] (-) TimerEvent: {}
+[36.781940] (-) TimerEvent: {}
+[36.882220] (-) TimerEvent: {}
+[36.982502] (-) TimerEvent: {}
+[37.082777] (-) TimerEvent: {}
+[37.183064] (-) TimerEvent: {}
+[37.283348] (-) TimerEvent: {}
+[37.383638] (-) TimerEvent: {}
+[37.483940] (-) TimerEvent: {}
+[37.584241] (-) TimerEvent: {}
+[37.684529] (-) TimerEvent: {}
+[37.784822] (-) TimerEvent: {}
+[37.885110] (-) TimerEvent: {}
+[37.985397] (-) TimerEvent: {}
+[38.085679] (-) TimerEvent: {}
+[38.185969] (-) TimerEvent: {}
+[38.286250] (-) TimerEvent: {}
+[38.386560] (-) TimerEvent: {}
+[38.486827] (-) TimerEvent: {}
+[38.587105] (-) TimerEvent: {}
+[38.687390] (-) TimerEvent: {}
+[38.787668] (-) TimerEvent: {}
+[38.887953] (-) TimerEvent: {}
+[38.988274] (-) TimerEvent: {}
+[39.088537] (-) TimerEvent: {}
+[39.188814] (-) TimerEvent: {}
+[39.289093] (-) TimerEvent: {}
+[39.389363] (-) TimerEvent: {}
+[39.489620] (-) TimerEvent: {}
+[39.589878] (-) TimerEvent: {}
+[39.690151] (-) TimerEvent: {}
+[39.790425] (-) TimerEvent: {}
+[39.890703] (-) TimerEvent: {}
+[39.990966] (-) TimerEvent: {}
+[40.091238] (-) TimerEvent: {}
+[40.191517] (-) TimerEvent: {}
+[40.291792] (-) TimerEvent: {}
+[40.392070] (-) TimerEvent: {}
+[40.468819] (<colcon_parallel_executor.executor.parallel.ParallelExecutorExtension object at 0xffff95f2ccd0>) ParallelStatus: {'processing': ('fast_lio',)}
+[40.492167] (-) TimerEvent: {}
+[40.592448] (-) TimerEvent: {}
+[40.692726] (-) TimerEvent: {}
+[40.793000] (-) TimerEvent: {}
+[40.893294] (-) TimerEvent: {}
+[40.993574] (-) TimerEvent: {}
+[41.093849] (-) TimerEvent: {}
+[41.194142] (-) TimerEvent: {}
+[41.294425] (-) TimerEvent: {}
+[41.394711] (-) TimerEvent: {}
+[41.494993] (-) TimerEvent: {}
+[41.552402] (fast_lio) StderrLine: {'line': b'In file included from /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/IKFoM_toolkit/esekfom/../mtk/types/SOn.hpp:83,\n'}
+[41.552770] (fast_lio) StderrLine: {'line': b'                 from /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/IKFoM_toolkit/esekfom/esekfom.hpp:49,\n'}
+[41.552899] (fast_lio) StderrLine: {'line': b'                 from /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/use-ikfom.hpp:4,\n'}
+[41.553037] (fast_lio) StderrLine: {'line': b'                 from /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/src/IMU_Processing.hpp:22,\n'}
+[41.553135] (fast_lio) StderrLine: {'line': b'                 from /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/src/laserMapping.cpp:47:\n'}
+[41.553230] (fast_lio) StderrLine: {'line': b'/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/IKFoM_toolkit/esekfom/../mtk/types/../src/mtkmath.hpp: In instantiation of \xe2\x80\x98std::pair<_FIter, _FIter> MTK::cos_sinc_sqrt(const scalar&) [with scalar = double]\xe2\x80\x99:\n'}
+[41.553328] (fast_lio) StderrLine: {'line': b'/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/IKFoM_toolkit/esekfom/../mtk/types/../src/mtkmath.hpp:252:52:   required from \xe2\x80\x98scalar MTK::exp(MTK::vectview<scalar, dim>, MTK::vectview<const scalar, dim>, const scalar&) [with scalar = double; int n = 3]\xe2\x80\x99\n'}
+[41.553440] (fast_lio) StderrLine: {'line': b'/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/IKFoM_toolkit/esekfom/../mtk/types/S2.hpp:140:32:   required from \xe2\x80\x98void MTK::S2<_scalar, den, num, S2_typ>::boxplus(MTK::vectview<const _scalar, 2>, MTK::S2<_scalar, den, num, S2_typ>::scalar) [with _scalar = double; int den = 98090; int num = 10000; int S2_typ = 1; MTK::S2<_scalar, den, num, S2_typ>::scalar = double]\xe2\x80\x99\n'}
+[41.553544] (fast_lio) StderrLine: {'line': b'/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/use-ikfom.hpp:12:1:   required from here\n'}
+[41.553636] (fast_lio) StderrLine: {'line': b'/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/IKFoM_toolkit/esekfom/../mtk/types/../src/mtkmath.hpp:143:27: note: parameter passing for argument of type \xe2\x80\x98std::pair<double, double>\xe2\x80\x99 when C++17 is enabled changed to match C++14 in GCC 10.1\n'}
+[41.553748] (fast_lio) StderrLine: {'line': b'  143 | std::pair<scalar, scalar> cos_sinc_sqrt(const scalar &x2){\n'}
+[41.553838] (fast_lio) StderrLine: {'line': b'      |                           ^~~~~~~~~~~~~\n'}
+[41.595114] (-) TimerEvent: {}
+[41.695396] (-) TimerEvent: {}
+[41.795676] (-) TimerEvent: {}
+[41.895968] (-) TimerEvent: {}
+[41.996286] (-) TimerEvent: {}
+[42.096586] (-) TimerEvent: {}
+[42.196906] (-) TimerEvent: {}
+[42.297195] (-) TimerEvent: {}
+[42.397489] (-) TimerEvent: {}
+[42.455026] (fast_lio) StdoutLine: {'line': b'[ 65%] Generating C type support for eProsima Fast-RTPS\n'}
+[42.497604] (-) TimerEvent: {}
+[42.597876] (-) TimerEvent: {}
+[42.698156] (-) TimerEvent: {}
+[42.798433] (-) TimerEvent: {}
+[42.898720] (-) TimerEvent: {}
+[42.915955] (fast_lio) StdoutLine: {'line': b'[ 68%] Building CXX object CMakeFiles/fast_lio__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/fast_lio/msg/detail/pose6_d__type_support_c.cpp.o\n'}
+[42.998845] (-) TimerEvent: {}
+[43.099130] (-) TimerEvent: {}
+[43.199418] (-) TimerEvent: {}
+[43.299709] (-) TimerEvent: {}
+[43.400001] (-) TimerEvent: {}
+[43.424578] (fast_lio) StdoutLine: {'line': b'[ 71%] Linking CXX shared library libfast_lio__rosidl_typesupport_fastrtps_c.so\n'}
+[43.500130] (-) TimerEvent: {}
+[43.513007] (fast_lio) StdoutLine: {'line': b'[ 71%] Built target fast_lio__rosidl_typesupport_fastrtps_c\n'}
+[43.526305] (fast_lio) StdoutLine: {'line': b'[ 71%] Built target fast_lio\n'}
+[43.538971] (fast_lio) StdoutLine: {'line': b'[ 74%] Generating Python code for ROS interfaces\n'}
+[43.600265] (-) TimerEvent: {}
+[43.700545] (-) TimerEvent: {}
+[43.800824] (-) TimerEvent: {}
+[43.901089] (-) TimerEvent: {}
+[44.001382] (-) TimerEvent: {}
+[44.101659] (-) TimerEvent: {}
+[44.201956] (-) TimerEvent: {}
+[44.237584] (fast_lio) StdoutLine: {'line': b'[ 74%] Built target fast_lio__py\n'}
+[44.250295] (fast_lio) StdoutLine: {'line': b'[ 77%] Building C object CMakeFiles/fast_lio__rosidl_generator_py.dir/rosidl_generator_py/fast_lio/msg/_pose6_d_s.c.o\n'}
+[44.302079] (-) TimerEvent: {}
+[44.402368] (-) TimerEvent: {}
+[44.449985] (fast_lio) StdoutLine: {'line': b'[ 80%] Linking C shared library rosidl_generator_py/fast_lio/libfast_lio__rosidl_generator_py.so\n'}
+[44.485390] (fast_lio) StdoutLine: {'line': b'[ 80%] Built target fast_lio__rosidl_generator_py\n'}
+[44.498390] (fast_lio) StdoutLine: {'line': b'[ 82%] Building C object CMakeFiles/fast_lio__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/fast_lio/_fast_lio_s.ep.rosidl_typesupport_fastrtps_c.c.o\n'}
+[44.502458] (-) TimerEvent: {}
+[44.602681] (-) TimerEvent: {}
+[44.653379] (fast_lio) StdoutLine: {'line': b'[ 85%] Linking C shared library rosidl_generator_py/fast_lio/fast_lio_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[44.683634] (fast_lio) StdoutLine: {'line': b'[ 85%] Built target fast_lio__rosidl_typesupport_fastrtps_c__pyext\n'}
+[44.696130] (fast_lio) StdoutLine: {'line': b'[ 88%] Building C object CMakeFiles/fast_lio__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/fast_lio/_fast_lio_s.ep.rosidl_typesupport_introspection_c.c.o\n'}
+[44.702771] (-) TimerEvent: {}
+[44.802998] (-) TimerEvent: {}
+[44.850039] (fast_lio) StdoutLine: {'line': b'[ 91%] Linking C shared library rosidl_generator_py/fast_lio/fast_lio_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[44.879496] (fast_lio) StdoutLine: {'line': b'[ 91%] Built target fast_lio__rosidl_typesupport_introspection_c__pyext\n'}
+[44.891544] (fast_lio) StdoutLine: {'line': b'[ 94%] Building C object CMakeFiles/fast_lio__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/fast_lio/_fast_lio_s.ep.rosidl_typesupport_c.c.o\n'}
+[44.903091] (-) TimerEvent: {}
+[45.003323] (-) TimerEvent: {}
+[45.040114] (fast_lio) StdoutLine: {'line': b'[ 97%] Linking C shared library rosidl_generator_py/fast_lio/fast_lio_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[45.067735] (fast_lio) StdoutLine: {'line': b'[ 97%] Built target fast_lio__rosidl_typesupport_c__pyext\n'}
+[45.103438] (-) TimerEvent: {}
+[45.203712] (-) TimerEvent: {}
+[45.303994] (-) TimerEvent: {}
+[45.404277] (-) TimerEvent: {}
+[45.504565] (-) TimerEvent: {}
+[45.604854] (-) TimerEvent: {}
+[45.705138] (-) TimerEvent: {}
+[45.805422] (-) TimerEvent: {}
+[45.905696] (-) TimerEvent: {}
+[46.005981] (-) TimerEvent: {}
+[46.106260] (-) TimerEvent: {}
+[46.206543] (-) TimerEvent: {}
+[46.306822] (-) TimerEvent: {}
+[46.407143] (-) TimerEvent: {}
+[46.507414] (-) TimerEvent: {}
+[46.607700] (-) TimerEvent: {}
+[46.707983] (-) TimerEvent: {}
+[46.808275] (-) TimerEvent: {}
+[46.908544] (-) TimerEvent: {}
+[47.008812] (-) TimerEvent: {}
+[47.109090] (-) TimerEvent: {}
+[47.209362] (-) TimerEvent: {}
+[47.309648] (-) TimerEvent: {}
+[47.409934] (-) TimerEvent: {}
+[47.510234] (-) TimerEvent: {}
+[47.610523] (-) TimerEvent: {}
+[47.710810] (-) TimerEvent: {}
+[47.811099] (-) TimerEvent: {}
+[47.911377] (-) TimerEvent: {}
+[48.011663] (-) TimerEvent: {}
+[48.111946] (-) TimerEvent: {}
+[48.212252] (-) TimerEvent: {}
+[48.312545] (-) TimerEvent: {}
+[48.412832] (-) TimerEvent: {}
+[48.513118] (-) TimerEvent: {}
+[48.613406] (-) TimerEvent: {}
+[48.713691] (-) TimerEvent: {}
+[48.813974] (-) TimerEvent: {}
+[48.914256] (-) TimerEvent: {}
+[49.014546] (-) TimerEvent: {}
+[49.114826] (-) TimerEvent: {}
+[49.215112] (-) TimerEvent: {}
+[49.315390] (-) TimerEvent: {}
+[49.415654] (-) TimerEvent: {}
+[49.515938] (-) TimerEvent: {}
+[49.616227] (-) TimerEvent: {}
+[49.716506] (-) TimerEvent: {}
+[49.816777] (-) TimerEvent: {}
+[49.917052] (-) TimerEvent: {}
+[50.017327] (-) TimerEvent: {}
+[50.117604] (-) TimerEvent: {}
+[50.217898] (-) TimerEvent: {}
+[50.318176] (-) TimerEvent: {}
+[50.418452] (-) TimerEvent: {}
+[50.518751] (-) TimerEvent: {}
+[50.619046] (-) TimerEvent: {}
+[50.719327] (-) TimerEvent: {}
+[50.819612] (-) TimerEvent: {}
+[50.919897] (-) TimerEvent: {}
+[51.020174] (-) TimerEvent: {}
+[51.120471] (-) TimerEvent: {}
+[51.220750] (-) TimerEvent: {}
+[51.321048] (-) TimerEvent: {}
+[51.421339] (-) TimerEvent: {}
+[51.521617] (-) TimerEvent: {}
+[51.621911] (-) TimerEvent: {}
+[51.722193] (-) TimerEvent: {}
+[51.822469] (-) TimerEvent: {}
+[51.922739] (-) TimerEvent: {}
+[52.023001] (-) TimerEvent: {}
+[52.123279] (-) TimerEvent: {}
+[52.223546] (-) TimerEvent: {}
+[52.323826] (-) TimerEvent: {}
+[52.424096] (-) TimerEvent: {}
+[52.524375] (-) TimerEvent: {}
+[52.624648] (-) TimerEvent: {}
+[52.724919] (-) TimerEvent: {}
+[52.825201] (-) TimerEvent: {}
+[52.925485] (-) TimerEvent: {}
+[53.025763] (-) TimerEvent: {}
+[53.126044] (-) TimerEvent: {}
+[53.226337] (-) TimerEvent: {}
+[53.326627] (-) TimerEvent: {}
+[53.426913] (-) TimerEvent: {}
+[53.527192] (-) TimerEvent: {}
+[53.627476] (-) TimerEvent: {}
+[53.727750] (-) TimerEvent: {}
+[53.828037] (-) TimerEvent: {}
+[53.928280] (-) TimerEvent: {}
+[54.028559] (-) TimerEvent: {}
+[54.128832] (-) TimerEvent: {}
+[54.229109] (-) TimerEvent: {}
+[54.329392] (-) TimerEvent: {}
+[54.429666] (-) TimerEvent: {}
+[54.529942] (-) TimerEvent: {}
+[54.630230] (-) TimerEvent: {}
+[54.730519] (-) TimerEvent: {}
+[54.830810] (-) TimerEvent: {}
+[54.931086] (-) TimerEvent: {}
+[55.031363] (-) TimerEvent: {}
+[55.131640] (-) TimerEvent: {}
+[55.231919] (-) TimerEvent: {}
+[55.332216] (-) TimerEvent: {}
+[55.432494] (-) TimerEvent: {}
+[55.532762] (-) TimerEvent: {}
+[55.633048] (-) TimerEvent: {}
+[55.733336] (-) TimerEvent: {}
+[55.833621] (-) TimerEvent: {}
+[55.933910] (-) TimerEvent: {}
+[56.034209] (-) TimerEvent: {}
+[56.134504] (-) TimerEvent: {}
+[56.234782] (-) TimerEvent: {}
+[56.335056] (-) TimerEvent: {}
+[56.435327] (-) TimerEvent: {}
+[56.535598] (-) TimerEvent: {}
+[56.635876] (-) TimerEvent: {}
+[56.736157] (-) TimerEvent: {}
+[56.836455] (-) TimerEvent: {}
+[56.936740] (-) TimerEvent: {}
+[57.037021] (-) TimerEvent: {}
+[57.137308] (-) TimerEvent: {}
+[57.237596] (-) TimerEvent: {}
+[57.337881] (-) TimerEvent: {}
+[57.438152] (-) TimerEvent: {}
+[57.538426] (-) TimerEvent: {}
+[57.638706] (-) TimerEvent: {}
+[57.738990] (-) TimerEvent: {}
+[57.839269] (-) TimerEvent: {}
+[57.939538] (-) TimerEvent: {}
+[58.039810] (-) TimerEvent: {}
+[58.140088] (-) TimerEvent: {}
+[58.240379] (-) TimerEvent: {}
+[58.340657] (-) TimerEvent: {}
+[58.440941] (-) TimerEvent: {}
+[58.541219] (-) TimerEvent: {}
+[58.641501] (-) TimerEvent: {}
+[58.741777] (-) TimerEvent: {}
+[58.842053] (-) TimerEvent: {}
+[58.942330] (-) TimerEvent: {}
+[59.042596] (-) TimerEvent: {}
+[59.142870] (-) TimerEvent: {}
+[59.243143] (-) TimerEvent: {}
+[59.343418] (-) TimerEvent: {}
+[59.443701] (-) TimerEvent: {}
+[59.543983] (-) TimerEvent: {}
+[59.644274] (-) TimerEvent: {}
+[59.744577] (-) TimerEvent: {}
+[59.844859] (-) TimerEvent: {}
+[59.945131] (-) TimerEvent: {}
+[60.045415] (-) TimerEvent: {}
+[60.145691] (-) TimerEvent: {}
+[60.245967] (-) TimerEvent: {}
+[60.346240] (-) TimerEvent: {}
+[60.446522] (-) TimerEvent: {}
+[60.546799] (-) TimerEvent: {}
+[60.647075] (-) TimerEvent: {}
+[60.747365] (-) TimerEvent: {}
+[60.847647] (-) TimerEvent: {}
+[60.947940] (-) TimerEvent: {}
+[61.048259] (-) TimerEvent: {}
+[61.148547] (-) TimerEvent: {}
+[61.248838] (-) TimerEvent: {}
+[61.349136] (-) TimerEvent: {}
+[61.449430] (-) TimerEvent: {}
+[61.549708] (-) TimerEvent: {}
+[61.649977] (-) TimerEvent: {}
+[61.750264] (-) TimerEvent: {}
+[61.850543] (-) TimerEvent: {}
+[61.950820] (-) TimerEvent: {}
+[62.051100] (-) TimerEvent: {}
+[62.151387] (-) TimerEvent: {}
+[62.251673] (-) TimerEvent: {}
+[62.351953] (-) TimerEvent: {}
+[62.452259] (-) TimerEvent: {}
+[62.552539] (-) TimerEvent: {}
+[62.652805] (-) TimerEvent: {}
+[62.753083] (-) TimerEvent: {}
+[62.853377] (-) TimerEvent: {}
+[62.953667] (-) TimerEvent: {}
+[63.053951] (-) TimerEvent: {}
+[63.154248] (-) TimerEvent: {}
+[63.254538] (-) TimerEvent: {}
+[63.354821] (-) TimerEvent: {}
+[63.455117] (-) TimerEvent: {}
+[63.555416] (-) TimerEvent: {}
+[63.655700] (-) TimerEvent: {}
+[63.755984] (-) TimerEvent: {}
+[63.856278] (-) TimerEvent: {}
+[63.956556] (-) TimerEvent: {}
+[64.056833] (-) TimerEvent: {}
+[64.157102] (-) TimerEvent: {}
+[64.257379] (-) TimerEvent: {}
+[64.357654] (-) TimerEvent: {}
+[64.457938] (-) TimerEvent: {}
+[64.558218] (-) TimerEvent: {}
+[64.658502] (-) TimerEvent: {}
+[64.758771] (-) TimerEvent: {}
+[64.859042] (-) TimerEvent: {}
+[64.959312] (-) TimerEvent: {}
+[65.059579] (-) TimerEvent: {}
+[65.159850] (-) TimerEvent: {}
+[65.260122] (-) TimerEvent: {}
+[65.360414] (-) TimerEvent: {}
+[65.460690] (-) TimerEvent: {}
+[65.560962] (-) TimerEvent: {}
+[65.661231] (-) TimerEvent: {}
+[65.761492] (-) TimerEvent: {}
+[65.861771] (-) TimerEvent: {}
+[65.962048] (-) TimerEvent: {}
+[66.062323] (-) TimerEvent: {}
+[66.162606] (-) TimerEvent: {}
+[66.262889] (-) TimerEvent: {}
+[66.363163] (-) TimerEvent: {}
+[66.463448] (-) TimerEvent: {}
+[66.563722] (-) TimerEvent: {}
+[66.664010] (-) TimerEvent: {}
+[66.764282] (-) TimerEvent: {}
+[66.864560] (-) TimerEvent: {}
+[66.964833] (-) TimerEvent: {}
+[67.065102] (-) TimerEvent: {}
+[67.165388] (-) TimerEvent: {}
+[67.265668] (-) TimerEvent: {}
+[67.365946] (-) TimerEvent: {}
+[67.466235] (-) TimerEvent: {}
+[67.566517] (-) TimerEvent: {}
+[67.666793] (-) TimerEvent: {}
+[67.767053] (-) TimerEvent: {}
+[67.867333] (-) TimerEvent: {}
+[67.967611] (-) TimerEvent: {}
+[68.067873] (-) TimerEvent: {}
+[68.168144] (-) TimerEvent: {}
+[68.268423] (-) TimerEvent: {}
+[68.368680] (-) TimerEvent: {}
+[68.468937] (-) TimerEvent: {}
+[68.569217] (-) TimerEvent: {}
+[68.669508] (-) TimerEvent: {}
+[68.769775] (-) TimerEvent: {}
+[68.870062] (-) TimerEvent: {}
+[68.970346] (-) TimerEvent: {}
+[69.070624] (-) TimerEvent: {}
+[69.170912] (-) TimerEvent: {}
+[69.271200] (-) TimerEvent: {}
+[69.371476] (-) TimerEvent: {}
+[69.471765] (-) TimerEvent: {}
+[69.572046] (-) TimerEvent: {}
+[69.672334] (-) TimerEvent: {}
+[69.772614] (-) TimerEvent: {}
+[69.872907] (-) TimerEvent: {}
+[69.973191] (-) TimerEvent: {}
+[70.073470] (-) TimerEvent: {}
+[70.173753] (-) TimerEvent: {}
+[70.274040] (-) TimerEvent: {}
+[70.374330] (-) TimerEvent: {}
+[70.474613] (-) TimerEvent: {}
+[70.492740] (<colcon_parallel_executor.executor.parallel.ParallelExecutorExtension object at 0xffff95f2ccd0>) ParallelStatus: {'processing': ('fast_lio',)}
+[70.574740] (-) TimerEvent: {}
+[70.675024] (-) TimerEvent: {}
+[70.775290] (-) TimerEvent: {}
+[70.875564] (-) TimerEvent: {}
+[70.975839] (-) TimerEvent: {}
+[71.076125] (-) TimerEvent: {}
+[71.176424] (-) TimerEvent: {}
+[71.276702] (-) TimerEvent: {}
+[71.376982] (-) TimerEvent: {}
+[71.477255] (-) TimerEvent: {}
+[71.577538] (-) TimerEvent: {}
+[71.677819] (-) TimerEvent: {}
+[71.778086] (-) TimerEvent: {}
+[71.878372] (-) TimerEvent: {}
+[71.978649] (-) TimerEvent: {}
+[72.078937] (-) TimerEvent: {}
+[72.179224] (-) TimerEvent: {}
+[72.279506] (-) TimerEvent: {}
+[72.379792] (-) TimerEvent: {}
+[72.480105] (-) TimerEvent: {}
+[72.580410] (-) TimerEvent: {}
+[72.680687] (-) TimerEvent: {}
+[72.780958] (-) TimerEvent: {}
+[72.881245] (-) TimerEvent: {}
+[72.981535] (-) TimerEvent: {}
+[73.081823] (-) TimerEvent: {}
+[73.182106] (-) TimerEvent: {}
+[73.282381] (-) TimerEvent: {}
+[73.382669] (-) TimerEvent: {}
+[73.482950] (-) TimerEvent: {}
+[73.583239] (-) TimerEvent: {}
+[73.683525] (-) TimerEvent: {}
+[73.783795] (-) TimerEvent: {}
+[73.884084] (-) TimerEvent: {}
+[73.984401] (-) TimerEvent: {}
+[74.084674] (-) TimerEvent: {}
+[74.184962] (-) TimerEvent: {}
+[74.285249] (-) TimerEvent: {}
+[74.385526] (-) TimerEvent: {}
+[74.485799] (-) TimerEvent: {}
+[74.586068] (-) TimerEvent: {}
+[74.686344] (-) TimerEvent: {}
+[74.786609] (-) TimerEvent: {}
+[74.886890] (-) TimerEvent: {}
+[74.987171] (-) TimerEvent: {}
+[75.087446] (-) TimerEvent: {}
+[75.187733] (-) TimerEvent: {}
+[75.288020] (-) TimerEvent: {}
+[75.388311] (-) TimerEvent: {}
+[75.488593] (-) TimerEvent: {}
+[75.588877] (-) TimerEvent: {}
+[75.689152] (-) TimerEvent: {}
+[75.789425] (-) TimerEvent: {}
+[75.889694] (-) TimerEvent: {}
+[75.989977] (-) TimerEvent: {}
+[76.090245] (-) TimerEvent: {}
+[76.190521] (-) TimerEvent: {}
+[76.290797] (-) TimerEvent: {}
+[76.391073] (-) TimerEvent: {}
+[76.491352] (-) TimerEvent: {}
+[76.591620] (-) TimerEvent: {}
+[76.691897] (-) TimerEvent: {}
+[76.792175] (-) TimerEvent: {}
+[76.892454] (-) TimerEvent: {}
+[76.992726] (-) TimerEvent: {}
+[77.093000] (-) TimerEvent: {}
+[77.193273] (-) TimerEvent: {}
+[77.293546] (-) TimerEvent: {}
+[77.393816] (-) TimerEvent: {}
+[77.494084] (-) TimerEvent: {}
+[77.594358] (-) TimerEvent: {}
+[77.694628] (-) TimerEvent: {}
+[77.794904] (-) TimerEvent: {}
+[77.895166] (-) TimerEvent: {}
+[77.995436] (-) TimerEvent: {}
+[78.095700] (-) TimerEvent: {}
+[78.195972] (-) TimerEvent: {}
+[78.296252] (-) TimerEvent: {}
+[78.396518] (-) TimerEvent: {}
+[78.496793] (-) TimerEvent: {}
+[78.597075] (-) TimerEvent: {}
+[78.697353] (-) TimerEvent: {}
+[78.797624] (-) TimerEvent: {}
+[78.897886] (-) TimerEvent: {}
+[78.998162] (-) TimerEvent: {}
+[79.098431] (-) TimerEvent: {}
+[79.198721] (-) TimerEvent: {}
+[79.298997] (-) TimerEvent: {}
+[79.399278] (-) TimerEvent: {}
+[79.499567] (-) TimerEvent: {}
+[79.599850] (-) TimerEvent: {}
+[79.700129] (-) TimerEvent: {}
+[79.800428] (-) TimerEvent: {}
+[79.900703] (-) TimerEvent: {}
+[80.000980] (-) TimerEvent: {}
+[80.101259] (-) TimerEvent: {}
+[80.201540] (-) TimerEvent: {}
+[80.301820] (-) TimerEvent: {}
+[80.402104] (-) TimerEvent: {}
+[80.502385] (-) TimerEvent: {}
+[80.602661] (-) TimerEvent: {}
+[80.702938] (-) TimerEvent: {}
+[80.803213] (-) TimerEvent: {}
+[80.903478] (-) TimerEvent: {}
+[81.003764] (-) TimerEvent: {}
+[81.104041] (-) TimerEvent: {}
+[81.204282] (-) TimerEvent: {}
+[81.304553] (-) TimerEvent: {}
+[81.404829] (-) TimerEvent: {}
+[81.505100] (-) TimerEvent: {}
+[81.605364] (-) TimerEvent: {}
+[81.705609] (-) TimerEvent: {}
+[81.805891] (-) TimerEvent: {}
+[81.906160] (-) TimerEvent: {}
+[82.006455] (-) TimerEvent: {}
+[82.106734] (-) TimerEvent: {}
+[82.207017] (-) TimerEvent: {}
+[82.307301] (-) TimerEvent: {}
+[82.407594] (-) TimerEvent: {}
+[82.507885] (-) TimerEvent: {}
+[82.608165] (-) TimerEvent: {}
+[82.708467] (-) TimerEvent: {}
+[82.808758] (-) TimerEvent: {}
+[82.909021] (-) TimerEvent: {}
+[83.009289] (-) TimerEvent: {}
+[83.109556] (-) TimerEvent: {}
+[83.209830] (-) TimerEvent: {}
+[83.310112] (-) TimerEvent: {}
+[83.410388] (-) TimerEvent: {}
+[83.510656] (-) TimerEvent: {}
+[83.610926] (-) TimerEvent: {}
+[83.711198] (-) TimerEvent: {}
+[83.811483] (-) TimerEvent: {}
+[83.911735] (-) TimerEvent: {}
+[84.011998] (-) TimerEvent: {}
+[84.112271] (-) TimerEvent: {}
+[84.212533] (-) TimerEvent: {}
+[84.312792] (-) TimerEvent: {}
+[84.413051] (-) TimerEvent: {}
+[84.513305] (-) TimerEvent: {}
+[84.613560] (-) TimerEvent: {}
+[84.713813] (-) TimerEvent: {}
+[84.814085] (-) TimerEvent: {}
+[84.914353] (-) TimerEvent: {}
+[85.014741] (-) TimerEvent: {}
+[85.115019] (-) TimerEvent: {}
+[85.215292] (-) TimerEvent: {}
+[85.315569] (-) TimerEvent: {}
+[85.415842] (-) TimerEvent: {}
+[85.516115] (-) TimerEvent: {}
+[85.616435] (-) TimerEvent: {}
+[85.716755] (-) TimerEvent: {}
+[85.817039] (-) TimerEvent: {}
+[85.917303] (-) TimerEvent: {}
+[86.017590] (-) TimerEvent: {}
+[86.117881] (-) TimerEvent: {}
+[86.218166] (-) TimerEvent: {}
+[86.318447] (-) TimerEvent: {}
+[86.418733] (-) TimerEvent: {}
+[86.519019] (-) TimerEvent: {}
+[86.619300] (-) TimerEvent: {}
+[86.719585] (-) TimerEvent: {}
+[86.819875] (-) TimerEvent: {}
+[86.920154] (-) TimerEvent: {}
+[87.020437] (-) TimerEvent: {}
+[87.120711] (-) TimerEvent: {}
+[87.221028] (-) TimerEvent: {}
+[87.321316] (-) TimerEvent: {}
+[87.421588] (-) TimerEvent: {}
+[87.521857] (-) TimerEvent: {}
+[87.622106] (-) TimerEvent: {}
+[87.722406] (-) TimerEvent: {}
+[87.822686] (-) TimerEvent: {}
+[87.922955] (-) TimerEvent: {}
+[88.023203] (-) TimerEvent: {}
+[88.123453] (-) TimerEvent: {}
+[88.223708] (-) TimerEvent: {}
+[88.323960] (-) TimerEvent: {}
+[88.424232] (-) TimerEvent: {}
+[88.524491] (-) TimerEvent: {}
+[88.624745] (-) TimerEvent: {}
+[88.725005] (-) TimerEvent: {}
+[88.825266] (-) TimerEvent: {}
+[88.925532] (-) TimerEvent: {}
+[89.025789] (-) TimerEvent: {}
+[89.126050] (-) TimerEvent: {}
+[89.226311] (-) TimerEvent: {}
+[89.326577] (-) TimerEvent: {}
+[89.426841] (-) TimerEvent: {}
+[89.527104] (-) TimerEvent: {}
+[89.627366] (-) TimerEvent: {}
+[89.727631] (-) TimerEvent: {}
+[89.827900] (-) TimerEvent: {}
+[89.928167] (-) TimerEvent: {}
+[90.028437] (-) TimerEvent: {}
+[90.128695] (-) TimerEvent: {}
+[90.228954] (-) TimerEvent: {}
+[90.329216] (-) TimerEvent: {}
+[90.429482] (-) TimerEvent: {}
+[90.529747] (-) TimerEvent: {}
+[90.630020] (-) TimerEvent: {}
+[90.730299] (-) TimerEvent: {}
+[90.830565] (-) TimerEvent: {}
+[90.930846] (-) TimerEvent: {}
+[91.031125] (-) TimerEvent: {}
+[91.131405] (-) TimerEvent: {}
+[91.231672] (-) TimerEvent: {}
+[91.331950] (-) TimerEvent: {}
+[91.432248] (-) TimerEvent: {}
+[91.532523] (-) TimerEvent: {}
+[91.632794] (-) TimerEvent: {}
+[91.733062] (-) TimerEvent: {}
+[91.833327] (-) TimerEvent: {}
+[91.933595] (-) TimerEvent: {}
+[92.033864] (-) TimerEvent: {}
+[92.134131] (-) TimerEvent: {}
+[92.234407] (-) TimerEvent: {}
+[92.334678] (-) TimerEvent: {}
+[92.434956] (-) TimerEvent: {}
+[92.535234] (-) TimerEvent: {}
+[92.635510] (-) TimerEvent: {}
+[92.735786] (-) TimerEvent: {}
+[92.836065] (-) TimerEvent: {}
+[92.936371] (-) TimerEvent: {}
+[93.036651] (-) TimerEvent: {}
+[93.136918] (-) TimerEvent: {}
+[93.237191] (-) TimerEvent: {}
+[93.337455] (-) TimerEvent: {}
+[93.437737] (-) TimerEvent: {}
+[93.538015] (-) TimerEvent: {}
+[93.638304] (-) TimerEvent: {}
+[93.738582] (-) TimerEvent: {}
+[93.838859] (-) TimerEvent: {}
+[93.939136] (-) TimerEvent: {}
+[94.039406] (-) TimerEvent: {}
+[94.139682] (-) TimerEvent: {}
+[94.239961] (-) TimerEvent: {}
+[94.340246] (-) TimerEvent: {}
+[94.440527] (-) TimerEvent: {}
+[94.540802] (-) TimerEvent: {}
+[94.641084] (-) TimerEvent: {}
+[94.741356] (-) TimerEvent: {}
+[94.841624] (-) TimerEvent: {}
+[94.941894] (-) TimerEvent: {}
+[95.042174] (-) TimerEvent: {}
+[95.142445] (-) TimerEvent: {}
+[95.242724] (-) TimerEvent: {}
+[95.342994] (-) TimerEvent: {}
+[95.443268] (-) TimerEvent: {}
+[95.543540] (-) TimerEvent: {}
+[95.643834] (-) TimerEvent: {}
+[95.744270] (-) TimerEvent: {}
+[95.844550] (-) TimerEvent: {}
+[95.944815] (-) TimerEvent: {}
+[96.045078] (-) TimerEvent: {}
+[96.145350] (-) TimerEvent: {}
+[96.245641] (-) TimerEvent: {}
+[96.345922] (-) TimerEvent: {}
+[96.446224] (-) TimerEvent: {}
+[96.546510] (-) TimerEvent: {}
+[96.646802] (-) TimerEvent: {}
+[96.747106] (-) TimerEvent: {}
+[96.847403] (-) TimerEvent: {}
+[96.947690] (-) TimerEvent: {}
+[97.047991] (-) TimerEvent: {}
+[97.148292] (-) TimerEvent: {}
+[97.248578] (-) TimerEvent: {}
+[97.348867] (-) TimerEvent: {}
+[97.449147] (-) TimerEvent: {}
+[97.549425] (-) TimerEvent: {}
+[97.649709] (-) TimerEvent: {}
+[97.749979] (-) TimerEvent: {}
+[97.850255] (-) TimerEvent: {}
+[97.950524] (-) TimerEvent: {}
+[98.050809] (-) TimerEvent: {}
+[98.151068] (-) TimerEvent: {}
+[98.251344] (-) TimerEvent: {}
+[98.351625] (-) TimerEvent: {}
+[98.451888] (-) TimerEvent: {}
+[98.552164] (-) TimerEvent: {}
+[98.652456] (-) TimerEvent: {}
+[98.752735] (-) TimerEvent: {}
+[98.853016] (-) TimerEvent: {}
+[98.953320] (-) TimerEvent: {}
+[99.053607] (-) TimerEvent: {}
+[99.153912] (-) TimerEvent: {}
+[99.254207] (-) TimerEvent: {}
+[99.354490] (-) TimerEvent: {}
+[99.454754] (-) TimerEvent: {}
+[99.555038] (-) TimerEvent: {}
+[99.655316] (-) TimerEvent: {}
+[99.755592] (-) TimerEvent: {}
+[99.855865] (-) TimerEvent: {}
+[99.956127] (-) TimerEvent: {}
+[100.056410] (-) TimerEvent: {}
+[100.156675] (-) TimerEvent: {}
+[100.256941] (-) TimerEvent: {}
+[100.357212] (-) TimerEvent: {}
+[100.457482] (-) TimerEvent: {}
+[100.523034] (<colcon_parallel_executor.executor.parallel.ParallelExecutorExtension object at 0xffff95f2ccd0>) ParallelStatus: {'processing': ('fast_lio',)}
+[100.557564] (-) TimerEvent: {}
+[100.657770] (-) TimerEvent: {}
+[100.758027] (-) TimerEvent: {}
+[100.858262] (-) TimerEvent: {}
+[100.958494] (-) TimerEvent: {}
+[101.058731] (-) TimerEvent: {}
+[101.158975] (-) TimerEvent: {}
+[101.259193] (-) TimerEvent: {}
+[101.359423] (-) TimerEvent: {}
+[101.459672] (-) TimerEvent: {}
+[101.559925] (-) TimerEvent: {}
+[101.660160] (-) TimerEvent: {}
+[101.760402] (-) TimerEvent: {}
+[101.860639] (-) TimerEvent: {}
+[101.960873] (-) TimerEvent: {}
+[102.061114] (-) TimerEvent: {}
+[102.161351] (-) TimerEvent: {}
+[102.261585] (-) TimerEvent: {}
+[102.361865] (-) TimerEvent: {}
+[102.462112] (-) TimerEvent: {}
+[102.562346] (-) TimerEvent: {}
+[102.662577] (-) TimerEvent: {}
+[102.762796] (-) TimerEvent: {}
+[102.863016] (-) TimerEvent: {}
+[102.963255] (-) TimerEvent: {}
+[103.063484] (-) TimerEvent: {}
+[103.163679] (-) TimerEvent: {}
+[103.263859] (-) TimerEvent: {}
+[103.364072] (-) TimerEvent: {}
+[103.464277] (-) TimerEvent: {}
+[103.564506] (-) TimerEvent: {}
+[103.664726] (-) TimerEvent: {}
+[103.764932] (-) TimerEvent: {}
+[103.865126] (-) TimerEvent: {}
+[103.965310] (-) TimerEvent: {}
+[104.065508] (-) TimerEvent: {}
+[104.165726] (-) TimerEvent: {}
+[104.265935] (-) TimerEvent: {}
+[104.366149] (-) TimerEvent: {}
+[104.466370] (-) TimerEvent: {}
+[104.566564] (-) TimerEvent: {}
+[104.666745] (-) TimerEvent: {}
+[104.766907] (-) TimerEvent: {}
+[104.867114] (-) TimerEvent: {}
+[104.967327] (-) TimerEvent: {}
+[105.067551] (-) TimerEvent: {}
+[105.167769] (-) TimerEvent: {}
+[105.267985] (-) TimerEvent: {}
+[105.368261] (-) TimerEvent: {}
+[105.468531] (-) TimerEvent: {}
+[105.568781] (-) TimerEvent: {}
+[105.669025] (-) TimerEvent: {}
+[105.769269] (-) TimerEvent: {}
+[105.869513] (-) TimerEvent: {}
+[105.969752] (-) TimerEvent: {}
+[106.069980] (-) TimerEvent: {}
+[106.170218] (-) TimerEvent: {}
+[106.270459] (-) TimerEvent: {}
+[106.370759] (-) TimerEvent: {}
+[106.471029] (-) TimerEvent: {}
+[106.571299] (-) TimerEvent: {}
+[106.671575] (-) TimerEvent: {}
+[106.771868] (-) TimerEvent: {}
+[106.872134] (-) TimerEvent: {}
+[106.972401] (-) TimerEvent: {}
+[107.072637] (-) TimerEvent: {}
+[107.172874] (-) TimerEvent: {}
+[107.273121] (-) TimerEvent: {}
+[107.373356] (-) TimerEvent: {}
+[107.473608] (-) TimerEvent: {}
+[107.573874] (-) TimerEvent: {}
+[107.674119] (-) TimerEvent: {}
+[107.774359] (-) TimerEvent: {}
+[107.874605] (-) TimerEvent: {}
+[107.974846] (-) TimerEvent: {}
+[108.075082] (-) TimerEvent: {}
+[108.175322] (-) TimerEvent: {}
+[108.275562] (-) TimerEvent: {}
+[108.375802] (-) TimerEvent: {}
+[108.476043] (-) TimerEvent: {}
+[108.576272] (-) TimerEvent: {}
+[108.676516] (-) TimerEvent: {}
+[108.776757] (-) TimerEvent: {}
+[108.877004] (-) TimerEvent: {}
+[108.977254] (-) TimerEvent: {}
+[109.077486] (-) TimerEvent: {}
+[109.177718] (-) TimerEvent: {}
+[109.277956] (-) TimerEvent: {}
+[109.378201] (-) TimerEvent: {}
+[109.478459] (-) TimerEvent: {}
+[109.578731] (-) TimerEvent: {}
+[109.678989] (-) TimerEvent: {}
+[109.779252] (-) TimerEvent: {}
+[109.879516] (-) TimerEvent: {}
+[109.979772] (-) TimerEvent: {}
+[110.080004] (-) TimerEvent: {}
+[110.180245] (-) TimerEvent: {}
+[110.280479] (-) TimerEvent: {}
+[110.380722] (-) TimerEvent: {}
+[110.480964] (-) TimerEvent: {}
+[110.581225] (-) TimerEvent: {}
+[110.681468] (-) TimerEvent: {}
+[110.781700] (-) TimerEvent: {}
+[110.881941] (-) TimerEvent: {}
+[110.982176] (-) TimerEvent: {}
+[111.082397] (-) TimerEvent: {}
+[111.182624] (-) TimerEvent: {}
+[111.282876] (-) TimerEvent: {}
+[111.383117] (-) TimerEvent: {}
+[111.483360] (-) TimerEvent: {}
+[111.583619] (-) TimerEvent: {}
+[111.683861] (-) TimerEvent: {}
+[111.784103] (-) TimerEvent: {}
+[111.884356] (-) TimerEvent: {}
+[111.984601] (-) TimerEvent: {}
+[112.084835] (-) TimerEvent: {}
+[112.185075] (-) TimerEvent: {}
+[112.285317] (-) TimerEvent: {}
+[112.385564] (-) TimerEvent: {}
+[112.485824] (-) TimerEvent: {}
+[112.586090] (-) TimerEvent: {}
+[112.686335] (-) TimerEvent: {}
+[112.786572] (-) TimerEvent: {}
+[112.886811] (-) TimerEvent: {}
+[112.987053] (-) TimerEvent: {}
+[113.087289] (-) TimerEvent: {}
+[113.187528] (-) TimerEvent: {}
+[113.287771] (-) TimerEvent: {}
+[113.388012] (-) TimerEvent: {}
+[113.488273] (-) TimerEvent: {}
+[113.588537] (-) TimerEvent: {}
+[113.688792] (-) TimerEvent: {}
+[113.789043] (-) TimerEvent: {}
+[113.889304] (-) TimerEvent: {}
+[113.989548] (-) TimerEvent: {}
+[114.089794] (-) TimerEvent: {}
+[114.190045] (-) TimerEvent: {}
+[114.290303] (-) TimerEvent: {}
+[114.390549] (-) TimerEvent: {}
+[114.490798] (-) TimerEvent: {}
+[114.591054] (-) TimerEvent: {}
+[114.691301] (-) TimerEvent: {}
+[114.791556] (-) TimerEvent: {}
+[114.891811] (-) TimerEvent: {}
+[114.992070] (-) TimerEvent: {}
+[115.092332] (-) TimerEvent: {}
+[115.192590] (-) TimerEvent: {}
+[115.292846] (-) TimerEvent: {}
+[115.393099] (-) TimerEvent: {}
+[115.493363] (-) TimerEvent: {}
+[115.593628] (-) TimerEvent: {}
+[115.693989] (-) TimerEvent: {}
+[115.794258] (-) TimerEvent: {}
+[115.894525] (-) TimerEvent: {}
+[115.994789] (-) TimerEvent: {}
+[116.095041] (-) TimerEvent: {}
+[116.195307] (-) TimerEvent: {}
+[116.295567] (-) TimerEvent: {}
+[116.395818] (-) TimerEvent: {}
+[116.496075] (-) TimerEvent: {}
+[116.596341] (-) TimerEvent: {}
+[116.696596] (-) TimerEvent: {}
+[116.796863] (-) TimerEvent: {}
+[116.897127] (-) TimerEvent: {}
+[116.997444] (-) TimerEvent: {}
+[117.097702] (-) TimerEvent: {}
+[117.197966] (-) TimerEvent: {}
+[117.298235] (-) TimerEvent: {}
+[117.398499] (-) TimerEvent: {}
+[117.498765] (-) TimerEvent: {}
+[117.599028] (-) TimerEvent: {}
+[117.699285] (-) TimerEvent: {}
+[117.799527] (-) TimerEvent: {}
+[117.899765] (-) TimerEvent: {}
+[118.000017] (-) TimerEvent: {}
+[118.100274] (-) TimerEvent: {}
+[118.200525] (-) TimerEvent: {}
+[118.300780] (-) TimerEvent: {}
+[118.401036] (-) TimerEvent: {}
+[118.501284] (-) TimerEvent: {}
+[118.601549] (-) TimerEvent: {}
+[118.701799] (-) TimerEvent: {}
+[118.802054] (-) TimerEvent: {}
+[118.902299] (-) TimerEvent: {}
+[119.002554] (-) TimerEvent: {}
+[119.102815] (-) TimerEvent: {}
+[119.203069] (-) TimerEvent: {}
+[119.303330] (-) TimerEvent: {}
+[119.403574] (-) TimerEvent: {}
+[119.503833] (-) TimerEvent: {}
+[119.604104] (-) TimerEvent: {}
+[119.704376] (-) TimerEvent: {}
+[119.804629] (-) TimerEvent: {}
+[119.904882] (-) TimerEvent: {}
+[120.005133] (-) TimerEvent: {}
+[120.105378] (-) TimerEvent: {}
+[120.205621] (-) TimerEvent: {}
+[120.305870] (-) TimerEvent: {}
+[120.406123] (-) TimerEvent: {}
+[120.506366] (-) TimerEvent: {}
+[120.606637] (-) TimerEvent: {}
+[120.706905] (-) TimerEvent: {}
+[120.807162] (-) TimerEvent: {}
+[120.907417] (-) TimerEvent: {}
+[121.007672] (-) TimerEvent: {}
+[121.107920] (-) TimerEvent: {}
+[121.208174] (-) TimerEvent: {}
+[121.308429] (-) TimerEvent: {}
+[121.408688] (-) TimerEvent: {}
+[121.508942] (-) TimerEvent: {}
+[121.609201] (-) TimerEvent: {}
+[121.709446] (-) TimerEvent: {}
+[121.809703] (-) TimerEvent: {}
+[121.909957] (-) TimerEvent: {}
+[122.010206] (-) TimerEvent: {}
+[122.110451] (-) TimerEvent: {}
+[122.210724] (-) TimerEvent: {}
+[122.310984] (-) TimerEvent: {}
+[122.411240] (-) TimerEvent: {}
+[122.511496] (-) TimerEvent: {}
+[122.611752] (-) TimerEvent: {}
+[122.712007] (-) TimerEvent: {}
+[122.812274] (-) TimerEvent: {}
+[122.912552] (-) TimerEvent: {}
+[123.012826] (-) TimerEvent: {}
+[123.113107] (-) TimerEvent: {}
+[123.213373] (-) TimerEvent: {}
+[123.313626] (-) TimerEvent: {}
+[123.413878] (-) TimerEvent: {}
+[123.514135] (-) TimerEvent: {}
+[123.614398] (-) TimerEvent: {}
+[123.714654] (-) TimerEvent: {}
+[123.814904] (-) TimerEvent: {}
+[123.915149] (-) TimerEvent: {}
+[124.015403] (-) TimerEvent: {}
+[124.115674] (-) TimerEvent: {}
+[124.215930] (-) TimerEvent: {}
+[124.316220] (-) TimerEvent: {}
+[124.416484] (-) TimerEvent: {}
+[124.516746] (-) TimerEvent: {}
+[124.617001] (-) TimerEvent: {}
+[124.717250] (-) TimerEvent: {}
+[124.817505] (-) TimerEvent: {}
+[124.917748] (-) TimerEvent: {}
+[125.017994] (-) TimerEvent: {}
+[125.118238] (-) TimerEvent: {}
+[125.218501] (-) TimerEvent: {}
+[125.318748] (-) TimerEvent: {}
+[125.418998] (-) TimerEvent: {}
+[125.519256] (-) TimerEvent: {}
+[125.619517] (-) TimerEvent: {}
+[125.719775] (-) TimerEvent: {}
+[125.820017] (-) TimerEvent: {}
+[125.920270] (-) TimerEvent: {}
+[126.020512] (-) TimerEvent: {}
+[126.120762] (-) TimerEvent: {}
+[126.221015] (-) TimerEvent: {}
+[126.321264] (-) TimerEvent: {}
+[126.421532] (-) TimerEvent: {}
+[126.521808] (-) TimerEvent: {}
+[126.622071] (-) TimerEvent: {}
+[126.722336] (-) TimerEvent: {}
+[126.822586] (-) TimerEvent: {}
+[126.922855] (-) TimerEvent: {}
+[127.023108] (-) TimerEvent: {}
+[127.123360] (-) TimerEvent: {}
+[127.223621] (-) TimerEvent: {}
+[127.323882] (-) TimerEvent: {}
+[127.424138] (-) TimerEvent: {}
+[127.524409] (-) TimerEvent: {}
+[127.624699] (-) TimerEvent: {}
+[127.724966] (-) TimerEvent: {}
+[127.825224] (-) TimerEvent: {}
+[127.925483] (-) TimerEvent: {}
+[128.025737] (-) TimerEvent: {}
+[128.125999] (-) TimerEvent: {}
+[128.226274] (-) TimerEvent: {}
+[128.326543] (-) TimerEvent: {}
+[128.426803] (-) TimerEvent: {}
+[128.527059] (-) TimerEvent: {}
+[128.627326] (-) TimerEvent: {}
+[128.727590] (-) TimerEvent: {}
+[128.827852] (-) TimerEvent: {}
+[128.928125] (-) TimerEvent: {}
+[129.028400] (-) TimerEvent: {}
+[129.128659] (-) TimerEvent: {}
+[129.228923] (-) TimerEvent: {}
+[129.329171] (-) TimerEvent: {}
+[129.429424] (-) TimerEvent: {}
+[129.529682] (-) TimerEvent: {}
+[129.629935] (-) TimerEvent: {}
+[129.730178] (-) TimerEvent: {}
+[129.830425] (-) TimerEvent: {}
+[129.930670] (-) TimerEvent: {}
+[130.030914] (-) TimerEvent: {}
+[130.131173] (-) TimerEvent: {}
+[130.231419] (-) TimerEvent: {}
+[130.331669] (-) TimerEvent: {}
+[130.431927] (-) TimerEvent: {}
+[130.532203] (-) TimerEvent: {}
+[130.552489] (<colcon_parallel_executor.executor.parallel.ParallelExecutorExtension object at 0xffff95f2ccd0>) ParallelStatus: {'processing': ('fast_lio',)}
+[130.632269] (-) TimerEvent: {}
+[130.732519] (-) TimerEvent: {}
+[130.832762] (-) TimerEvent: {}
+[130.933008] (-) TimerEvent: {}
+[131.033252] (-) TimerEvent: {}
+[131.133507] (-) TimerEvent: {}
+[131.233760] (-) TimerEvent: {}
+[131.334008] (-) TimerEvent: {}
+[131.434248] (-) TimerEvent: {}
+[131.534494] (-) TimerEvent: {}
+[131.634733] (-) TimerEvent: {}
+[131.734961] (-) TimerEvent: {}
+[131.835201] (-) TimerEvent: {}
+[131.935448] (-) TimerEvent: {}
+[132.035722] (-) TimerEvent: {}
+[132.048519] (fast_lio) StdoutLine: {'line': b'[100%] Linking CXX executable fastlio_mapping\n'}
+[132.135841] (-) TimerEvent: {}
+[132.236099] (-) TimerEvent: {}
+[132.336359] (-) TimerEvent: {}
+[132.436612] (-) TimerEvent: {}
+[132.536863] (-) TimerEvent: {}
+[132.637117] (-) TimerEvent: {}
+[132.737371] (-) TimerEvent: {}
+[132.837622] (-) TimerEvent: {}
+[132.937886] (-) TimerEvent: {}
+[133.038138] (-) TimerEvent: {}
+[133.138398] (-) TimerEvent: {}
+[133.238658] (-) TimerEvent: {}
+[133.338927] (-) TimerEvent: {}
+[133.439191] (-) TimerEvent: {}
+[133.539439] (-) TimerEvent: {}
+[133.639690] (-) TimerEvent: {}
+[133.739952] (-) TimerEvent: {}
+[133.840236] (-) TimerEvent: {}
+[133.940524] (-) TimerEvent: {}
+[134.040795] (-) TimerEvent: {}
+[134.141058] (-) TimerEvent: {}
+[134.241335] (-) TimerEvent: {}
+[134.286743] (fast_lio) StdoutLine: {'line': b'[100%] Built target fastlio_mapping\n'}
+[134.293295] (fast_lio) CommandEnded: {'returncode': 0}
+[134.294312] (fast_lio) JobProgress: {'identifier': 'fast_lio', 'progress': 'install'}
+[134.294880] (fast_lio) Command: {'cmd': ['/usr/local/bin/cmake', '--install', '/home/astribot/TowerGO/runtime_ws/build/fast_lio'], 'cwd': '/home/astribot/TowerGO/runtime_ws/build/fast_lio', 'env': OrderedDict([('CMAKE_BUILD_PARALLEL_LEVEL', '2'), ('USER', 'astribot'), ('SSH_CLIENT', '10.7.156.121 53070 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib:/opt/astribot_ros/software/livox_ros_driver2/lib:/opt/astribot_ros/software/camera_subscriber_py/lib:/opt/astribot_ros/software/astribot_camera/lib:/opt/astribot_ros/software/jetson_nvcodec/lib:/opt/astribot_ros/software/compress_subscriber_py/lib:/opt/astribot_ros/software/astribot_recorder/lib:/opt/astribot_ros/software/astribot_data_processor/lib:/opt/astribot_ros/software/astribot_rosbag2_transport/lib:/opt/astribot_ros/software/astribot_rosbag2_storage/lib:/opt/astribot_ros/software/astribot_base/lib:/opt/astribot_ros/software/astribot_msgs/lib:/opt/astribot_ros/software/astribot_common_proto/lib:/opt/astribot_ros/software/astribot_camera_sdk/lib:/opt/astribot_ros/software/astribot_base_third_party/lib:/opt/astribot_ros/third_pkg/pcl_ros/lib:/opt/astribot_ros/third_pkg/pcl_msgs/lib:/opt/astribot_ros/middle_ware/opt/rviz_ogre_vendor/lib:/opt/astribot_ros/middle_ware/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/astribot'), ('OLDPWD', '/home/astribot'), ('ROS_PYTHON_VERSION', '3'), ('LC_CTYPE', 'C.UTF-8'), ('MAKEFLAGS', '-j2'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/opt/astribot_ros/software:/opt/astribot_ros/third_pkg:/opt/astribot_ros/middle_ware'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'astribot'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/opt/astribot_ros/middle_ware/lib/aarch64-linux-gnu/pkgconfig:/opt/astribot_ros/middle_ware/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('XDG_SESSION_ID', '711'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/astribot_ros/software/astribot_camera/bin:/opt/astribot_ros/software/astribot_data_processor/bin:/opt/astribot_ros/middle_ware/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('AMENT_PREFIX_PATH', '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_launch:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware'), ('SHELL', '/bin/bash'), ('PWD', '/home/astribot/TowerGO/runtime_ws/build/fast_lio'), ('LC_ALL', 'C.UTF-8'), ('SSH_CONNECTION', '10.7.156.121 53070 10.7.154.109 22'), ('PYTHONPATH', '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages:/home/astribot/TowerGO/runtime_ws/build_python:/opt/astribot_ros/software/ptp_sync_time/lib/python3.10/site-packages:/opt/astribot_ros/software/livox_ros_driver2/local/lib/python3.10/dist-packages:/opt/astribot_ros/software/camera_subscriber_py/lib/python3/site-packages:/opt/astribot_ros/software/astribot_camera/lib/python3/site-packages:/opt/astribot_ros/software/compress_subscriber_py/lib/python3/site-packages:/opt/astribot_ros/software/astribot_ros_middleware/lib/python3.10/site-packages:/opt/astribot_ros/software/astribot_msgs/local/lib/python3.10/dist-packages:/opt/astribot_ros/software/astribot_launch/lib/python3.10/site-packages:/opt/astribot_ros/software/astribot_common_proto/lib/pyproto:/opt/astribot_ros/third_pkg/pcl_msgs/local/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/local/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/lib/python3.10/site-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2:/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch')]), 'shell': False}
+[134.299459] (fast_lio) StdoutLine: {'line': b'-- Install configuration: "Release"\n'}
+[134.300335] (fast_lio) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[134.300880] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/ament_index/resource_index/rosidl_interfaces/fast_lio\n'}
+[134.305076] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/detail/pose6_d__functions.h\n'}
+[134.308303] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/detail/pose6_d__struct.h\n'}
+[134.311626] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/detail/pose6_d__type_support.h\n'}
+[134.315065] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/pose6_d.h\n'}
+[134.317951] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/rosidl_generator_c__visibility_control.h\n'}
+[134.321074] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/environment/library_path.sh\n'}
+[134.323993] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/environment/library_path.dsv\n'}
+[134.327592] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/detail/pose6_d__rosidl_typesupport_fastrtps_c.h\n'}
+[134.330848] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[134.334126] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/detail/pose6_d__builder.hpp\n'}
+[134.337237] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/detail/pose6_d__struct.hpp\n'}
+[134.340366] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/detail/pose6_d__traits.hpp\n'}
+[134.341380] (-) TimerEvent: {}
+[134.343455] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/pose6_d.hpp\n'}
+[134.347479] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/detail/pose6_d__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[134.350804] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[134.354230] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/detail/pose6_d__rosidl_typesupport_introspection_c.h\n'}
+[134.357459] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[134.361014] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/include/fast_lio/fast_lio/msg/detail/pose6_d__rosidl_typesupport_introspection_cpp.hpp\n'}
+[134.363979] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/environment/pythonpath.sh\n'}
+[134.367382] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/environment/pythonpath.dsv\n'}
+[134.371160] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[134.374014] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[134.377451] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[134.380540] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[134.384541] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/__init__.py\n'}
+[134.387558] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/_fast_lio_s.ep.rosidl_typesupport_c.c\n'}
+[134.390899] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/_fast_lio_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[134.394099] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/_fast_lio_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[134.396988] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/fast_lio_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[134.400309] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/fast_lio_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[134.403116] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/fast_lio_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[134.406157] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/libfast_lio__rosidl_generator_py.so\n'}
+[134.409272] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/msg/__init__.py\n'}
+[134.412158] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/msg/_pose6_d.py\n'}
+[134.415660] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/msg/_pose6_d_s.c\n'}
+[134.419163] (fast_lio) StdoutLine: {'line': b'-- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/fast_lio_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[134.419501] (fast_lio) StdoutLine: {'line': b'-- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/fast_lio_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[134.419863] (fast_lio) StdoutLine: {'line': b'-- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/fast_lio_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[134.420175] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/msg/Pose6D.idl\n'}
+[134.423602] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/msg/Pose6D.msg\n'}
+[134.427084] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/fast_lio/fastlio_mapping\n'}
+[134.430386] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/config/avia.yaml\n'}
+[134.433916] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/config/horizon.yaml\n'}
+[134.436959] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/config/mid360.yaml\n'}
+[134.439739] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/config/ouster64.yaml\n'}
+[134.441449] (-) TimerEvent: {}
+[134.442466] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/config/velodyne.yaml\n'}
+[134.446192] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/launch/gdb_debug_example.launch\n'}
+[134.449149] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/launch/mapping.launch.py\n'}
+[134.453250] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/rviz/fastlio.rviz\n'}
+[134.456507] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/ament_index/resource_index/package_run_dependencies/fast_lio\n'}
+[134.459989] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/ament_index/resource_index/parent_prefix_path/fast_lio\n'}
+[134.463254] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/environment/ament_prefix_path.sh\n'}
+[134.467415] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/environment/ament_prefix_path.dsv\n'}
+[134.470422] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/environment/path.sh\n'}
+[134.473706] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/environment/path.dsv\n'}
+[134.476829] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/local_setup.bash\n'}
+[134.480105] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/local_setup.sh\n'}
+[134.483227] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/local_setup.zsh\n'}
+[134.486267] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/local_setup.dsv\n'}
+[134.489478] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/package.dsv\n'}
+[134.493050] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/ament_index/resource_index/packages/fast_lio\n'}
+[134.496503] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/rosidl_cmake-extras.cmake\n'}
+[134.499309] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[134.502144] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[134.504905] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[134.507632] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[134.510343] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[134.513389] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[134.516180] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/fast_lioConfig.cmake\n'}
+[134.518923] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/fast_lioConfig-version.cmake\n'}
+[134.521686] (fast_lio) StdoutLine: {'line': b'-- Symlinking: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/package.xml\n'}
+[134.524916] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_generator_c.so\n'}
+[134.525347] (fast_lio) StdoutLine: {'line': b'-- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_generator_c.so" to ""\n'}
+[134.525519] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_fastrtps_c.so\n'}
+[134.525955] (fast_lio) StdoutLine: {'line': b'-- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_fastrtps_c.so" to ""\n'}
+[134.526053] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_fastrtps_cpp.so\n'}
+[134.526380] (fast_lio) StdoutLine: {'line': b'-- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_fastrtps_cpp.so" to ""\n'}
+[134.526549] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_introspection_c.so\n'}
+[134.526906] (fast_lio) StdoutLine: {'line': b'-- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_introspection_c.so" to ""\n'}
+[134.527067] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_c.so\n'}
+[134.527361] (fast_lio) StdoutLine: {'line': b'-- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_c.so" to ""\n'}
+[134.527526] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_introspection_cpp.so\n'}
+[134.527895] (fast_lio) StdoutLine: {'line': b'-- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_introspection_cpp.so" to ""\n'}
+[134.528061] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_cpp.so\n'}
+[134.528513] (fast_lio) StdoutLine: {'line': b'-- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_typesupport_cpp.so" to ""\n'}
+[134.541516] (-) TimerEvent: {}
+[134.587979] (fast_lio) StdoutLine: {'line': b"Listing '/home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio'...\n"}
+[134.588168] (fast_lio) StdoutLine: {'line': b"Compiling '/home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/__init__.py'...\n"}
+[134.588293] (fast_lio) StdoutLine: {'line': b"Listing '/home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/msg'...\n"}
+[134.588390] (fast_lio) StdoutLine: {'line': b"Compiling '/home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/msg/__init__.py'...\n"}
+[134.588482] (fast_lio) StdoutLine: {'line': b"Compiling '/home/astribot/TowerGO/runtime_ws/install/fast_lio/local/lib/python3.10/dist-packages/fast_lio/msg/_pose6_d.py'...\n"}
+[134.596206] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_generator_py.so\n'}
+[134.597028] (fast_lio) StdoutLine: {'line': b'-- Set runtime path of "/home/astribot/TowerGO/runtime_ws/install/fast_lio/lib/libfast_lio__rosidl_generator_py.so" to ""\n'}
+[134.597212] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/export_fast_lio__rosidl_generator_cExport.cmake\n'}
+[134.597374] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/export_fast_lio__rosidl_generator_cExport-release.cmake\n'}
+[134.597573] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/export_fast_lio__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[134.597794] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/export_fast_lio__rosidl_typesupport_fastrtps_cExport-release.cmake\n'}
+[134.597990] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/export_fast_lio__rosidl_generator_cppExport.cmake\n'}
+[134.598194] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/export_fast_lio__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[134.598393] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/export_fast_lio__rosidl_typesupport_fastrtps_cppExport-release.cmake\n'}
+[134.598587] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/fast_lio__rosidl_typesupport_introspection_cExport.cmake\n'}
+[134.598812] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/fast_lio__rosidl_typesupport_introspection_cExport-release.cmake\n'}
+[134.598977] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/fast_lio__rosidl_typesupport_cExport.cmake\n'}
+[134.599161] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/fast_lio__rosidl_typesupport_cExport-release.cmake\n'}
+[134.599360] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/fast_lio__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[134.599547] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/fast_lio__rosidl_typesupport_introspection_cppExport-release.cmake\n'}
+[134.599767] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/fast_lio__rosidl_typesupport_cppExport.cmake\n'}
+[134.599935] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/fast_lio__rosidl_typesupport_cppExport-release.cmake\n'}
+[134.600122] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/export_fast_lio__rosidl_generator_pyExport.cmake\n'}
+[134.600338] (fast_lio) StdoutLine: {'line': b'-- Installing: /home/astribot/TowerGO/runtime_ws/install/fast_lio/share/fast_lio/cmake/export_fast_lio__rosidl_generator_pyExport-release.cmake\n'}
+[134.602446] (fast_lio) CommandEnded: {'returncode': 0}
+[134.627080] (fast_lio) JobEnded: {'identifier': 'fast_lio', 'rc': 0}
+[134.628542] (towergo_livox_adapter) JobStarted: {'identifier': 'towergo_livox_adapter'}
+[134.641711] (-) TimerEvent: {}
+[134.649010] (towergo_livox_adapter) JobProgress: {'identifier': 'towergo_livox_adapter', 'progress': 'cmake'}
+[134.650032] (towergo_livox_adapter) Command: {'cmd': ['/usr/local/bin/cmake', '/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_livox_adapter', '-DCMAKE_BUILD_TYPE=Release', '-DBUILD_TESTING=OFF', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/astribot/TowerGO/runtime_ws/install/towergo_livox_adapter'], 'cwd': '/home/astribot/TowerGO/runtime_ws/build/towergo_livox_adapter', 'env': OrderedDict([('CMAKE_BUILD_PARALLEL_LEVEL', '2'), ('USER', 'astribot'), ('SSH_CLIENT', '10.7.156.121 53070 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib:/opt/astribot_ros/software/livox_ros_driver2/lib:/opt/astribot_ros/software/camera_subscriber_py/lib:/opt/astribot_ros/software/astribot_camera/lib:/opt/astribot_ros/software/jetson_nvcodec/lib:/opt/astribot_ros/software/compress_subscriber_py/lib:/opt/astribot_ros/software/astribot_recorder/lib:/opt/astribot_ros/software/astribot_data_processor/lib:/opt/astribot_ros/software/astribot_rosbag2_transport/lib:/opt/astribot_ros/software/astribot_rosbag2_storage/lib:/opt/astribot_ros/software/astribot_base/lib:/opt/astribot_ros/software/astribot_msgs/lib:/opt/astribot_ros/software/astribot_common_proto/lib:/opt/astribot_ros/software/astribot_camera_sdk/lib:/opt/astribot_ros/software/astribot_base_third_party/lib:/opt/astribot_ros/third_pkg/pcl_ros/lib:/opt/astribot_ros/third_pkg/pcl_msgs/lib:/opt/astribot_ros/middle_ware/opt/rviz_ogre_vendor/lib:/opt/astribot_ros/middle_ware/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/astribot'), ('OLDPWD', '/home/astribot'), ('ROS_PYTHON_VERSION', '3'), ('LC_CTYPE', 'C.UTF-8'), ('MAKEFLAGS', '-j2'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/opt/astribot_ros/software:/opt/astribot_ros/third_pkg:/opt/astribot_ros/middle_ware'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'astribot'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/opt/astribot_ros/middle_ware/lib/aarch64-linux-gnu/pkgconfig:/opt/astribot_ros/middle_ware/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('XDG_SESSION_ID', '711'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/astribot_ros/software/astribot_camera/bin:/opt/astribot_ros/software/astribot_data_processor/bin:/opt/astribot_ros/middle_ware/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('AMENT_PREFIX_PATH', '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_launch:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware'), ('SHELL', '/bin/bash'), ('PWD', '/home/astribot/TowerGO/runtime_ws/build/towergo_livox_adapter'), ('LC_ALL', 'C.UTF-8'), ('SSH_CONNECTION', '10.7.156.121 53070 10.7.154.109 22'), ('PYTHONPATH', '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages:/home/astribot/TowerGO/runtime_ws/build_python:/opt/astribot_ros/software/ptp_sync_time/lib/python3.10/site-packages:/opt/astribot_ros/software/livox_ros_driver2/local/lib/python3.10/dist-packages:/opt/astribot_ros/software/camera_subscriber_py/lib/python3/site-packages:/opt/astribot_ros/software/astribot_camera/lib/python3/site-packages:/opt/astribot_ros/software/compress_subscriber_py/lib/python3/site-packages:/opt/astribot_ros/software/astribot_ros_middleware/lib/python3.10/site-packages:/opt/astribot_ros/software/astribot_msgs/local/lib/python3.10/dist-packages:/opt/astribot_ros/software/astribot_launch/lib/python3.10/site-packages:/opt/astribot_ros/software/astribot_common_proto/lib/pyproto:/opt/astribot_ros/third_pkg/pcl_msgs/local/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/local/lib/python3.10/dist-packages:/opt/astribot_ros/middle_ware/lib/python3.10/site-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2:/opt/astribot_ros/software/micspeaker:/opt/astribot_ros/software/livox_lidar_calib:/opt/astribot_ros/software/livox_ros_driver2:/opt/astribot_ros/software/livox_lidar_ros2_launcher:/opt/astribot_ros/software/camera_subscriber_py:/opt/astribot_ros/software/astribot_camera:/opt/astribot_ros/software/jetson_nvcodec:/opt/astribot_ros/software/compress_subscriber_py:/opt/astribot_ros/software/astribot_system_monitor:/opt/astribot_ros/software/astribot_recorder:/opt/astribot_ros/software/astribot_data_processor:/opt/astribot_ros/software/astribot_rosbag2_transport:/opt/astribot_ros/software/astribot_rosbag2_storage:/opt/astribot_ros/software/astribot_error_code:/opt/astribot_ros/software/astribot_base:/opt/astribot_ros/software/astribot_msgs:/opt/astribot_ros/software/astribot_joy:/opt/astribot_ros/software/astribot_common_tools:/opt/astribot_ros/software/astribot_common_proto:/opt/astribot_ros/software/astribot_camera_sdk:/opt/astribot_ros/software/astribot_base_third_party:/opt/astribot_ros/third_pkg/perception_pcl:/opt/astribot_ros/third_pkg/pcl_ros:/opt/astribot_ros/third_pkg/pcl_conversions:/opt/astribot_ros/third_pkg/pcl_msgs:/opt/astribot_ros/middle_ware:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch')]), 'shell': False}
+[134.661823] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.9 (/opt/astribot_ros/middle_ware/share/ament_cmake/cmake)\n'}
+[134.741838] (-) TimerEvent: {}
+[134.808300] (towergo_livox_adapter) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[134.819364] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found rclcpp: 16.0.9 (/opt/astribot_ros/middle_ware/share/rclcpp/cmake)\n'}
+[134.841916] (-) TimerEvent: {}
+[134.873857] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.5 (/opt/astribot_ros/middle_ware/share/rosidl_generator_c/cmake)\n'}
+[134.878991] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.5 (/opt/astribot_ros/middle_ware/share/rosidl_adapter/cmake)\n'}
+[134.889434] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.5 (/opt/astribot_ros/middle_ware/share/rosidl_generator_cpp/cmake)\n'}
+[134.911438] (towergo_livox_adapter) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[134.942003] (-) TimerEvent: {}
+[134.942985] (towergo_livox_adapter) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[135.042110] (-) TimerEvent: {}
+[135.048286] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/astribot_ros/middle_ware/share/rmw_implementation_cmake/cmake)\n'}
+[135.052119] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.6 (/opt/astribot_ros/middle_ware/share/rmw_fastrtps_cpp/cmake)\n'}
+[135.142235] (-) TimerEvent: {}
+[135.242493] (-) TimerEvent: {}
+[135.256232] (towergo_livox_adapter) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[135.342606] (-) TimerEvent: {}
+[135.442854] (-) TimerEvent: {}
+[135.501960] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found sensor_msgs: 4.2.4 (/opt/astribot_ros/middle_ware/share/sensor_msgs/cmake)\n'}
+[135.542964] (-) TimerEvent: {}
+[135.643206] (-) TimerEvent: {}
+[135.691358] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found diagnostic_msgs: 4.2.4 (/opt/astribot_ros/middle_ware/share/diagnostic_msgs/cmake)\n'}
+[135.743314] (-) TimerEvent: {}
+[135.758092] (towergo_livox_adapter) StdoutLine: {'line': b'-- Found livox_ros_driver2: 1.0.0 (/opt/astribot_ros/software/livox_ros_driver2/share/livox_ros_driver2/cmake)\n'}
+[135.843407] (-) TimerEvent: {}
+[135.913058] (towergo_livox_adapter) StderrLine: {'line': b'CMake Error at /opt/astribot_ros/software/livox_ros_driver2/share/livox_ros_driver2/cmake/ament_cmake_export_libraries-extras.cmake:48 (message):\n'}
+[135.913399] (towergo_livox_adapter) StderrLine: {'line': b"  Package 'livox_ros_driver2' exports the library 'livox_ros_driver2_node'\n"}
+[135.913537] (towergo_livox_adapter) StderrLine: {'line': b"  which couldn't be found\n"}
+[135.913645] (towergo_livox_adapter) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[135.913745] (towergo_livox_adapter) StderrLine: {'line': b'  /opt/astribot_ros/software/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2Config.cmake:41 (include)\n'}
+[135.913845] (towergo_livox_adapter) StderrLine: {'line': b'  CMakeLists.txt:9 (find_package)\n'}
+[135.913939] (towergo_livox_adapter) StderrLine: {'line': b'\n'}
+[135.914031] (towergo_livox_adapter) StderrLine: {'line': b'\n'}
+[135.914122] (towergo_livox_adapter) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[135.914220] (towergo_livox_adapter) StdoutLine: {'line': b'See also "/home/astribot/TowerGO/runtime_ws/build/towergo_livox_adapter/CMakeFiles/CMakeOutput.log".\n'}
+[135.927023] (towergo_livox_adapter) CommandEnded: {'returncode': 1}
+[135.943481] (-) TimerEvent: {}
+[135.944194] (towergo_livox_adapter) JobEnded: {'identifier': 'towergo_livox_adapter', 'rc': 1}
+[135.954746] (-) EventReactorShutdown: {}

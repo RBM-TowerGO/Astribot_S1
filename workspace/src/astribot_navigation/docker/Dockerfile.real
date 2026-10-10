@@ -1,0 +1,21 @@
+ARG BASE_IMAGE=towergo-offline:humble
+FROM ${BASE_IMAGE}
+SHELL ["/bin/bash", "-c"]
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  git python3-pil libpcl-dev libeigen3-dev ros-humble-pcl-ros ros-humble-pcl-conversions \
+  ros-humble-rosidl-default-generators ros-humble-tf2-ros-py \
+  && rm -rf /var/lib/apt/lists/*
+COPY scripts/fetch_real_dependencies.py /tmp/fetch_real_dependencies.py
+COPY real_dependencies /real_ws/src/dependencies
+RUN python3 /tmp/fetch_real_dependencies.py --directory /real_ws/src/dependencies
+COPY towergo_real /real_ws/src/towergo_real
+COPY towergo_livox_adapter /real_ws/src/towergo_livox_adapter
+WORKDIR /real_ws
+RUN source /opt/ros/humble/setup.bash && source /slam_overlay/install/setup.bash \
+  && MAKEFLAGS=-j2 CMAKE_BUILD_PARALLEL_LEVEL=2 colcon build --parallel-workers 1 \
+       --cmake-args -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF \
+  && dpkg-query -W > /real_ws/dependency-versions.txt
+COPY docker/real_entrypoint.sh /real-entrypoint.sh
+RUN chmod +x /real-entrypoint.sh
+ENTRYPOINT ["/real-entrypoint.sh"]
+CMD ["bash"]

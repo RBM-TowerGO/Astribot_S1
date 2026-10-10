@@ -1,0 +1,1 @@
+/opt/astribot_ros/middle_ware/share/ament_cmake_core/cmake/environment_hooks/environment/path.sh

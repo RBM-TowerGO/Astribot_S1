@@ -1,0 +1,44 @@
+Current CPU archtecture: aarch64
+CMake Warning (dev) at CMakeLists.txt:81 (find_package):
+  Policy CMP0074 is not set: find_package uses <PackageName>_ROOT variables.
+  Run "cmake --help-policy CMP0074" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+
+  CMake variable PCL_ROOT is set to:
+
+    /usr
+
+  For compatibility, CMake is ignoring the variable.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+Eigen:/usr/include/eigen3
+In file included from /usr/include/boost/smart_ptr/detail/sp_thread_sleep.hpp:22,
+                 from /usr/include/boost/smart_ptr/detail/yield_k.hpp:23,
+                 from /usr/include/boost/smart_ptr/detail/spinlock_gcc_atomic.hpp:14,
+                 from /usr/include/boost/smart_ptr/detail/spinlock.hpp:42,
+                 from /usr/include/boost/smart_ptr/detail/spinlock_pool.hpp:25,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:29,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/microsec_time_clock.hpp:18,
+                 from /usr/include/boost/interprocess/detail/posix_time_types_wrk.hpp:31,
+                 from /usr/include/boost/interprocess/detail/os_thread_functions.hpp:36,
+                 from /usr/include/boost/interprocess/sync/file_lock.hpp:26,
+                 from /usr/include/pcl-1.12/pcl/io/pcd_io.h:46,
+                 from /opt/astribot_ros/third_pkg/pcl_conversions/include/pcl_conversions/pcl_conversions/pcl_conversions.h:73,
+                 from /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/src/IMU_Processing.hpp:18,
+                 from /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/src/laserMapping.cpp:47:
+/usr/include/boost/bind.hpp:36:1: note: ‘#pragma message: The practice of declaring the Bind placeholders (_1, _2, ...) in the global namespace is deprecated. Please use <boost/bind/bind.hpp> + using namespace boost::placeholders, or define BOOST_BIND_GLOBAL_PLACEHOLDERS to retain the current behavior.’
+   36 | BOOST_PRAGMA_MESSAGE(
+      | ^~~~~~~~~~~~~~~~~~~~
+In file included from /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/IKFoM_toolkit/esekfom/../mtk/types/SOn.hpp:83,
+                 from /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/IKFoM_toolkit/esekfom/esekfom.hpp:49,
+                 from /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/use-ikfom.hpp:4,
+                 from /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/src/IMU_Processing.hpp:22,
+                 from /home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/src/laserMapping.cpp:47:
+/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/IKFoM_toolkit/esekfom/../mtk/types/../src/mtkmath.hpp: In instantiation of ‘std::pair<_FIter, _FIter> MTK::cos_sinc_sqrt(const scalar&) [with scalar = double]’:
+/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/IKFoM_toolkit/esekfom/../mtk/types/../src/mtkmath.hpp:252:52:   required from ‘scalar MTK::exp(MTK::vectview<scalar, dim>, MTK::vectview<const scalar, dim>, const scalar&) [with scalar = double; int n = 3]’
+/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/IKFoM_toolkit/esekfom/../mtk/types/S2.hpp:140:32:   required from ‘void MTK::S2<_scalar, den, num, S2_typ>::boxplus(MTK::vectview<const _scalar, 2>, MTK::S2<_scalar, den, num, S2_typ>::scalar) [with _scalar = double; int den = 98090; int num = 10000; int S2_typ = 1; MTK::S2<_scalar, den, num, S2_typ>::scalar = double]’
+/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/use-ikfom.hpp:12:1:   required from here
+/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio/include/IKFoM_toolkit/esekfom/../mtk/types/../src/mtkmath.hpp:143:27: note: parameter passing for argument of type ‘std::pair<double, double>’ when C++17 is enabled changed to match C++14 in GCC 10.1
+  143 | std::pair<scalar, scalar> cos_sinc_sqrt(const scalar &x2){
+      |                           ^~~~~~~~~~~~~

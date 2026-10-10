@@ -1,0 +1,56 @@
+# T_A_B transforms coordinates from B to A.
+# 交叉验证：平移与 MID360_config 逐位一致（可信）；
+# 45.8 度旋转为单源未证实，且同文件 lidar_back 矩阵 det=-1。
+# 详见 data/reports/sensor_calibration_20260927/cross_validation.md
+# base_from_lidar 来自厂商 /etc/config/sensor_calib.json 的 lidar_front (parent_frame=chassis)。
+# body_polygon 由厂商 URDF 底盘网格包围盒推导，见 body_filter.md。
+# 本文件由 tg 脚本生成；verified/reviewed_by 必须由负责人工填写，不得自动置真。
+verified: false
+reviewed_by: null
+reviewed_at: null
+
+base_from_lidar:
+  - [0.696665, 0.717397, 0.0, 0.17393]
+  - [-0.717397, 0.696665, 0.0, 0.16893]
+  - [0.0, 0.0, 1.0, 0.054]
+  - [0.0, 0.0, 0.0, 1.0]
+
+imu_from_lidar:
+  - [1.0, 0.0, 0.0, -0.011]
+  - [0.0, 1.0, 0.0, -0.02329]
+  - [0.0, 0.0, 1.0, 0.04412]
+  - [0.0, 0.0, 0.0, 1.0]
+
+body_polygon:
+  - [-0.3231, -0.311]
+  - [0.3069, -0.311]
+  - [0.3069, 0.311]
+  - [-0.3231, 0.311]
+
+obstacle_height_min: 0.15
+obstacle_height_max: 2.0
+range_min: 0.1
+range_max: 40.0
+max_pose_step_m: 1.0
+max_pose_step_rad: 1.0
+
+point_timestamp_unit: absolute_ns
+imu_acceleration_unit: g
+imu_gyro_unit: rad_s
+
+evidence:
+  base_lidar_extrinsic:
+    path: ../../../../data/reports/sensor_calibration_20260927/sensor_calib.json
+    sha256: 40ffd44fa5b103b2b03f2877fa9f4c4bd4511de2bd72d17263456a0b7acc1cd3
+  lidar_imu_extrinsic:
+    path: ../../../../data/reports/hardware_interface_review_20260923/sources/Livox_Mid-360_User_Manual_EN.pdf
+    sha256: 3f202c845330023d50eee086cc522918ec8b1279446c4286ea3d38722400cab2
+  imu_units:
+    path: ../../../../data/reports/hardware_interface_review_20260923/sensor_findings.md
+    sha256: b6ec7bd1497c06bbd4361e666558067308b869f1cd57e53be6f66afe8c13c3b0
+  body_filter:
+    path: ../../../../data/reports/sensor_calibration_20260927/body_filter.md
+    sha256: fab10e8e49a1a9e34d11412e617daecfb8fa948e1e677731da8018441bb499ed
+  clock_alignment:
+    path: ../../../../data/reports/sensor_calibration_20260927/clock_alignment.md
+    sha256: 9d02beed306e37b1976df73152c9e4cca61d7a81d388a81b4010d5cd8dd49bb3

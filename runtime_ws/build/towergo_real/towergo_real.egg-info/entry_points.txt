@@ -1,0 +1,8 @@
+[console_scripts]
+audit_capture = towergo_real.audit:main
+chassis = towergo_real.chassis:main
+keyboard = towergo_real.keyboard:main
+lio_adapter = towergo_real.lio_adapter:main
+map_viewer = towergo_real.viewer:main
+preflight = towergo_real.preflight:main
+session = towergo_real.session:main

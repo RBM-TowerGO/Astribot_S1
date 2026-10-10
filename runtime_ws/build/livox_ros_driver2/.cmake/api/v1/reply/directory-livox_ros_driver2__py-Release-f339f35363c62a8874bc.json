@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "livox_ros_driver2__py",
+		"source" : "/home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2/livox_ros_driver2__py"
+	}
+}

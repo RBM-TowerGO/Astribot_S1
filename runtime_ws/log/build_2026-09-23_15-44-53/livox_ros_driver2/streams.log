@@ -1,0 +1,75 @@
+[0.023s] Invoking command in '/home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch /usr/local/bin/cmake /home/astribot/TowerGO/workspace/data/cache/real_dependencies/livox_ros_driver2 -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2
+[0.089s] -- The C compiler identification is GNU 11.4.0
+[0.160s] -- The CXX compiler identification is GNU 11.4.0
+[0.173s] -- Detecting C compiler ABI info
+[0.243s] -- Detecting C compiler ABI info - done
+[0.254s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.254s] -- Detecting C compile features
+[0.255s] -- Detecting C compile features - done
+[0.260s] -- Detecting CXX compiler ABI info
+[0.341s] -- Detecting CXX compiler ABI info - done
+[0.353s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.353s] -- Detecting CXX compile features
+[0.354s] -- Detecting CXX compile features - done
+[0.361s] -- Found ament_cmake: 1.3.9 (/opt/astribot_ros/middle_ware/share/ament_cmake/cmake)
+[0.912s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[1.015s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[1.086s] -- Found rosidl_default_generators: 1.2.0 (/opt/astribot_ros/middle_ware/share/rosidl_default_generators/cmake)
+[1.098s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.116s] -- Found rosidl_adapter: 3.1.5 (/opt/astribot_ros/middle_ware/share/rosidl_adapter/cmake)
+[1.208s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.289s] -- Found std_msgs: 4.2.4 (/opt/astribot_ros/middle_ware/share/std_msgs/cmake)
+[1.609s] CMake Error at /opt/astribot_ros/middle_ware/share/rosidl_adapter/cmake/rosidl_adapt_interfaces.cmake:59 (message):
+[1.609s]   execute_process(/usr/bin/python3 -m rosidl_adapter --package-name
+[1.609s]   livox_ros_driver2 --arguments-file
+[1.609s]   /home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2/rosidl_adapter__arguments__livox_ros_driver2.json
+[1.609s]   --output-dir
+[1.610s]   /home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2/rosidl_adapter/livox_ros_driver2
+[1.610s]   --output-file
+[1.610s]   /home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2/rosidl_adapter/livox_ros_driver2.idls)
+[1.610s]   returned error code 1:
+[1.610s] 
+[1.610s]   AttributeError processing template 'msg.idl.em'
+[1.610s] 
+[1.610s]   Traceback (most recent call last):
+[1.610s] 
+[1.610s]     File "/opt/astribot_ros/middle_ware/local/lib/python3.10/dist-packages/rosidl_adapter/resource/__init__.py", line 51, in evaluate_template
+[1.610s]       em.BUFFERED_OPT: True,
+[1.611s] 
+[1.611s]   AttributeError: module 'em' has no attribute 'BUFFERED_OPT'
+[1.611s] 
+[1.611s]   
+[1.611s] 
+[1.611s]   During handling of the above exception, another exception occurred:
+[1.611s] 
+[1.611s]   
+[1.611s] 
+[1.611s]   Traceback (most recent call last):
+[1.611s] 
+[1.612s]     File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+[1.612s]       return _run_code(code, main_globals, None,
+[1.612s]     File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+[1.612s]       exec(code, run_globals)
+[1.612s]     File "/opt/astribot_ros/middle_ware/local/lib/python3.10/dist-packages/rosidl_adapter/__main__.py", line 19, in <module>
+[1.612s]       sys.exit(main())
+[1.612s]     File "/opt/astribot_ros/middle_ware/local/lib/python3.10/dist-packages/rosidl_adapter/main.py", line 53, in main
+[1.612s]       abs_idl_file = convert_to_idl(
+[1.612s]     File "/opt/astribot_ros/middle_ware/local/lib/python3.10/dist-packages/rosidl_adapter/__init__.py", line 19, in convert_to_idl
+[1.612s]       return convert_msg_to_idl(
+[1.612s]     File "/opt/astribot_ros/middle_ware/local/lib/python3.10/dist-packages/rosidl_adapter/msg/__init__.py", line 39, in convert_msg_to_idl
+[1.613s]       expand_template('msg.idl.em', data, output_file, encoding='iso-8859-1')
+[1.613s]     File "/opt/astribot_ros/middle_ware/local/lib/python3.10/dist-packages/rosidl_adapter/resource/__init__.py", line 23, in expand_template
+[1.613s]       content = evaluate_template(template_name, data)
+[1.613s]     File "/opt/astribot_ros/middle_ware/local/lib/python3.10/dist-packages/rosidl_adapter/resource/__init__.py", line 69, in evaluate_template
+[1.613s]       _interpreter.shutdown()
+[1.613s] 
+[1.613s]   AttributeError: 'NoneType' object has no attribute 'shutdown'
+[1.613s] 
+[1.613s] Call Stack (most recent call first):
+[1.613s]   /opt/astribot_ros/middle_ware/share/rosidl_cmake/cmake/rosidl_generate_interfaces.cmake:130 (rosidl_adapt_interfaces)
+[1.613s]   CMakeLists.txt:6 (rosidl_generate_interfaces)
+[1.614s] 
+[1.614s] 
+[1.614s] -- Configuring incomplete, errors occurred!
+[1.614s] See also "/home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2/CMakeFiles/CMakeOutput.log".
+[1.620s] Invoked command in '/home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2' returned '1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch /usr/local/bin/cmake /home/astribot/TowerGO/workspace/data/cache/real_dependencies/livox_ros_driver2 -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2

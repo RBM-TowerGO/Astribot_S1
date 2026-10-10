@@ -1,0 +1,8 @@
+CMake Error at /opt/astribot_ros/software/livox_ros_driver2/share/livox_ros_driver2/cmake/ament_cmake_export_libraries-extras.cmake:48 (message):
+  Package 'livox_ros_driver2' exports the library 'livox_ros_driver2_node'
+  which couldn't be found
+Call Stack (most recent call first):
+  /opt/astribot_ros/software/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2Config.cmake:41 (include)
+  CMakeLists.txt:9 (find_package)
+
+

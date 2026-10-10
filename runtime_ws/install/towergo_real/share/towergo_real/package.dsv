@@ -1,0 +1,9 @@
+source;share/towergo_real/hook/pythonpath.ps1
+source;share/towergo_real/hook/pythonpath.dsv
+source;share/towergo_real/hook/pythonpath.sh
+source;share/towergo_real/hook/ament_prefix_path.ps1
+source;share/towergo_real/hook/ament_prefix_path.dsv
+source;share/towergo_real/hook/ament_prefix_path.sh
+source;../../build/towergo_real/share/towergo_real/hook/pythonpath_develop.ps1
+source;../../build/towergo_real/share/towergo_real/hook/pythonpath_develop.dsv
+source;../../build/towergo_real/share/towergo_real/hook/pythonpath_develop.sh

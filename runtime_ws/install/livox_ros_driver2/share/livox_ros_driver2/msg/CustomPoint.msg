@@ -1,0 +1,1 @@
+/home/astribot/TowerGO/workspace/data/cache/real_dependencies/livox_ros_driver2/msg/CustomPoint.msg

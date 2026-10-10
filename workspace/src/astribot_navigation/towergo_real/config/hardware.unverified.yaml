@@ -1,0 +1,31 @@
+# Copy into a run configuration and attach real evidence. This file cannot arm hardware.
+verified: false
+reviewed_by: null
+reviewed_at: null
+sdk_root: /home/astribot/astribot_sdk_aarch64
+sdk_commit: 37c83d03bffc3e02b66401547fb817e1eed73954
+position_semantics: null
+feedback_topic: /astribot_chassis/joint_space_states
+limits:
+  max_v: 0.2
+  max_w: 0.3
+  accel_v: 0.2
+  accel_w: 0.4
+  command_timeout: 0.3
+  max_command_age: 0.2
+  max_cycle: null
+  feedback_timeout: null
+  max_position_error: null
+  max_yaw_error: null
+# File must expose stop_chassis(sdk), work on stale feedback, and have reviewed evidence.
+# Do not fill this with stop_robot, a no-op, or an unverified target hold.
+stop_plugin:
+  file: null
+  sha256: null
+evidence:
+  coordinate_semantics: {path: null, sha256: null}
+  feedback_semantics: {path: null, sha256: null}
+  stop_procedure: {path: null, sha256: null}
+  process_crash_watchdog: {path: null, sha256: null}
+  control_handover: {path: null, sha256: null}
+  cycle_and_tracking_limits: {path: null, sha256: null}

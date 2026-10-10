@@ -1,0 +1,21 @@
+running develop
+running egg_info
+writing towergo_real.egg-info/PKG-INFO
+writing dependency_links to towergo_real.egg-info/dependency_links.txt
+writing entry points to towergo_real.egg-info/entry_points.txt
+writing requirements to towergo_real.egg-info/requires.txt
+writing top-level names to towergo_real.egg-info/top_level.txt
+reading manifest file 'towergo_real.egg-info/SOURCES.txt'
+writing manifest file 'towergo_real.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/python3.10/site-packages/towergo-real.egg-link (link to .)
+Installing audit_capture script to /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/towergo_real
+Installing chassis script to /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/towergo_real
+Installing keyboard script to /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/towergo_real
+Installing lio_adapter script to /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/towergo_real
+Installing map_viewer script to /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/towergo_real
+Installing preflight script to /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/towergo_real
+Installing session script to /home/astribot/TowerGO/runtime_ws/install/towergo_real/lib/towergo_real
+
+Installed /home/astribot/TowerGO/runtime_ws/build/towergo_real
+running symlink_data

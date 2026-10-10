@@ -1,0 +1,181 @@
+[0.025s] Invoking command in '/home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch:/opt/ros/humble /usr/local/bin/cmake /home/astribot/TowerGO/workspace/data/cache/real_dependencies/livox_ros_driver2 -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2
+[0.096s] -- The C compiler identification is GNU 11.4.0
+[0.170s] -- The CXX compiler identification is GNU 11.4.0
+[0.184s] -- Detecting C compiler ABI info
+[0.259s] -- Detecting C compiler ABI info - done
+[0.273s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.274s] -- Detecting C compile features
+[0.274s] -- Detecting C compile features - done
+[0.281s] -- Detecting CXX compiler ABI info
+[0.366s] -- Detecting CXX compiler ABI info - done
+[0.378s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.378s] -- Detecting CXX compile features
+[0.379s] -- Detecting CXX compile features - done
+[0.386s] -- Found ament_cmake: 1.3.9 (/opt/astribot_ros/middle_ware/share/ament_cmake/cmake)
+[0.966s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[1.081s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[1.154s] -- Found rosidl_default_generators: 1.2.0 (/opt/astribot_ros/middle_ware/share/rosidl_default_generators/cmake)
+[1.169s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.186s] -- Found rosidl_adapter: 3.1.5 (/opt/astribot_ros/middle_ware/share/rosidl_adapter/cmake)
+[1.279s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.357s] -- Found std_msgs: 4.2.4 (/opt/astribot_ros/middle_ware/share/std_msgs/cmake)
+[1.808s] -- Found ament_cmake_ros: 0.10.0 (/opt/astribot_ros/middle_ware/share/ament_cmake_ros/cmake)
+[2.032s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[2.312s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[2.353s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") 
+[2.358s] -- Found python_cmake_module: 0.10.0 (/opt/astribot_ros/middle_ware/share/python_cmake_module/cmake)
+[2.409s] -- Found PythonLibs: /usr/lib/aarch64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") 
+[2.409s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[2.409s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+[2.409s] -- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.10.so
+[2.445s] -- Found PythonExtra: .so  
+[2.585s] -- Configuring done
+[2.642s] -- Generating done
+[2.663s] -- Build files have been written to: /home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2
+[2.676s] Invoked command in '/home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch:/opt/ros/humble /usr/local/bin/cmake /home/astribot/TowerGO/workspace/data/cache/real_dependencies/livox_ros_driver2 -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2
+[2.677s] Invoking command in '/home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch:/opt/ros/humble /usr/local/bin/cmake --build /home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2
+[2.705s] Consolidate compiler generated dependencies of target livox_ros_driver2__rosidl_generator_c
+[2.711s] [  2%] Built target livox_ros_driver2__cpp
+[2.713s] [ 12%] Built target livox_ros_driver2__rosidl_generator_c
+[2.723s] Consolidate compiler generated dependencies of target livox_ros_driver2__rosidl_typesupport_cpp
+[2.727s] [ 12%] Built target ament_cmake_python_symlink_livox_ros_driver2
+[2.732s] [ 23%] Built target livox_ros_driver2__rosidl_typesupport_cpp
+[2.737s] Consolidate compiler generated dependencies of target livox_ros_driver2__rosidl_typesupport_fastrtps_c
+[2.740s] Consolidate compiler generated dependencies of target livox_ros_driver2__rosidl_typesupport_introspection_c
+[2.746s] [ 33%] Built target livox_ros_driver2__rosidl_typesupport_fastrtps_c
+[2.748s] [ 43%] Built target livox_ros_driver2__rosidl_typesupport_introspection_c
+[2.754s] Consolidate compiler generated dependencies of target livox_ros_driver2__rosidl_typesupport_c
+[2.760s] Consolidate compiler generated dependencies of target livox_ros_driver2__rosidl_typesupport_fastrtps_cpp
+[2.762s] [ 53%] Built target livox_ros_driver2__rosidl_typesupport_c
+[2.770s] [ 64%] Built target livox_ros_driver2__rosidl_typesupport_fastrtps_cpp
+[2.773s] Consolidate compiler generated dependencies of target livox_ros_driver2__rosidl_typesupport_introspection_cpp
+[2.782s] [ 74%] Built target livox_ros_driver2__rosidl_typesupport_introspection_cpp
+[2.794s] [ 74%] Built target livox_ros_driver2
+[2.807s] [ 76%] Built target livox_ros_driver2__py
+[2.818s] Consolidate compiler generated dependencies of target livox_ros_driver2__rosidl_generator_py
+[2.827s] [ 84%] Built target livox_ros_driver2__rosidl_generator_py
+[2.836s] Consolidate compiler generated dependencies of target livox_ros_driver2__rosidl_typesupport_fastrtps_c__pyext
+[2.844s] [ 89%] Built target livox_ros_driver2__rosidl_typesupport_fastrtps_c__pyext
+[2.854s] Consolidate compiler generated dependencies of target livox_ros_driver2__rosidl_typesupport_introspection_c__pyext
+[2.863s] [ 94%] Built target livox_ros_driver2__rosidl_typesupport_introspection_c__pyext
+[2.872s] Consolidate compiler generated dependencies of target livox_ros_driver2__rosidl_typesupport_c__pyext
+[2.881s] [100%] Built target livox_ros_driver2__rosidl_typesupport_c__pyext
+[3.121s] running egg_info
+[3.151s] writing livox_ros_driver2.egg-info/PKG-INFO
+[3.152s] writing dependency_links to livox_ros_driver2.egg-info/dependency_links.txt
+[3.152s] writing top-level names to livox_ros_driver2.egg-info/top_level.txt
+[3.242s] reading manifest file 'livox_ros_driver2.egg-info/SOURCES.txt'
+[3.243s] writing manifest file 'livox_ros_driver2.egg-info/SOURCES.txt'
+[3.293s] [100%] Built target ament_cmake_python_build_livox_ros_driver2_egg
+[3.301s] Invoked command in '/home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch:/opt/ros/humble /usr/local/bin/cmake --build /home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2
+[3.308s] Invoking command in '/home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch:/opt/ros/humble /usr/local/bin/cmake --install /home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2
+[3.314s] -- Install configuration: "Release"
+[3.315s] -- Execute custom install script
+[3.315s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/ament_index/resource_index/rosidl_interfaces/livox_ros_driver2
+[3.316s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/custom_msg.h
+[3.316s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/custom_point.h
+[3.317s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_msg__functions.h
+[3.317s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_msg__struct.h
+[3.318s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_msg__type_support.h
+[3.318s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_point__functions.h
+[3.319s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_point__struct.h
+[3.319s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_point__type_support.h
+[3.319s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/rosidl_generator_c__visibility_control.h
+[3.319s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/environment/library_path.sh
+[3.319s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/environment/library_path.dsv
+[3.320s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_msg__rosidl_typesupport_fastrtps_c.h
+[3.320s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_point__rosidl_typesupport_fastrtps_c.h
+[3.320s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[3.321s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_msg__rosidl_typesupport_introspection_c.h
+[3.321s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_point__rosidl_typesupport_introspection_c.h
+[3.321s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[3.322s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/custom_msg.hpp
+[3.322s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/custom_point.hpp
+[3.322s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_msg__builder.hpp
+[3.322s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_msg__struct.hpp
+[3.322s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_msg__traits.hpp
+[3.323s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_point__builder.hpp
+[3.323s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_point__struct.hpp
+[3.323s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_point__traits.hpp
+[3.324s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_msg__rosidl_typesupport_fastrtps_cpp.hpp
+[3.324s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_point__rosidl_typesupport_fastrtps_cpp.hpp
+[3.324s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[3.325s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_msg__rosidl_typesupport_introspection_cpp.hpp
+[3.325s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/include/livox_ros_driver2/livox_ros_driver2/msg/detail/custom_point__rosidl_typesupport_introspection_cpp.hpp
+[3.325s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/environment/pythonpath.sh
+[3.325s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/environment/pythonpath.dsv
+[3.326s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2-1.0.0-py3.10.egg-info/PKG-INFO
+[3.326s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2-1.0.0-py3.10.egg-info/SOURCES.txt
+[3.326s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2-1.0.0-py3.10.egg-info/dependency_links.txt
+[3.326s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2-1.0.0-py3.10.egg-info/top_level.txt
+[3.327s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/__init__.py
+[3.327s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/_livox_ros_driver2_s.ep.rosidl_typesupport_c.c
+[3.327s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/_livox_ros_driver2_s.ep.rosidl_typesupport_fastrtps_c.c
+[3.327s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/_livox_ros_driver2_s.ep.rosidl_typesupport_introspection_c.c
+[3.328s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/liblivox_ros_driver2__rosidl_generator_py.so
+[3.328s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/livox_ros_driver2_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+[3.328s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/livox_ros_driver2_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+[3.328s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/livox_ros_driver2_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+[3.328s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/msg/__init__.py
+[3.328s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/msg/_custom_msg.py
+[3.329s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/msg/_custom_msg_s.c
+[3.329s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/msg/_custom_point.py
+[3.329s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/msg/_custom_point_s.c
+[3.329s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/livox_ros_driver2_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+[3.330s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/livox_ros_driver2_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+[3.330s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/livox_ros_driver2_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+[3.330s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/msg/CustomMsg.idl
+[3.330s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/msg/CustomPoint.idl
+[3.331s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/msg/CustomMsg.msg
+[3.331s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/msg/CustomPoint.msg
+[3.331s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/ament_index/resource_index/package_run_dependencies/livox_ros_driver2
+[3.331s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/ament_index/resource_index/parent_prefix_path/livox_ros_driver2
+[3.332s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/environment/ament_prefix_path.sh
+[3.332s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/environment/ament_prefix_path.dsv
+[3.332s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/environment/path.sh
+[3.332s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/environment/path.dsv
+[3.332s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/local_setup.bash
+[3.333s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/local_setup.sh
+[3.333s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/local_setup.zsh
+[3.333s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/local_setup.dsv
+[3.333s] -- Symlinking: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/package.dsv
+[3.338s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/ament_index/resource_index/packages/livox_ros_driver2
+[3.338s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/rosidl_cmake-extras.cmake
+[3.338s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/ament_cmake_export_dependencies-extras.cmake
+[3.338s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/ament_cmake_export_include_directories-extras.cmake
+[3.339s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/ament_cmake_export_libraries-extras.cmake
+[3.339s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/ament_cmake_export_targets-extras.cmake
+[3.339s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[3.339s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[3.340s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2Config.cmake
+[3.340s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2Config-version.cmake
+[3.340s] -- Up-to-date symlink: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/package.xml
+[3.340s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_generator_c.so
+[3.341s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_typesupport_fastrtps_c.so
+[3.341s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_typesupport_introspection_c.so
+[3.341s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_typesupport_c.so
+[3.342s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_typesupport_fastrtps_cpp.so
+[3.342s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_typesupport_introspection_cpp.so
+[3.342s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_typesupport_cpp.so
+[3.398s] Listing '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2'...
+[3.399s] Compiling '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/__init__.py'...
+[3.399s] Listing '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/msg'...
+[3.408s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/liblivox_ros_driver2__rosidl_generator_py.so
+[3.408s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/export_livox_ros_driver2__rosidl_generator_cExport.cmake
+[3.409s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/export_livox_ros_driver2__rosidl_generator_cExport-release.cmake
+[3.409s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/export_livox_ros_driver2__rosidl_typesupport_fastrtps_cExport.cmake
+[3.409s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/export_livox_ros_driver2__rosidl_typesupport_fastrtps_cExport-release.cmake
+[3.409s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2__rosidl_typesupport_introspection_cExport.cmake
+[3.409s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2__rosidl_typesupport_introspection_cExport-release.cmake
+[3.409s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2__rosidl_typesupport_cExport.cmake
+[3.409s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2__rosidl_typesupport_cExport-release.cmake
+[3.409s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/export_livox_ros_driver2__rosidl_generator_cppExport.cmake
+[3.409s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/export_livox_ros_driver2__rosidl_typesupport_fastrtps_cppExport.cmake
+[3.409s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/export_livox_ros_driver2__rosidl_typesupport_fastrtps_cppExport-release.cmake
+[3.410s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2__rosidl_typesupport_introspection_cppExport.cmake
+[3.410s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2__rosidl_typesupport_introspection_cppExport-release.cmake
+[3.410s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2__rosidl_typesupport_cppExport.cmake
+[3.410s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/livox_ros_driver2__rosidl_typesupport_cppExport-release.cmake
+[3.410s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/export_livox_ros_driver2__rosidl_generator_pyExport.cmake
+[3.410s] -- Up-to-date: /home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/cmake/export_livox_ros_driver2__rosidl_generator_pyExport-release.cmake
+[3.412s] Invoked command in '/home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch:/opt/ros/humble /usr/local/bin/cmake --install /home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2

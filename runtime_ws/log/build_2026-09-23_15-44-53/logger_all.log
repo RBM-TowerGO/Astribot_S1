@@ -1,0 +1,158 @@
+[0.169s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--symlink-install', '--parallel-workers', '1', '--base-paths', '/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_real', '/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_livox_adapter', '/home/astribot/TowerGO/workspace/data/cache/real_dependencies', '--cmake-args', '-DCMAKE_BUILD_TYPE=Release', '-DBUILD_TESTING=OFF']
+[0.169s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=1, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_real', '/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_livox_adapter', '/home/astribot/TowerGO/workspace/data/cache/real_dependencies'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=['-DCMAKE_BUILD_TYPE=Release', '-DBUILD_TESTING=OFF'], cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0xffff9a561fc0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffff9a5614b0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffff9a5614b0>>)
+[0.225s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.226s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.226s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.226s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.226s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.226s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_real', '/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_livox_adapter', '/home/astribot/TowerGO/workspace/data/cache/real_dependencies'
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_real) by extensions ['ignore', 'ignore_ament_install']
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_real) by extension 'ignore'
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_real) by extension 'ignore_ament_install'
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_real) by extensions ['colcon_pkg']
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_real) by extension 'colcon_pkg'
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_real) by extensions ['colcon_meta']
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_real) by extension 'colcon_meta'
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_real) by extensions ['ros']
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_real) by extension 'ros'
+[0.251s] DEBUG:colcon.colcon_core.package_identification:Package '/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_real' with type 'ros.ament_python' and name 'towergo_real'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_livox_adapter) by extensions ['ignore', 'ignore_ament_install']
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_livox_adapter) by extension 'ignore'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_livox_adapter) by extension 'ignore_ament_install'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_livox_adapter) by extensions ['colcon_pkg']
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_livox_adapter) by extension 'colcon_pkg'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_livox_adapter) by extensions ['colcon_meta']
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_livox_adapter) by extension 'colcon_meta'
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_livox_adapter) by extensions ['ros']
+[0.253s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_livox_adapter) by extension 'ros'
+[0.254s] DEBUG:colcon.colcon_core.package_identification:Package '/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_livox_adapter' with type 'ros.ament_cmake' and name 'towergo_livox_adapter'
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies) by extensions ['ignore', 'ignore_ament_install']
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies) by extension 'ignore'
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies) by extension 'ignore_ament_install'
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies) by extensions ['colcon_pkg']
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies) by extension 'colcon_pkg'
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies) by extensions ['colcon_meta']
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies) by extension 'colcon_meta'
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies) by extensions ['ros']
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies) by extension 'ros'
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies) by extensions ['cmake', 'python']
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies) by extension 'cmake'
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies) by extension 'python'
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies) by extensions ['python_setup_py']
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies) by extension 'python_setup_py'
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio) by extensions ['ignore', 'ignore_ament_install']
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio) by extension 'ignore'
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio) by extension 'ignore_ament_install'
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio) by extensions ['colcon_pkg']
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio) by extension 'colcon_pkg'
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio) by extensions ['colcon_meta']
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio) by extension 'colcon_meta'
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio) by extensions ['ros']
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio) by extension 'ros'
+[0.258s] DEBUG:colcon.colcon_core.package_identification:Package '/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio' with type 'ros.ament_cmake' and name 'fast_lio'
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies/livox_ros_driver2) by extensions ['ignore', 'ignore_ament_install']
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies/livox_ros_driver2) by extension 'ignore'
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies/livox_ros_driver2) by extension 'ignore_ament_install'
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies/livox_ros_driver2) by extensions ['colcon_pkg']
+[0.258s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies/livox_ros_driver2) by extension 'colcon_pkg'
+[0.259s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies/livox_ros_driver2) by extensions ['colcon_meta']
+[0.259s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies/livox_ros_driver2) by extension 'colcon_meta'
+[0.259s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies/livox_ros_driver2) by extensions ['ros']
+[0.259s] Level 1:colcon.colcon_core.package_identification:_identify(/home/astribot/TowerGO/workspace/data/cache/real_dependencies/livox_ros_driver2) by extension 'ros'
+[0.260s] DEBUG:colcon.colcon_core.package_identification:Package '/home/astribot/TowerGO/workspace/data/cache/real_dependencies/livox_ros_driver2' with type 'ros.ament_cmake' and name 'livox_ros_driver2'
+[0.260s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.292s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.292s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.297s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 24 installed packages in /opt/astribot_ros/software
+[0.298s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 4 installed packages in /opt/astribot_ros/third_pkg
+[0.305s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 334 installed packages in /opt/astribot_ros/middle_ware
+[0.307s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.346s] WARNING:colcon.colcon_core.package_selection:Some selected packages are already built in one or more underlay workspaces:
+	'livox_ros_driver2' is in: /opt/astribot_ros/software/livox_ros_driver2
+If a package in a merged underlay workspace is overridden and it installs headers, then all packages in the overlay must sort their include directories by workspace order. Failure to do so may result in build failures or undefined behavior at run time.
+If the overridden package is used by another package in any underlay, then the overriding package in the overlay must be API and ABI compatible or undefined behavior at run time may occur.
+
+If you understand the risks and want to override a package anyways, add the following to the command line:
+	--allow-overriding livox_ros_driver2
+
+This may be promoted to an error in a future release of colcon-override-check.
+[0.347s] Level 5:colcon.colcon_core.verb:set package 'livox_ros_driver2' build argument 'cmake_args' from command line to '['-DCMAKE_BUILD_TYPE=Release', '-DBUILD_TESTING=OFF']'
+[0.347s] Level 5:colcon.colcon_core.verb:set package 'livox_ros_driver2' build argument 'cmake_target' from command line to 'None'
+[0.347s] Level 5:colcon.colcon_core.verb:set package 'livox_ros_driver2' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.347s] Level 5:colcon.colcon_core.verb:set package 'livox_ros_driver2' build argument 'cmake_clean_cache' from command line to 'False'
+[0.347s] Level 5:colcon.colcon_core.verb:set package 'livox_ros_driver2' build argument 'cmake_clean_first' from command line to 'False'
+[0.347s] Level 5:colcon.colcon_core.verb:set package 'livox_ros_driver2' build argument 'cmake_force_configure' from command line to 'False'
+[0.347s] Level 5:colcon.colcon_core.verb:set package 'livox_ros_driver2' build argument 'ament_cmake_args' from command line to 'None'
+[0.347s] Level 5:colcon.colcon_core.verb:set package 'livox_ros_driver2' build argument 'catkin_cmake_args' from command line to 'None'
+[0.347s] Level 5:colcon.colcon_core.verb:set package 'livox_ros_driver2' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.348s] DEBUG:colcon.colcon_core.verb:Building package 'livox_ros_driver2' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': ['-DCMAKE_BUILD_TYPE=Release', '-DBUILD_TESTING=OFF'], 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2', 'merge_install': False, 'path': '/home/astribot/TowerGO/workspace/data/cache/real_dependencies/livox_ros_driver2', 'symlink_install': True, 'test_result_base': None}
+[0.348s] Level 5:colcon.colcon_core.verb:set package 'towergo_real' build argument 'cmake_args' from command line to '['-DCMAKE_BUILD_TYPE=Release', '-DBUILD_TESTING=OFF']'
+[0.348s] Level 5:colcon.colcon_core.verb:set package 'towergo_real' build argument 'cmake_target' from command line to 'None'
+[0.348s] Level 5:colcon.colcon_core.verb:set package 'towergo_real' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.348s] Level 5:colcon.colcon_core.verb:set package 'towergo_real' build argument 'cmake_clean_cache' from command line to 'False'
+[0.348s] Level 5:colcon.colcon_core.verb:set package 'towergo_real' build argument 'cmake_clean_first' from command line to 'False'
+[0.348s] Level 5:colcon.colcon_core.verb:set package 'towergo_real' build argument 'cmake_force_configure' from command line to 'False'
+[0.348s] Level 5:colcon.colcon_core.verb:set package 'towergo_real' build argument 'ament_cmake_args' from command line to 'None'
+[0.348s] Level 5:colcon.colcon_core.verb:set package 'towergo_real' build argument 'catkin_cmake_args' from command line to 'None'
+[0.348s] Level 5:colcon.colcon_core.verb:set package 'towergo_real' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.348s] DEBUG:colcon.colcon_core.verb:Building package 'towergo_real' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/astribot/TowerGO/runtime_ws/build/towergo_real', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': ['-DCMAKE_BUILD_TYPE=Release', '-DBUILD_TESTING=OFF'], 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/astribot/TowerGO/runtime_ws/install/towergo_real', 'merge_install': False, 'path': '/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_real', 'symlink_install': True, 'test_result_base': None}
+[0.349s] Level 5:colcon.colcon_core.verb:set package 'fast_lio' build argument 'cmake_args' from command line to '['-DCMAKE_BUILD_TYPE=Release', '-DBUILD_TESTING=OFF']'
+[0.349s] Level 5:colcon.colcon_core.verb:set package 'fast_lio' build argument 'cmake_target' from command line to 'None'
+[0.349s] Level 5:colcon.colcon_core.verb:set package 'fast_lio' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.349s] Level 5:colcon.colcon_core.verb:set package 'fast_lio' build argument 'cmake_clean_cache' from command line to 'False'
+[0.349s] Level 5:colcon.colcon_core.verb:set package 'fast_lio' build argument 'cmake_clean_first' from command line to 'False'
+[0.349s] Level 5:colcon.colcon_core.verb:set package 'fast_lio' build argument 'cmake_force_configure' from command line to 'False'
+[0.349s] Level 5:colcon.colcon_core.verb:set package 'fast_lio' build argument 'ament_cmake_args' from command line to 'None'
+[0.349s] Level 5:colcon.colcon_core.verb:set package 'fast_lio' build argument 'catkin_cmake_args' from command line to 'None'
+[0.349s] Level 5:colcon.colcon_core.verb:set package 'fast_lio' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.349s] DEBUG:colcon.colcon_core.verb:Building package 'fast_lio' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/astribot/TowerGO/runtime_ws/build/fast_lio', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': ['-DCMAKE_BUILD_TYPE=Release', '-DBUILD_TESTING=OFF'], 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/astribot/TowerGO/runtime_ws/install/fast_lio', 'merge_install': False, 'path': '/home/astribot/TowerGO/workspace/data/cache/real_dependencies/fast_lio', 'symlink_install': True, 'test_result_base': None}
+[0.350s] Level 5:colcon.colcon_core.verb:set package 'towergo_livox_adapter' build argument 'cmake_args' from command line to '['-DCMAKE_BUILD_TYPE=Release', '-DBUILD_TESTING=OFF']'
+[0.350s] Level 5:colcon.colcon_core.verb:set package 'towergo_livox_adapter' build argument 'cmake_target' from command line to 'None'
+[0.350s] Level 5:colcon.colcon_core.verb:set package 'towergo_livox_adapter' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.350s] Level 5:colcon.colcon_core.verb:set package 'towergo_livox_adapter' build argument 'cmake_clean_cache' from command line to 'False'
+[0.350s] Level 5:colcon.colcon_core.verb:set package 'towergo_livox_adapter' build argument 'cmake_clean_first' from command line to 'False'
+[0.350s] Level 5:colcon.colcon_core.verb:set package 'towergo_livox_adapter' build argument 'cmake_force_configure' from command line to 'False'
+[0.350s] Level 5:colcon.colcon_core.verb:set package 'towergo_livox_adapter' build argument 'ament_cmake_args' from command line to 'None'
+[0.350s] Level 5:colcon.colcon_core.verb:set package 'towergo_livox_adapter' build argument 'catkin_cmake_args' from command line to 'None'
+[0.350s] Level 5:colcon.colcon_core.verb:set package 'towergo_livox_adapter' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.350s] DEBUG:colcon.colcon_core.verb:Building package 'towergo_livox_adapter' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/astribot/TowerGO/runtime_ws/build/towergo_livox_adapter', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': ['-DCMAKE_BUILD_TYPE=Release', '-DBUILD_TESTING=OFF'], 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/astribot/TowerGO/runtime_ws/install/towergo_livox_adapter', 'merge_install': False, 'path': '/home/astribot/TowerGO/workspace/src/astribot_navigation/towergo_livox_adapter', 'symlink_install': True, 'test_result_base': None}
+[0.350s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.352s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.352s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/astribot/TowerGO/workspace/data/cache/real_dependencies/livox_ros_driver2' with build type 'ament_cmake'
+[0.353s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/astribot/TowerGO/workspace/data/cache/real_dependencies/livox_ros_driver2'
+[0.356s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.356s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.356s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.376s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch /usr/local/bin/cmake /home/astribot/TowerGO/workspace/data/cache/real_dependencies/livox_ros_driver2 -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2
+[1.973s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/astribot/TowerGO/runtime_ws/build/livox_ros_driver2' returned '1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/astribot_ros/software/ptp_sync_time:/opt/astribot_ros/software/astribot_ros_middleware:/opt/astribot_ros/software/astribot_launch /usr/local/bin/cmake /home/astribot/TowerGO/workspace/data/cache/real_dependencies/livox_ros_driver2 -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2
+[1.981s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(livox_ros_driver2)
+[1.985s] Level 1:colcon.colcon_core.environment:checking '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2' for CMake module files
+[1.985s] Level 1:colcon.colcon_core.environment:checking '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2' for CMake config files
+[1.986s] Level 1:colcon.colcon_core.environment:checking '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/bin'
+[1.986s] Level 1:colcon.colcon_core.environment:checking '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/pkgconfig/livox_ros_driver2.pc'
+[1.987s] Level 1:colcon.colcon_core.environment:checking '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/lib/python3.10/site-packages'
+[1.988s] Level 1:colcon.colcon_core.environment:checking '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/bin'
+[1.988s] INFO:colcon.colcon_core.shell:Creating package script '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/package.ps1'
+[1.990s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/package.dsv'
+[1.991s] INFO:colcon.colcon_core.shell:Creating package script '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/package.sh'
+[1.992s] INFO:colcon.colcon_core.shell:Creating package script '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/package.bash'
+[1.994s] INFO:colcon.colcon_core.shell:Creating package script '/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/livox_ros_driver2/package.zsh'
+[1.995s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/astribot/TowerGO/runtime_ws/install/livox_ros_driver2/share/colcon-core/packages/livox_ros_driver2)
+[2.006s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[2.006s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[2.006s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '1'
+[2.006s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[2.014s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[2.014s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[2.014s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[2.031s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[2.032s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/astribot/TowerGO/runtime_ws/install/local_setup.ps1'
+[2.034s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/astribot/TowerGO/runtime_ws/install/_local_setup_util_ps1.py'
+[2.037s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/astribot/TowerGO/runtime_ws/install/setup.ps1'
+[2.041s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/astribot/TowerGO/runtime_ws/install/local_setup.sh'
+[2.043s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/astribot/TowerGO/runtime_ws/install/_local_setup_util_sh.py'
+[2.044s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/astribot/TowerGO/runtime_ws/install/setup.sh'
+[2.048s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/astribot/TowerGO/runtime_ws/install/local_setup.bash'
+[2.049s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/astribot/TowerGO/runtime_ws/install/setup.bash'
+[2.053s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/astribot/TowerGO/runtime_ws/install/local_setup.zsh'
+[2.054s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/astribot/TowerGO/runtime_ws/install/setup.zsh'

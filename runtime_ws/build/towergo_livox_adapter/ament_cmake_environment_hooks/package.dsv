@@ -1,0 +1,4 @@
+source;share/towergo_livox_adapter/local_setup.bash
+source;share/towergo_livox_adapter/local_setup.dsv
+source;share/towergo_livox_adapter/local_setup.sh
+source;share/towergo_livox_adapter/local_setup.zsh

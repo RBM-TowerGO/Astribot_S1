@@ -20,7 +20,7 @@ RUN echo "5cc31b72e89903ee1b2c44699e93a800e4e425f3b9eee17d7c0c20e12a66f8af  /tmp
   && printf 'slam_toolbox 2.6.10 8293d21fe5c816d0405e0cc1f3eb46c70659c267 + TowerGO grid padding\n' > /slam_overlay/PROVENANCE.txt
 WORKDIR /towergo
 COPY . /towergo/src/astribot_navigation
-RUN source /slam_overlay/install/setup.bash && colcon build --symlink-install --parallel-workers 2 \
+RUN source /slam_overlay/install/setup.bash && colcon build --symlink-install --parallel-workers 2 --packages-ignore towergo_real towergo_livox_adapter \
   && dpkg-query -W > /towergo/dependency-versions.txt && cat /slam_overlay/PROVENANCE.txt >> /towergo/dependency-versions.txt
 COPY docker/entrypoint.sh /towergo-entrypoint.sh
 RUN chmod +x /towergo-entrypoint.sh

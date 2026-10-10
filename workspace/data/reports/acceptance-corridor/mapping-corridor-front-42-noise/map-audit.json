@@ -1,9 +1,0 @@
-{
-  "passed": true,
-  "wall_samples_outside_grid": 0,
-  "true_wall_samples": 1286,
-  "true_wall_coverage_within_15cm": 1.0,
-  "wall_to_map_p95_m": 0.03807886552931972,
-  "wall_samples_in_free_space_without_nearby_obstacle": 0,
-  "unexplained_free_fraction": 0.0
-}

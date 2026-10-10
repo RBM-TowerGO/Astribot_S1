@@ -1,0 +1,24 @@
+{
+  "package_name": "fast_lio",
+  "output_dir": "/home/astribot/TowerGO/runtime_ws/build/fast_lio/rosidl_generator_c/fast_lio",
+  "template_dir": "/opt/astribot_ros/middle_ware/share/rosidl_generator_c/cmake/../resource",
+  "idl_tuples": [
+    "/home/astribot/TowerGO/runtime_ws/build/fast_lio/rosidl_adapter/fast_lio:msg/Pose6D.idl"
+  ],
+  "target_dependencies": [
+    "/opt/astribot_ros/middle_ware/share/rosidl_generator_c/cmake/../../../lib/rosidl_generator_c/rosidl_generator_c",
+    "/opt/astribot_ros/middle_ware/share/rosidl_generator_c/cmake/../../../local/lib/python3.10/dist-packages/rosidl_generator_c/__init__.py",
+    "/opt/astribot_ros/middle_ware/share/rosidl_generator_c/cmake/../resource/action__type_support.h.em",
+    "/opt/astribot_ros/middle_ware/share/rosidl_generator_c/cmake/../resource/idl.h.em",
+    "/opt/astribot_ros/middle_ware/share/rosidl_generator_c/cmake/../resource/idl__functions.c.em",
+    "/opt/astribot_ros/middle_ware/share/rosidl_generator_c/cmake/../resource/idl__functions.h.em",
+    "/opt/astribot_ros/middle_ware/share/rosidl_generator_c/cmake/../resource/idl__struct.h.em",
+    "/opt/astribot_ros/middle_ware/share/rosidl_generator_c/cmake/../resource/idl__type_support.h.em",
+    "/opt/astribot_ros/middle_ware/share/rosidl_generator_c/cmake/../resource/msg__functions.c.em",
+    "/opt/astribot_ros/middle_ware/share/rosidl_generator_c/cmake/../resource/msg__functions.h.em",
+    "/opt/astribot_ros/middle_ware/share/rosidl_generator_c/cmake/../resource/msg__struct.h.em",
+    "/opt/astribot_ros/middle_ware/share/rosidl_generator_c/cmake/../resource/msg__type_support.h.em",
+    "/opt/astribot_ros/middle_ware/share/rosidl_generator_c/cmake/../resource/srv__type_support.h.em",
+    "/home/astribot/TowerGO/runtime_ws/build/fast_lio/rosidl_adapter/fast_lio/msg/Pose6D.idl"
+  ]
+}
