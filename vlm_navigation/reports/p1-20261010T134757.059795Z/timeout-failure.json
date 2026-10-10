@@ -1,0 +1,5 @@
+{
+  "error": "request_timeout",
+  "detail": "timeout-fixture/timeout_fixture exceeded 0.3s",
+  "expected": true
+}

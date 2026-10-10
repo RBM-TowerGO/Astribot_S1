@@ -1,0 +1,99 @@
+{
+  "test": "synthetic image smoke, not navigation accuracy",
+  "timestamp_utc": "2026-10-10T13:48:27.281752+00:00",
+  "config": {
+    "model_id": "Qwen/Qwen3.5-4B",
+    "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "model_dir": "assets/models/Qwen3.5-4B",
+    "dtype": "float16",
+    "device": "cuda:0",
+    "attn_implementation": "eager",
+    "enable_thinking": false,
+    "max_new_tokens": 128,
+    "max_input_tokens": 4096,
+    "image_long_edge": 768,
+    "min_pixels": 65536,
+    "max_pixels": 589824,
+    "do_sample": false
+  },
+  "load_seconds": 7.507601466999404,
+  "results": [
+    {
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 2.5331337719999283,
+      "cuda_peak_allocated_bytes": 9233320448,
+      "cuda_peak_reserved_bytes": 9246343168,
+      "process_rss_bytes": 2897457152
+    },
+    {
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.917763811000441,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2915692544
+    }
+  ],
+  "all_passed": true
+}

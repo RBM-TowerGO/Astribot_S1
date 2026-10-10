@@ -1,0 +1,57 @@
+{
+  "test": "synthetic image-conditioning smoke; not navigation accuracy or benchmark",
+  "timestamp_utc": "2026-10-10T13:16:44.451496+00:00",
+  "git_head": "2615b06d39efe661cda86aa71288b9ec4e0d4f98",
+  "git_dirty": true,
+  "power_mode": "NV Power Mode: MAXN\n0",
+  "gpu": "Orin",
+  "transformers": "5.3.0",
+  "config": {
+    "model_id": "Qwen/Qwen3.5-4B",
+    "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "model_dir": "assets/models/Qwen3.5-4B",
+    "dtype": "float16",
+    "device": "cuda:0",
+    "attn_implementation": "eager",
+    "enable_thinking": false,
+    "max_new_tokens": 128,
+    "max_input_tokens": 4096,
+    "image_long_edge": 768,
+    "min_pixels": 65536,
+    "max_pixels": 589824,
+    "do_sample": false
+  },
+  "load_seconds": 6.692810575000294,
+  "torch": "2.5.0a0+872d972e41.nv24.08",
+  "results": [
+    {
+      "sample": "assets/samples/red_A.png",
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "expected": "A",
+      "output": "{\"candidate_id\":\"A\"}",
+      "passed": true,
+      "eos_reached": true,
+      "input_tokens": 270,
+      "output_tokens": 9,
+      "decision_seconds": 2.173395034999885,
+      "cuda_peak_allocated_bytes": 9233320448,
+      "cuda_peak_reserved_bytes": 9246343168,
+      "process_rss_bytes": 2899369984
+    },
+    {
+      "sample": "assets/samples/red_B.png",
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "expected": "B",
+      "output": "{\"candidate_id\":\"B\"}",
+      "passed": true,
+      "eos_reached": true,
+      "input_tokens": 270,
+      "output_tokens": 9,
+      "decision_seconds": 1.7276042589996905,
+      "cuda_peak_allocated_bytes": 9239048192,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2920239104
+    }
+  ],
+  "all_passed": true
+}

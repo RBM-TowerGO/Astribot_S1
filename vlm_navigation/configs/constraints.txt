@@ -1,0 +1,4 @@
+torch==2.5.0a0+872d972e41.nv24.8
+torchvision==0.20.1
+transformers==5.3.0
+numpy==1.26.4

@@ -1,0 +1,1 @@
+8095dfab507f5c9e3c4fa5f1a62249742f5ba891b3fb24c33bce6c4928c649ea  scripts/smoke_inference.py

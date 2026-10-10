@@ -1,0 +1,1987 @@
+{
+  "probe_script_sha256": "4259159df3e24b85a6ce2f03d7e29a803098cd4886f20453e98790099ccb3ae1",
+  "scope": "sensor-only method harness; full SDK constructor NOT executed",
+  "started_utc": "2026-10-10T14:45:31.747004+00:00",
+  "camera": {
+    "head_rgbd/color": {
+      "received": true,
+      "need_decode": false,
+      "topic": "/astribot_camera/head_rgbd/color_compress/compressed",
+      "format": "jpeg",
+      "width": 0,
+      "height": 0,
+      "array_shape": [
+        76083
+      ],
+      "dtype": "uint8",
+      "bytes": 76083,
+      "stamp_ns": 1791643532923907072,
+      "frame_id": "",
+      "decoded_shape": [
+        720,
+        1280,
+        3
+      ],
+      "valid": true
+    },
+    "head_rgbd/depth": {
+      "received": true,
+      "need_decode": false,
+      "topic": "/astribot_camera/head_rgbd/depth_compress",
+      "format": "raw",
+      "width": 0,
+      "height": 0,
+      "array_shape": [
+        737280
+      ],
+      "dtype": "uint8",
+      "bytes": 737280,
+      "stamp_ns": 1791643532983024128,
+      "frame_id": "",
+      "valid": true
+    },
+    "torso_rgbd/color": {
+      "received": true,
+      "need_decode": false,
+      "topic": "/astribot_camera/torso_rgbd/color_compress/compressed",
+      "format": "jpeg",
+      "width": 0,
+      "height": 0,
+      "array_shape": [
+        145083
+      ],
+      "dtype": "uint8",
+      "bytes": 145083,
+      "stamp_ns": 1791643533043575040,
+      "frame_id": "",
+      "decoded_shape": [
+        720,
+        1280,
+        3
+      ],
+      "valid": true
+    },
+    "torso_rgbd/depth": {
+      "received": true,
+      "need_decode": false,
+      "topic": "/astribot_camera/torso_rgbd/depth_compress",
+      "format": "raw",
+      "width": 0,
+      "height": 0,
+      "array_shape": [
+        614400
+      ],
+      "dtype": "uint8",
+      "bytes": 614400,
+      "stamp_ns": 1791643533099855872,
+      "frame_id": "",
+      "valid": true
+    },
+    "head_stereo/color": {
+      "received": true,
+      "need_decode": false,
+      "topic": "/astribot_camera/head_stereo/color_compress/compressed",
+      "format": "jpeg",
+      "width": 0,
+      "height": 0,
+      "array_shape": [
+        58333
+      ],
+      "dtype": "uint8",
+      "bytes": 58333,
+      "stamp_ns": 1791643533151741952,
+      "frame_id": "",
+      "decoded_shape": [
+        480,
+        1280,
+        3
+      ],
+      "valid": true
+    },
+    "left_wrist_rgbd/color": {
+      "received": true,
+      "need_decode": false,
+      "topic": "/astribot_camera/left_wrist_rgbd/color_compress/compressed",
+      "format": "jpeg",
+      "width": 0,
+      "height": 0,
+      "array_shape": [
+        60953
+      ],
+      "dtype": "uint8",
+      "bytes": 60953,
+      "stamp_ns": 1791643533211279104,
+      "frame_id": "",
+      "decoded_shape": [
+        360,
+        640,
+        3
+      ],
+      "valid": true
+    },
+    "left_wrist_rgbd/depth": {
+      "received": true,
+      "need_decode": false,
+      "topic": "/astribot_camera/left_wrist_rgbd/depth_compress",
+      "format": "raw",
+      "width": 0,
+      "height": 0,
+      "array_shape": [
+        460800
+      ],
+      "dtype": "uint8",
+      "bytes": 460800,
+      "stamp_ns": 1791643533278232064,
+      "frame_id": "",
+      "valid": true
+    },
+    "right_wrist_rgbd/color": {
+      "received": true,
+      "need_decode": false,
+      "topic": "/astribot_camera/right_wrist_rgbd/color_compress/compressed",
+      "format": "jpeg",
+      "width": 0,
+      "height": 0,
+      "array_shape": [
+        42131
+      ],
+      "dtype": "uint8",
+      "bytes": 42131,
+      "stamp_ns": 1791643533340843008,
+      "frame_id": "",
+      "decoded_shape": [
+        360,
+        640,
+        3
+      ],
+      "valid": true
+    },
+    "right_wrist_rgbd/depth": {
+      "received": true,
+      "need_decode": false,
+      "topic": "/astribot_camera/right_wrist_rgbd/depth_compress",
+      "format": "raw",
+      "width": 0,
+      "height": 0,
+      "array_shape": [
+        460800
+      ],
+      "dtype": "uint8",
+      "bytes": 460800,
+      "stamp_ns": 1791643533407621888,
+      "frame_id": "",
+      "valid": true
+    },
+    "torso_rgbd/color_decoded": {
+      "received": true,
+      "need_decode": true,
+      "topic": "/astribot_camera/torso_rgbd/color_compress/compressed",
+      "format": "jpeg",
+      "width": 1280,
+      "height": 720,
+      "array_shape": [
+        720,
+        1280,
+        3
+      ],
+      "dtype": "uint8",
+      "bytes": 2764800,
+      "stamp_ns": 1791643533444079104,
+      "frame_id": "",
+      "decoded_shape": [
+        720,
+        1280,
+        3
+      ],
+      "valid": true
+    },
+    "head_rgbd/grey_sdk": {
+      "received": false,
+      "need_decode": false
+    }
+  },
+  "other": {
+    "/livox/lidar_front": {
+      "count": 81,
+      "first_received_monotonic": 8190.328569188,
+      "last_received_monotonic": 8198.314682212,
+      "message_type": "PointCloud2",
+      "width": 19968,
+      "height": 1,
+      "point_step": 26,
+      "data_bytes": 519168,
+      "frame_id": "livox_frame",
+      "stamp_ns": 1791643540000190896,
+      "fields": [
+        {
+          "name": "x",
+          "offset": 0,
+          "datatype": 7,
+          "count": 1
+        },
+        {
+          "name": "y",
+          "offset": 4,
+          "datatype": 7,
+          "count": 1
+        },
+        {
+          "name": "z",
+          "offset": 8,
+          "datatype": 7,
+          "count": 1
+        },
+        {
+          "name": "intensity",
+          "offset": 12,
+          "datatype": 7,
+          "count": 1
+        },
+        {
+          "name": "tag",
+          "offset": 16,
+          "datatype": 2,
+          "count": 1
+        },
+        {
+          "name": "line",
+          "offset": 17,
+          "datatype": 2,
+          "count": 1
+        },
+        {
+          "name": "timestamp",
+          "offset": 18,
+          "datatype": 8,
+          "count": 1
+        }
+      ],
+      "finite_fraction": 1.0,
+      "nonzero_points": 11099,
+      "xyz_bounds": [
+        [
+          -14.38599967956543,
+          -8.824999809265137,
+          -0.08100000023841858
+        ],
+        [
+          2.677999973297119,
+          0.7059999704360962,
+          4.831999778747559
+        ]
+      ],
+      "observed_hz": 10.017388904913552
+    },
+    "/livox/lidar_back": {
+      "count": 81,
+      "first_received_monotonic": 8190.336252779,
+      "last_received_monotonic": 8198.316031288,
+      "message_type": "PointCloud2",
+      "width": 19968,
+      "height": 1,
+      "point_step": 26,
+      "data_bytes": 519168,
+      "frame_id": "livox_frame",
+      "stamp_ns": 1791643540000308270,
+      "fields": [
+        {
+          "name": "x",
+          "offset": 0,
+          "datatype": 7,
+          "count": 1
+        },
+        {
+          "name": "y",
+          "offset": 4,
+          "datatype": 7,
+          "count": 1
+        },
+        {
+          "name": "z",
+          "offset": 8,
+          "datatype": 7,
+          "count": 1
+        },
+        {
+          "name": "intensity",
+          "offset": 12,
+          "datatype": 7,
+          "count": 1
+        },
+        {
+          "name": "tag",
+          "offset": 16,
+          "datatype": 2,
+          "count": 1
+        },
+        {
+          "name": "line",
+          "offset": 17,
+          "datatype": 2,
+          "count": 1
+        },
+        {
+          "name": "timestamp",
+          "offset": 18,
+          "datatype": 8,
+          "count": 1
+        }
+      ],
+      "finite_fraction": 1.0,
+      "nonzero_points": 19968,
+      "xyz_bounds": [
+        [
+          -10.579177856445312,
+          -19.774765014648438,
+          -0.4921426475048065
+        ],
+        [
+          6.97878885269165,
+          5.05647611618042,
+          4.9142913818359375
+        ]
+      ],
+      "observed_hz": 10.025340917640577
+    },
+    "/livox/imu_front": {
+      "count": 1608,
+      "first_received_monotonic": 8190.312632333,
+      "last_received_monotonic": 8198.343388805,
+      "message_type": "Imu",
+      "first_message": {
+        "header": {
+          "stamp": {
+            "sec": 1791643540,
+            "nanosec": 94438946
+          },
+          "frame_id": "livox_frame"
+        },
+        "orientation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "orientation_covariance": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "angular_velocity": {
+          "x": 0.019881825894117355,
+          "y": -0.005158125422894955,
+          "z": -0.010419212281703949
+        },
+        "angular_velocity_covariance": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "linear_acceleration": {
+          "x": 0.020216738805174828,
+          "y": 0.0027266433462500572,
+          "z": 0.9906028509140015
+        },
+        "linear_acceleration_covariance": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "observed_hz": 200.10531939183647
+    },
+    "/livox/imu_back": {
+      "count": 1608,
+      "first_received_monotonic": 8190.312992847,
+      "last_received_monotonic": 8198.342812829,
+      "message_type": "Imu",
+      "first_message": {
+        "header": {
+          "stamp": {
+            "sec": 1791643540,
+            "nanosec": 92501000
+          },
+          "frame_id": "livox_frame"
+        },
+        "orientation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "orientation_covariance": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "angular_velocity": {
+          "x": -0.004699169658124447,
+          "y": -0.0006282050162553787,
+          "z": -0.0008008107542991638
+        },
+        "angular_velocity_covariance": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "linear_acceleration": {
+          "x": -0.009263042360544205,
+          "y": 0.00523073785007,
+          "z": 0.9898661375045776
+        },
+        "linear_acceleration_covariance": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "observed_hz": 200.1804277549026
+    },
+    "/astribot_whole_body/imu_sensor/astribot_chassis_imu_site": {
+      "count": 0
+    },
+    "/astribot_whole_body/chassis_imu": {
+      "count": 956,
+      "first_received_monotonic": 8190.319859456,
+      "last_received_monotonic": 8198.333912789,
+      "message_type": "Float64MultiArray",
+      "first_message": {
+        "layout": {
+          "dim": [],
+          "data_offset": 0
+        },
+        "data": [
+          -0.016843874007463455,
+          -0.00725721986964345,
+          0.004935052245855331,
+          -3.6451921914704144e-05,
+          -0.0008252884144894779,
+          0.0013211786281317472,
+          0.0065237730741500854,
+          -0.01793009787797928,
+          1.0001615285873413
+        ]
+      },
+      "observed_hz": 119.16566565230957
+    },
+    "/astribot_head/joint_space_states": {
+      "count": 2006,
+      "first_received_monotonic": 8190.340826678,
+      "last_received_monotonic": 8198.343539072,
+      "message_type": "RobotJointState",
+      "first_message": {
+        "header": {
+          "stamp": {
+            "sec": 1791643540,
+            "nanosec": 108934702
+          },
+          "frame_id": ""
+        },
+        "mode": 0,
+        "name": [],
+        "position": [
+          -0.00277531231689453,
+          0.15825293658447265
+        ],
+        "velocity": [
+          0.00014495849609375,
+          -0.0006256103515625
+        ],
+        "acceleration": [
+          0.0084228515625,
+          0.001861572265625
+        ],
+        "torque": [
+          -0.017047885196579,
+          -0.6722275708539086
+        ]
+      },
+      "observed_hz": 250.59273306248593
+    },
+    "/astribot_torso/joint_space_states": {
+      "count": 2005,
+      "first_received_monotonic": 8190.341044542,
+      "last_received_monotonic": 8198.343653173,
+      "message_type": "RobotJointState",
+      "first_message": {
+        "header": {
+          "stamp": {
+            "sec": 1791643540,
+            "nanosec": 112945560
+          },
+          "frame_id": ""
+        },
+        "mode": 0,
+        "name": [],
+        "position": [
+          0.34498923529052733,
+          -0.8928543965454101,
+          0.5970426547241211,
+          0.004157141784667969
+        ],
+        "velocity": [
+          -0.00014495849609375,
+          -4.57763671875e-05,
+          -0.000518798828125,
+          4.57763671875e-05
+        ],
+        "acceleration": [
+          -0.00213623046875,
+          0.00927734375,
+          0.02789306640625,
+          0.00927734375
+        ],
+        "torque": [
+          0.21813403129865108,
+          -6.781464356452671,
+          4.506979636438843,
+          0.03363439053337931
+        ]
+      },
+      "observed_hz": 250.45370279074385
+    },
+    "/astribot_chassis/joint_space_states": {
+      "count": 2005,
+      "first_received_monotonic": 8190.341277065,
+      "last_received_monotonic": 8198.343756967,
+      "message_type": "RobotJointState",
+      "first_message": {
+        "header": {
+          "stamp": {
+            "sec": 1791643540,
+            "nanosec": 112921309
+          },
+          "frame_id": ""
+        },
+        "mode": 0,
+        "name": [],
+        "position": [
+          0.00018989758755430693,
+          0.0001898975875543052,
+          -0.0004439801076246558
+        ],
+        "velocity": [
+          0.0,
+          -1.0842021724855044e-19,
+          0.00322995528296935
+        ],
+        "acceleration": [
+          0.0,
+          -1.0842021724855044e-19,
+          0.004036182796587753
+        ],
+        "torque": [
+          -3.0866207397460967,
+          -3.0866207397460967,
+          2.040290901184081
+        ]
+      },
+      "observed_hz": 250.4781425470594
+    },
+    "/astribot_chassis/endpoint_current_states": {
+      "count": 0
+    },
+    "/ft_data": {
+      "count": 0
+    },
+    "/astribot_camera/head_rgbd/grey_compress/compressed": {
+      "count": 240,
+      "first_received_monotonic": 8190.356485562,
+      "last_received_monotonic": 8198.319219832,
+      "message_type": "CompressedImage",
+      "format": "jpeg",
+      "bytes": 70424,
+      "decoded_shape": [
+        720,
+        1280,
+        3
+      ],
+      "observed_hz": 30.014815501310455
+    }
+  },
+  "errors": [],
+  "sdk_methods": {
+    "camera_name_to_topic_name": {
+      "file": "/home/astribot/astribot_sdk_aarch64/astribot_sdk/core/astribot_api/astribot_interface.py",
+      "line": 814,
+      "sha256": "bcd0164b9713f6b9ef966f1e59af90f87b42f5a96564097ffdcbd2eb397a0a5f"
+    },
+    "is_camera_activated": {
+      "file": "/home/astribot/astribot_sdk_aarch64/astribot_sdk/core/astribot_api/astribot_interface.py",
+      "line": 828,
+      "sha256": "bb9060b9b2dd7ae3698d90f28bff620037c0acb8c79d5d97c2ae29f0fa733ff8"
+    },
+    "camera_callback": {
+      "file": "/home/astribot/astribot_sdk_aarch64/astribot_sdk/core/astribot_api/astribot_interface.py",
+      "line": 858,
+      "sha256": "5d0df0d0ff3997d08ac144bbfb68662b48465af8131628eeded033e0a8c9d6ce"
+    },
+    "register_image_callback": {
+      "file": "/home/astribot/astribot_sdk_aarch64/astribot_sdk/core/astribot_api/astribot_interface.py",
+      "line": 879,
+      "sha256": "22c97b6fa767c21b45e850bf3c53386d4999cdc670029274f8e74abe3fea59be"
+    },
+    "activate_lidar": {
+      "file": "/home/astribot/astribot_sdk_aarch64/astribot_sdk/core/astribot_api/astribot_interface.py",
+      "line": 910,
+      "sha256": "7fec5a95a830060364cdb63f2c98092e9cbbe104008d49fbc56c22ceafa8382f"
+    },
+    "deactivate_lidar": {
+      "file": "/home/astribot/astribot_sdk_aarch64/astribot_sdk/core/astribot_api/astribot_interface.py",
+      "line": 951,
+      "sha256": "c874b234604c02ad7f36fdb12e1ab0d84b6860d5a1cc5970829804941375f7ce"
+    }
+  },
+  "camera_status": {
+    "head_rgbd": {
+      "activate": true
+    },
+    "torso_rgbd": {
+      "activate": true
+    },
+    "left_wrist_rgbd": {
+      "activate": true
+    },
+    "right_wrist_rgbd": {
+      "activate": true
+    },
+    "head_stereo": {
+      "activate": true
+    }
+  },
+  "lidar_publishers_before": {
+    "/livox/lidar_front": 0,
+    "/livox/lidar_back": 0,
+    "/livox/imu_front": 0,
+    "/livox/imu_back": 0
+  },
+  "services": {
+    "/arm_left_max_force": [
+      "astribot_msgs/srv/RawRequest"
+    ],
+    "/arm_right_max_force": [
+      "astribot_msgs/srv/RawRequest"
+    ],
+    "/astribot/control_rights": [
+      "astribot_msgs/srv/RawRequest"
+    ],
+    "/astribot/device_activate_service": [
+      "astribot_msgs/srv/RawRequest"
+    ],
+    "/astribot/driver_service": [
+      "astribot_msgs/srv/RawRequest"
+    ],
+    "/astribot/get_robot_type": [
+      "std_srvs/srv/Trigger"
+    ],
+    "/astribot/vr_motion_param": [
+      "astribot_msgs/srv/RawRequest"
+    ],
+    "/astribot_audio/pause": [
+      "std_srvs/srv/SetBool"
+    ],
+    "/astribot_audio/resume": [
+      "std_srvs/srv/SetBool"
+    ],
+    "/astribot_audio/stop": [
+      "std_srvs/srv/Trigger"
+    ],
+    "/astribot_audio/wav_play_service": [
+      "astribot_msgs/srv/RawRequest"
+    ],
+    "/astribot_calibration/save_data": [
+      "astribot_msgs/srv/RawRequest"
+    ],
+    "/astribot_camera_control": [
+      "std_srvs/srv/SetBool"
+    ],
+    "/astribot_camera_control_server/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/astribot_camera_control_server/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/astribot_camera_control_server/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/astribot_camera_control_server/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/astribot_camera_control_server/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/astribot_camera_control_server/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/astribot_camera_server": [
+      "astribot_camera/srv/CameraService"
+    ],
+    "/astribot_chassis_astribot_head_astribot_torso_astribot_arm_left_astribot_arm_right_astribot_gripper_left_astribot_gripper_right/change_state": [
+      "lifecycle_msgs/srv/ChangeState"
+    ],
+    "/astribot_chassis_astribot_head_astribot_torso_astribot_arm_left_astribot_arm_right_astribot_gripper_left_astribot_gripper_right/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/astribot_chassis_astribot_head_astribot_torso_astribot_arm_left_astribot_arm_right_astribot_gripper_left_astribot_gripper_right/get_available_states": [
+      "lifecycle_msgs/srv/GetAvailableStates"
+    ],
+    "/astribot_chassis_astribot_head_astribot_torso_astribot_arm_left_astribot_arm_right_astribot_gripper_left_astribot_gripper_right/get_available_transitions": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/astribot_chassis_astribot_head_astribot_torso_astribot_arm_left_astribot_arm_right_astribot_gripper_left_astribot_gripper_right/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/astribot_chassis_astribot_head_astribot_torso_astribot_arm_left_astribot_arm_right_astribot_gripper_left_astribot_gripper_right/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/astribot_chassis_astribot_head_astribot_torso_astribot_arm_left_astribot_arm_right_astribot_gripper_left_astribot_gripper_right/get_state": [
+      "lifecycle_msgs/srv/GetState"
+    ],
+    "/astribot_chassis_astribot_head_astribot_torso_astribot_arm_left_astribot_arm_right_astribot_gripper_left_astribot_gripper_right/get_transition_graph": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/astribot_chassis_astribot_head_astribot_torso_astribot_arm_left_astribot_arm_right_astribot_gripper_left_astribot_gripper_right/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/astribot_chassis_astribot_head_astribot_torso_astribot_arm_left_astribot_arm_right_astribot_gripper_left_astribot_gripper_right/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/astribot_chassis_astribot_head_astribot_torso_astribot_arm_left_astribot_arm_right_astribot_gripper_left_astribot_gripper_right/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/astribot_chassis_astribot_head_astribot_torso_astribot_arm_left_astribot_arm_right_astribot_gripper_left_astribot_gripper_right_internal/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/astribot_chassis_astribot_head_astribot_torso_astribot_arm_left_astribot_arm_right_astribot_gripper_left_astribot_gripper_right_internal/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/astribot_chassis_astribot_head_astribot_torso_astribot_arm_left_astribot_arm_right_astribot_gripper_left_astribot_gripper_right_internal/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/astribot_chassis_astribot_head_astribot_torso_astribot_arm_left_astribot_arm_right_astribot_gripper_left_astribot_gripper_right_internal/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/astribot_chassis_astribot_head_astribot_torso_astribot_arm_left_astribot_arm_right_astribot_gripper_left_astribot_gripper_right_internal/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/astribot_chassis_astribot_head_astribot_torso_astribot_arm_left_astribot_arm_right_astribot_gripper_left_astribot_gripper_right_internal/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/astribot_error_code/change_state": [
+      "lifecycle_msgs/srv/ChangeState"
+    ],
+    "/astribot_error_code/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/astribot_error_code/get_available_states": [
+      "lifecycle_msgs/srv/GetAvailableStates"
+    ],
+    "/astribot_error_code/get_available_transitions": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/astribot_error_code/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/astribot_error_code/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/astribot_error_code/get_state": [
+      "lifecycle_msgs/srv/GetState"
+    ],
+    "/astribot_error_code/get_transition_graph": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/astribot_error_code/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/astribot_error_code/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/astribot_error_code/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/astribot_error_code_internal/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/astribot_error_code_internal/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/astribot_error_code_internal/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/astribot_error_code_internal/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/astribot_error_code_internal/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/astribot_error_code_internal/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/astribot_hardware_node/change_state": [
+      "lifecycle_msgs/srv/ChangeState"
+    ],
+    "/astribot_hardware_node/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/astribot_hardware_node/get_available_states": [
+      "lifecycle_msgs/srv/GetAvailableStates"
+    ],
+    "/astribot_hardware_node/get_available_transitions": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/astribot_hardware_node/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/astribot_hardware_node/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/astribot_hardware_node/get_state": [
+      "lifecycle_msgs/srv/GetState"
+    ],
+    "/astribot_hardware_node/get_transition_graph": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/astribot_hardware_node/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/astribot_hardware_node/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/astribot_hardware_node/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/astribot_hardware_node_internal/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/astribot_hardware_node_internal/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/astribot_hardware_node_internal/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/astribot_hardware_node_internal/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/astribot_hardware_node_internal/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/astribot_hardware_node_internal/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/astribot_image_service_1360593/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/astribot_image_service_1360593/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/astribot_image_service_1360593/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/astribot_image_service_1360593/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/astribot_image_service_1360593/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/astribot_image_service_1360593/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/astribot_image_service_1360593_1360593_505517/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/astribot_image_service_1360593_1360593_505517/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/astribot_image_service_1360593_1360593_505517/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/astribot_image_service_1360593_1360593_505517/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/astribot_image_service_1360593_1360593_505517/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/astribot_image_service_1360593_1360593_505517/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/astribot_launch/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/astribot_launch/dynamic_start_service": [
+      "astribot_msgs/srv/RawRequest"
+    ],
+    "/astribot_launch/dynamic_start_service_orin": [
+      "astribot_msgs/srv/RawRequest"
+    ],
+    "/astribot_launch/dynamic_stop_service": [
+      "astribot_msgs/srv/RawRequest"
+    ],
+    "/astribot_launch/dynamic_stop_service_orin": [
+      "astribot_msgs/srv/RawRequest"
+    ],
+    "/astribot_launch/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/astribot_launch/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/astribot_launch/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/astribot_launch/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/astribot_launch/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/astribot_launch_service": [
+      "astribot_msgs/srv/LaunchRequestSrv"
+    ],
+    "/astribot_launch_service_orin": [
+      "astribot_msgs/srv/LaunchRequestSrv"
+    ],
+    "/astribot_lidar_control": [
+      "std_srvs/srv/SetBool"
+    ],
+    "/astribot_lidar_control_server/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/astribot_lidar_control_server/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/astribot_lidar_control_server/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/astribot_lidar_control_server/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/astribot_lidar_control_server/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/astribot_lidar_control_server/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/astribot_micspeaker_control": [
+      "std_srvs/srv/SetBool"
+    ],
+    "/astribot_micspeaker_control_server/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/astribot_micspeaker_control_server/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/astribot_micspeaker_control_server/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/astribot_micspeaker_control_server/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/astribot_micspeaker_control_server/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/astribot_micspeaker_control_server/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/astribot_reboot_service": [
+      "astribot_msgs/srv/RebootRequestService"
+    ],
+    "/astribot_reboot_service_orin": [
+      "astribot_msgs/srv/RebootRequestService"
+    ],
+    "/astribot_safe_mode/state": [
+      "astribot_msgs/srv/RawRequest"
+    ],
+    "/astribot_sensor_calib_info_server": [
+      "std_srvs/srv/Trigger"
+    ],
+    "/astribot_storage/storage_service": [
+      "astribot_msgs/srv/StorageService"
+    ],
+    "/astribot_system_monitor_orin/change_state": [
+      "lifecycle_msgs/srv/ChangeState"
+    ],
+    "/astribot_system_monitor_orin/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/astribot_system_monitor_orin/get_available_states": [
+      "lifecycle_msgs/srv/GetAvailableStates"
+    ],
+    "/astribot_system_monitor_orin/get_available_transitions": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/astribot_system_monitor_orin/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/astribot_system_monitor_orin/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/astribot_system_monitor_orin/get_state": [
+      "lifecycle_msgs/srv/GetState"
+    ],
+    "/astribot_system_monitor_orin/get_transition_graph": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/astribot_system_monitor_orin/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/astribot_system_monitor_orin/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/astribot_system_monitor_orin/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/astribot_system_monitor_orin_internal/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/astribot_system_monitor_orin_internal/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/astribot_system_monitor_orin_internal/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/astribot_system_monitor_orin_internal/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/astribot_system_monitor_orin_internal/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/astribot_system_monitor_orin_internal/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/astribot_system_monitor_x86/change_state": [
+      "lifecycle_msgs/srv/ChangeState"
+    ],
+    "/astribot_system_monitor_x86/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/astribot_system_monitor_x86/get_available_states": [
+      "lifecycle_msgs/srv/GetAvailableStates"
+    ],
+    "/astribot_system_monitor_x86/get_available_transitions": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/astribot_system_monitor_x86/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/astribot_system_monitor_x86/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/astribot_system_monitor_x86/get_state": [
+      "lifecycle_msgs/srv/GetState"
+    ],
+    "/astribot_system_monitor_x86/get_transition_graph": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/astribot_system_monitor_x86/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/astribot_system_monitor_x86/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/astribot_system_monitor_x86/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/astribot_system_monitor_x86_internal/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/astribot_system_monitor_x86_internal/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/astribot_system_monitor_x86_internal/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/astribot_system_monitor_x86_internal/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/astribot_system_monitor_x86_internal/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/astribot_system_monitor_x86_internal/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/astribot_trigger_control_node/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/astribot_trigger_control_node/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/astribot_trigger_control_node/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/astribot_trigger_control_node/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/astribot_trigger_control_node/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/astribot_trigger_control_node/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/astribot_wbc_solver/reset_wbc_cmd_cache": [
+      "std_srvs/srv/SetBool"
+    ],
+    "/astribot_wbc_solver/reset_wbc_first_flag": [
+      "std_srvs/srv/SetBool"
+    ],
+    "/astribot_wbc_solver/wbc_service_exist": [
+      "std_srvs/srv/SetBool"
+    ],
+    "/camera_driver_node/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/camera_driver_node/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/camera_driver_node/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/camera_driver_node/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/camera_driver_node/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/camera_driver_node/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/compress_camera_driver_node/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/compress_camera_driver_node/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/compress_camera_driver_node/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/compress_camera_driver_node/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/compress_camera_driver_node/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/compress_camera_driver_node/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/get_robot_type_service/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/get_robot_type_service/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/get_robot_type_service/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/get_robot_type_service/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/get_robot_type_service/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/get_robot_type_service/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/gripper_left_max_force": [
+      "astribot_msgs/srv/RawRequest"
+    ],
+    "/gripper_right_max_force": [
+      "astribot_msgs/srv/RawRequest"
+    ],
+    "/hardware_request_service": [
+      "astribot_msgs/srv/RawRequest"
+    ],
+    "/init_driver_service/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/joy_node/change_state": [
+      "lifecycle_msgs/srv/ChangeState"
+    ],
+    "/joy_node/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/joy_node/get_available_states": [
+      "lifecycle_msgs/srv/GetAvailableStates"
+    ],
+    "/joy_node/get_available_transitions": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/joy_node/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/joy_node/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/joy_node/get_state": [
+      "lifecycle_msgs/srv/GetState"
+    ],
+    "/joy_node/get_transition_graph": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/joy_node/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/joy_node/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/joy_node/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/param_client/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/param_client/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/param_client/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/param_client/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/param_client/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/param_client/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/param_service/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/param_service/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/param_service/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/param_service/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/param_service/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/param_service/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/ptp_monitor/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/ptp_monitor/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/ptp_monitor/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/ptp_monitor/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/ptp_monitor/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/ptp_monitor/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/raw_request_service": [
+      "astribot_msgs/srv/RawRequest"
+    ],
+    "/recorder_tf_listener/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/recorder_tf_listener/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/recorder_tf_listener/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/recorder_tf_listener/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/recorder_tf_listener/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/recorder_tf_listener/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/recorder_web_oldserver/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/recorder_web_oldserver/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/recorder_web_oldserver/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/recorder_web_oldserver/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/recorder_web_oldserver/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/recorder_web_oldserver/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/robotics_library_astribot_arm_left/change_state": [
+      "lifecycle_msgs/srv/ChangeState"
+    ],
+    "/robotics_library_astribot_arm_left/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/robotics_library_astribot_arm_left/get_available_states": [
+      "lifecycle_msgs/srv/GetAvailableStates"
+    ],
+    "/robotics_library_astribot_arm_left/get_available_transitions": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/robotics_library_astribot_arm_left/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/robotics_library_astribot_arm_left/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/robotics_library_astribot_arm_left/get_state": [
+      "lifecycle_msgs/srv/GetState"
+    ],
+    "/robotics_library_astribot_arm_left/get_transition_graph": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/robotics_library_astribot_arm_left/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/robotics_library_astribot_arm_left/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/robotics_library_astribot_arm_left/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/robotics_library_astribot_arm_left_internal/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/robotics_library_astribot_arm_left_internal/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/robotics_library_astribot_arm_left_internal/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/robotics_library_astribot_arm_left_internal/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/robotics_library_astribot_arm_left_internal/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/robotics_library_astribot_arm_left_internal/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/robotics_library_astribot_arm_right/change_state": [
+      "lifecycle_msgs/srv/ChangeState"
+    ],
+    "/robotics_library_astribot_arm_right/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/robotics_library_astribot_arm_right/get_available_states": [
+      "lifecycle_msgs/srv/GetAvailableStates"
+    ],
+    "/robotics_library_astribot_arm_right/get_available_transitions": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/robotics_library_astribot_arm_right/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/robotics_library_astribot_arm_right/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/robotics_library_astribot_arm_right/get_state": [
+      "lifecycle_msgs/srv/GetState"
+    ],
+    "/robotics_library_astribot_arm_right/get_transition_graph": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/robotics_library_astribot_arm_right/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/robotics_library_astribot_arm_right/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/robotics_library_astribot_arm_right/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/robotics_library_astribot_arm_right_internal/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/robotics_library_astribot_arm_right_internal/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/robotics_library_astribot_arm_right_internal/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/robotics_library_astribot_arm_right_internal/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/robotics_library_astribot_arm_right_internal/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/robotics_library_astribot_arm_right_internal/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/robotics_library_astribot_chassis/change_state": [
+      "lifecycle_msgs/srv/ChangeState"
+    ],
+    "/robotics_library_astribot_chassis/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/robotics_library_astribot_chassis/get_available_states": [
+      "lifecycle_msgs/srv/GetAvailableStates"
+    ],
+    "/robotics_library_astribot_chassis/get_available_transitions": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/robotics_library_astribot_chassis/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/robotics_library_astribot_chassis/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/robotics_library_astribot_chassis/get_state": [
+      "lifecycle_msgs/srv/GetState"
+    ],
+    "/robotics_library_astribot_chassis/get_transition_graph": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/robotics_library_astribot_chassis/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/robotics_library_astribot_chassis/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/robotics_library_astribot_chassis/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/robotics_library_astribot_chassis_internal/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/robotics_library_astribot_chassis_internal/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/robotics_library_astribot_chassis_internal/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/robotics_library_astribot_chassis_internal/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/robotics_library_astribot_chassis_internal/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/robotics_library_astribot_chassis_internal/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/robotics_library_astribot_gripper_left/change_state": [
+      "lifecycle_msgs/srv/ChangeState"
+    ],
+    "/robotics_library_astribot_gripper_left/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/robotics_library_astribot_gripper_left/get_available_states": [
+      "lifecycle_msgs/srv/GetAvailableStates"
+    ],
+    "/robotics_library_astribot_gripper_left/get_available_transitions": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/robotics_library_astribot_gripper_left/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/robotics_library_astribot_gripper_left/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/robotics_library_astribot_gripper_left/get_state": [
+      "lifecycle_msgs/srv/GetState"
+    ],
+    "/robotics_library_astribot_gripper_left/get_transition_graph": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/robotics_library_astribot_gripper_left/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/robotics_library_astribot_gripper_left/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/robotics_library_astribot_gripper_left/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/robotics_library_astribot_gripper_left_internal/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/robotics_library_astribot_gripper_left_internal/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/robotics_library_astribot_gripper_left_internal/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/robotics_library_astribot_gripper_left_internal/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/robotics_library_astribot_gripper_left_internal/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/robotics_library_astribot_gripper_left_internal/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/robotics_library_astribot_gripper_right/change_state": [
+      "lifecycle_msgs/srv/ChangeState"
+    ],
+    "/robotics_library_astribot_gripper_right/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/robotics_library_astribot_gripper_right/get_available_states": [
+      "lifecycle_msgs/srv/GetAvailableStates"
+    ],
+    "/robotics_library_astribot_gripper_right/get_available_transitions": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/robotics_library_astribot_gripper_right/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/robotics_library_astribot_gripper_right/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/robotics_library_astribot_gripper_right/get_state": [
+      "lifecycle_msgs/srv/GetState"
+    ],
+    "/robotics_library_astribot_gripper_right/get_transition_graph": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/robotics_library_astribot_gripper_right/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/robotics_library_astribot_gripper_right/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/robotics_library_astribot_gripper_right/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/robotics_library_astribot_gripper_right_internal/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/robotics_library_astribot_gripper_right_internal/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/robotics_library_astribot_gripper_right_internal/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/robotics_library_astribot_gripper_right_internal/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/robotics_library_astribot_gripper_right_internal/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/robotics_library_astribot_gripper_right_internal/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/robotics_library_astribot_head/change_state": [
+      "lifecycle_msgs/srv/ChangeState"
+    ],
+    "/robotics_library_astribot_head/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/robotics_library_astribot_head/get_available_states": [
+      "lifecycle_msgs/srv/GetAvailableStates"
+    ],
+    "/robotics_library_astribot_head/get_available_transitions": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/robotics_library_astribot_head/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/robotics_library_astribot_head/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/robotics_library_astribot_head/get_state": [
+      "lifecycle_msgs/srv/GetState"
+    ],
+    "/robotics_library_astribot_head/get_transition_graph": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/robotics_library_astribot_head/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/robotics_library_astribot_head/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/robotics_library_astribot_head/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/robotics_library_astribot_head_internal/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/robotics_library_astribot_head_internal/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/robotics_library_astribot_head_internal/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/robotics_library_astribot_head_internal/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/robotics_library_astribot_head_internal/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/robotics_library_astribot_head_internal/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/robotics_library_astribot_torso/change_state": [
+      "lifecycle_msgs/srv/ChangeState"
+    ],
+    "/robotics_library_astribot_torso/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/robotics_library_astribot_torso/get_available_states": [
+      "lifecycle_msgs/srv/GetAvailableStates"
+    ],
+    "/robotics_library_astribot_torso/get_available_transitions": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/robotics_library_astribot_torso/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/robotics_library_astribot_torso/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/robotics_library_astribot_torso/get_state": [
+      "lifecycle_msgs/srv/GetState"
+    ],
+    "/robotics_library_astribot_torso/get_transition_graph": [
+      "lifecycle_msgs/srv/GetAvailableTransitions"
+    ],
+    "/robotics_library_astribot_torso/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/robotics_library_astribot_torso/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/robotics_library_astribot_torso/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/robotics_library_astribot_torso_internal/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/robotics_library_astribot_torso_internal/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/robotics_library_astribot_torso_internal/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/robotics_library_astribot_torso_internal/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/robotics_library_astribot_torso_internal/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/robotics_library_astribot_torso_internal/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/sensor_calib_info_server_node/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/sensor_calib_info_server_node/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/sensor_calib_info_server_node/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/sensor_calib_info_server_node/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/sensor_calib_info_server_node/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/sensor_calib_info_server_node/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/simu_real_switch_service": [
+      "astribot_msgs/srv/RawRequest"
+    ],
+    "/storage/storage_orin/_action/cancel_goal": [
+      "action_msgs/srv/CancelGoal"
+    ],
+    "/storage/storage_orin/_action/get_result": [
+      "astribot_msgs/action/Storage_GetResult"
+    ],
+    "/storage/storage_orin/_action/send_goal": [
+      "astribot_msgs/action/Storage_SendGoal"
+    ],
+    "/storage/storage_x86/_action/cancel_goal": [
+      "action_msgs/srv/CancelGoal"
+    ],
+    "/storage/storage_x86/_action/get_result": [
+      "astribot_msgs/action/Storage_GetResult"
+    ],
+    "/storage/storage_x86/_action/send_goal": [
+      "astribot_msgs/action/Storage_SendGoal"
+    ],
+    "/storage_orin/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/storage_orin/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/storage_orin/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/storage_orin/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/storage_orin/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/storage_orin/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/storage_x86/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/storage_x86/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/storage_x86/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/storage_x86/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/storage_x86/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/storage_x86/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/supervisor/activate_system": [
+      "std_srvs/srv/Trigger"
+    ],
+    "/supervisor/configure_system": [
+      "std_srvs/srv/Trigger"
+    ],
+    "/supervisor/deactivate_system": [
+      "std_srvs/srv/Trigger"
+    ],
+    "/supervisor/shutdown_system": [
+      "std_srvs/srv/Trigger"
+    ],
+    "/system_supervisor_node/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/system_supervisor_node/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/system_supervisor_node/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/system_supervisor_node/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/system_supervisor_node/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/system_supervisor_node/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/towergo_sensor_sdk_probe/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/towergo_sensor_sdk_probe/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/towergo_sensor_sdk_probe/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/towergo_sensor_sdk_probe/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/towergo_sensor_sdk_probe/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/towergo_sensor_sdk_probe/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/web_astribot_2019/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/web_astribot_2019/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/web_astribot_2019/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/web_astribot_2019/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/web_astribot_2019/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/web_astribot_2019/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/web_astribot_2019_2019_486510/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/web_astribot_2019_2019_486510/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/web_astribot_2019_2019_486510/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/web_astribot_2019_2019_486510/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/web_astribot_2019_2019_486510/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/web_astribot_2019_2019_486510/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/web_robot_status/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/web_robot_status/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/web_robot_status/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/web_robot_status/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/web_robot_status/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/web_robot_status/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/xbox_controller/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/xbox_controller/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/xbox_controller/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/xbox_controller/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/xbox_controller/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/xbox_controller/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ],
+    "/yaml_to_rosparam_loader/describe_parameters": [
+      "rcl_interfaces/srv/DescribeParameters"
+    ],
+    "/yaml_to_rosparam_loader/get_parameter_types": [
+      "rcl_interfaces/srv/GetParameterTypes"
+    ],
+    "/yaml_to_rosparam_loader/get_parameters": [
+      "rcl_interfaces/srv/GetParameters"
+    ],
+    "/yaml_to_rosparam_loader/list_parameters": [
+      "rcl_interfaces/srv/ListParameters"
+    ],
+    "/yaml_to_rosparam_loader/set_parameters": [
+      "rcl_interfaces/srv/SetParameters"
+    ],
+    "/yaml_to_rosparam_loader/set_parameters_atomically": [
+      "rcl_interfaces/srv/SetParametersAtomically"
+    ]
+  },
+  "lidar_activation_result": true,
+  "graph_publishers": {
+    "/astribot_arm_left/endpoint_current_states": 2,
+    "/astribot_arm_left/joint_space_states": 1,
+    "/astribot_arm_right/endpoint_current_states": 2,
+    "/astribot_arm_right/joint_space_states": 1,
+    "/astribot_audio/speaker/stream": 1,
+    "/astribot_camera/head_rgbd/color_compress/compressed": 1,
+    "/astribot_camera/head_rgbd/color_image": 1,
+    "/astribot_camera/head_rgbd/depth_compress": 1,
+    "/astribot_camera/head_rgbd/depth_image": 1,
+    "/astribot_camera/head_rgbd/grey_compress/compressed": 1,
+    "/astribot_camera/head_stereo/color_compress/compressed": 1,
+    "/astribot_camera/head_stereo/color_image": 1,
+    "/astribot_camera/left_wrist_rgbd/color_compress/compressed": 1,
+    "/astribot_camera/left_wrist_rgbd/color_image": 1,
+    "/astribot_camera/left_wrist_rgbd/depth_compress": 1,
+    "/astribot_camera/left_wrist_rgbd/depth_image": 1,
+    "/astribot_camera/left_wrist_rgbd/grey_compress/compressed": 1,
+    "/astribot_camera/right_wrist_rgbd/color_compress/compressed": 1,
+    "/astribot_camera/right_wrist_rgbd/color_image": 1,
+    "/astribot_camera/right_wrist_rgbd/depth_compress": 1,
+    "/astribot_camera/right_wrist_rgbd/depth_image": 1,
+    "/astribot_camera/right_wrist_rgbd/grey_compress/compressed": 1,
+    "/astribot_camera/torso_rgbd/color_compress/compressed": 1,
+    "/astribot_camera/torso_rgbd/color_image": 1,
+    "/astribot_camera/torso_rgbd/depth_compress": 1,
+    "/astribot_camera/torso_rgbd/depth_image": 1,
+    "/astribot_camera/torso_rgbd/grey_compress/compressed": 1,
+    "/astribot_chassis/endpoint_current_states": 2,
+    "/astribot_chassis/joint_space_states": 1,
+    "/astribot_gripper_left/endpoint_current_states": 1,
+    "/astribot_gripper_left/joint_space_states": 1,
+    "/astribot_gripper_right/endpoint_current_states": 1,
+    "/astribot_gripper_right/joint_space_states": 1,
+    "/astribot_head/endpoint_current_states": 2,
+    "/astribot_head/joint_space_states": 1,
+    "/astribot_torso/endpoint_current_states": 2,
+    "/astribot_torso/joint_space_states": 1,
+    "/astribot_whole_body/chassis_imu": 1,
+    "/astribot_whole_body/endpoint_current_states": 1,
+    "/astribot_whole_body/imu_sensor/astribot_chassis_imu_site": 0,
+    "/ft_data": 0,
+    "/livox/imu_back": 1,
+    "/livox/imu_front": 1,
+    "/livox/lidar_back": 1,
+    "/livox/lidar_front": 1,
+    "/tf": 0,
+    "/tf_static": 0
+  },
+  "lidar_restore_off_result": true,
+  "lidar_publishers_after": {
+    "/livox/lidar_front": 1,
+    "/livox/lidar_back": 1,
+    "/livox/imu_front": 1,
+    "/livox/imu_back": 1
+  },
+  "finished_utc": "2026-10-10T14:46:03.198070+00:00"
+}

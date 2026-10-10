@@ -1,0 +1,22 @@
+{
+  "audio_hardware": {
+    "returncode": 0,
+    "stdout": " 0 [HDA            ]: tegra-hda - NVIDIA Jetson AGX Orin HDA\n                      NVIDIA Jetson AGX Orin HDA at 0x3518000 irq 124\n 1 [APE            ]: tegra-ape - NVIDIA Jetson AGX Orin APE\n                      NVIDIA-NVIDIAJetsonAGXOrinDeveloperKit-NotSpecified-Jetson\n 2 [Y8MICA         ]: USB-Audio - Yundea 8MICA\n                      Yundea Technology Yundea 8MICA at usb-3610000.usb-1.4, full speed\n",
+    "stderr": ""
+  },
+  "usb_hardware": {
+    "returncode": 0,
+    "stdout": "Bus 002 Device 004: ID 0bda:0420 Realtek Semiconductor Corp. 4-Port USB 3.0 Hub\nBus 002 Device 007: ID 2bc5:066b Orbbec 3D Technology International, Inc Orbbec Femto Bolt 3D Camera\nBus 002 Device 003: ID 0424:5806 Microchip Technology, Inc. (formerly SMSC) USB5806 Smart Hub\nBus 002 Device 008: ID 2bc5:0800 Orbbec 3D Technology International, Inc Orbbec Gemini 335\nBus 002 Device 006: ID 8086:0b5b Intel Corp. Intel(R) RealSense(TM) Depth Camera 405 \nBus 002 Device 005: ID 8086:0b5b Intel Corp. Intel(R) RealSense(TM) Depth Camera 405 \nBus 002 Device 002: ID 0424:5806 Microchip Technology, Inc. (formerly SMSC) USB5806 Smart Hub\nBus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub\nBus 001 Device 004: ID 0bda:5420 Realtek Semiconductor Corp. 4-Port USB 2.0 Hub\nBus 001 Device 003: ID 13d3:3549 IMC Networks Bluetooth Radio\nBus 001 Device 013: ID 0424:2840 Microchip Technology, Inc. (formerly SMSC) Hub Feature Controller\nBus 001 Device 005: ID 1a86:7523 QinHeng Electronics CH340 serial converter\nBus 001 Device 002: ID 0424:2806 Microchip Technology, Inc. (formerly SMSC) USB2806 Smart Hub\nBus 001 Device 014: ID 0424:2840 Microchip Technology, Inc. (formerly SMSC) Hub Feature Controller\nBus 001 Device 012: ID 1bcf:2d4f Sunplus Innovation Technology Inc. Cherry Dual Camera\nBus 001 Device 010: ID 3359:3639 Yundea Technology Yundea 8MICA\nBus 001 Device 006: ID 0424:2806 Microchip Technology, Inc. (formerly SMSC) USB2806 Smart Hub\nBus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub\n",
+    "stderr": ""
+  },
+  "git_head": {
+    "returncode": 0,
+    "stdout": "2615b06d39efe661cda86aa71288b9ec4e0d4f98\n",
+    "stderr": ""
+  },
+  "git_status": {
+    "returncode": 0,
+    "stdout": " D plans/keyboard_slam/README.md\n D plans/keyboard_slam/acceptance-checklist.md\n D plans/keyboard_slam/implementation-plan.md\n?? docs/\n?? vlm_navigation/\n",
+    "stderr": ""
+  }
+}

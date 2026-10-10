@@ -1,0 +1,20 @@
+{
+  "source_url": "https://codeload.github.com/pytorch/vision/tar.gz/refs/tags/v0.20.1",
+  "torch_cuda_arch_list": "8.7",
+  "force_cuda": true,
+  "max_jobs": 4,
+  "build_version": "0.20.1",
+  "pytorch_version": "2.5.0a0+872d972e41.nv24.8",
+  "files": [
+    {
+      "path": "assets/downloads/vision-v0.20.1.tar.gz",
+      "bytes": 13149651,
+      "sha256": "7e08c7f56e2c89859310e53d898f72bccc4987cd83e08cfd6303513da15a9e71"
+    },
+    {
+      "path": "assets/downloads/torchvision-0.20.1-cp310-cp310-linux_aarch64.whl",
+      "bytes": 1545378,
+      "sha256": "fa57b7eaac3c7a1aa6d66d622685547ac8dcaea04aa228319bda2a9e191575b1"
+    }
+  ]
+}

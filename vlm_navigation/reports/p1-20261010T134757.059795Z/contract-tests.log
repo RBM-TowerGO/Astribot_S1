@@ -1,0 +1,9 @@
+test_invalid_outputs (__main__.ContractTests) ... ok
+test_resize (__main__.ContractTests) ... ok
+test_truncated_even_when_json_valid (__main__.ContractTests) ... ok
+test_valid (__main__.ContractTests) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.050s
+
+OK

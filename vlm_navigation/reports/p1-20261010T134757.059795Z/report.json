@@ -1,0 +1,4717 @@
+{
+  "timestamp_utc": "2026-10-10T13:47:57.060248+00:00",
+  "status": "passed",
+  "scope": "FP16 synthetic offline deployment baseline; no navigation accuracy claim",
+  "startup_definition": "fresh process; OS cache uncontrolled; no reboot or cache eviction",
+  "args": {
+    "output_dir": null,
+    "warmup": 5,
+    "requests": 100,
+    "startup_runs": 3,
+    "request_timeout": 120,
+    "startup_timeout": 300
+  },
+  "config": {
+    "model_id": "Qwen/Qwen3.5-4B",
+    "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "model_dir": "assets/models/Qwen3.5-4B",
+    "dtype": "float16",
+    "device": "cuda:0",
+    "attn_implementation": "eager",
+    "enable_thinking": false,
+    "max_new_tokens": 128,
+    "max_input_tokens": 4096,
+    "image_long_edge": 768,
+    "min_pixels": 65536,
+    "max_pixels": 589824,
+    "do_sample": false
+  },
+  "startup": [
+    {
+      "phase": "startup",
+      "index": 0,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 2.628867987999911,
+      "cuda_peak_allocated_bytes": 9233320448,
+      "cuda_peak_reserved_bytes": 9246343168,
+      "process_rss_bytes": 2894831616,
+      "controller_roundtrip_seconds": 2.630271824999909,
+      "process_start_to_ready_seconds": 12.788038916000005,
+      "process_start_to_first_result_seconds": 15.41833336899981,
+      "load_seconds": 7.401089961999787,
+      "load_memory": {
+        "event": "ready",
+        "load_seconds": 7.401089961999787,
+        "cuda_peak_allocated_bytes": 9078571008,
+        "cuda_peak_reserved_bytes": 9089056768
+      }
+    },
+    {
+      "phase": "startup",
+      "index": 1,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 2.437358306000533,
+      "cuda_peak_allocated_bytes": 9233320448,
+      "cuda_peak_reserved_bytes": 9246343168,
+      "process_rss_bytes": 2932232192,
+      "controller_roundtrip_seconds": 2.438888822000081,
+      "process_start_to_ready_seconds": 13.010603468999761,
+      "process_start_to_first_result_seconds": 15.449512678999781,
+      "load_seconds": 7.577099681000618,
+      "load_memory": {
+        "event": "ready",
+        "load_seconds": 7.577099681000618,
+        "cuda_peak_allocated_bytes": 9078571008,
+        "cuda_peak_reserved_bytes": 9089056768
+      }
+    },
+    {
+      "phase": "startup",
+      "index": 2,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 2.5945476079996297,
+      "cuda_peak_allocated_bytes": 9233320448,
+      "cuda_peak_reserved_bytes": 9246343168,
+      "process_rss_bytes": 2871472128,
+      "controller_roundtrip_seconds": 2.595958937999967,
+      "process_start_to_ready_seconds": 13.110790809999344,
+      "process_start_to_first_result_seconds": 15.706769047999842,
+      "load_seconds": 7.723810677000074,
+      "load_memory": {
+        "event": "ready",
+        "load_seconds": 7.723810677000074,
+        "cuda_peak_allocated_bytes": 9078571008,
+        "cuda_peak_reserved_bytes": 9089056768
+      }
+    }
+  ],
+  "warmup": [
+    {
+      "phase": "warmup",
+      "index": 0,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 2.4950651230001313,
+      "cuda_peak_allocated_bytes": 9233320448,
+      "cuda_peak_reserved_bytes": 9246343168,
+      "process_rss_bytes": 2891489280,
+      "controller_roundtrip_seconds": 2.496561202000521
+    },
+    {
+      "phase": "warmup",
+      "index": 1,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.810651257000245,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2909663232,
+      "controller_roundtrip_seconds": 1.8122353850003492
+    },
+    {
+      "phase": "warmup",
+      "index": 2,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8278788610004995,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2909663232,
+      "controller_roundtrip_seconds": 1.8293267720000586
+    },
+    {
+      "phase": "warmup",
+      "index": 3,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.827531922000162,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2911555584,
+      "controller_roundtrip_seconds": 1.8291176499997164
+    },
+    {
+      "phase": "warmup",
+      "index": 4,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.869900730000154,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2911555584,
+      "controller_roundtrip_seconds": 1.8715186879999237
+    }
+  ],
+  "requests": [
+    {
+      "phase": "requests",
+      "index": 0,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.820597240999632,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2911825920,
+      "controller_roundtrip_seconds": 1.8221577510003044
+    },
+    {
+      "phase": "requests",
+      "index": 1,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8373770549997062,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2911825920,
+      "controller_roundtrip_seconds": 1.8390976239998054
+    },
+    {
+      "phase": "requests",
+      "index": 2,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.7962753889996748,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2911825920,
+      "controller_roundtrip_seconds": 1.7978678649997164
+    },
+    {
+      "phase": "requests",
+      "index": 3,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.79797545800011,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2911825920,
+      "controller_roundtrip_seconds": 1.7994812699998874
+    },
+    {
+      "phase": "requests",
+      "index": 4,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8386069620000853,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2911825920,
+      "controller_roundtrip_seconds": 1.840157612999974
+    },
+    {
+      "phase": "requests",
+      "index": 5,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8116595600004075,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2911825920,
+      "controller_roundtrip_seconds": 1.8132387249997919
+    },
+    {
+      "phase": "requests",
+      "index": 6,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8346801769994272,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2911825920,
+      "controller_roundtrip_seconds": 1.8361725710001338
+    },
+    {
+      "phase": "requests",
+      "index": 7,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.810247741999774,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2911825920,
+      "controller_roundtrip_seconds": 1.8117775269993217
+    },
+    {
+      "phase": "requests",
+      "index": 8,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8603868760001205,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2911825920,
+      "controller_roundtrip_seconds": 1.8619006589997298
+    },
+    {
+      "phase": "requests",
+      "index": 9,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8111640549996082,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2911825920,
+      "controller_roundtrip_seconds": 1.8128209960004824
+    },
+    {
+      "phase": "requests",
+      "index": 10,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.782837321000443,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2912636928,
+      "controller_roundtrip_seconds": 1.7843910430001415
+    },
+    {
+      "phase": "requests",
+      "index": 11,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.804353775999516,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2912636928,
+      "controller_roundtrip_seconds": 1.8060264349996942
+    },
+    {
+      "phase": "requests",
+      "index": 12,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8061484459994972,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2912636928,
+      "controller_roundtrip_seconds": 1.8079308510004921
+    },
+    {
+      "phase": "requests",
+      "index": 13,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.781737379000333,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2912636928,
+      "controller_roundtrip_seconds": 1.783495337000204
+    },
+    {
+      "phase": "requests",
+      "index": 14,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.799441351000496,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2912636928,
+      "controller_roundtrip_seconds": 1.8010497980003493
+    },
+    {
+      "phase": "requests",
+      "index": 15,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.9331876359992748,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2912636928,
+      "controller_roundtrip_seconds": 1.9348960139996052
+    },
+    {
+      "phase": "requests",
+      "index": 16,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8137907800000903,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2912636928,
+      "controller_roundtrip_seconds": 1.815472079999381
+    },
+    {
+      "phase": "requests",
+      "index": 17,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.7821136129996376,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2912907264,
+      "controller_roundtrip_seconds": 1.7836979619996782
+    },
+    {
+      "phase": "requests",
+      "index": 18,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.817995430999872,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2912907264,
+      "controller_roundtrip_seconds": 1.8196083689999796
+    },
+    {
+      "phase": "requests",
+      "index": 19,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8035547879999285,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2912907264,
+      "controller_roundtrip_seconds": 1.8052168220001477
+    },
+    {
+      "phase": "requests",
+      "index": 20,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8022700199999235,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2912907264,
+      "controller_roundtrip_seconds": 1.8039494590002505
+    },
+    {
+      "phase": "requests",
+      "index": 21,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8027938790000917,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2912907264,
+      "controller_roundtrip_seconds": 1.8043210679998083
+    },
+    {
+      "phase": "requests",
+      "index": 22,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8452549819994601,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2914799616,
+      "controller_roundtrip_seconds": 1.8469035409998469
+    },
+    {
+      "phase": "requests",
+      "index": 23,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8154451589998644,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2914799616,
+      "controller_roundtrip_seconds": 1.8171223319995988
+    },
+    {
+      "phase": "requests",
+      "index": 24,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.7848574740000913,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2914799616,
+      "controller_roundtrip_seconds": 1.7864602330000707
+    },
+    {
+      "phase": "requests",
+      "index": 25,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.7949426750001294,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2914799616,
+      "controller_roundtrip_seconds": 1.7964366449996305
+    },
+    {
+      "phase": "requests",
+      "index": 26,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8015271689992005,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2914799616,
+      "controller_roundtrip_seconds": 1.8030532080001649
+    },
+    {
+      "phase": "requests",
+      "index": 27,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8157878890006032,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2914799616,
+      "controller_roundtrip_seconds": 1.817518700000619
+    },
+    {
+      "phase": "requests",
+      "index": 28,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8480238309994093,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2914799616,
+      "controller_roundtrip_seconds": 1.8495909020002728
+    },
+    {
+      "phase": "requests",
+      "index": 29,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.9075823920002222,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2915340288,
+      "controller_roundtrip_seconds": 1.9090800750000199
+    },
+    {
+      "phase": "requests",
+      "index": 30,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.7947156030004408,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2915340288,
+      "controller_roundtrip_seconds": 1.7962957970003117
+    },
+    {
+      "phase": "requests",
+      "index": 31,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8582173579998198,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2915340288,
+      "controller_roundtrip_seconds": 1.8598671959998683
+    },
+    {
+      "phase": "requests",
+      "index": 32,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8234065110000302,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2915610624,
+      "controller_roundtrip_seconds": 1.824907107999934
+    },
+    {
+      "phase": "requests",
+      "index": 33,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8253618649996497,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2915610624,
+      "controller_roundtrip_seconds": 1.8268952669995997
+    },
+    {
+      "phase": "requests",
+      "index": 34,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8153878679995614,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2915610624,
+      "controller_roundtrip_seconds": 1.8169341980001263
+    },
+    {
+      "phase": "requests",
+      "index": 35,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.880314394999914,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2915610624,
+      "controller_roundtrip_seconds": 1.8819188449997455
+    },
+    {
+      "phase": "requests",
+      "index": 36,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 2.0188930770000297,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2915610624,
+      "controller_roundtrip_seconds": 2.020476890000282
+    },
+    {
+      "phase": "requests",
+      "index": 37,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.789444607000405,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2915610624,
+      "controller_roundtrip_seconds": 1.7909700399995927
+    },
+    {
+      "phase": "requests",
+      "index": 38,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.798799383000187,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2915610624,
+      "controller_roundtrip_seconds": 1.8003268610000305
+    },
+    {
+      "phase": "requests",
+      "index": 39,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.7937076309999611,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2915610624,
+      "controller_roundtrip_seconds": 1.7952413209995939
+    },
+    {
+      "phase": "requests",
+      "index": 40,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8230740670005616,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2915880960,
+      "controller_roundtrip_seconds": 1.8246240449998368
+    },
+    {
+      "phase": "requests",
+      "index": 41,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8266574640001636,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2915880960,
+      "controller_roundtrip_seconds": 1.8282321819997378
+    },
+    {
+      "phase": "requests",
+      "index": 42,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.898700987999291,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2915880960,
+      "controller_roundtrip_seconds": 1.9004055569994307
+    },
+    {
+      "phase": "requests",
+      "index": 43,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.813729086999956,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2915880960,
+      "controller_roundtrip_seconds": 1.815432503000011
+    },
+    {
+      "phase": "requests",
+      "index": 44,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8075123919998077,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2915880960,
+      "controller_roundtrip_seconds": 1.8092270110000754
+    },
+    {
+      "phase": "requests",
+      "index": 45,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8243148800002018,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2915880960,
+      "controller_roundtrip_seconds": 1.825995893000254
+    },
+    {
+      "phase": "requests",
+      "index": 46,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8292798410002433,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2916151296,
+      "controller_roundtrip_seconds": 1.8309820089998539
+    },
+    {
+      "phase": "requests",
+      "index": 47,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.782342346000405,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2916151296,
+      "controller_roundtrip_seconds": 1.7839634100000694
+    },
+    {
+      "phase": "requests",
+      "index": 48,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8236032629993133,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2916151296,
+      "controller_roundtrip_seconds": 1.8251097740003388
+    },
+    {
+      "phase": "requests",
+      "index": 49,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8428437940001459,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2916151296,
+      "controller_roundtrip_seconds": 1.8444125119995078
+    },
+    {
+      "phase": "requests",
+      "index": 50,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.81514060399968,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2916151296,
+      "controller_roundtrip_seconds": 1.8168491839996932
+    },
+    {
+      "phase": "requests",
+      "index": 51,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8212131119998958,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2916421632,
+      "controller_roundtrip_seconds": 1.8228395069991166
+    },
+    {
+      "phase": "requests",
+      "index": 52,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.764639588999671,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2916421632,
+      "controller_roundtrip_seconds": 1.7663664109995807
+    },
+    {
+      "phase": "requests",
+      "index": 53,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.766842937000547,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2916421632,
+      "controller_roundtrip_seconds": 1.7687039090005783
+    },
+    {
+      "phase": "requests",
+      "index": 54,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8056509230000302,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2916421632,
+      "controller_roundtrip_seconds": 1.8073055200002273
+    },
+    {
+      "phase": "requests",
+      "index": 55,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.825194821999503,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2916421632,
+      "controller_roundtrip_seconds": 1.826826794000226
+    },
+    {
+      "phase": "requests",
+      "index": 56,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8989810950006358,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2916691968,
+      "controller_roundtrip_seconds": 1.9006974200001423
+    },
+    {
+      "phase": "requests",
+      "index": 57,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.852068820000568,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2916691968,
+      "controller_roundtrip_seconds": 1.853727101000004
+    },
+    {
+      "phase": "requests",
+      "index": 58,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8158167689998663,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2916691968,
+      "controller_roundtrip_seconds": 1.8176028959996984
+    },
+    {
+      "phase": "requests",
+      "index": 59,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.7980308269998204,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2916691968,
+      "controller_roundtrip_seconds": 1.7997227529995143
+    },
+    {
+      "phase": "requests",
+      "index": 60,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.850063243000477,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2916691968,
+      "controller_roundtrip_seconds": 1.8516879680000784
+    },
+    {
+      "phase": "requests",
+      "index": 61,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.7984113490001619,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2916962304,
+      "controller_roundtrip_seconds": 1.8001070569998774
+    },
+    {
+      "phase": "requests",
+      "index": 62,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8441498770007456,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2916962304,
+      "controller_roundtrip_seconds": 1.8457148000006782
+    },
+    {
+      "phase": "requests",
+      "index": 63,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8424994260003587,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2916962304,
+      "controller_roundtrip_seconds": 1.8442117719996531
+    },
+    {
+      "phase": "requests",
+      "index": 64,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8272558369999388,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2916962304,
+      "controller_roundtrip_seconds": 1.8288082099998064
+    },
+    {
+      "phase": "requests",
+      "index": 65,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8461466950002432,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2917232640,
+      "controller_roundtrip_seconds": 1.8478885469994566
+    },
+    {
+      "phase": "requests",
+      "index": 66,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.814365657000053,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2917232640,
+      "controller_roundtrip_seconds": 1.8160794440000245
+    },
+    {
+      "phase": "requests",
+      "index": 67,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8064489680000406,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2917232640,
+      "controller_roundtrip_seconds": 1.808113957000387
+    },
+    {
+      "phase": "requests",
+      "index": 68,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.7997597720004705,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2917232640,
+      "controller_roundtrip_seconds": 1.8013996090003275
+    },
+    {
+      "phase": "requests",
+      "index": 69,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8700466450000022,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2917232640,
+      "controller_roundtrip_seconds": 1.8717012629995224
+    },
+    {
+      "phase": "requests",
+      "index": 70,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.791515015999721,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2917502976,
+      "controller_roundtrip_seconds": 1.7932669140000144
+    },
+    {
+      "phase": "requests",
+      "index": 71,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.792744701000629,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2917502976,
+      "controller_roundtrip_seconds": 1.7944370160003018
+    },
+    {
+      "phase": "requests",
+      "index": 72,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8540621530000863,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2917502976,
+      "controller_roundtrip_seconds": 1.855898146999607
+    },
+    {
+      "phase": "requests",
+      "index": 73,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8231663369997477,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2917502976,
+      "controller_roundtrip_seconds": 1.8248759320003956
+    },
+    {
+      "phase": "requests",
+      "index": 74,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8325450659995113,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2917502976,
+      "controller_roundtrip_seconds": 1.8343040659992766
+    },
+    {
+      "phase": "requests",
+      "index": 75,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.794861698999739,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2917773312,
+      "controller_roundtrip_seconds": 1.7966743040005895
+    },
+    {
+      "phase": "requests",
+      "index": 76,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8639882560000842,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2917773312,
+      "controller_roundtrip_seconds": 1.8655949089998103
+    },
+    {
+      "phase": "requests",
+      "index": 77,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8049716560008164,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2917773312,
+      "controller_roundtrip_seconds": 1.8066558069995153
+    },
+    {
+      "phase": "requests",
+      "index": 78,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.7944683559999248,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2917773312,
+      "controller_roundtrip_seconds": 1.7959426659999735
+    },
+    {
+      "phase": "requests",
+      "index": 79,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.7885775590002595,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2917773312,
+      "controller_roundtrip_seconds": 1.7901382200006992
+    },
+    {
+      "phase": "requests",
+      "index": 80,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8271587139997791,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2918043648,
+      "controller_roundtrip_seconds": 1.8288749820003432
+    },
+    {
+      "phase": "requests",
+      "index": 81,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.788824313999612,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2918043648,
+      "controller_roundtrip_seconds": 1.7905352719999428
+    },
+    {
+      "phase": "requests",
+      "index": 82,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8352163340005063,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2918043648,
+      "controller_roundtrip_seconds": 1.836856484999771
+    },
+    {
+      "phase": "requests",
+      "index": 83,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.849866737999946,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2918043648,
+      "controller_roundtrip_seconds": 1.851527754000017
+    },
+    {
+      "phase": "requests",
+      "index": 84,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8239296539995848,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2918043648,
+      "controller_roundtrip_seconds": 1.8256349170005706
+    },
+    {
+      "phase": "requests",
+      "index": 85,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.785950856999989,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2918313984,
+      "controller_roundtrip_seconds": 1.7876675419993262
+    },
+    {
+      "phase": "requests",
+      "index": 86,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.816705348999676,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2918313984,
+      "controller_roundtrip_seconds": 1.8185579860000871
+    },
+    {
+      "phase": "requests",
+      "index": 87,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8191349400003674,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2918313984,
+      "controller_roundtrip_seconds": 1.8208082689998264
+    },
+    {
+      "phase": "requests",
+      "index": 88,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8035010959993087,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2918313984,
+      "controller_roundtrip_seconds": 1.8051107229994159
+    },
+    {
+      "phase": "requests",
+      "index": 89,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8773352799998975,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2918313984,
+      "controller_roundtrip_seconds": 1.8788828990000184
+    },
+    {
+      "phase": "requests",
+      "index": 90,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8877329130000362,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2918584320,
+      "controller_roundtrip_seconds": 1.8894711299999472
+    },
+    {
+      "phase": "requests",
+      "index": 91,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8440380369993363,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2918584320,
+      "controller_roundtrip_seconds": 1.8457584679999854
+    },
+    {
+      "phase": "requests",
+      "index": 92,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8201619789997494,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2918584320,
+      "controller_roundtrip_seconds": 1.8217801219998364
+    },
+    {
+      "phase": "requests",
+      "index": 93,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.819551348999994,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2918584320,
+      "controller_roundtrip_seconds": 1.8213127349999922
+    },
+    {
+      "phase": "requests",
+      "index": 94,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8161100699999224,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2918584320,
+      "controller_roundtrip_seconds": 1.8178080079997017
+    },
+    {
+      "phase": "requests",
+      "index": 95,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8355606659997648,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2918854656,
+      "controller_roundtrip_seconds": 1.8372048020000875
+    },
+    {
+      "phase": "requests",
+      "index": 96,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8880918669992752,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2918854656,
+      "controller_roundtrip_seconds": 1.88983829100016
+    },
+    {
+      "phase": "requests",
+      "index": 97,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8276121030003196,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2918854656,
+      "controller_roundtrip_seconds": 1.8293294169998262
+    },
+    {
+      "phase": "requests",
+      "index": 98,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+      "expected": "A",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"A\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.82586200500009,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2918854656,
+      "controller_roundtrip_seconds": 1.8275137900000118
+    },
+    {
+      "phase": "requests",
+      "index": 99,
+      "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_B.png",
+      "expected": "B",
+      "original_size": [
+        512,
+        384
+      ],
+      "processed_size": [
+        512,
+        384
+      ],
+      "sample_sha256": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4",
+      "input_tokens": 270,
+      "image_grid_thw": [
+        [
+          1,
+          24,
+          32
+        ]
+      ],
+      "pixel_values_shape": [
+        768,
+        1536
+      ],
+      "output": "{\"candidate_id\":\"B\"}",
+      "output_tokens": 9,
+      "eos_reached": true,
+      "max_new_tokens": 128,
+      "passed": true,
+      "errors": [],
+      "json_valid": true,
+      "schema_valid": true,
+      "correct": true,
+      "decision_seconds": 1.8298978919992805,
+      "cuda_peak_allocated_bytes": 9239045632,
+      "cuda_peak_reserved_bytes": 9267314688,
+      "process_rss_bytes": 2918854656,
+      "controller_roundtrip_seconds": 1.8315491579996888
+    }
+  ],
+  "failures": [],
+  "checks": {
+    "pip-check": {
+      "passed": true,
+      "log": "pip-check.log"
+    },
+    "contract-tests": {
+      "passed": true,
+      "log": "contract-tests.log"
+    },
+    "environment": {
+      "passed": true,
+      "log": "environment.log"
+    },
+    "smoke": {
+      "passed": true,
+      "log": "smoke.log"
+    },
+    "truncation": {
+      "passed": true,
+      "result": {
+        "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+        "expected": "A",
+        "original_size": [
+          512,
+          384
+        ],
+        "processed_size": [
+          512,
+          384
+        ],
+        "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+        "input_tokens": 270,
+        "image_grid_thw": [
+          [
+            1,
+            24,
+            32
+          ]
+        ],
+        "pixel_values_shape": [
+          768,
+          1536
+        ],
+        "output": "{\"",
+        "output_tokens": 1,
+        "eos_reached": false,
+        "max_new_tokens": 1,
+        "passed": false,
+        "errors": [
+          "truncated_or_missing_eos",
+          "invalid_json"
+        ],
+        "json_valid": false,
+        "schema_valid": false,
+        "correct": false,
+        "decision_seconds": 0.7149470819995258,
+        "cuda_peak_allocated_bytes": 9239045632,
+        "cuda_peak_reserved_bytes": 9267314688,
+        "process_rss_bytes": 2919124992,
+        "controller_roundtrip_seconds": 0.7165513709996958
+      }
+    },
+    "input-limit": {
+      "passed": true,
+      "result": {
+        "sample": "/home/astribot/TowerGO/vlm_navigation/assets/samples/red_A.png",
+        "expected": "A",
+        "original_size": [
+          512,
+          384
+        ],
+        "processed_size": [
+          512,
+          384
+        ],
+        "sample_sha256": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+        "input_tokens": 270,
+        "image_grid_thw": [
+          [
+            1,
+            24,
+            32
+          ]
+        ],
+        "pixel_values_shape": [
+          768,
+          1536
+        ],
+        "passed": false,
+        "errors": [
+          "input_limit_exceeded"
+        ],
+        "max_input_tokens": 1,
+        "generation_started": false,
+        "decision_seconds": 0.02389883500018186,
+        "cuda_peak_allocated_bytes": 9087080448,
+        "cuda_peak_reserved_bytes": 9267314688,
+        "process_rss_bytes": 2919124992,
+        "controller_roundtrip_seconds": 0.025455637000050046
+      }
+    },
+    "timeout": {
+      "passed": true,
+      "child_exit_code": -15,
+      "preserved_result": "timeout-failure.json"
+    }
+  },
+  "resources": {
+    "startup-1": {
+      "samples": 156,
+      "nominal_interval_seconds": 0.1,
+      "max_observed_interval_seconds": 0.10535438699935185,
+      "process_rss_peak_bytes": 11034824704,
+      "system_available_min_bytes": 41186729984,
+      "system_total_minus_available_peak_bytes": 24706486272,
+      "swap_used_peak_bytes": 0
+    },
+    "startup-2": {
+      "samples": 157,
+      "nominal_interval_seconds": 0.1,
+      "max_observed_interval_seconds": 0.1019644199996037,
+      "process_rss_peak_bytes": 10891747328,
+      "system_available_min_bytes": 40755298304,
+      "system_total_minus_available_peak_bytes": 25137917952,
+      "swap_used_peak_bytes": 0
+    },
+    "startup-3": {
+      "samples": 159,
+      "nominal_interval_seconds": 0.1,
+      "max_observed_interval_seconds": 0.10256712299997162,
+      "process_rss_peak_bytes": 10910744576,
+      "system_available_min_bytes": 40459452416,
+      "system_total_minus_available_peak_bytes": 25433763840,
+      "swap_used_peak_bytes": 0
+    },
+    "hot": {
+      "samples": 2046,
+      "nominal_interval_seconds": 0.1,
+      "max_observed_interval_seconds": 0.10629857599997194,
+      "process_rss_peak_bytes": 11193901056,
+      "system_available_min_bytes": 39882600448,
+      "system_total_minus_available_peak_bytes": 26010615808,
+      "swap_used_peak_bytes": 0
+    },
+    "hot_formal": {
+      "samples": 1807,
+      "nominal_interval_seconds": 0.1,
+      "max_observed_interval_seconds": 0.10629857599997194,
+      "process_rss_peak_bytes": 2918854656,
+      "system_available_min_bytes": 39882600448,
+      "system_total_minus_available_peak_bytes": 26010615808,
+      "swap_used_peak_bytes": 0
+    }
+  },
+  "sha256": {
+    "scripts/download_model_ranges.py": "5b0a0504a22fc5515bc22f4be0da31976bf7024e420e36818e11df43dd483bde",
+    "scripts/smoke_inference.py": "21235f3dfb43012e10b2566bc41eb0e201d409d0c510902ce2d36c53368df310",
+    "scripts/check_environment.py": "8dffef9a2f684aaac5cefb6435ad2724e2a180c4c579483d741108ca49c4d222",
+    "scripts/test_inference_contract.py": "a8f23319a3bbc92a6e570f1d4b4191cb956f1af8a2cd7b602d7bdcc0e49168cb",
+    "scripts/benchmark_worker.py": "f2c15621da44606d91b16981eadd4349220d7eb113839a0c45f6b6350280cbbc",
+    "scripts/download_assets.py": "ae4bec2277b8199cb05af7454f1fce5e4b5dfef23417579993354acac194ac68",
+    "scripts/inference_core.py": "6b509a4429b1b1fbbf8315a47763e40488da1f50643ccb2b1030dfd663979e47",
+    "scripts/benchmark_inference.py": "103059ba7a189a75d55f9c3df80cfed9b807dc01184cd83f8fd52e137970a5b4",
+    "configs/inference.json": "7f37e3033d2e0178a18fc6e63c49f32a9efc6c9f2c788315cf521a15761e7fbc",
+    "assets/samples/red_A.png": "977089fb491f75e53e7a5b6dd2395c92ca19620b1dd46d1837778c6348507172",
+    "assets/samples/red_B.png": "02b5f83e5422e11c44dbc37637238cde0b2699515203bab068b6035ec4df4cf4"
+  },
+  "git_head": {
+    "returncode": 0,
+    "stdout": "2615b06d39efe661cda86aa71288b9ec4e0d4f98\n",
+    "stderr": ""
+  },
+  "git_status": {
+    "returncode": 0,
+    "stdout": " D ../plans/keyboard_slam/README.md\n D ../plans/keyboard_slam/acceptance-checklist.md\n D ../plans/keyboard_slam/implementation-plan.md\n?? ../docs/\n?? ./\n",
+    "stderr": ""
+  },
+  "branch": {
+    "returncode": 0,
+    "stdout": "feat/vlm-chassis-navigation\n",
+    "stderr": ""
+  },
+  "power_mode": {
+    "returncode": 0,
+    "stdout": "NV Power Mode: MAXN\n0\n",
+    "stderr": ""
+  },
+  "background_processes": {
+    "returncode": 0,
+    "stdout": "    PID COMMAND         %CPU %MEM\n  53048 astribot_camera 43.5  3.0\n  53381 astribot_camera 28.4  3.6\n   5252 astribot_system 20.3  0.0\n    645 avahi-daemon    11.3  0.0\n  54195 python           9.0  0.0\n   4961 python3          7.5  0.1\n    672 polkitd          4.0  0.0\n   4907 python3          3.4  0.1\n  48315 MainThread       2.2  0.7\n  54165 sshd             1.0  0.0\n   4864 ros2             0.9  0.0\n   6706 MainThread       0.9  0.2\n  47908 MainThread       0.9  0.2\n  53524 kworker/u25:4-u  0.8  0.0\n  53408 kworker/u25:1-u  0.7  0.0\n    646 dbus-daemon      0.6  0.0\n   6771 MainThread       0.6  0.8\n    647 NetworkManager   0.5  0.0\n  53464 kworker/u25:3-u  0.5  0.0\n      1 systemd          0.4  0.0\n   2675 gnome-shell      0.4  0.4\n  53031 python3          0.4  0.0\n   2805 packagekitd      0.3  0.1\n  47491 code-2a59476c9b  0.3  0.0\n   1778 nxserver.bin     0.2  0.1\n   4875 nxrunner.bin     0.2  0.0\n  48067 MainThread       0.2  0.2\n  53028 ros2             0.2  0.0\n  53046 ros2             0.2  0.0\n  53380 ros2             0.2  0.0\n     14 ksoftirqd/0      0.1  0.0\n    300 systemd-journal  0.1  0.0\n    366 systemd-udevd    0.1  0.0\n   2984 gnome-software   0.1  0.1\n   4838 python3          0.1  0.1\n   4909 python3          0.1  0.0\n   4942 python3          0.1  0.0\n   4951 python3          0.1  0.1\n   4999 astribot_record  0.1  0.0\n   5042 astribot_record  0.1  0.0\n   5081 joy_node         0.1  0.0\n   6743 MainThread       0.1  0.1\n   6782 MainThread       0.1  0.1\n  47462 sshd             0.1  0.0\n  47932 MainThread       0.1  0.1\n  48044 MainThread       0.1  0.1\n  48717 MainThread       0.1  0.1\n      2 kthreadd         0.0  0.0\n      3 rcu_gp           0.0  0.0\n      4 rcu_par_gp       0.0  0.0\n      5 slub_flushwq     0.0  0.0\n      6 netns            0.0  0.0\n      8 kworker/0:0H-ev  0.0  0.0\n     10 mm_percpu_wq     0.0  0.0\n     11 rcu_tasks_kthre  0.0  0.0\n     12 rcu_tasks_rude_  0.0  0.0\n     13 rcu_tasks_trace  0.0  0.0\n     15 rcu_preempt      0.0  0.0\n     16 migration/0      0.0  0.0\n     17 cpuhp/0          0.0  0.0\n     18 cpuhp/1          0.0  0.0\n     19 migration/1      0.0  0.0\n     20 ksoftirqd/1      0.0  0.0\n     22 kworker/1:0H-ev  0.0  0.0\n     23 cpuhp/2          0.0  0.0\n     24 migration/2      0.0  0.0\n     25 ksoftirqd/2      0.0  0.0\n     27 kworker/2:0H-kb  0.0  0.0\n     28 cpuhp/3          0.0  0.0\n     29 migration/3      0.0  0.0\n     30 ksoftirqd/3      0.0  0.0\n     33 cpuhp/4          0.0  0.0\n     34 migration/4      0.0  0.0\n     35 ksoftirqd/4      0.0  0.0\n     37 kworker/4:0H-kb  0.0  0.0\n     38 cpuhp/5          0.0  0.0\n     39 migration/5      0.0  0.0\n     40 ksoftirqd/5      0.0  0.0\n     42 kworker/5:0H-kb  0.0  0.0\n     43 cpuhp/6          0.0  0.0\n     44 migration/6      0.0  0.0\n     45 ksoftirqd/6      0.0  0.0\n     47 kworker/6:0H-kb  0.0  0.0\n     48 cpuhp/7          0.0  0.0\n     49 migration/7      0.0  0.0\n     50 ksoftirqd/7      0.0  0.0\n     52 kworker/7:0H-ev  0.0  0.0\n     53 cpuhp/8          0.0  0.0\n     54 migration/8      0.0  0.0\n     55 ksoftirqd/8      0.0  0.0\n     57 kworker/8:0H-ev  0.0  0.0\n     58 cpuhp/9          0.0  0.0\n     59 migration/9      0.0  0.0\n     60 ksoftirqd/9      0.0  0.0\n     62 kworker/9:0H-kb  0.0  0.0\n     63 cpuhp/10         0.0  0.0\n     64 migration/10     0.0  0.0\n     65 ksoftirqd/10     0.0  0.0\n     67 kworker/10:0H-e  0.0  0.0\n     68 cpuhp/11         0.0  0.0\n     69 migration/11     0.0  0.0\n     70 ksoftirqd/11     0.0  0.0\n     72 kworker/11:0H-e  0.0  0.0\n     73 kdevtmpfs        0.0  0.0\n     74 inet_frag_wq     0.0  0.0\n     87 kauditd          0.0  0.0\n     88 oom_reaper       0.0  0.0\n     89 writeback        0.0  0.0\n     90 kcompactd0       0.0  0.0\n     91 ksmd             0.0  0.0\n     92 khugepaged       0.0  0.0\n    103 cryptd           0.0  0.0\n    122 kintegrityd      0.0  0.0\n    123 kblockd          0.0  0.0\n    124 blkcg_punt_bio   0.0  0.0\n    125 tpm_dev_wq       0.0  0.0\n    126 ata_sff          0.0  0.0\n    127 edac-poller      0.0  0.0\n    128 devfreq_wq       0.0  0.0\n    129 watchdogd        0.0  0.0\n    131 kworker/u24:2-e  0.0  0.0\n    132 kworker/0:1H-kb  0.0  0.0\n    133 rpciod           0.0  0.0\n    134 kworker/u25:0-u  0.0  0.0\n    135 xprtiod          0.0  0.0\n    163 kswapd0          0.0  0.0\n    164 nfsiod           0.0  0.0\n    168 vfio-irqfd-clea  0.0  0.0\n    169 dm_bufio_cache   0.0  0.0\n    171 kworker/4:3-mm_  0.0  0.0\n    172 krfcommd         0.0  0.0\n    173 pr/tty0          0.0  0.0\n    174 pr/ttyTCU0       0.0  0.0\n    175 pr/ttyAMA0       0.0  0.0\n    178 irq/113-3160000  0.0  0.0\n    180 irq/114-3180000  0.0  0.0\n    182 irq/115-3190000  0.0  0.0\n    183 irq/116-31b0000  0.0  0.0\n    184 irq/117-31c0000  0.0  0.0\n    185 irq/119-31e0000  0.0  0.0\n    186 irq/178-c240000  0.0  0.0\n    187 irq/179-c250000  0.0  0.0\n    193 sdhci            0.0  0.0\n    194 irq/123-mmc0     0.0  0.0\n    195 sdhci            0.0  0.0\n    196 irq/122-mmc1     0.0  0.0\n    197 irq/236-3400000  0.0  0.0\n    214 mmc_complete     0.0  0.0\n    218 irq/200-tegra-p  0.0  0.0\n    219 nvme-wq          0.0  0.0\n    220 nvme-reset-wq    0.0  0.0\n    221 nvme-delete-wq   0.0  0.0\n    225 irq/237-1-0008   0.0  0.0\n    229 irq/200-aerdrv   0.0  0.0\n    230 irq/202-tegra-p  0.0  0.0\n    234 1-0008-con0      0.0  0.0\n    236 irq/202-aerdrv   0.0  0.0\n    237 irq/204-tegra-p  0.0  0.0\n    238 kworker/u24:4-e  0.0  0.0\n    242 1-0008-con0      0.0  0.0\n    246 1-0008-con0      0.0  0.0\n    247 kworker/2:1H-kb  0.0  0.0\n    248 jbd2/nvme0n1p1-  0.0  0.0\n    249 ext4-rsv-conver  0.0  0.0\n    251 kworker/4:1H-kb  0.0  0.0\n    258 mld              0.0  0.0\n    259 kworker/10:1H-k  0.0  0.0\n    260 ipv6_addrconf    0.0  0.0\n    286 1-0008-con0      0.0  0.0\n    292 kworker/1:1H-kb  0.0  0.0\n    293 1-0008-con0      0.0  0.0\n    314 kworker/3:1H-kb  0.0  0.0\n    325 nvmap-bz         0.0  0.0\n    326 irq/199-host1x_  0.0  0.0\n    330 1-0008-con0      0.0  0.0\n    331 irq/207-gk20a_s  0.0  0.0\n    332 irq/208-gk20a_s  0.0  0.0\n    333 irq/209-gk20a_s  0.0  0.0\n    334 irq/210-gk20a_n  0.0  0.0\n    339 nv-tee-supplica  0.0  0.0\n    345 tee-supplicant   0.0  0.0\n    349 optee_bus_scan   0.0  0.0\n    354 kworker/5:1H-kb  0.0  0.0\n    356 kworker/6:1H-kb  0.0  0.0\n    357 1-0008-con0      0.0  0.0\n    361 systemd-udevd    0.0  0.0\n    363 1-0008-con0      0.0  0.0\n    365 systemd-udevd    0.0  0.0\n    367 systemd-udevd    0.0  0.0\n    368 systemd-udevd    0.0  0.0\n    369 systemd-udevd    0.0  0.0\n    370 systemd-udevd    0.0  0.0\n    371 systemd-udevd    0.0  0.0\n    372 systemd-udevd    0.0  0.0\n    373 systemd-udevd    0.0  0.0\n    374 systemd-udevd    0.0  0.0\n    375 systemd-udevd    0.0  0.0\n    376 systemd-udevd    0.0  0.0\n    377 systemd-udevd    0.0  0.0\n    378 systemd-udevd    0.0  0.0\n    379 systemd-udevd    0.0  0.0\n    380 kworker/7:1H-kb  0.0  0.0\n    381 systemd-udevd    0.0  0.0\n    382 systemd-udevd    0.0  0.0\n    383 systemd-udevd    0.0  0.0\n    384 kworker/8:1H-kb  0.0  0.0\n    385 systemd-udevd    0.0  0.0\n    386 systemd-udevd    0.0  0.0\n    387 systemd-udevd    0.0  0.0\n    388 systemd-udevd    0.0  0.0\n    389 systemd-udevd    0.0  0.0\n    390 systemd-udevd    0.0  0.0\n    391 systemd-udevd    0.0  0.0\n    392 systemd-udevd    0.0  0.0\n    393 15820000.crypto  0.0  0.0\n    394 15840000.crypto  0.0  0.0\n    409 systemd-udevd    0.0  0.0\n    416 systemd-udevd    0.0  0.0\n    417 irq/252-tsec_ri  0.0  0.0\n    418 systemd-udevd    0.0  0.0\n    419 systemd-udevd    0.0  0.0\n    420 systemd-udevd    0.0  0.0\n    421 systemd-udevd    0.0  0.0\n    422 systemd-udevd    0.0  0.0\n    423 systemd-udevd    0.0  0.0\n    424 systemd-udevd    0.0  0.0\n    425 systemd-udevd    0.0  0.0\n    426 systemd-udevd    0.0  0.0\n    427 systemd-udevd    0.0  0.0\n    428 systemd-udevd    0.0  0.0\n    429 systemd-udevd    0.0  0.0\n    432 1-0008-con0      0.0  0.0\n    434 kworker/u24:8-e  0.0  0.0\n    435 kworker/u24:9-e  0.0  0.0\n    436 irq/231-bc00000  0.0  0.0\n    438 capture-control  0.0  0.0\n    439 capture          0.0  0.0\n    440 pva_task_status  0.0  0.0\n    441 irq/255-pva-isr  0.0  0.0\n    442 irq/256-pva-isr  0.0  0.0\n    443 irq/257-pva-isr  0.0  0.0\n    444 irq/258-pva-isr  0.0  0.0\n    445 irq/259-pva-isr  0.0  0.0\n    446 irq/260-pva-isr  0.0  0.0\n    447 irq/261-pva-isr  0.0  0.0\n    448 irq/262-pva-isr  0.0  0.0\n    449 irq/263-pva-isr  0.0  0.0\n    453 1-0008-con0      0.0  0.0\n    455 kworker/11:1H-k  0.0  0.0\n    456 irq/226-tegra_d  0.0  0.0\n    457 irq/227-tegra_d  0.0  0.0\n    458 dce-async-ipc-w  0.0  0.0\n    459 irq/128-3610000  0.0  0.0\n    460 irq/125-3610000  0.0  0.0\n    461 irq/271-nvvrs-p  0.0  0.0\n    465 nv_queue         0.0  0.0\n    466 nv_queue         0.0  0.0\n    469 cfg80211         0.0  0.0\n    470 irq/120-3210000  0.0  0.0\n    471 spi0             0.0  0.0\n    478 1-0008-con0      0.0  0.0\n    479 irq/121-3230000  0.0  0.0\n    482 spi1             0.0  0.0\n    483 1-0008-con0      0.0  0.0\n    489 kworker/9:1H-kb  0.0  0.0\n    626 irq/307-rt5640   0.0  0.0\n    628 haveged          0.0  0.0\n    629 rpcbind          0.0  0.0\n    630 systemd-resolve  0.0  0.0\n    633 blkmapd          0.0  0.0\n    656 lttng-sessiond   0.0  0.0\n    657 networkd-dispat  0.0  0.0\n    665 python3          0.0  0.0\n    671 lttng-runas      0.0  0.0\n    681 power-profiles-  0.0  0.0\n    708 rsyslogd         0.0  0.0\n    711 seatd            0.0  0.0\n    722 sugov:0          0.0  0.0\n    723 sugov:4          0.0  0.0\n    725 sugov:8          0.0  0.0\n    726 snapd            0.0  0.0\n    773 accounts-daemon  0.0  0.0\n    782 switcheroo-cont  0.0  0.0\n    787 systemd-logind   0.0  0.0\n    790 udisksd          0.0  0.0\n    794 wpa_supplicant   0.0  0.0\n    815 avahi-daemon     0.0  0.0\n    833 ModemManager     0.0  0.0\n    835 nvfancontrol     0.0  0.0\n    982 pr/ramoops-1     0.0  0.0\n    988 sw-quiesce       0.0  0.0\n    989 nvgpu_channel_p  0.0  0.0\n    990 nvgpu_pg_init_g  0.0  0.0\n    991 nvgpu_clk_arb_p  0.0  0.0\n   1003 bash             0.0  0.0\n   1005 nvargus-daemon   0.0  0.0\n   1010 nvs-service      0.0  0.0\n   1031 run-cups-browse  0.0  0.0\n   1036 run-cupsd        0.0  0.0\n   1056 containerd       0.0  0.0\n   1127 cron             0.0  0.0\n   1150 atd              0.0  0.0\n   1164 gdm3             0.0  0.0\n   1166 kerneloops       0.0  0.0\n   1194 kerneloops       0.0  0.0\n   1202 agetty           0.0  0.0\n   1206 agetty           0.0  0.0\n   1210 agetty           0.0  0.0\n   1249 nvphsd           0.0  0.0\n   1254 nvphsd           0.0  0.0\n   1275 dockerd          0.0  0.1\n   1347 systemd          0.0  0.0\n   1359 (sd-pam)         0.0  0.0\n   1509 pipewire         0.0  0.0\n   1510 pipewire-media-  0.0  0.0\n   1515 scsi_eh_0        0.0  0.0\n   1516 scsi_tmf_0       0.0  0.0\n   1517 usb-storage      0.0  0.0\n   1523 rtkit-daemon     0.0  0.0\n   1567 irq/308-6800000  0.0  0.0\n   1568 irq/162-eno1.co  0.0  0.0\n   1576 sshd             0.0  0.0\n   1584 RTW_CMD_THREAD   0.0  0.0\n   1717 cupsd            0.0  0.0\n   1764 file-storage     0.0  0.0\n   1914 rpc.idmapd       0.0  0.0\n   1920 rpc.statd        0.0  0.0\n   1942 nfsdcld          0.0  0.0\n   1945 rpc.mountd       0.0  0.0\n   1952 lockd            0.0  0.0\n   1953 nfsd             0.0  0.0\n   1954 nfsd             0.0  0.0\n   1955 nfsd             0.0  0.0\n   1956 nfsd             0.0  0.0\n   1957 nfsd             0.0  0.0\n   1958 nfsd             0.0  0.0\n   1959 nfsd             0.0  0.0\n   1960 nfsd             0.0  0.0\n   2026 tracker-miner-f  0.0  0.0\n   2045 gdm-session-wor  0.0  0.0\n   2054 cups-browsed     0.0  0.0\n   2058 dbus-daemon      0.0  0.0\n   2135 btfwwork         0.0  0.0\n   2136 bttimerwork      0.0  0.0\n   2185 kworker/u25:2-u  0.0  0.0\n   2218 gvfsd            0.0  0.0\n   2220 bluetoothd       0.0  0.0\n   2224 gvfsd-fuse       0.0  0.0\n   2236 gnome-keyring-d  0.0  0.0\n   2241 gdm-x-session    0.0  0.0\n   2243 Xorg             0.0  0.1\n   2257 gvfs-udisks2-vo  0.0  0.0\n   2264 gvfs-gphoto2-vo  0.0  0.0\n   2281 gvfs-goa-volume  0.0  0.0\n   2285 goa-daemon       0.0  0.0\n   2290 nvidia-modeset/  0.0  0.0\n   2291 nvidia-modeset/  0.0  0.0\n   2293 nvidia           0.0  0.0\n   2294 nv_queue         0.0  0.0\n   2301 goa-identity-se  0.0  0.0\n   2305 gvfs-afc-volume  0.0  0.0\n   2314 gvfs-mtp-volume  0.0  0.0\n   2318 upowerd          0.0  0.0\n   2330 pulseaudio       0.0  0.0\n   2336 nxd              0.0  0.0\n   2420 gnome-session-b  0.0  0.0\n   2504 at-spi-bus-laun  0.0  0.0\n   2526 dbus-daemon      0.0  0.0\n   2614 gnome-session-c  0.0  0.0\n   2629 bash             0.0  0.0\n   2632 gnome-session-b  0.0  0.0\n   2752 xdg-permission-  0.0  0.0\n   2754 gnome-shell-cal  0.0  0.0\n   2763 evolution-sourc  0.0  0.0\n   2773 evolution-calen  0.0  0.0\n   2777 dconf-service    0.0  0.0\n   2791 evolution-addre  0.0  0.0\n   2863 gvfsd-trash      0.0  0.0\n   2873 gjs              0.0  0.0\n   2875 at-spi2-registr  0.0  0.0\n   2891 xdg-desktop-por  0.0  0.0\n   2895 xdg-document-po  0.0  0.0\n   2901 fusermount3      0.0  0.0\n   2904 xdg-desktop-por  0.0  0.0\n   2910 sh               0.0  0.0\n   2911 gsd-a11y-settin  0.0  0.0\n   2913 ibus-daemon      0.0  0.0\n   2914 gsd-color        0.0  0.0\n   2916 gsd-datetime     0.0  0.0\n   2918 gsd-housekeepin  0.0  0.0\n   2920 gsd-keyboard     0.0  0.0\n   2925 gsd-media-keys   0.0  0.0\n   2932 gsd-power        0.0  0.0\n   2934 gsd-print-notif  0.0  0.0\n   2935 gsd-rfkill       0.0  0.0\n   2937 gsd-screensaver  0.0  0.0\n   2938 gsd-sharing      0.0  0.0\n   2939 gsd-smartcard    0.0  0.0\n   2944 gsd-sound        0.0  0.0\n   2946 gsd-wacom        0.0  0.0\n   2947 gsd-xsettings    0.0  0.0\n   2968 ibus-memconf     0.0  0.0\n   2970 ibus-extension-  0.0  0.0\n   2971 evolution-alarm  0.0  0.1\n   2974 ibus-x11         0.0  0.0\n   2993 ibus-portal      0.0  0.0\n   2996 gsd-disk-utilit  0.0  0.0\n   3002 python3          0.0  0.0\n   3025 gsd-printer      0.0  0.0\n   3035 colord           0.0  0.0\n   3079 fwupd            0.0  0.0\n   3120 python3          0.0  0.0\n   3121 python3          0.0  0.0\n   3122 python3          0.0  0.0\n   3123 python3          0.0  0.0\n   3124 python3          0.0  0.0\n   3125 python3          0.0  0.0\n   3126 python3          0.0  0.0\n   3127 python3          0.0  0.0\n   3130 python3          0.0  0.0\n   3131 python3          0.0  0.0\n   3132 python3          0.0  0.0\n   3133 python3          0.0  0.0\n   3134 python3          0.0  0.0\n   3135 python3          0.0  0.0\n   3136 python3          0.0  0.0\n   3137 python3          0.0  0.0\n   3138 python3          0.0  0.0\n   3139 python3          0.0  0.0\n   3140 python3          0.0  0.0\n   3143 gjs              0.0  0.0\n   3147 ibus-engine-sim  0.0  0.0\n   3161 xdg-desktop-por  0.0  0.0\n   3320 gvfsd-metadata   0.0  0.0\n   3986 nxexec           0.0  0.0\n   3991 nxnode.bin       0.0  0.1\n   4026 nxrunner.bin     0.0  0.0\n   4089 sudo             0.0  0.0\n   4093 ptp4l            0.0  0.0\n   4702 sudo             0.0  0.0\n   4715 phc2sys          0.0  0.0\n   4836 ros2             0.0  0.0\n   4865 ros2             0.0  0.0\n   4866 ros2             0.0  0.0\n   4867 ros2             0.0  0.0\n   4868 ros2             0.0  0.0\n   4869 ros2             0.0  0.0\n   4870 ros2             0.0  0.0\n   4871 ros2             0.0  0.0\n   4872 ros2             0.0  0.0\n   4873 ros2             0.0  0.0\n   4887 ros2             0.0  0.0\n   4891 ros2             0.0  0.0\n   4892 sh               0.0  0.0\n   4894 sudo             0.0  0.0\n   4899 bash             0.0  0.0\n   4902 sh               0.0  0.0\n   4904 bash             0.0  0.0\n   4905 bash             0.0  0.0\n   4912 sh               0.0  0.0\n   4915 bash             0.0  0.0\n   4917 ros2             0.0  0.0\n   4933 ros2             0.0  0.0\n   4937 sh               0.0  0.0\n   4939 bash             0.0  0.0\n   4943 sh               0.0  0.0\n   4945 bash             0.0  0.0\n   4953 sh               0.0  0.0\n   4960 bash             0.0  0.0\n   5000 python3          0.0  0.1\n   5212 ros2             0.0  0.0\n   5916 update-notifier  0.0  0.0\n   5936 sh <defunct>     0.0  0.0\n   6684 code-07f806f999  0.0  0.0\n   6702 sh               0.0  0.0\n   6856 bash             0.0  0.0\n   6955 MainThread       0.0  0.1\n   7009 codex            0.0  0.3\n   9562 kworker/u24:1-e  0.0  0.0\n  10176 kworker/2:0-eve  0.0  0.0\n  17808 kworker/9:0-eve  0.0  0.0\n  20853 kworker/1:0-eve  0.0  0.0\n  22008 kworker/u24:0-e  0.0  0.0\n  26122 kworker/3:2H     0.0  0.0\n  27764 kworker/u24:3-d  0.0  0.0\n  29242 kworker/u24:7-e  0.0  0.0\n  32537 kworker/u24:10-  0.0  0.0\n  33278 kworker/7:2-eve  0.0  0.0\n  35017 kworker/10:0-ev  0.0  0.0\n  35253 kworker/11:1-ev  0.0  0.0\n  40216 kworker/3:0-eve  0.0  0.0\n  40399 kworker/0:0-eve  0.0  0.0\n  43689 kworker/6:2-eve  0.0  0.0\n  44814 kworker/8:2-eve  0.0  0.0\n  45641 kworker/5:2-eve  0.0  0.0\n  45761 kworker/3:1-mm_  0.0  0.0\n  47055 kworker/u24:6-d  0.0  0.0\n  47170 kworker/10:1-ev  0.0  0.0\n  47427 sshd             0.0  0.0\n  47463 bash             0.0  0.0\n  47473 sh               0.0  0.0\n  47790 kworker/7:1-cgr  0.0  0.0\n  47904 sh               0.0  0.0\n  47928 sh               0.0  0.0\n  48099 copilot-runtime  0.0  0.0\n  48326 MainThread       0.0  0.0\n  48444 codex            0.0  0.4\n  48508 bash             0.0  0.0\n  48876 kworker/0:2-eve  0.0  0.0\n  49409 kworker/9:1-eve  0.0  0.0\n  49493 kworker/8:0-eve  0.0  0.0\n  49555 kworker/2:1-cgr  0.0  0.0\n  49734 kworker/4:1-cgr  0.0  0.0\n  49769 kworker/5:0-cgr  0.0  0.0\n  50514 kworker/6:0-eve  0.0  0.0\n  50731 kworker/1:2-eve  0.0  0.0\n  50869 kworker/11:0-ev  0.0  0.0\n  51887 kworker/7:0-eve  0.0  0.0\n  52009 kworker/8:1-eve  0.0  0.0\n  52067 kworker/0:1-eve  0.0  0.0\n  52068 kworker/u24:5    0.0  0.0\n  52432 kworker/2:2-eve  0.0  0.0\n  52524 sleep            0.0  0.0\n  52640 kworker/4:0-eve  0.0  0.0\n  52674 kworker/10:2-ev  0.0  0.0\n  52848 sh <defunct>     0.0  0.0\n  53030 kworker/5:1-eve  0.0  0.0\n  53446 kworker/9:2-eve  0.0  0.0\n  53718 sleep            0.0  0.0\n  53971 kworker/11:2-ev  0.0  0.0\n  54194 sshd             0.0  0.0\n  54207 ps               0.0  0.0\n",
+    "stderr": ""
+  },
+  "pip_freeze": {
+    "returncode": 0,
+    "stdout": "accelerate==1.12.0\nannotated-doc==0.0.5\nanyio==4.15.1\nattrs==26.1.0\ncertifi==2026.7.22\nclick==8.5.0\nexceptiongroup==1.3.1\nfilelock==4.1.0\nfsspec==2026.9.0\nh11==0.16.0\nhf-xet==1.7.0\nhttpcore==1.0.9\nhttpx==0.28.1\nhuggingface_hub==1.33.0\nidna==3.20\nJinja2==3.1.6\njsonschema==4.26.0\njsonschema-specifications==2025.9.1\nmarkdown-it-py==4.2.0\nMarkupSafe==3.0.4\nmdurl==0.1.2\nmpmath==1.3.0\nnetworkx==3.4.2\nnumpy==1.26.4\npackaging @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_packaging_1785888127/work\npillow==11.3.0\npsutil==7.2.2\nPygments==2.21.0\nPyYAML==6.0.3\nreferencing==0.37.0\nregex==2026.9.29\nrich==15.0.0\nrpds-py==0.30.0\nsafetensors==0.8.0\nshellingham==1.5.4\nsympy==1.13.1\ntokenizers==0.22.2\ntomli==2.5.0\ntorch @ file:///home/astribot/TowerGO/vlm_navigation/assets/downloads/torch-2.5.0a0%2B872d972e41.nv24.08.17622132-cp310-cp310-linux_aarch64.whl#sha256=6f75fd2d2ef840ede1a90dbcf40a5458214bee26cc803fa510cda2e8978d972a\ntorchvision @ file:///home/astribot/TowerGO/vlm_navigation/assets/downloads/torchvision-0.20.1-cp310-cp310-linux_aarch64.whl#sha256=fa57b7eaac3c7a1aa6d66d622685547ac8dcaea04aa228319bda2a9e191575b1\ntqdm==4.70.1\ntransformers==5.3.0\ntyper==0.27.3\ntyping_extensions==4.16.0\n",
+    "stderr": ""
+  },
+  "hot_load": {
+    "process_start_to_ready_seconds": 13.14616689200011,
+    "event": "ready",
+    "load_seconds": 7.67407989000003,
+    "cuda_peak_allocated_bytes": 9078571008,
+    "cuda_peak_reserved_bytes": 9089056768
+  },
+  "summary": {
+    "requests": 100,
+    "passed": 100,
+    "correct_rate": 1.0,
+    "json_valid_rate": 1.0,
+    "schema_valid_rate": 1.0,
+    "eos_rate": 1.0,
+    "latency_seconds": {
+      "p50": 1.8185651855001197,
+      "p95": 1.888622323049276,
+      "maximum": 2.0188930770000297,
+      "minimum": 1.764639588999671
+    },
+    "controller_roundtrip_p95_seconds": 1.8903666543001236,
+    "cuda_peak_allocated_bytes": 9239045632,
+    "cuda_peak_reserved_bytes": 9267314688,
+    "endpoint_rss_first10_median_bytes": 2911825920.0,
+    "endpoint_rss_last10_median_bytes": 2918719488.0
+  },
+  "all_passed": true,
+  "p1_required_counts_met": true,
+  "finished_utc": "2026-10-10T13:52:44.161191+00:00"
+}

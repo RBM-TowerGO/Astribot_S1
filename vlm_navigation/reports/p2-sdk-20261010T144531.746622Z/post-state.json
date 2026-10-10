@@ -1,0 +1,19 @@
+{
+  "received_after_restore": {
+    "/livox/lidar_front": 0,
+    "/livox/lidar_back": 0
+  },
+  "live_publishers": {
+    "/livox/lidar_front": 0,
+    "/livox/lidar_back": 0
+  },
+  "camera_publishers": {
+    "head_rgbd": 1,
+    "torso_rgbd": 1,
+    "head_stereo": 1,
+    "left_wrist_rgbd": 1,
+    "right_wrist_rgbd": 1
+  },
+  "lidar_driver_processes": [],
+  "restored": true
+}

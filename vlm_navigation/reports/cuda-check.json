@@ -1,0 +1,11 @@
+{
+  "torch": "2.5.0a0+872d972e41.nv24.08",
+  "cuda": "12.6",
+  "gpu": "Orin",
+  "capability": [
+    8,
+    7
+  ],
+  "fp16_matmul_finite": true,
+  "user_site_disabled": true
+}

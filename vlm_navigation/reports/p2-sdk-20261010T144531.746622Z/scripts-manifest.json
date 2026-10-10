@@ -1,0 +1,7 @@
+{
+  "scripts/capture_observations.py": "f2cd7b77af0755e98db3cec3822a1aee38d8f1d95816114a8e19d2c08386af69",
+  "scripts/capture_observations.sh": "e1231f6a1366e42ac14a01aaeea61e82078fd65b6d7bb51db8595f0cb798c5bc",
+  "scripts/inspect_observations.py": "6d1effdff826882fe7b8a6b544a0a80f8624bbc6bb98e365ae6d2a27dda5b693",
+  "scripts/probe_sensor_sdk.py": "4259159df3e24b85a6ce2f03d7e29a803098cd4886f20453e98790099ccb3ae1",
+  "scripts/probe_sensor_sdk.sh": "a3de4e77a9a18f54729738783bc807dff9c2f8179d654590b3e97c9e5d16deb3"
+}

@@ -1,0 +1,15 @@
+{
+  "model_id": "Qwen/Qwen3.5-4B",
+  "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+  "model_dir": "assets/models/Qwen3.5-4B",
+  "dtype": "float16",
+  "device": "cuda:0",
+  "attn_implementation": "eager",
+  "enable_thinking": false,
+  "max_new_tokens": 128,
+  "max_input_tokens": 4096,
+  "image_long_edge": 768,
+  "min_pixels": 65536,
+  "max_pixels": 589824,
+  "do_sample": false
+}

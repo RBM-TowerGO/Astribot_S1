@@ -1,0 +1,9 @@
+name: TowerGO
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.10
+  - pip
+# Install Jetson-specific torch and compiled torchvision following README.md.
+# A generic pip torch replacement may not support Jetson CUDA.

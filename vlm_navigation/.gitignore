@@ -1,0 +1,7 @@
+assets/models/
+assets/downloads/
+cache/
+logs/
+__pycache__/
+*.pyc
+assets/observations/
