@@ -13,11 +13,28 @@ import termios
 import threading
 import time
 import tty
+import unicodedata
+
+from tg_pose import HOLD, NAMES, PoseControl, load_pack
+from tg_torso import HeightLimit, TorsoHeight, DEFAULT_SPEED as DEFAULT_TORSO_SPEED, MAX_SPEED as MAX_TORSO_SPEED, vector
 
 HZ = 100.0
 MAX_LINEAR_SPEED = 1.0
 LEASE = 0.2
 MAX_CYCLE = 0.1
+
+
+def fit_status(text, columns):
+    """Keep redraws on one terminal row, including double-width Chinese text."""
+    remaining = max(0, columns - 1)
+    result = []
+    for char in text:
+        width = 0 if unicodedata.combining(char) else (2 if unicodedata.east_asian_width(char) in 'WF' else 1)
+        if width > remaining:
+            break
+        result.append(char)
+        remaining -= width
+    return ''.join(result)
 
 
 class SessionHealth:
@@ -69,28 +86,46 @@ class Keys:
         self.linear, self.angular = linear, angular
         self.key, self.until, self.quit = '', 0., False
         self.message = '等待新按键'
+        self.hold_since, self.hold_batches, self.last_input = 0., 0, 0.
 
     def stop(self, message):
         self.key, self.until, self.message = '', 0., message
+        self.hold_since, self.hold_batches = 0., 0
 
     def feed(self, data, now):
         keys = data.lower()
+        self.last_input = now
         if any(k in keys for k in ('x', '\x03', '\x04')):
             self.quit = True
             self.stop('退出')
             return
-        if not keys or any(k not in 'wsadqe+-=' for k in keys):
+        if not keys or any(k not in 'wsadqerfhp+-=' for k in keys):
             self.stop('保持目标')
+            return
+        pose_keys = set(keys) & set('hp')
+        if pose_keys:
+            # Reject mixed pose/motion/speed batches; buffered text is not a hold.
+            if len(set(keys)) != 1:
+                self.stop('混合姿态输入：停止')
+                return
+            k = keys[0]
+            if self.key != k or now >= self.until:
+                self.hold_since, self.hold_batches = now, 0
+            self.hold_batches += 1
+            self.key, self.until = k, now + LEASE
+            self.message = '长按初始姿态' if k == 'h' else '长按打包姿态'
             return
         # Speed changes do not renew the movement lease.
         for k in keys:
             if k in '+-=':
+                if self.key in ('h', 'p'):
+                    self.stop('调速：停止姿态')
                 sign = -1 if k == '-' else 1
                 self.linear = round(max(.01, min(MAX_LINEAR_SPEED, self.linear + sign * .01)), 5)
                 self.angular = round(max(.025, min(.25, self.angular + sign * .025)), 5)
             else:
                 self.key, self.until = k, now + LEASE
-                self.message = {'w': '前进', 's': '后退', 'a': '左移', 'd': '右移', 'q': '左转', 'e': '右转'}[k]
+                self.message = {'w': '前进', 's': '后退', 'a': '左移', 'd': '右移', 'q': '左转', 'e': '右转', 'r': '腰部升高', 'f': '腰部降低'}[k]
 
     def sample(self, now):
         if self.key and now >= self.until:
@@ -98,6 +133,12 @@ class Keys:
         return {'w': (self.linear, 0., 0.), 's': (-self.linear, 0., 0.),
                 'a': (0., self.linear, 0.), 'd': (0., -self.linear, 0.),
                 'q': (0., 0., self.angular), 'e': (0., 0., -self.angular)}.get(self.key, (0., 0., 0.))
+
+    def pose(self, now):
+        self.sample(now)
+        selected = {'h': 'home', 'p': 'pack'}.get(self.key)
+        confirmed = selected if self.hold_batches >= 3 and now - self.hold_since >= HOLD else None
+        return confirmed, selected
 
 
 class Driver:
@@ -108,7 +149,7 @@ class Driver:
         self.failed = False
         self.sent = False
 
-    def tick(self, now, velocity):
+    def check_cycle(self, now):
         if self.failed:
             raise RuntimeError('控制已故障，不能自动恢复')
         try:
@@ -118,23 +159,32 @@ class Driver:
             if not self.backend.has_control():
                 raise RuntimeError('控制权丢失；停止发送')
             self.backend.check()
+        except Exception:
+            self.failed = True
+            raise
+
+    def apply_velocity(self, velocity):
+        if self.failed:
+            raise RuntimeError('控制已故障，不能自动恢复')
+        try:
             vx, vy, w = velocity
             if not all(math.isfinite(x) for x in (vx, vy, w)) or math.hypot(vx, vy) > MAX_LINEAR_SPEED or abs(w) > .25:
                 raise RuntimeError('速度无效或超过限位')
             if vx or vy or w:
-                # Vendor example 202: these are accumulated LOCAL commands,
-                # not a world-frame pose. Example 203 converts world velocities
-                # into local velocities before the same integration. Rotating
-                # our local W/S again introduces unwanted lateral motion.
+                # Vendor 202 uses accumulated LOCAL x/y/yaw, without rotation.
                 self.target[0] += vx / HZ
                 self.target[1] += vy / HZ
                 self.target[2] += w / HZ
-                self.sent = True  # send may raise after handing data to the SDK
+                self.sent = True
             if self.sent:
                 self.backend.send(list(self.target))
         except Exception:
             self.failed = True
             raise
+
+    def tick(self, now, velocity):
+        self.check_cycle(now)
+        self.apply_velocity(velocity)
 
 
 def conflicts(proc=Path('/proc'), include_teleop=True):
@@ -194,6 +244,34 @@ def configure_terminal(fd):
 class FakeBackend:
     def __init__(self):
         self.p = [0., 0., 0.]
+        self.torso_q = [0., 0., 0., 0.]
+
+    def torso_state(self):
+        return [0., 0., 1.2 + self.torso_q[0], 0., 0., 0., 1.], list(self.torso_q)
+
+    def torso_reference(self):
+        return self.torso_state()
+
+    def solve_torso(self, target):
+        return [target[2] - 1.2, 0., 0., 0.]
+
+    def check_torso(self, joints):
+        pass
+
+    def send_torso(self, joints):
+        self.torso_q = list(joints)
+
+    def pose_available(self, name):
+        return True  # Synthetic dry-run only; no real pack values.
+
+    def prepare_pose(self):
+        pass
+
+    def execute_pose(self, name, cancel):
+        cancel.wait(1.)
+
+    def stop_pose(self):
+        pass
 
     def desired(self):
         return list(self.p)
@@ -212,7 +290,8 @@ class FakeBackend:
 
 
 class SDKBackend:
-    def __init__(self):
+    def __init__(self, pack=None):
+        self.pack = pack
         from astribot_sdk.core.astribot_api.astribot_client import Astribot
         import astribot_ros_middleware as middleware
         self.bot, self.thread = None, None
@@ -249,6 +328,136 @@ class SDKBackend:
     def send(self, p):
         self.bot.set_joints_position([self.bot.chassis_name], [p],
                                     control_way='filter', use_wbc=False, add_default_torso=False)
+
+    @staticmethod
+    def torso_call(stage, function, *args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except HeightLimit:
+            raise
+        except Exception as exc:
+            raise RuntimeError('腰部%s失败 [%s]: %s' %
+                               (stage, type(exc).__name__, exc)) from exc
+
+    def torso_state(self):
+        names = [self.bot.torso_name]
+        def read_pose():
+            if getattr(self, '_torso_pose_compat_noted', False):
+                native = self.bot.astribot_interface._AstribotInterface__astribot_class
+                return native.get_pose_chassis_to_torso_current()
+            try:
+                return self.bot.get_current_cartesian_pose(names=names, frame='chassis')[0]
+            except KeyError as exc:
+                if exc.args != (self.bot.torso_name,):
+                    raise
+                # Installed SDKs can omit torso in their Cartesian name map.
+                # This dedicated getter reads the same chassis-frame torso pose;
+                # it does not solve IK, publish a command, or acquire control.
+                native = self.bot.astribot_interface._AstribotInterface__astribot_class
+                pose = native.get_pose_chassis_to_torso_current()
+                if not getattr(self, '_torso_pose_compat_noted', False):
+                    print('\nSDK 通用位姿映射缺少躯干；已改用躯干专用位姿读取。', flush=True)
+                    self._torso_pose_compat_noted = True
+                return pose
+        return (self.torso_call('位姿读取', read_pose),
+                self.torso_call('关节反馈读取', self.bot.get_current_joints_position, names)[0])
+
+    def torso_reference(self):
+        names = [self.bot.torso_name]
+        joints = vector(self.torso_call('当前目标读取', self.bot.get_desired_joints_position, names)[0],
+                        4, '躯干当前目标')
+        poses = self.torso_call('目标正解', self.bot.get_forward_kinematics, names, [joints])
+        if not isinstance(poses, dict) or self.bot.torso_name not in poses:
+            raise RuntimeError('SDK 躯干正解结果格式无效')
+        return poses[self.bot.torso_name], joints
+
+    def solve_torso(self, target):
+        valid, result = self.torso_call('逆解', self.bot.get_inverse_kinematics,
+                                       [self.bot.torso_name], [target])
+        if not valid:
+            raise HeightLimit('当前姿态无法到达该高度')
+        if not isinstance(result, dict) or self.bot.torso_name not in result:
+            raise RuntimeError('SDK 躯干逆解结果格式无效')
+        return result[self.bot.torso_name]
+
+    def check_torso(self, joints):
+        lower, upper = self.torso_call('限位读取', self.bot.get_joints_position_limit,
+                                      [self.bot.torso_name])
+        lo, hi = vector(lower[0], 4, '躯干下限'), vector(upper[0], 4, '躯干上限')
+        if any(a >= b for a, b in zip(lo, hi)):
+            raise RuntimeError('SDK 躯干限位无效')
+        if any(not a + .0001 <= q <= b - .0001 for q, a, b in zip(joints, lo, hi)):
+            raise HeightLimit('已到 SDK 关节限位')
+        distance = float(self.torso_call('自碰撞检查', self.bot.get_self_closest_point,
+                                         torso_joints_position=joints)[0])
+        if not math.isfinite(distance):
+            raise RuntimeError('SDK 自碰撞距离无效')
+        if distance < .03:
+            raise HeightLimit('SDK 自碰撞距离小于 3 cm')
+
+    def send_torso(self, joints):
+        self.torso_call('目标发送', self.bot.set_joints_position, [self.bot.torso_name], [joints],
+                                    control_way='direct', use_wbc=False, add_default_torso=False)
+
+    def pose_available(self, name):
+        return name == 'home' or self.pack is not None
+
+    def prepare_pose(self):
+        if not self.has_control():
+            raise RuntimeError('姿态控制权丢失')
+        self.check()
+        self.bot.stop_robot()
+        # Same reset used by the vendor when acquiring control: do not replay
+        # the old accumulated chassis target after a pose stop.
+        native = self.bot.astribot_interface._AstribotInterface__astribot_class
+        native.set_current_position_as_desired_joint_position()
+        self.bot.restart_robot()
+
+    def stop_pose(self):
+        self.bot.stop_robot()
+
+    def execute_pose(self, name, cancel):
+        if cancel.is_set():
+            return
+        if name == 'home':
+            result = self.bot.move_to_home(duration=5., use_wbc=False)
+            if not cancel.is_set() and isinstance(result, str) and any(
+                    word in result.lower() for word in ('fail', 'error')):
+                raise RuntimeError('SDK 初始姿态失败: ' + result)
+            return
+        if name != 'pack' or self.pack is None:
+            raise RuntimeError('未配置打包姿态')
+        lower, upper = self.bot.get_joints_position_limit(NAMES)
+        if len(lower) != len(NAMES) or len(upper) != len(NAMES):
+            raise RuntimeError('SDK 关节限位格式无效')
+        for step in self.pack:
+            commands = [step['joints'][n] for n in NAMES]
+            for row, lo, hi in zip(commands, lower, upper):
+                if len(row) != len(lo) or len(row) != len(hi) or any(
+                        not math.isfinite(a) or not math.isfinite(b) or not a <= q <= b
+                        for q, a, b in zip(row, lo, hi)):
+                    raise RuntimeError('打包姿态超过 SDK 关节限位')
+        native = self.bot.astribot_interface._AstribotInterface__astribot_class
+        for step in self.pack:
+            if cancel.is_set():
+                return
+            if not self.has_control():
+                raise RuntimeError('姿态控制权丢失')
+            commands = [step['joints'][n] for n in NAMES]
+            # Recheck each leg from its actual starting configuration.
+            safe = native.check_to_joint_position(dict(
+                name_list=NAMES, command_list=commands,
+                duration=step['duration'], safe_distance=.03))
+            if cancel.is_set():
+                return
+            if not safe:
+                raise RuntimeError('SDK 拒绝打包路径：碰撞检查未通过')
+            result = self.bot.move_joints_position(
+                NAMES, commands, duration=step['duration'],
+                use_wbc=False, add_default_torso=False)
+            if not cancel.is_set() and isinstance(result, str) and any(
+                    word in result.lower() for word in ('fail', 'error')):
+                raise RuntimeError('SDK 打包姿态失败: ' + result)
 
     def close(self):
         try:
@@ -295,7 +504,9 @@ def run(args):
         raise RuntimeError('需要交互终端，请使用 ssh -t S1；不接受管道输入')
     keys = Keys(args.linear_speed, args.angular_speed)
     health = SessionHealth(getattr(args, 'session_fd', None))
-    backend = driver = None
+    backend = driver = poses = None
+    torso_speed = getattr(args, 'torso_speed', DEFAULT_TORSO_SPEED)
+    pack = load_pack(getattr(args, 'pack_pose', None))
     saved = termios.tcgetattr(fd)
     handlers = {}
     signaled = []
@@ -314,15 +525,20 @@ def run(args):
                     raise RuntimeError('检测到其他底盘控制进程 PID=%s，请先退出该程序' % ','.join(others))
                 print('演练模式：不连接 SDK' if args.dry_run else
                       '将申请 S1 控制权。软件停止为保持目标，可能存在收敛尾程。', flush=True)
-                backend = FakeBackend() if args.dry_run else SDKBackend()
+                backend = FakeBackend() if args.dry_run else SDKBackend(pack)
                 if keys.quit:
                     return 128 + signaled[0] if signaled else 0
                 health.check(time.monotonic())
                 driver = Driver(backend, time.monotonic())
+                poses = PoseControl(backend)
+                torso = TorsoHeight(backend)
                 configure_terminal(fd)
-                print('READY | W/S 前后 · Q/E 左右转 · A/D 左右横移 · 空格保持 · +/- 调速 · X 退出', flush=True)
+                print('READY | W/S 前后 · Q/E 左右转 · A/D 左右横移 · R/F 腰部升降 · 长按 H 初始/P 打包 · 空格停止 · +/- 调速 · X 退出', flush=True)
                 print('坐标模式 SDK202_LOCAL：W/S 仅增减局部 x，A/D 仅增减局部 y，Q/E 仅增减 yaw；不作全局旋转。', flush=True)
-                print('按键有效期 0.2 秒；首次长按可能短暂停顿。', flush=True)
+                print('按键有效期 0.2 秒；H/P 需连续重复 0.6 秒，松键超时停止；短按不切换姿态。', flush=True)
+                print('R/F 仅调整躯干高度，速度 %.3f m/s；松键保持目标。' % torso_speed, flush=True)
+                print('打包姿态：' + ('仅模拟（演练）' if args.dry_run else
+                      ('已加载配置' if pack else '未配置，P 不执行动作')), flush=True)
                 show = 0.
                 while not keys.quit:
                     # Always wait one fresh period: never catch up delayed cycles.
@@ -337,16 +553,53 @@ def run(args):
                         keys.feed(data.decode('ascii', errors='replace'), now)
                     if keys.quit:
                         break
-                    driver.tick(now, keys.sample(now))
+                    velocity = keys.sample(now)
+                    height_velocity = {'r': torso_speed, 'f': -torso_speed}.get(keys.key, 0.)
+                    requested, selected = keys.pose(now)
+                    # Health/control checks precede any pose restart or dispatch.
+                    driver.check_cycle(now)
+                    was_owned = poses.active or poses.blocked or poses.needs_resume
+                    suppress = poses.tick(requested, selected, keys.until, keys.last_input, now)
+                    if suppress or not height_velocity or poses.needs_resume:
+                        torso.reset()
+                    if poses.active or poses.needs_resume:
+                        driver.sent = False
+                    if not suppress and not selected:
+                        if poses.needs_resume and (any(velocity) or height_velocity):
+                            poses.resume()
+                            driver.target = position(backend.desired())
+                            driver.sent = False
+                            driver.last = time.monotonic()
+                            termios.tcflush(fd, termios.TCIFLUSH)
+                            keys.stop('姿态停止已解除；重新按方向键驾驶，或按 R/F 调高低')
+                        elif not poses.needs_resume:
+                            driver.apply_velocity(velocity)
+                            torso.tick(height_velocity, keys.until,
+                                       allowed=lambda: not keys.quit and keys.key in ('r', 'f'))
+                            if height_velocity:
+                                keys.message = torso.message
+                    elif selected and not was_owned and not poses.active:
+                        # Arming/disabled pose only freezes the previous base target.
+                        driver.apply_velocity((0., 0., 0.))
+                    if suppress:
+                        keys.message = poses.message
                     if now >= show:
-                        print('\r\033[2K%s | v=%.3f m/s w=%.3f rad/s | local_cmd=[%.4f, %.4f, %.4f]' %
-                              (keys.message, keys.linear, keys.angular, *driver.target), end='', flush=True)
+                        status = '%s | v=%.3f m/s w=%.3f rad/s | local_cmd=[%.4f, %.4f, %.4f]' % (
+                            keys.message, keys.linear, keys.angular, *driver.target)
+                        columns = os.get_terminal_size(fd).columns or 240
+                        print('\r\033[2K' + fit_status(status, columns), end='', flush=True)
                         show = now + .2
                 print('\n退出：停止积分，清理控制会话。', flush=True)
                 return 128 + signaled[0] if signaled else 0
             finally:
                 if backend:
-                    finish(driver, backend, args.dry_run)
+                    try:
+                        if poses:
+                            if poses.needs_resume:
+                                driver.sent = False
+                            poses.close()
+                    finally:
+                        finish(driver, backend, args.dry_run)
     finally:
         health.close()
         try:
@@ -361,7 +614,10 @@ def main():
     parser = argparse.ArgumentParser(description='S1 SSH 底盘遥操；X 退出，Q/E 旋转')
     parser.add_argument('--linear-speed', type=lambda x: speed(x, .01, MAX_LINEAR_SPEED), default=.05)
     parser.add_argument('--angular-speed', type=lambda x: speed(x, .025, .25), default=.10)
+    parser.add_argument('--torso-speed', type=lambda x: speed(x, .001, MAX_TORSO_SPEED), default=DEFAULT_TORSO_SPEED, help='腰部升降速度 m/s，默认 0.02，范围 0.001–0.02')
     parser.add_argument('--dry-run', action='store_true', help='不加载 SDK，仅演练键盘与目标积分')
+    default_pack = Path(__file__).resolve().parents[1] / 'config/teleop_pack_pose.json'
+    parser.add_argument('--pack-pose', default=str(default_pack) if default_pack.exists() else None, help='带来源及动作顺序的打包姿态 JSON；未指定则禁用 P')
     parser.add_argument('--session-fd', type=int, default=None, help=argparse.SUPPRESS)
     args = parser.parse_args()
     try:

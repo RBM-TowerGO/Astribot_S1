@@ -16,6 +16,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / 'scripts/tg_teleop.py'
+sys.path.insert(0, str(SCRIPT.parent))
 LAUNCH = ROOT / 'scripts/tg-teleop.sh'
 spec = importlib.util.spec_from_file_location('tg_teleop', SCRIPT)
 t = importlib.util.module_from_spec(spec)
@@ -219,6 +220,17 @@ class Logic(unittest.TestCase):
         self.assertEqual(b.bot.kw, dict(control_way='filter', use_wbc=False, add_default_torso=False))
 
 
+class StatusDisplay(unittest.TestCase):
+    def test_chinese_status_fits_one_row(self):
+        text = '腰部等待反馈：暂停累加 | 关节误差 0.0207 rad ' * 4
+        result = t.fit_status(text, 80)
+        width = sum(2 if t.unicodedata.east_asian_width(c) in 'WF' else 1 for c in result)
+        self.assertLessEqual(width, 79)
+        self.assertTrue(text.startswith(result))
+        self.assertEqual(t.fit_status(text, 0), '')
+        self.assertEqual(t.fit_status('READY', 80), 'READY')
+
+
 class Terminal(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
@@ -251,6 +263,40 @@ class Terminal(unittest.TestCase):
         text = self.read(child, .4)
         self.assertIn('READY', text)
 
+    def test_torso_tracking_fault_keeps_terminal_and_chassis_available(self):
+        # Inject frozen feedback only in the test process; no SDK is imported.
+        code = """
+import sys
+sys.path.insert(0, sys.argv.pop(1))
+import tg_teleop as t
+class Frozen(t.FakeBackend):
+    def solve_torso(self, target): return [(target[2]-1.2)*8, 0., 0., 0.]
+    def send_torso(self, joints): pass
+t.FakeBackend = Frozen
+sys.exit(t.main())
+"""
+        master, slave = pty.openpty(); saved = termios.tcgetattr(slave)
+        p = subprocess.Popen([sys.executable, '-c', code, str(SCRIPT.parent), '--dry-run'],
+                             stdin=slave, stdout=slave, stderr=slave,
+                             env=self.env, start_new_session=True)
+        c = (p, master, slave, saved); self.children.append(c)
+        self.ready(c)
+        output = ''
+        for _ in range(40):
+            os.write(master, b'f'); output += self.read(c, .08)
+        self.assertIn('腰部已暂停', output)
+        self.assertIn('反馈连续 2 秒无明显收敛', output)
+        self.assertIsNone(p.poll())
+        os.write(master, b' '); self.read(c, .25)
+        output = ''
+        for _ in range(4):
+            os.write(master, b'w'); output += self.read(c, .08)
+        self.assertIn('前进', output)
+        self.assertIsNone(p.poll())
+        os.write(master, b'x')
+        self.assertEqual(p.wait(timeout=3), 0)
+        self.assertEqual(termios.tcgetattr(slave), saved)
+
     def test_keys_timeout_exit_restore(self):
         c = self.start(); self.ready(c)
         for key, label in [(b'w', '前进'), (b's', '后退'), (b'a', '左移'), (b'd', '右移'), (b'q', '左转'), (b'e', '右转')]:
@@ -264,6 +310,63 @@ class Terminal(unittest.TestCase):
         os.write(c[1], b'+'); self.assertIn('v=0.060', self.read(c))
         os.write(c[1], b'w '); self.assertIn('保持目标', self.read(c))
         os.write(c[1], b'x'); self.assertEqual(c[0].wait(timeout=3), 0)
+        self.assertEqual(termios.tcgetattr(c[2]), c[3])
+
+    def test_pose_hold_release_resume_and_exit(self):
+        c = self.start(); self.ready(c)
+        os.write(c[1], b'h')
+        self.assertNotIn('初始姿态执行中', self.read(c, .35))
+        for key, label in [(b'h', '初始姿态执行中'), (b'p', '打包姿态执行中')]:
+            output = ''
+            for _ in range(12):
+                os.write(c[1], key); output += self.read(c, .08)
+            self.assertIn(label, output)
+            os.write(c[1], b' ')
+            output = self.read(c, .65)
+            self.assertIn('姿态任务已结束', output)
+            # First new movement request clears SDK stop; next press drives.
+            os.write(c[1], b'w')
+            self.assertIn('重新按方向键驾驶', self.read(c, .22))
+            output = ''
+            for _ in range(4):
+                os.write(c[1], b'w'); output += self.read(c, .07)
+            self.assertIn('前进', output)
+            self.read(c, .3)
+        os.write(c[1], b'x')
+        self.assertEqual(c[0].wait(timeout=3), 0)
+        self.assertEqual(termios.tcgetattr(c[2]), c[3])
+
+    def test_torso_keys_timeout_and_pose_interlock(self):
+        c = self.start(); self.ready(c)
+        for key, label in [(b'r', '腰部升高'), (b'f', '腰部降低')]:
+            output = ''
+            for _ in range(5):
+                os.write(c[1], key); output += self.read(c, .07)
+            self.assertIn(label, output)
+            self.assertIn('local_cmd=[0.0000, 0.0000, 0.0000]', output)
+            self.assertIn('输入超时', self.read(c, .4))
+        output = ''
+        for _ in range(10):
+            os.write(c[1], b'h'); output += self.read(c, .08)
+        self.assertIn('初始姿态执行中', output)
+        os.write(c[1], b'r')
+        output = self.read(c, .65)
+        self.assertNotIn('躯干目标 z=', output)
+        os.write(c[1], b'r')
+        self.assertIn('姿态停止已解除', self.read(c, .25))
+        output = ''
+        for _ in range(4):
+            os.write(c[1], b'r'); output += self.read(c, .07)
+        self.assertIn('腰部升高', output)
+        os.write(c[1], b'x'); self.assertEqual(c[0].wait(timeout=3), 0)
+        self.assertEqual(termios.tcgetattr(c[2]), c[3])
+
+    def test_exit_during_pose(self):
+        c = self.start(); self.ready(c)
+        for _ in range(10):
+            os.write(c[1], b'h'); self.read(c, .08)
+        c[0].send_signal(signal.SIGTERM)
+        self.assertEqual(c[0].wait(timeout=3), 128 + signal.SIGTERM)
         self.assertEqual(termios.tcgetattr(c[2]), c[3])
 
     def test_signals_restore(self):
@@ -317,7 +420,7 @@ class Terminal(unittest.TestCase):
         self.assertEqual(second[0].wait(timeout=3), 0)
 
     def test_non_tty_and_invalid_arguments(self):
-        for args in [[], ['--linear-speed', 'nan'], ['--angular-speed', '.3']]:
+        for args in [[], ['--linear-speed', 'nan'], ['--angular-speed', '.3'], ['--torso-speed', '.021'], ['--torso-speed', 'nan']]:
             result = subprocess.run([str(LAUNCH), '--dry-run', *args], input='',
                                     capture_output=True, text=True, env=self.env)
             self.assertEqual(result.returncode, 2)
