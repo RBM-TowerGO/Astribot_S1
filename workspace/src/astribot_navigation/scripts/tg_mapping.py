@@ -423,8 +423,8 @@ def main():
     parser.add_argument('--port',type=int,default=8765)
     parser.add_argument('--replay',help='已有 bag 目录；隔离 Domain 125，不连接硬件')
     parser.add_argument('--replay-seconds',type=float,default=0,help='回放验证时间上限，0 为完整录包')
-    from tg_teleop import speed
-    parser.add_argument('--linear-speed',type=lambda x:speed(x,.01,.15),default=.05)
+    from tg_teleop import speed, MAX_LINEAR_SPEED
+    parser.add_argument('--linear-speed',type=lambda x:speed(x,.01,MAX_LINEAR_SPEED),default=.05)
     parser.add_argument('--angular-speed',type=lambda x:speed(x,.025,.25),default=.10)
     parser.add_argument('--slice-offset',type=float,default=None,help='切片相对前雷达初始中心的高度偏移，默认 0 m')
     parser.add_argument('--slice-thickness',type=float,default=None,help='水平切片厚度，默认 0.10 m')

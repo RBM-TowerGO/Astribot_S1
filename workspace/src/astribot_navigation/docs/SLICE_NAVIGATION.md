@@ -7,7 +7,7 @@ ssh -t -L 8765:127.0.0.1:8765 S1 \
   '/home/astribot/TowerGO/workspace/src/astribot_navigation/scripts/tg-mapping.sh'
 ```
 
-电脑浏览器打开 `http://127.0.0.1:8765`。保持静止初始化，READY 后 W/S 前后、Q/E 转向、空格保持、X 保存退出。校准记录仍只是提示，不新增标定批准开关。
+电脑浏览器打开 `http://127.0.0.1:8765`。保持静止初始化，READY 后 W/S 前后、A/D 横移、Q/E 转向、空格保持、X 保存退出。校准记录仍只是提示，不新增标定批准开关。
 
 ## 高度和坐标
 

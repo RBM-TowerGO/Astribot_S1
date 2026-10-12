@@ -32,7 +32,7 @@ cd /home/astribot/TowerGO/workspace/src/astribot_navigation
 |---|---|
 | W / S | 前进 / 后退，使用已确认的 SDK202_LOCAL 定义 |
 | Q / E | 原地左转 / 右转 |
-| A / D | 平移预留，目前停止当前积分并提示未启用 |
+| A / D | 沿底盘当前朝向左横移 / 右横移 |
 | 空格 | 冻结目标，继续建图 |
 | + / - | 调整速度 |
 | X | 正常结束会话并保存 |

@@ -43,47 +43,59 @@ class Backend(t.FakeBackend):
 
 class Logic(unittest.TestCase):
     def test_directions_and_case(self):
-        for key, velocity in [('W', (.05, 0)), ('S', (-.05, 0)),
-                              ('Q', (0, .10)), ('E', (0, -.10))]:
+        for key, velocity in [('W', (.05, 0, 0)), ('S', (-.05, 0, 0)),
+                              ('A', (0, .05, 0)), ('D', (0, -.05, 0)),
+                              ('Q', (0, 0, .10)), ('E', (0, 0, -.10))]:
             k = t.Keys(); k.feed(key, 1)
             self.assertEqual(k.sample(1.1), velocity)
             self.assertFalse(k.quit)
-            self.assertEqual(k.sample(1.2), (0, 0))
+            self.assertEqual(k.sample(1.2), (0, 0., 0))
 
     def test_renew_and_restart(self):
         k = t.Keys(); k.feed('w', 1); k.feed('w', 1.15)
-        self.assertEqual(k.sample(1.3), (.05, 0))
-        self.assertEqual(k.sample(1.36), (0, 0))
-        k.feed('e', 2); self.assertEqual(k.sample(2.01), (0, -.1))
+        self.assertEqual(k.sample(1.3), (.05, 0., 0))
+        self.assertEqual(k.sample(1.36), (0, 0., 0))
+        k.feed('e', 2); self.assertEqual(k.sample(2.01), (0, 0., -.1))
 
-    def test_stop_priority_reserved_and_unknown(self):
-        for batch in ['w ', ' w', 'wa', 'dw', '\x1b[A', '?w']:
+    def test_stop_priority_and_unknown(self):
+        for batch in ['w ', ' w', 'a ', ' d', '\x1b[A', '?w']:
             k = t.Keys(); k.feed('w', 1); k.feed(batch, 1.05)
-            self.assertEqual(k.sample(1.1), (0, 0), batch)
+            self.assertEqual(k.sample(1.1), (0, 0., 0), batch)
         k = t.Keys(); k.feed('AW', 1)
-        self.assertIn('尚未启用', k.message)
+        self.assertEqual(k.sample(1.1), (.05, 0., 0.))
 
     def test_exit_priority(self):
         for batch in ['wx', 'Xq', '\x03w', '\x04']:
             k = t.Keys(); k.feed(batch, 1)
             self.assertTrue(k.quit)
-            self.assertEqual(k.sample(1.01), (0, 0))
+            self.assertEqual(k.sample(1.01), (0, 0., 0))
 
     def test_last_direction_no_queue(self):
         k = t.Keys(); k.feed('wsqe', 1)
-        self.assertEqual(k.sample(1.1), (0, -.1))
+        self.assertEqual(k.sample(1.1), (0, 0., -.1))
 
     def test_speed_bounds_and_lease(self):
         k = t.Keys(); k.feed('w', 1); k.feed('+' * 100, 1.1)
-        self.assertEqual((k.linear, k.angular), (.15, .25))
-        self.assertEqual(k.sample(1.21), (0, 0))
+        self.assertEqual((k.linear, k.angular), (1.0, .25))
+        self.assertEqual(k.sample(1.21), (0, 0., 0))
         k.feed('-' * 100, 2)
         self.assertEqual((k.linear, k.angular), (.01, .025))
-        self.assertEqual(k.sample(2.01), (0, 0))
+        self.assertEqual(k.sample(2.01), (0, 0., 0))
 
     def test_invalid_speed(self):
-        for v in ['nan', 'inf', '-inf', '0', '-1', '.151']:
-            with self.assertRaises(Exception): t.speed(v, .01, .15)
+        for v in ['nan', 'inf', '-inf', '0', '-1', '1.001']:
+            with self.assertRaises(Exception): t.speed(v, .01, t.MAX_LINEAR_SPEED)
+
+    def test_linear_speed_limit(self):
+        self.assertEqual(t.speed('1.0', .01, t.MAX_LINEAR_SPEED), 1.0)
+        for v in [-1.0, 1.0]:
+            b = Backend(); d = t.Driver(b, 0)
+            d.tick(.01, (v, 0., 0))
+            self.assertAlmostEqual(b.p[0], v / 100)
+        for v in [-1.001, 1.001]:
+            b = Backend(); d = t.Driver(b, 0)
+            with self.assertRaises(RuntimeError): d.tick(.01, (v, 0., 0))
+            self.assertEqual(b.calls, [])
 
     def test_vendor_local_commands_independent_of_yaw(self):
         # Reference: SDK example 202 integrates local x/y/yaw directly.
@@ -91,38 +103,56 @@ class Logic(unittest.TestCase):
         for yaw in [0, math.pi/4, math.pi/2, math.pi, -math.pi/2, 9*math.pi]:
             for v in [-.05, .05]:
                 b = Backend(); b.p = [1, 2, yaw]; d = t.Driver(b, 0)
-                d.tick(.01, (v, 0))
+                d.tick(.01, (v, 0., 0))
                 self.assertAlmostEqual(b.p[0], 1 + v/100)
                 self.assertEqual(b.p[1], 2)
                 self.assertEqual(b.p[2], yaw)
         for w in [-.1, .1]:
-            b = Backend(); d = t.Driver(b, 0); d.tick(.01, (0, w))
+            b = Backend(); d = t.Driver(b, 0); d.tick(.01, (0, 0., w))
             self.assertEqual(b.p[:2], [0, 0]); self.assertAlmostEqual(b.p[2], w/100)
+
+    def test_lateral_local_direction_limits_and_hold(self):
+        for yaw in [0., math.pi/2, -math.pi/2, math.pi]:
+            for key, sign in [('a', 1), ('d', -1)]:
+                b = Backend(); b.p = [2., 3., yaw]; d = t.Driver(b, 0)
+                k = t.Keys(linear=1.); k.feed(key, 0)
+                d.tick(.01, k.sample(.01))
+                self.assertEqual(b.p, [2., 3. + sign*.01, yaw])
+                k.feed(' ', .02); d.tick(.02, k.sample(.02))
+                self.assertEqual(b.p, [2., 3. + sign*.01, yaw])
+                k.feed(key, .03)
+                self.assertEqual(k.sample(.24), (0., 0., 0.))
+        for velocity in [(0., 1.001, 0.), (0., -1.001, 0.),
+                         (0., float('nan'), 0.), (0., float('inf'), 0.),
+                         (1., 1., 0.)]:
+            b = Backend(); d = t.Driver(b, 0)
+            with self.assertRaises(RuntimeError): d.tick(.01, velocity)
+            self.assertEqual(b.calls, [])
 
     def test_fixed_step_no_catchup_and_hold(self):
         b = Backend(); d = t.Driver(b, 0)
-        d.tick(.05, (.05, 0))
+        d.tick(.05, (.05, 0., 0))
         self.assertEqual(b.p, [.0005, 0, 0])
-        d.tick(.06, (0, 0)); self.assertEqual(b.p, [.0005, 0, 0])
+        d.tick(.06, (0, 0., 0)); self.assertEqual(b.p, [.0005, 0, 0])
 
     def test_idle_does_not_send(self):
-        b = Backend(); d = t.Driver(b, 0); d.tick(.01, (0, 0))
+        b = Backend(); d = t.Driver(b, 0); d.tick(.01, (0, 0., 0))
         self.assertEqual(b.calls, [])
 
     def test_faults_latch_without_new_targets(self):
         for cause in ['rights', 'overrun', 'send']:
-            b = Backend(); d = t.Driver(b, 0); d.tick(.01, (.05, 0))
+            b = Backend(); d = t.Driver(b, 0); d.tick(.01, (.05, 0., 0))
             count = len(b.calls)
             if cause == 'rights': b.rights = False
             if cause == 'send': b.broken = True
             with self.assertRaises(RuntimeError):
-                d.tick(.2 if cause == 'overrun' else .02, (.05, 0))
+                d.tick(.2 if cause == 'overrun' else .02, (.05, 0., 0))
             self.assertEqual(len(b.calls), count)
             b.rights, b.broken = True, False
-            with self.assertRaises(RuntimeError): d.tick(.03, (.05, 0))
+            with self.assertRaises(RuntimeError): d.tick(.03, (.05, 0., 0))
 
     def test_finish_holds_and_releases(self):
-        b = Backend(); d = t.Driver(b, 0); d.tick(.01, (.05, 0))
+        b = Backend(); d = t.Driver(b, 0); d.tick(.01, (.05, 0., 0))
         now = [0.]
         t.finish(d, b, False, clock=lambda: now[0], sleep=lambda dt: now.__setitem__(0, now[0]+dt))
         self.assertTrue(b.closed); self.assertGreaterEqual(len(b.calls), 300)
@@ -131,6 +161,7 @@ class Logic(unittest.TestCase):
     def test_key_to_native_direction_regression(self):
         # Positive local x follows vendor 202, without a heading-dependent sign.
         for key, expected in [('w', [.0005, 0., 0.]), ('s', [-.0005, 0., 0.]),
+                              ('a', [0., .0005, 0.]), ('d', [0., -.0005, 0.]),
                               ('q', [0., 0., .001]), ('e', [0., 0., -.001])]:
             b = Backend(); d = t.Driver(b, 0); k = t.Keys(); k.feed(key, 0)
             d.tick(.01, k.sample(.01))
@@ -155,7 +186,7 @@ class Logic(unittest.TestCase):
 
     def test_finish_releases_on_loss_and_failure(self):
         for cause in ['rights', 'send']:
-            b = Backend(); d = t.Driver(b, 0); d.tick(.01, (.05, 0))
+            b = Backend(); d = t.Driver(b, 0); d.tick(.01, (.05, 0., 0))
             if cause == 'rights': b.rights = False
             else: b.broken = True
             with self.assertRaises(RuntimeError): t.finish(d, b, False)
@@ -220,16 +251,16 @@ class Terminal(unittest.TestCase):
         text = self.read(child, .4)
         self.assertIn('READY', text)
 
-    def test_keys_timeout_reserved_exit_restore(self):
+    def test_keys_timeout_exit_restore(self):
         c = self.start(); self.ready(c)
-        for key, label in [(b'w', '前进'), (b's', '后退'), (b'q', '左转'), (b'e', '右转')]:
+        for key, label in [(b'w', '前进'), (b's', '后退'), (b'a', '左移'), (b'd', '右移'), (b'q', '左转'), (b'e', '右转')]:
             output = ''
             for _ in range(4):
                 os.write(c[1], key); output += self.read(c, .07)
             self.assertIn(label, output)
             self.assertIsNone(c[0].poll())
         self.assertIn('输入超时', self.read(c, .45))
-        os.write(c[1], b'wa'); self.assertIn('尚未启用', self.read(c))
+        os.write(c[1], b'wa'); self.assertIn('左移', self.read(c))
         os.write(c[1], b'+'); self.assertIn('v=0.060', self.read(c))
         os.write(c[1], b'w '); self.assertIn('保持目标', self.read(c))
         os.write(c[1], b'x'); self.assertEqual(c[0].wait(timeout=3), 0)

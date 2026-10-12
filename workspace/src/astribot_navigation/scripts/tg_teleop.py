@@ -15,6 +15,7 @@ import time
 import tty
 
 HZ = 100.0
+MAX_LINEAR_SPEED = 1.0
 LEASE = 0.2
 MAX_CYCLE = 0.1
 
@@ -78,24 +79,25 @@ class Keys:
             self.quit = True
             self.stop('退出')
             return
-        if not keys or any(k not in 'wsqe+-=' for k in keys):
-            self.stop('左右平移尚未启用' if 'a' in keys or 'd' in keys else '保持目标')
+        if not keys or any(k not in 'wsadqe+-=' for k in keys):
+            self.stop('保持目标')
             return
         # Speed changes do not renew the movement lease.
         for k in keys:
             if k in '+-=':
                 sign = -1 if k == '-' else 1
-                self.linear = round(max(.01, min(.15, self.linear + sign * .01)), 5)
+                self.linear = round(max(.01, min(MAX_LINEAR_SPEED, self.linear + sign * .01)), 5)
                 self.angular = round(max(.025, min(.25, self.angular + sign * .025)), 5)
             else:
                 self.key, self.until = k, now + LEASE
-                self.message = {'w': '前进', 's': '后退', 'q': '左转', 'e': '右转'}[k]
+                self.message = {'w': '前进', 's': '后退', 'a': '左移', 'd': '右移', 'q': '左转', 'e': '右转'}[k]
 
     def sample(self, now):
         if self.key and now >= self.until:
             self.stop('输入超时：保持目标')
-        return {'w': (self.linear, 0.), 's': (-self.linear, 0.),
-                'q': (0., self.angular), 'e': (0., -self.angular)}.get(self.key, (0., 0.))
+        return {'w': (self.linear, 0., 0.), 's': (-self.linear, 0., 0.),
+                'a': (0., self.linear, 0.), 'd': (0., -self.linear, 0.),
+                'q': (0., 0., self.angular), 'e': (0., 0., -self.angular)}.get(self.key, (0., 0., 0.))
 
 
 class Driver:
@@ -116,16 +118,16 @@ class Driver:
             if not self.backend.has_control():
                 raise RuntimeError('控制权丢失；停止发送')
             self.backend.check()
-            v, w = velocity
-            if not all(math.isfinite(x) for x in (v, w)) or abs(v) > .15 or abs(w) > .25:
+            vx, vy, w = velocity
+            if not all(math.isfinite(x) for x in (vx, vy, w)) or math.hypot(vx, vy) > MAX_LINEAR_SPEED or abs(w) > .25:
                 raise RuntimeError('速度无效或超过限位')
-            if v or w:
+            if vx or vy or w:
                 # Vendor example 202: these are accumulated LOCAL commands,
                 # not a world-frame pose. Example 203 converts world velocities
                 # into local velocities before the same integration. Rotating
                 # our local W/S again introduces unwanted lateral motion.
-                self.target[0] += v / HZ
-                # target[1] is unchanged: A/D translation is not implemented.
+                self.target[0] += vx / HZ
+                self.target[1] += vy / HZ
                 self.target[2] += w / HZ
                 self.sent = True  # send may raise after handing data to the SDK
             if self.sent:
@@ -318,8 +320,8 @@ def run(args):
                 health.check(time.monotonic())
                 driver = Driver(backend, time.monotonic())
                 configure_terminal(fd)
-                print('READY | W/S 前后 · Q/E 左右转 · A/D 预留 · 空格保持 · +/- 调速 · X 退出', flush=True)
-                print('坐标模式 SDK202_LOCAL：W/S 仅增减局部 x，Q/E 仅增减 yaw；不作全局旋转。', flush=True)
+                print('READY | W/S 前后 · Q/E 左右转 · A/D 左右横移 · 空格保持 · +/- 调速 · X 退出', flush=True)
+                print('坐标模式 SDK202_LOCAL：W/S 仅增减局部 x，A/D 仅增减局部 y，Q/E 仅增减 yaw；不作全局旋转。', flush=True)
                 print('按键有效期 0.2 秒；首次长按可能短暂停顿。', flush=True)
                 show = 0.
                 while not keys.quit:
@@ -357,7 +359,7 @@ def run(args):
 
 def main():
     parser = argparse.ArgumentParser(description='S1 SSH 底盘遥操；X 退出，Q/E 旋转')
-    parser.add_argument('--linear-speed', type=lambda x: speed(x, .01, .15), default=.05)
+    parser.add_argument('--linear-speed', type=lambda x: speed(x, .01, MAX_LINEAR_SPEED), default=.05)
     parser.add_argument('--angular-speed', type=lambda x: speed(x, .025, .25), default=.10)
     parser.add_argument('--dry-run', action='store_true', help='不加载 SDK，仅演练键盘与目标积分')
     parser.add_argument('--session-fd', type=int, default=None, help=argparse.SUPPRESS)
