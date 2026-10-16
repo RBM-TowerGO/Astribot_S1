@@ -88,8 +88,14 @@ class State:
         self.frame = None
         self.fusion = {}
         self.fusion_reason = None
+        self.warnings = {}
         self.validation_warning = None
         self.slice = {}
+        self.collection = {}
+        self.collection_directory = None
+        self.notes = None
+        self.note_token = None
+        self.task = ""
 
     def seen(self, key, stamp, now=None):
         now = time.monotonic() if now is None else now
@@ -116,7 +122,7 @@ class State:
 
     def snapshot(self):
         with self.lock:
-            return {'slice': self.slice, 'run_id': self.run_id, 'status': self.status, 'error': self.error,
+            return {'warnings': dict(self.warnings), 'collection': self.collection, 'note_token': self.note_token, 'task': self.task, 'slice': self.slice, 'run_id': self.run_id, 'status': self.status, 'error': self.error,
                     'elapsed': round(time.monotonic()-self.started, 1), 'free_gib': self.free_gib,
                     'ages': {k: round(time.monotonic()-v, 2) for k,v in self.receipts.items()},
                     'counts': dict(self.counts), 'frame': self.frame,
@@ -135,6 +141,13 @@ def web_server(state, port, html):
             elif self.path == '/api/state':
                 data = json.dumps(state.snapshot(), ensure_ascii=False, allow_nan=False, separators=(',', ':')).encode()
                 kind = 'application/json'
+            elif self.path.startswith('/api/camera/') and state.collection_directory:
+                from collection_common import CAMERAS
+                name=self.path.removeprefix('/api/camera/')
+                if name not in CAMERAS: self.send_error(404); return
+                try: data=(state.collection_directory/'previews'/(name+'.jpg')).read_bytes()
+                except FileNotFoundError: self.send_error(404); return
+                kind='image/jpeg'
             else:
                 self.send_error(404); return
             compressed = 'gzip' in self.headers.get('Accept-Encoding', '') and len(data)>1024
@@ -151,7 +164,27 @@ def web_server(state, port, html):
             except (BrokenPipeError, ConnectionResetError): pass
 
         def do_POST(self):
-            self.send_error(405, 'Read-only')
+            if self.path!='/api/note' or state.notes is None:
+                self.send_error(405, 'Read-only'); return
+            import secrets
+            token=self.headers.get('X-Session-Token','')
+            if not token or not secrets.compare_digest(token,state.note_token):
+                self.send_error(403); return
+            try:
+                size=int(self.headers.get('Content-Length','0'))
+                if not 0<size<=8192: raise ValueError('Invalid body size')
+                body=json.loads(self.rfile.read(size))
+                kind=body.get('kind','note'); text=body.get('text')
+                if kind not in ('task','note') or not isinstance(text,str) or not 0<len(text.strip())<=2000:
+                    raise ValueError('Invalid note')
+                state.notes.check()
+                state.notes.emit(kind,text=text.strip())
+                state.notes.check()
+                with state.lock:
+                    if kind=='task': state.task=text.strip()
+                self.send_response(200); self.send_header('Content-Length','2'); self.end_headers(); self.wfile.write(b'{}')
+            except (ValueError,TypeError,json.JSONDecodeError): self.send_error(400)
+            except Exception: self.send_error(503, 'Recording failed')
 
         def log_message(self, *args):
             pass
@@ -203,7 +236,7 @@ class OwnedProcess:
 
 def shutdown_order(processes):
     # Stop driving first, preserve the recorders until mapping has stopped.
-    return [k for k in ('teleop', 'player', 'fastlio', 'adapter', 'slice', 'lio_record', 'raw_record') if k in processes]
+    return [k for k in ('teleop', 'player', 'fastlio', 'adapter', 'slice', 'lio_record', 'raw_record', 'sensors') if k in processes]
 
 
 def check_metadata(bag, required):

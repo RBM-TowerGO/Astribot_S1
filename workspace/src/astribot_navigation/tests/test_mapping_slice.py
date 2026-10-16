@@ -135,12 +135,12 @@ class SliceLifecycleTests(unittest.TestCase):
         import tg_mapping as mapping
         from mapping_support import State
         with tempfile.TemporaryDirectory() as tmp:
-            session=mapping.Session.__new__(mapping.Session)
+            session=mapping.Session(NS(replay='/unused',output_root=tmp,mapping_only=True))
             session.signal=None;session.procs={'slice':Mock()};session.procs['slice'].poll.return_value=None
             session.run=Path(tmp);session.state=State('test');session.state.stamps['odom']=10**10
             cases=[({'error':'bad ray'},'bad ray'),
-                   ({'stamp_ns':10**10,'worker_updated':time.time()-10},'not updated'),
-                   ({'stamp_ns':10**9,'worker_updated':time.time()},'lag LIO')]
+                   ({'stamp_ns':10**10,'worker_updated':time.time()-10},'未更新'),
+                   ({'stamp_ns':10**9,'lio_stamp_ns':10**10,'worker_updated':time.time()},'落后')]
             for data,message in cases:
                 session.last_slice_read=0;(session.run/'slice_live.json').write_text(json.dumps(data))
                 with patch.object(session.state,'healthy',return_value=True):

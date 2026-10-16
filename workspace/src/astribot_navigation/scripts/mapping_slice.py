@@ -164,9 +164,9 @@ class Grid:
         return a
 
 
-def png(grid):
+def png(grid, raster=None):
     from PIL import Image
-    a=grid.raster();pixels=np.full(a.shape,205,np.uint8)
+    a=grid.raster() if raster is None else raster;pixels=np.full(a.shape,205,np.uint8)
     pixels[a==0]=254;pixels[a==100]=0
     output=io.BytesIO();Image.fromarray(pixels[::-1]).save(output,format='PNG')
     return output.getvalue()
@@ -252,10 +252,11 @@ class Engine:
         h,f=self.grid.update(origins,ends)
         self.stats[key+'_hits']+=h;self.stats['hit_cells']+=h;self.stats['free_cells']+=f;self.stats['frames']+=1
 
-    def snapshot(self):
-        a=self.grid.raster()
+    def snapshot(self, raster=None):
+        a=self.grid.raster() if raster is None else raster
         result=dict(config=self.c,statistics=self.stats.copy(),frame=self.c['frame'],
                     source_frame=self.poses.frame,stamp_ns=self.latest_ns,
+                    lio_stamp_ns=self.poses.data[-1][0] if self.poses.data else 0,
                     trajectory=[p[1:4] for p in self.trajectory],
                     pose=({'xyz':self.trajectory[-1][1:4],'quaternion_xyzw':self.trajectory[-1][4:]} if self.trajectory else None),
                     ready=bool(a.size and np.any(a==100) and np.any(a==0)))
@@ -265,5 +266,5 @@ class Engine:
             result['grid']=dict(width=a.shape[1],height=a.shape[0],resolution=self.grid.r,
                                 origin=(self.grid.origin*self.grid.r).tolist(),
                                 occupied=int((a==100).sum()),free=int((a==0).sum()),unknown=int((a==-1).sum()),
-                                png_base64=base64.b64encode(png(self.grid)).decode())
+                                png_base64=base64.b64encode(png(self.grid,a)).decode())
         return result

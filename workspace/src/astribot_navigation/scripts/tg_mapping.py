@@ -85,7 +85,6 @@ class ROSObserver:
             if now-self.last_preview < 1: return
             self.last_preview=now
             try:
-                pts=cloud_xyz(m)
                 with state.lock:
                     if state.frame is not None and state.frame != m.header.frame_id:
                         raise ValueError('LIO cloud/odometry frames disagree')
@@ -126,6 +125,25 @@ class ROSObserver:
             if not response.success: raise RuntimeError('LiDAR service failed: '+response.message)
         finally: self.node.destroy_client(client)
 
+    def camera(self, on):
+        from std_srvs.srv import SetBool
+        client=self.node.create_client(SetBool,'/astribot_camera_control')
+        try:
+            if not client.wait_for_service(timeout_sec=5): raise RuntimeError('Camera control service unavailable')
+            req=SetBool.Request(); req.data=on
+            future=client.call_async(req); deadline=time.monotonic()+20
+            while not future.done() and time.monotonic()<deadline: time.sleep(.05)
+            if not future.done(): raise RuntimeError('Camera service timed out; outcome unknown, no automatic retry')
+            response=future.result()
+            if not response.success: raise RuntimeError('Camera service failed: '+response.message)
+        finally: self.node.destroy_client(client)
+
+    def other_camera_users(self):
+        from collection_common import CAMERA_TOPICS
+        return sorted({info.node_name for topic in CAMERA_TOPICS
+                       for info in self.node.get_subscriptions_info_by_topic(topic)
+                       if info.node_name not in (self.name, "compress_camera_driver_node")})
+
     def other_sensor_users(self):
         users=set()
         for topic in RAW_TOPICS:
@@ -151,8 +169,14 @@ class Session:
         self.topics=topic_names('/towergo/mapping/'+self.run_id)
         self.state=State(self.run_id)
         self.procs={}; self.observer=self.server=None
-        self.health_write=None; self.signal=None; self.owned_lidar=False
+        self.collect = not self.replay and not getattr(args, "mapping_only", False)
+        self.health_write=None; self.signal=None; self.owned_lidar=False; self.owned_camera=False
         self.last_slice_read=0.
+        self.manual_active=False
+        self.health_stop=threading.Event(); self.health_thread=None
+        self.capture_stop_at=None; self.capture_stop_stage=0
+        self.last_health_check=0.; self.last_warning_save=0.
+        self.report_warnings={}; self.warning_dirty=False
         self.report={'run_id':self.run_id,'status':'initializing','error':None,'topics':self.topics,
                      'replay':self.replay,'hardware_commands_sent':False,'lidar_started':False,
                      'navigation_map':True,'shutdown_errors':[],
@@ -161,6 +185,9 @@ class Session:
                                           'rear_transform_applied_by_adapter':False}}
 
     def spawn(self,name,cmd,tty=False,pass_fds=()):
+        if not tty:
+            # Background computation/recording yields CPU and best-effort I/O to SSH/control.
+            cmd=['nice','-n','10','ionice','-c','2','-n','7',*cmd]
         p=OwnedProcess(name,cmd,log=None if tty else self.run/(name+'.log'),tty=tty,pass_fds=pass_fds)
         self.procs[name]=p
         self.report.setdefault('processes',{})[name]={'pid':p.proc.pid,'command':cmd}
@@ -171,33 +198,110 @@ class Session:
             try: os.write(self.health_write,struct.pack('!d',time.monotonic()))
             except (BrokenPipeError,BlockingIOError): pass
 
+    def start_heartbeat(self):
+        self.health_stop.clear()
+        def beat():
+            while not self.health_stop.is_set():
+                self.heartbeat()
+                self.health_stop.wait(.1)
+        self.health_thread=threading.Thread(target=beat,daemon=True)
+        self.health_thread.start()
+
     def revoke(self):
+        self.health_stop.set()
+        if self.health_thread:
+            self.health_thread.join(timeout=1); self.health_thread=None
         if self.health_write is not None:
             os.close(self.health_write); self.health_write=None
 
+    def stop_recording_for_disk(self):
+        # Signal all recorders before waiting; never block keyboard heartbeat on flush.
+        if self.capture_stop_at is None:
+            self.capture_stop_at=time.monotonic()
+            self.report['recording_degraded']=True
+            self.report['recording_stop_reason']='Less than 3 GiB free disk space'
+        elapsed=time.monotonic()-self.capture_stop_at
+        stage=3 if elapsed>=20 else 2 if elapsed>=10 else 1
+        if stage>self.capture_stop_stage:
+            self.capture_stop_stage=stage
+            sig={1:signal.SIGINT,2:signal.SIGTERM,3:signal.SIGKILL}[stage]
+            for name in ('raw_record','lio_record','sensors'):
+                if name in self.procs: self.procs[name].send(sig)
+
+    def publish_warnings(self, issues):
+        now=time.time(); active={key:message for key,message,_ in issues}
+        previous=self.state.warnings
+        if active!=previous:
+            self.warning_dirty=True
+            for key,message,damaged in issues:
+                item=self.report_warnings.setdefault(key,dict(first_seen=now,occurrences=0))
+                if previous.get(key)!=message:
+                    item['occurrences']+=1
+                    print('\n警告：'+message+'；键盘遥操继续，X 可结束。',flush=True)
+                item.update(message=message,last_seen=now,active=True)
+                if damaged: self.report['recording_degraded']=True
+            for key in previous.keys()-active.keys():
+                self.report_warnings[key].update(active=False,recovered_at=now)
+            with self.state.lock: self.state.warnings=active
+        self.report['warnings']=self.report_warnings
+        if self.warning_dirty and time.monotonic()-self.last_warning_save>=1:
+            self.last_warning_save=time.monotonic()
+            try:
+                atomic_json(self.run/'runtime_warnings.json',self.report_warnings)
+                self.warning_dirty=False
+            except OSError:
+                # A full/unavailable recording filesystem must not take down control.
+                self.report['recording_degraded']=True
+
     def check(self,require_streams=False,allow_player_end=False):
         if self.signal: raise InterruptedError('Session interrupted by signal %s'%self.signal)
+        advisory=self.manual_active and not self.replay
+        issues=[]
+        def issue(key,message,damaged=True):
+            if not advisory: raise RuntimeError(message)
+            issues.append((key,message,damaged))
         for name,p in self.procs.items():
             if name=='teleop' or (name=='player' and allow_player_end): continue
-            if p.poll() is not None: raise RuntimeError('%s exited (%s)'%(name,p.poll()))
-        free=shutil.disk_usage(self.run).free/1024**3
-        self.state.free_gib=round(free,2)
-        if free<3: raise RuntimeError('Less than 3 GiB free disk space')
-        if 'slice' in self.procs and time.monotonic()-self.last_slice_read>=.5:
-            self.last_slice_read=time.monotonic()
+            if p.poll() is not None: issue('process_'+name,'%s exited (%s)'%(name,p.poll()))
+        try:
+            free=shutil.disk_usage(self.run).free/1024**3
+            self.state.free_gib=round(free,2)
+            if free<3:
+                issue('disk','Less than 3 GiB free disk space; stopping recording only')
+                self.stop_recording_for_disk()
+        except OSError as exc: issue('disk_status','Disk status unavailable: '+str(exc))
+        if self.capture_stop_at is not None:
+            self.stop_recording_for_disk()
+            issue('recording_stopped','录制已因磁盘不足停止，不会自动重启')
+        if self.state.notes:
+            try: self.state.notes.check()
+            except RuntimeError as exc: issue('annotations',str(exc))
+        if 'slice' in self.procs:
             try:
                 data=json.loads((self.run/'slice_live.json').read_text())
                 with self.state.lock: self.state.slice=data
-                if data.get('error'): raise RuntimeError('Slice worker: '+data['error'])
-                if require_streams and self.state.stamps.get('odom',0)-data.get('stamp_ns',0)>2000000000:
-                    raise RuntimeError('Slice observations lag LIO by more than 2 seconds')
+                if data.get('error'): issue('slice_error','Slice worker: '+data['error'])
+                # Compare data from the SAME snapshot, not a 1 Hz snapshot with newer LIO.
+                pose_ns=data.get('lio_stamp_ns',data.get('stamp_ns',0))
+                if require_streams and pose_ns-data.get('stamp_ns',0)>2000000000:
+                    issue('slice_lag','地图切片落后其 LIO 输入超过 2 秒',False)
                 if require_streams and time.time()-data['worker_updated']>3:
-                    raise RuntimeError('Slice worker has not updated for 3 seconds')
-            except FileNotFoundError:
-                if require_streams: raise RuntimeError('Slice worker has no status')
-        if self.state.error: raise RuntimeError(self.state.error)
+                    issue('slice_stale','地图预览超过 3 秒未更新',False)
+            except (OSError,ValueError,KeyError) as exc:
+                if require_streams: issue('slice_status','Slice status unavailable: '+str(exc))
+        if self.collect and 'sensors' in self.procs:
+            try:
+                collection=json.loads((self.run/'collection_live.json').read_text())
+                with self.state.lock: self.state.collection=collection
+                if collection.get('error'): issue('collection_error',collection['error'])
+                if require_streams and (time.monotonic()-collection['updated_monotonic']>3 or not collection['ready']):
+                    issue('collection_stale','Collection stale/missing: '+str(collection.get('stale') or collection.get('missing')))
+            except (OSError,ValueError,KeyError) as exc:
+                if require_streams: issue('collection_status','Collection status unavailable: '+str(exc))
+        if self.state.error: issue('observer',self.state.error)
         if require_streams and not self.state.healthy():
-            raise RuntimeError('Sensor/LIO stream stale for more than 2 seconds')
+            issue('streams','Sensor/LIO stream stale for more than 2 seconds')
+        if advisory: self.publish_warnings(issues)
 
     def pause(self,seconds,require_streams=False):
         end=time.monotonic()+seconds
@@ -241,6 +345,35 @@ class Session:
             self.state.validation_warning=' '.join(verification['diagnostic_notes'])
             print('标定参考：'+self.state.validation_warning,flush=True)
         atomic_json(self.run/'session.json',self.report)
+        self.report['collection_enabled']=self.collect
+        self.report['task']=getattr(self.args,'task','')
+        if self.collect:
+            self.state.collection_directory=self.run
+            self.state.task=getattr(self.args,'task','')
+            atomic_json(self.run/'task.json', {'description':self.state.task})
+            import secrets
+            self.state.note_token=secrets.token_urlsafe(24)
+            from collection_common import EventLog, REQUIRED, OPTIONAL, CAMERAS
+            atomic_json(self.run/'collection_config.json',dict(cameras=CAMERAS,required=REQUIRED,optional=OPTIONAL,
+                qos={'default':'best_effort volatile keep_last depth=30','tf_static':'reliable transient_local depth=30'},
+                depth_units='unverified',timing='Header source time plus recorder receive wall time',
+                navigation_cameras=['head_rgbd','torso_rgbd']))
+            self.state.notes=EventLog(self.run/'annotations.jsonl')
+            snapshots=self.run/'snapshots'; snapshots.mkdir()
+            for source in ['/etc/config/camera_info.json',
+                           '/home/astribot/camera_parameter/astribot_camera_parameter.json',
+                           '/home/astribot/camera_parameter/filp_config_for_robot.json']:
+                src=Path(source)
+                if src.is_file(): shutil.copyfile(src,snapshots/src.name)
+            models=Path('/home/astribot/astribot_sdk_aarch64/astribot_config/robot_config/astribot_s1/model')
+            if models.is_dir():
+                target=snapshots/'robot_model'; target.mkdir()
+                for f in models.glob('*.urdf'): shutil.copyfile(f,target/f.name)
+            import hashlib
+            sources=list(HERE.glob('*.py'))+list(HERE.glob('tg-*.sh'))+[HERE.parent/'web/mapping.html']
+            code=snapshots/'code'; code.mkdir()
+            for f in sources: shutil.copyfile(f,code/f.name)
+            atomic_json(snapshots/'code_hashes.json',{str(f):hashlib.sha256(f.read_bytes()).hexdigest() for f in sources})
         self.server=web_server(self.state,self.args.port,(HERE.parent/'web/mapping.html').read_bytes())
         base=Path(get_package_share_directory('fast_lio'))/'config/mid360.yaml'
         (self.run/'lio_params.yaml').write_text(yaml.safe_dump(parameters(base,self.topics,self.replay),sort_keys=False))
@@ -266,6 +399,13 @@ class Session:
             if not existing:
                 self.observer.lidar(True); self.owned_lidar=True; self.report['lidar_started']=True
         topics=self.topics
+        if self.collect:
+            from collection_common import CAMERA_TOPICS
+            if not any(self.observer.node.count_publishers(t)>0 for t in CAMERA_TOPICS):
+                self.report['camera_start_requested']=True
+                atomic_json(self.run/'session.json',self.report)
+                self.observer.camera(True); self.owned_camera=True; self.report['camera_started']=True
+            self.spawn('sensors',[sys.executable,str(HERE/'collect_sensors.py'),str(self.run)])
         self.spawn('slice',[sys.executable,str(HERE/'mapping_slice_node.py'),str(self.run)])
         qos={t:{'reliability':'reliable' if self.replay else 'best_effort','durability':'volatile','history':'keep_last','depth':100}
              for t in RAW_TOPICS+[topics['odom'],topics['cloud']]}
@@ -304,9 +444,10 @@ class Session:
         while time.monotonic()<deadline:
             self.check()
             if (self.state.ready(time.monotonic(),self.recording_started)
+                and (not self.collect or self.state.collection.get("ready",False))
                     and self.state.slice.get('statistics',{}).get('frames',0)>0): return
             time.sleep(.1)
-        raise RuntimeError('Initialization timed out (60 seconds); no driving enabled')
+        raise RuntimeError('Initialization timed out (60 seconds); no driving enabled; missing collection topics: '+str(self.state.collection.get('missing',[])))
 
     def drive(self):
         self.state.status=self.report['status']='mapping'
@@ -326,16 +467,23 @@ class Session:
             return
         read_fd,self.health_write=os.pipe(); os.set_blocking(self.health_write,False)
         self.heartbeat()
+        self.start_heartbeat()
+        self.manual_active=True
         try:
             child=self.spawn('teleop',[str(HERE/'tg-teleop.sh'),'--session-fd',str(read_fd),
                                       '--linear-speed',str(self.args.linear_speed),
-                                      '--angular-speed',str(self.args.angular_speed)],tty=True,pass_fds=(read_fd,))
+                                      '--angular-speed',str(self.args.angular_speed),
+                                      '--torso-speed',str(getattr(self.args,'torso_speed',.02)),
+                                      *(['--event-log',str(self.run/'teleop.jsonl')] if self.collect else [])],tty=True,pass_fds=(read_fd,))
         finally: os.close(read_fd)
         self.report['teleop_started']=True
         self.report['hardware_commands_sent']=None  # SDK motion depends on keyboard input; not inferred here.
         atomic_json(self.run/'session.json',self.report)
         while child.poll() is None:
-            self.check(require_streams=True); self.heartbeat(); time.sleep(.1)
+            if time.monotonic()-self.last_health_check>=.5:
+                self.check(require_streams=True); self.last_health_check=time.monotonic()
+            if self.signal: raise InterruptedError('Session interrupted by signal %s'%self.signal)
+            time.sleep(.05)
         self.revoke()
         if child.poll()!=0: raise RuntimeError('Teleop exited abnormally: %s'%child.poll())
         self.state.status='sensor_tail'
@@ -344,8 +492,20 @@ class Session:
     def cleanup(self):
         self.revoke()
         for name in shutdown_order(self.procs):
-            try: self.procs[name].stop(timeout=30 if 'record' in name else 8)
+            try:
+                # EOF asks teleop to hold/release; do not shut native ROS down with SIGINT first.
+                if name=='teleop' and hasattr(self.procs[name],'proc'):
+                    try: self.procs[name].proc.wait(timeout=6)
+                    except subprocess.TimeoutExpired: pass
+                self.procs[name].stop(timeout=30 if 'record' in name or name=='sensors' else 8)
             except Exception as exc: self.report['shutdown_errors'].append(str(exc))
+        if self.owned_camera and self.observer:
+            try:
+                time.sleep(2)
+                users=self.observer.other_camera_users()
+                if users: self.report['camera_left_for_users']=users
+                else: self.observer.camera(False); self.report['camera_stopped']=True
+            except Exception as exc: self.report['shutdown_errors'].append('Camera: '+str(exc))
         if self.owned_lidar and self.observer:
             try:
                 time.sleep(2)  # Let stopped subscriptions leave discovery.
@@ -377,13 +537,26 @@ class Session:
                 except Exception as exc: self.report['shutdown_errors'].append('Observer: '+str(exc))
             if self.signal and not self.report['error']:
                 self.report['error']='Interrupted during shutdown by signal %s'%self.signal
-            self.report['status']='recorded' if normal and not self.signal and not self.report['shutdown_errors'] else 'incomplete'
+            self.report['status']='recorded' if normal and not self.signal and not self.report['shutdown_errors'] and not self.report.get('recording_degraded') else 'incomplete'
             if self.run.exists():
                 try:
                     self.report['raw_counts']=check_metadata(self.run/'raw_bag',REQUIRED_RAW_TOPICS)
                     self.report['lio_counts']=check_metadata(self.run/'lio_bag',[self.topics['odom'],self.topics['cloud'],self.topics['occupancy']])
                 except Exception as exc:
                     self.report['status']='incomplete'; self.report['recording_error']=str(exc)
+                if self.collect:
+                    try:
+                        from collection_common import REQUIRED
+                        self.report['sensor_counts']=check_metadata(self.run/'sensor_bag',REQUIRED)
+                        collection=json.loads((self.run/'collection_report.json').read_text())
+                        if collection['status']!='closed': raise RuntimeError('Sensor recorder incomplete: '+str(collection.get('error') or collection.get('missing')))
+                        self.report['collection_report']='collection_report.json'
+                        if self.report.get('teleop_started'):
+                            with (self.run/'teleop.jsonl').open() as f:
+                                ended=any(json.loads(line)['event']=='session_end' for line in f)
+                            if not ended: raise RuntimeError('Teleop event log not closed')
+                    except Exception as exc:
+                        self.report['status']='incomplete'; self.report['collection_error']=str(exc)
                 if (self.report.get('error') == 'LiDAR adapter reports a session fault'
                         and self.state.error and self.state.error.startswith('LiDAR adapter:')):
                     self.report['error']=self.state.error
@@ -406,8 +579,12 @@ class Session:
                 self.report['status']='incomplete'; self.report['finalize_error']=str(exc)
             finally:
                 self.state.status=self.report['status']
-                if self.run.exists(): atomic_json(self.run/'session.json',self.report)
                 if self.server: self.server.shutdown(); self.server.server_close()
+                if self.state.notes:
+                    try: self.state.notes.close()
+                    except Exception as exc:
+                        self.report['status']='incomplete'; self.report['annotation_error']=str(exc)
+                if self.run.exists(): atomic_json(self.run/'session.json',self.report)
                 for sig,handler in handlers.items(): signal.signal(sig,handler)
         print(json.dumps({'status':self.report['status'],'directory':str(self.run),
                           'error':self.report['error'],'shutdown_errors':self.report['shutdown_errors'],
@@ -428,6 +605,9 @@ def main():
     parser.add_argument('--angular-speed',type=lambda x:speed(x,.025,.25),default=.10)
     parser.add_argument('--slice-offset',type=float,default=None,help='切片相对前雷达初始中心的高度偏移，默认 0 m')
     parser.add_argument('--slice-thickness',type=float,default=None,help='水平切片厚度，默认 0.10 m')
+    parser.add_argument('--task',default='',help='本次驾驶/采集任务描述')
+    parser.add_argument('--mapping-only',action='store_true',help='仅原有雷达建图，不采集相机和机器人状态')
+    parser.add_argument('--torso-speed',type=lambda x:speed(x,.001,.02),default=.02)
     parser.add_argument('--export-pcd',action='store_true',help='另外保存三维 PCD')
     parser.add_argument('--output-directory',help='finalize 的新输出目录，不覆盖已有目录')
     args=parser.parse_args()

@@ -17,3 +17,10 @@
 
 # Downloaded dependency cache
 /workspace/data/cache/
+
+# Unified collection artifacts (also protect user-selected output directories)
+*.mcap
+**/sensor_bag/
+**/raw_bag/
+**/lio_bag/
+**/vlm_export_*/

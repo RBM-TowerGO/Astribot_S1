@@ -15,6 +15,8 @@ import time
 import tty
 import unicodedata
 
+from collection_common import EventLog, LoggedBackend
+
 from tg_pose import HOLD, NAMES, PoseControl, load_pack
 from tg_torso import HeightLimit, TorsoHeight, DEFAULT_SPEED as DEFAULT_TORSO_SPEED, MAX_SPEED as MAX_TORSO_SPEED, vector
 
@@ -35,6 +37,19 @@ def fit_status(text, columns):
         result.append(char)
         remaining -= width
     return ''.join(result)
+
+
+class StatusOutput:
+    """Drop display updates when SSH/TTY is congested; never queue them in control."""
+    def __init__(self, terminal_fd):
+        self.fd=os.open(os.ttyname(terminal_fd),os.O_WRONLY|os.O_NONBLOCK|os.O_NOCTTY)
+
+    def write(self, text):
+        try: os.write(self.fd,text.encode())
+        except BlockingIOError: pass
+
+    def close(self):
+        os.close(self.fd)
 
 
 class SessionHealth:
@@ -298,7 +313,13 @@ class SDKBackend:
         self.done = threading.Event()
         self.error = None
         try:
-            self.bot = Astribot(freq=HZ, high_control_rights=True)
+            # Native SDK initialization may replace OS signal handlers. Restore ours
+            # before entering the loop so SIGINT does not tear ROS down first.
+            handlers={sig:signal.getsignal(sig) for sig in (signal.SIGINT,signal.SIGTERM,signal.SIGHUP)}
+            try:
+                self.bot = Astribot(freq=HZ, high_control_rights=True)
+            finally:
+                for sig,handler in handlers.items(): signal.signal(sig,handler)
             if not self.has_control():
                 raise RuntimeError('未获得底盘控制权')
             def spin():
@@ -306,7 +327,7 @@ class SDKBackend:
                     while not self.done.is_set():
                         middleware.spin()
                 except Exception as exc:
-                    self.error = exc
+                    if not getattr(self,'closing',False): self.error = exc
             self.thread = threading.Thread(target=spin, daemon=True)
             self.thread.start()
             position(self.bot.get_current_joints_position([self.bot.chassis_name])[0])
@@ -323,7 +344,7 @@ class SDKBackend:
 
     def check(self):
         if self.error is not None:
-            raise RuntimeError('SDK 通信线程异常: %s' % self.error)
+            raise RuntimeError('SDK 通信线程异常 [%s]: %s' % (type(self.error).__name__, self.error)) from self.error
 
     def send(self, p):
         self.bot.set_joints_position([self.bot.chassis_name], [p],
@@ -460,6 +481,7 @@ class SDKBackend:
                 raise RuntimeError('SDK 打包姿态失败: ' + result)
 
     def close(self):
+        self.closing=True
         try:
             if self.bot:
                 iface = self.bot.astribot_interface
@@ -510,6 +532,10 @@ def run(args):
     saved = termios.tcgetattr(fd)
     handlers = {}
     signaled = []
+    display=None
+    log_warning=None
+    events = EventLog(getattr(args, "event_log", None))
+    events.emit("session_start", dry_run=args.dry_run, linear=keys.linear, angular=keys.angular, torso_speed=torso_speed)
     def halt(sig, frame):
         signaled.append(sig)
         keys.quit = True
@@ -526,6 +552,8 @@ def run(args):
                 print('演练模式：不连接 SDK' if args.dry_run else
                       '将申请 S1 控制权。软件停止为保持目标，可能存在收敛尾程。', flush=True)
                 backend = FakeBackend() if args.dry_run else SDKBackend(pack)
+                backend = LoggedBackend(backend, events)
+                backend.has_control()
                 if keys.quit:
                     return 128 + signaled[0] if signaled else 0
                 health.check(time.monotonic())
@@ -533,6 +561,7 @@ def run(args):
                 poses = PoseControl(backend)
                 torso = TorsoHeight(backend)
                 configure_terminal(fd)
+                display=StatusOutput(fd)
                 print('READY | W/S 前后 · Q/E 左右转 · A/D 左右横移 · R/F 腰部升降 · 长按 H 初始/P 打包 · 空格停止 · +/- 调速 · X 退出', flush=True)
                 print('坐标模式 SDK202_LOCAL：W/S 仅增减局部 x，A/D 仅增减局部 y，Q/E 仅增减 yaw；不作全局旋转。', flush=True)
                 print('按键有效期 0.2 秒；H/P 需连续重复 0.6 秒，松键超时停止；短按不切换姿态。', flush=True)
@@ -545,12 +574,18 @@ def run(args):
                     time.sleep(1. / HZ)
                     now = time.monotonic()
                     health.check(now)
+                    try: events.check()
+                    except RuntimeError as exc:
+                        if log_warning is None:
+                            log_warning='警告：遥操事件录制失败，键盘控制继续；本轮记录不完整'
+                            display.write('\r\033[2K'+log_warning+'：'+str(exc)+'\n')
                     if select.select([fd], [], [], 0)[0]:
                         data = os.read(fd, 4096)
                         if not data:
                             keys.quit = True
                             break
                         keys.feed(data.decode('ascii', errors='replace'), now)
+                        events.emit('keys', text=data.decode('ascii', errors='replace'), linear=keys.linear, angular=keys.angular, torso_speed=torso_speed)
                     if keys.quit:
                         break
                     velocity = keys.sample(now)
@@ -587,9 +622,10 @@ def run(args):
                         status = '%s | v=%.3f m/s w=%.3f rad/s | local_cmd=[%.4f, %.4f, %.4f]' % (
                             keys.message, keys.linear, keys.angular, *driver.target)
                         columns = os.get_terminal_size(fd).columns or 240
-                        print('\r\033[2K' + fit_status(status, columns), end='', flush=True)
+                        display.write('\r\033[2K' + fit_status(('⚠ 记录失败 | ' if log_warning else '')+status, columns))
                         show = now + .2
-                print('\n退出：停止积分，清理控制会话。', flush=True)
+                events.emit('exit_requested', signals=list(signaled), message=keys.message)
+                display.write('\r\033[2K退出：停止积分，清理控制会话。\n')
                 return 128 + signaled[0] if signaled else 0
             finally:
                 if backend:
@@ -600,14 +636,23 @@ def run(args):
                             poses.close()
                     finally:
                         finish(driver, backend, args.dry_run)
+    except BaseException as exc:
+        events.emit("failure", error=str(exc), exception=type(exc).__name__)
+        raise
     finally:
+        events.emit("session_end", signals=list(signaled))
         health.close()
+        if display: display.close()
         try:
             termios.tcsetattr(fd, termios.TCSANOW, saved)
         except (OSError, termios.error):
             pass  # SSH may already have closed the terminal.
         for sig, handler in handlers.items():
             signal.signal(sig, handler)
+        try: events.close()
+        except RuntimeError as exc:
+            # Record failure remains visible and parent verifies the missing session_end.
+            print('警告：事件记录不完整：'+str(exc),file=sys.stderr)
 
 
 def main():
@@ -618,6 +663,7 @@ def main():
     parser.add_argument('--dry-run', action='store_true', help='不加载 SDK，仅演练键盘与目标积分')
     default_pack = Path(__file__).resolve().parents[1] / 'config/teleop_pack_pose.json'
     parser.add_argument('--pack-pose', default=str(default_pack) if default_pack.exists() else None, help='带来源及动作顺序的打包姿态 JSON；未指定则禁用 P')
+    parser.add_argument('--event-log', help='独立遥操事件 JSONL 文件，不覆盖已有文件')
     parser.add_argument('--session-fd', type=int, default=None, help=argparse.SUPPRESS)
     args = parser.parse_args()
     try:

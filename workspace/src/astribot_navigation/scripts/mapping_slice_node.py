@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Separate occupancy worker; no SDK and no control loop work."""
+from array import array
 import argparse
 import json
 from pathlib import Path
@@ -40,7 +41,8 @@ def main():
     last=0.;tf_sent=False
     def publish():
         nonlocal tf_sent
-        snapshot=engine.snapshot();snapshot['worker_updated']=time.time()
+        a=engine.grid.raster()
+        snapshot=engine.snapshot(a);snapshot['worker_updated']=time.time()
         atomic_json(run/'slice_live.json',snapshot)
         if engine.level is not None and not tf_sent:
             tf=TransformStamped();tf.header.frame_id=engine.poses.frame;tf.child_frame_id=config['frame']
@@ -53,9 +55,9 @@ def main():
         if not engine.grid.score.size:return
         msg=OccupancyGrid();msg.header.frame_id=config['frame']
         msg.header.stamp.sec=engine.latest_ns//1000000000;msg.header.stamp.nanosec=engine.latest_ns%1000000000
-        a=engine.grid.raster();msg.info.width=a.shape[1];msg.info.height=a.shape[0];msg.info.resolution=engine.grid.r
+        msg.info.width=a.shape[1];msg.info.height=a.shape[0];msg.info.resolution=engine.grid.r
         msg.info.origin.position.x,msg.info.origin.position.y=map(float,engine.grid.origin*engine.grid.r)
-        msg.info.origin.orientation.w=1.;msg.data=a.ravel().tolist();pub.publish(msg)
+        msg.info.origin.orientation.w=1.;msg.data=array('b',a.tobytes());pub.publish(msg)
     try:
         while not stop:
             rclpy.spin_once(node,timeout_sec=.05)

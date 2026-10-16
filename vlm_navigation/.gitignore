@@ -5,3 +5,7 @@ logs/
 __pycache__/
 *.pyc
 assets/observations/
+
+# Local sensor recordings and validation exports
+reports/collection-*/
+reports/stability-*/
