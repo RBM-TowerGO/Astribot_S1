@@ -33,7 +33,8 @@ def test_command_guard_stale_scan_invalid_twist_and_clock_jump():
             if scanned:m=LaserScan();m.header.stamp=stamp;scan.publish(m)
             m=Twist();m.linear.x=value;cmd.publish(m);spin(.02)
         for i in range(10):publish(1+i*.05)
-        assert any(m.linear.x>.1 for m in out)
+        assert out and max(m.linear.x for m in out)<=.1
+        assert any(abs(m.linear.x-.1)<1e-9 for m in out)
         out.clear()
         for i in range(20):publish(1.5+i*.05,False)
         assert out and out[-1].linear.x==0

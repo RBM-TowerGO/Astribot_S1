@@ -7,7 +7,7 @@ from rclpy.node import Node
 from rclpy.clock import Clock, ClockType
 from rclpy.qos import qos_profile_sensor_data
 from rosgraph_msgs.msg import Clock as ClockMsg
-from geometry_msgs.msg import Twist, TransformStamped
+from geometry_msgs.msg import Twist, TransformStamped, PoseWithCovarianceStamped
 from nav_msgs.msg import Odometry
 from std_msgs.msg import Header, Bool
 from std_srvs.srv import SetBool
@@ -15,12 +15,15 @@ from sensor_msgs_py import point_cloud2
 from tf2_ros import TransformBroadcaster, StaticTransformBroadcaster
 from .world import geometry,route,raycast,advance,wrap,collides
 
+MAX_LINEAR_SPEED = .1
+MAX_ANGULAR_SPEED = .1
+
 class Simulator(Node):
     def __init__(self):
         super().__init__('towergo_simulator')
         if os.environ.get('ROS_DOMAIN_ID')!='125':
             raise RuntimeError('Offline simulator requires ROS_DOMAIN_ID=125')
-        for k,v in [('scenario','room'),('seed',42),('noise',False),('mapping',False),('rate',2.)]: self.declare_parameter(k,v)
+        for k,v in [('scenario','room'),('seed',42),('noise',False),('mapping',False),('rate',2.),('map_yaml','')]: self.declare_parameter(k,v)
         self.scenario=self.get_parameter('scenario').value
         self.segments=geometry(self.scenario)
         self.rng=np.random.default_rng(self.get_parameter('seed').value)
@@ -28,6 +31,16 @@ class Simulator(Node):
         self.mapping=self.get_parameter('mapping').value
         self.path=route(self.scenario); self.waypoint=0
         self.truth=np.zeros(3); self.odom=np.zeros(3); self.tick_count=0
+        self.grid = None
+        self.navigation_enabled = True
+        self.gate_received = 0.
+        if self.get_parameter('map_yaml').value:
+            from .grid_world import GridWorld
+            self.grid = GridWorld(self.get_parameter('map_yaml').value)
+            self.truth = self.grid.initial_pose(); self.odom = self.truth.copy()
+            self.navigation_enabled = False
+            self.create_subscription(PoseWithCovarianceStamped, '/sim/reset_pose', self.reset_pose, 1)
+            self.create_subscription(Bool, '/sim/navigation_enabled', self.navigation_gate, 1)
         self.dt=.02; self.command=(0.,0.); self.command_time=-10.; self.wall_command=0.
         self.sensors_enabled=True; self.paused=False
         self.clock_pub=self.create_publisher(ClockMsg,'/clock',10)
@@ -55,17 +68,31 @@ class Simulator(Node):
     def pause(self,req,res):
         self.paused=req.data; self.command=(0.,0.); res.success=True; return res
     def block(self,req,res):
+        if self.grid:
+            res.success=False; res.message='Synthetic barriers are unavailable in recorded-map mode'; return res
         # Barrier around the start cell for an intentionally unreachable navigation goal.
         self.segments=geometry(self.scenario)
         if req.data:
             extra=np.array([[[.9,-1.9],[.9,1.]],[[.9,1.],[-1.9,1.]]])
             self.segments=np.concatenate([self.segments,extra])
         res.success=True; return res
+    def navigation_gate(self, msg):
+        self.navigation_enabled = msg.data
+        self.gate_received = time.monotonic()
+        if not msg.data: self.command = (0., 0.)
+    def reset_pose(self, msg):
+        p = msg.pose.pose
+        q = p.orientation
+        pose = np.array([p.position.x, p.position.y, math.atan2(2*q.w*q.z, 1-2*q.z*q.z)])
+        if self.grid and not self.navigation_enabled and msg.header.frame_id == 'map' and self.grid.safe(pose):
+            self.truth = pose; self.odom = pose.copy(); self.command = (0., 0.)
     def on_command(self,m):
         vals=[m.linear.x,m.linear.y,m.linear.z,m.angular.x,m.angular.y,m.angular.z]
         valid=all(math.isfinite(x) for x in vals) and all(abs(vals[i])<1e-9 for i in (1,2,3,4))
-        self.command=(min(.2,max(0.,m.linear.x)),min(.3,max(-.3,m.angular.z))) if valid else (0.,0.)
+        self.command=(min(MAX_LINEAR_SPEED,max(0.,m.linear.x)),
+                      min(MAX_ANGULAR_SPEED,max(-MAX_ANGULAR_SPEED,m.angular.z))) if valid else (0.,0.)
         self.command_time=self.tick_count*self.dt; self.wall_command=time.monotonic()
+        if not self.navigation_enabled: self.command=(0.,0.)
     def stamp(self):
         ns=int(round(self.tick_count*self.dt*1e9))
         return __import__('builtin_interfaces.msg',fromlist=['Time']).Time(sec=ns//10**9,nanosec=ns%10**9)
@@ -83,8 +110,9 @@ class Simulator(Node):
         self.clock_pub.publish(ClockMsg(clock=self.stamp()))
         v,w=self.command
         if self.tick_count*self.dt-self.command_time>.5 or time.monotonic()-self.wall_command>.5: v=w=0.
+        if not self.navigation_enabled or (self.grid and time.monotonic()-self.gate_received > .5): v=w=0.
         proposed=advance(self.truth,v,w,self.dt)
-        hit=collides(proposed,self.segments)
+        hit=not self.grid.safe(proposed) if self.grid else collides(proposed,self.segments)
         if not hit: self.truth=proposed
         else: v=w=0.
         bias=1.005 if self.noise else 1.
@@ -102,14 +130,15 @@ class Simulator(Node):
                 dx=self.path[self.waypoint][0]-self.odom[0]; dy=self.path[self.waypoint][1]-self.odom[1]
                 if math.hypot(dx,dy)<.12: self.waypoint+=1
                 else:
-                    err=wrap(math.atan2(dy,dx)-self.odom[2]); cmd.angular.z=max(-.3,min(.3,err))
-                    cmd.linear.x=.2 if abs(err)<.2 else 0.
+                    err=wrap(math.atan2(dy,dx)-self.odom[2])
+                    cmd.angular.z=max(-MAX_ANGULAR_SPEED,min(MAX_ANGULAR_SPEED,err))
+                    cmd.linear.x=MAX_LINEAR_SPEED if abs(err)<.2 else 0.
             self.route_pub.publish(cmd); self.done_pub.publish(Bool(data=self.waypoint==len(self.path)))
         if self.sensors_enabled and self.tick_count%5==0:
             angles=np.linspace(-math.pi,math.pi,720,endpoint=False)
             for side,x,yaw in [('front',.3,0.),('back',-.3,math.pi)]:
                 a=self.truth[2]; origin=self.truth[:2]+x*np.array([math.cos(a),math.sin(a)])
-                distances=raycast(origin,angles+a+yaw,self.segments)
+                distances=self.grid.raycast(origin,angles+a+yaw) if self.grid else raycast(origin,angles+a+yaw,self.segments)
                 if self.noise: distances=distances+self.rng.normal(0,.01,len(distances))
                 ok=np.isfinite(distances)&(distances>.15)
                 points=np.stack((distances[ok]*np.cos(angles[ok]),distances[ok]*np.sin(angles[ok]),np.zeros(ok.sum())),axis=1)

@@ -19,5 +19,15 @@ case "${1:-help}" in
       -e "TOWERGO_IMAGE_ID=$IMAGE_ID" -e HOME=/tmp -e ROS_DOMAIN_ID=125 -e ROS_LOCALHOST_ONLY=1 \
       -v "$WS/data:/data" "$IMAGE" "$@"
     ;;
-  *) echo 'Usage: container.sh build | run <command...>'; exit 2;;
+  web)
+    shift
+    if [ "$#" -ne 1 ]; then echo 'Usage: container.sh web /data/path/to/map.yaml'; exit 2; fi
+    # ROS stays container-local; only the browser HTTP port is forwarded to host loopback.
+    sudo docker run --rm --init --name towergo-nav-web --network bridge --ipc private --cap-drop ALL \
+      --security-opt no-new-privileges --user "$(id -u):$(id -g)" \
+      -e HOME=/tmp -e ROS_DOMAIN_ID=125 -e ROS_LOCALHOST_ONLY=1 \
+      -p 127.0.0.1:8766:8766 -v "$WS/data:/data:ro" \
+      "$IMAGE" ros2 launch astribot_nav_bringup web_navigation.launch.py "map:=$1"
+    ;;
+  *) echo 'Usage: container.sh build | run <command...> | web /data/path/to/map.yaml'; exit 2;;
 esac

@@ -1,0 +1,5 @@
+<library path="towergo_exact_goal_lattice">
+  <class name="astribot_nav_bringup/ExactGoalLattice" type="astribot_nav_bringup::ExactGoalLattice" base_class_type="nav2_core::GlobalPlanner">
+    <description>Nav2 lattice planning with collision-checked exact terminal pose.</description>
+  </class>
+</library>

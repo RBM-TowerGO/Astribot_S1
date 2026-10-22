@@ -1,12 +1,20 @@
 """Pure validation, intentionally independent of Astribot SDK and ROS imports."""
 import math
 
-def checked_command(values, max_v=.2, max_w=.3):
+MAX_LINEAR_SPEED = .1
+MAX_ANGULAR_SPEED = .1
+
+
+def checked_command(values, max_v=MAX_LINEAR_SPEED, max_w=MAX_ANGULAR_SPEED):
     if len(values)!=6 or not all(math.isfinite(float(x)) for x in values):
         raise ValueError('Twist must contain six finite numbers')
     if any(abs(values[i])>1e-9 for i in (1,2,3,4)):
         raise ValueError('Only forward motion and yaw are enabled')
-    return max(0.,min(max_v,values[0])),max(-max_w,min(max_w,values[5]))
+    # Scale both components together: independent clipping changes curvature
+    # and makes a path follower take wider turns than its collision prediction.
+    v=max(0.,float(values[0])); w=float(values[5])
+    scale=max(1.,v/max_v,abs(w)/max_w)
+    return v/scale,w/scale
 
 def inspect_state(msg):
     p=list(msg.position); v=list(msg.velocity)

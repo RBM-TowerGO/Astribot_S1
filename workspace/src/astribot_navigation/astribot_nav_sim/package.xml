@@ -12,4 +12,5 @@
 <depend>std_msgs</depend>
 <depend>std_srvs</depend>
 <depend>python3-numpy</depend>
+<depend>python3-pil</depend>
 <export><build_type>ament_python</build_type></export></package>

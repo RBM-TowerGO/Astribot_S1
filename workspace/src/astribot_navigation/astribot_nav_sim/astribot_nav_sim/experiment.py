@@ -149,7 +149,7 @@ class Run:
         start=self.node.last_truth_stamp;converged=None;wall_start=time.monotonic()
         while self.node.last_truth_stamp-start<15.:
             if time.monotonic()-wall_start>30. or (self.process and self.process.poll() is not None):raise RuntimeError('Clock stopped or launch exited during localization')
-            m=Twist();m.angular.z=.2;self.node.command.publish(m)
+            m=Twist();m.angular.z=.1;self.node.command.publish(m)
             if self.node.estimate:
                 row=self.node.estimate[-1]
                 if row[0]>=start and math.hypot(row[1]-row[4],row[2]-row[5])<=.15 and abs(wrap(row[3]-row[6]))<=math.radians(5):
@@ -187,9 +187,9 @@ class Run:
         out['cancel']={'accepted':bool(response.goals_canceling),'stop_seconds':self.node.last_truth_stamp-begin,'passed':stopped and self.node.last_truth_stamp-begin<=.5}
         if self.node.result_future:completed(self.node.result_future,15.)
         # Controlled synthetic commands establish movement before sensor loss.
-        for _ in range(20):m=Twist();m.angular.z=.2;self.node.command.publish(m);time.sleep(.02)
+        for _ in range(20):m=Twist();m.angular.z=.1;self.node.command.publish(m);time.sleep(.02)
         begin=self.node.last_truth_stamp;self.node.switch('sensors_enabled',False)
-        for _ in range(50):m=Twist();m.angular.z=.2;self.node.command.publish(m);time.sleep(.02)
+        for _ in range(50):m=Twist();m.angular.z=.1;self.node.command.publish(m);time.sleep(.02)
         out['sensor_loss']={'passed':sum(abs(v) for v in self.node.actual_velocity)<.001,'elapsed_sim_seconds':self.node.last_truth_stamp-begin}
         self.node.command.publish(Twist());self.node.switch('sensors_enabled',True)
         self.node.switch('pause',True);stamp=self.node.last_truth_stamp;time.sleep(.6)

@@ -19,8 +19,12 @@ RUN echo "5cc31b72e89903ee1b2c44699e93a800e4e425f3b9eee17d7c0c20e12a66f8af  /tmp
   && cd /slam_overlay && MAKEFLAGS=-j2 CMAKE_BUILD_PARALLEL_LEVEL=2 colcon build --parallel-workers 1 --cmake-args -DBUILD_TESTING=OFF -DCMAKE_BUILD_TYPE=Release \
   && printf 'slam_toolbox 2.6.10 8293d21fe5c816d0405e0cc1f3eb46c70659c267 + TowerGO grid padding\n' > /slam_overlay/PROVENANCE.txt
 WORKDIR /towergo
+RUN apt-get update && apt-get install -y --no-install-recommends python3-pil \
+  && rm -rf /var/lib/apt/lists/*
+ENV TOWERGO_OFFLINE_SIM=1
 COPY . /towergo/src/astribot_navigation
-RUN source /slam_overlay/install/setup.bash && colcon build --symlink-install --parallel-workers 2 --packages-ignore towergo_real towergo_livox_adapter \
+# Synthetic sensors do not need the real MID360/Livox adapters or vendor messages.
+RUN source /slam_overlay/install/setup.bash && colcon build --symlink-install --parallel-workers 2 --packages-ignore towergo_real towergo_livox_adapter towergo_dual_livox \
   && dpkg-query -W > /towergo/dependency-versions.txt && cat /slam_overlay/PROVENANCE.txt >> /towergo/dependency-versions.txt
 COPY docker/entrypoint.sh /towergo-entrypoint.sh
 RUN chmod +x /towergo-entrypoint.sh

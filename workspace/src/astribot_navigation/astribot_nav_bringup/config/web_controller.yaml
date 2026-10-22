@@ -1,0 +1,66 @@
+# Recorded-map browser simulation profile. Standard experiments retain DWB.
+planner_server:
+  ros__parameters:
+    expected_planner_frequency: 0.25
+    GridBased:
+      plugin: astribot_nav_bringup/ExactGoalLattice
+      tolerance: 0.15
+      allow_unknown: false
+      lattice_filepath: /opt/ros/humble/share/nav2_smac_planner/sample_primitives/5cm_resolution/0.5m_turning_radius/diff/output.json
+      allow_reverse_expansion: false
+      cache_obstacle_heuristic: true
+      max_planning_time: 5.0
+      max_iterations: 1000000
+      cost_penalty: 3.0
+      analytic_expansion_max_length: 4.0
+      smooth_path: false
+controller_server:
+  ros__parameters:
+    # A fresh global plan may take longer than the 0.3 s base tolerance.
+    # Keep stopped during a predicted collision while replanning catches up.
+    failure_tolerance: 5.0
+    goal_checker:
+      xy_goal_tolerance: 0.15
+      yaw_goal_tolerance: 0.08
+      stateful: true
+    FollowPath:
+      plugin: nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController
+      desired_linear_vel: 0.08
+      lookahead_dist: 0.25
+      min_lookahead_dist: 0.2
+      max_lookahead_dist: 0.5
+      lookahead_time: 2.0
+      use_velocity_scaled_lookahead_dist: false
+      use_interpolation: true
+      use_rotate_to_heading: true
+      rotate_to_heading_min_angle: 0.12
+      rotate_to_heading_angular_vel: 0.1
+      max_angular_accel: 0.1
+      allow_reversing: false
+      use_collision_detection: true
+      max_allowed_time_to_collision_up_to_carrot: 2.0
+      use_regulated_linear_velocity_scaling: true
+      regulated_linear_scaling_min_radius: 1.0
+      regulated_linear_scaling_min_speed: 0.02
+      use_cost_regulated_linear_velocity_scaling: true
+      cost_scaling_dist: 0.45
+      cost_scaling_gain: 1.0
+      inflation_cost_scaling_factor: 5.0
+      min_approach_linear_velocity: 0.015
+      approach_velocity_scaling_dist: 0.4
+      transform_tolerance: 0.3
+local_costmap:
+  local_costmap:
+    ros__parameters:
+      track_unknown_space: true
+      plugins: [static_layer, obstacle_layer, inflation_layer]
+      static_layer:
+        plugin: nav2_costmap_2d::StaticLayer
+        map_subscribe_transient_local: true
+        subscribe_to_updates: true
+        map_topic: /sim/collision_map
+global_costmap:
+  global_costmap:
+    ros__parameters:
+      static_layer:
+        map_topic: /sim/collision_map

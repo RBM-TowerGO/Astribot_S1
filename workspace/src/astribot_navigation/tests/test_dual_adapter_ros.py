@@ -6,6 +6,8 @@ import subprocess
 import time
 import uuid
 import unittest
+if os.environ.get('TOWERGO_OFFLINE_SIM') == '1':
+    raise unittest.SkipTest('Synthetic navigation image excludes the vendor Livox adapter; test it in the dual-lidar overlay')
 ROS_TEST = os.environ.get('ROS_DOMAIN_ID')=='125' and os.environ.get('ROS_LOCALHOST_ONLY')=='1'
 if ROS_TEST:
     import rclpy

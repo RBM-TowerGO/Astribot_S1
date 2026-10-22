@@ -10,8 +10,8 @@ def check(context):
     return []
 
 def generate_launch_description():
-    args=[DeclareLaunchArgument(k,default_value=v) for k,v in [('scenario','room'),('seed','42'),('noise','false'),('rate','2.0'),('mapping','false'),('scan_source','front')]]
-    params={'use_sim_time':True,**{k:ParameterValue(LaunchConfiguration(k),value_type=t) for k,t in [('scenario',str),('seed',int),('noise',bool),('rate',float),('mapping',bool)]}}
+    args=[DeclareLaunchArgument(k,default_value=v) for k,v in [('scenario','room'),('seed','42'),('noise','false'),('rate','2.0'),('mapping','false'),('scan_source','front'),('map_yaml','')]]
+    params={'use_sim_time':True,**{k:ParameterValue(LaunchConfiguration(k),value_type=t) for k,t in [('scenario',str),('seed',int),('noise',bool),('rate',float),('mapping',bool),('map_yaml',str)]}}
     return LaunchDescription(args+[OpaqueFunction(function=check),
       Node(package='astribot_nav_sim',executable='simulator',parameters=[params],output='screen'),
       Node(package='astribot_nav_sensors',executable='scan_processor',parameters=[{'use_sim_time':True,'scan_source':LaunchConfiguration('scan_source')}],output='screen'),
