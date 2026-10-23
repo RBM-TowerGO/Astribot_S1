@@ -64,9 +64,9 @@ ssh -N -L 8767:127.0.0.1:8767 S1B
 python3 -m pytest -q tests/test_navigation_recovery.py tests/test_real_navigation.py tests/test_navigation_chassis_interface.py tests/test_web_navigation.py tests/test_tg_teleop.py tests/test_mapping.py
 bash scripts/tg-navigation.sh --mode hardware --check
 ```
-`--check`本次提交前执行上述六组测试：112 passed, 1 skipped（27.08 秒）；暂存内容通过 git diff --cached --check。
+本次提交前执行上述六组测试：112 passed, 1 skipped（27.08 秒）；暂存内容通过 git diff --cached --check。
 
- 不创建 SDK。替身测试涵盖 SDK 初始化与控制权交接，但不是实际硬件端到端运行证据。现场确实观察到过传感器/SDK上线，尚未观察到稳定的完整 AMCL 就绪及导航到点结果。
+`--check` 不创建 SDK。替身测试涵盖 SDK 初始化与控制权交接，但不是实际硬件端到端运行证据。现场确实观察到过传感器/SDK上线，尚未观察到稳定的完整 AMCL 就绪及导航到点结果。
 
 ## 提交范围
 
