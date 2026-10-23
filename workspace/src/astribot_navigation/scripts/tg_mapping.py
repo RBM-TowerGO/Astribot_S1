@@ -23,6 +23,31 @@ HERE = Path(__file__).resolve().parent
 DATA = HERE.parents[2]/'data'/'mapping'
 
 
+def lidar_control(node, on, pump=None):
+    """Shared vendor sensor switch for keyboard SLAM and navigation.
+
+    Mapping has a background spinner. Navigation supplies its foreground pump.
+    """
+    from std_srvs.srv import SetBool
+    client=node.create_client(SetBool,'/astribot_lidar_control')
+    try:
+        if not client.wait_for_service(timeout_sec=5):
+            raise RuntimeError('LiDAR control service unavailable')
+        req=SetBool.Request(); req.data=on
+        future=client.call_async(req); deadline=time.monotonic()+15
+        while not future.done() and time.monotonic()<deadline:
+            if pump is None: time.sleep(.05)
+            else: pump()
+        if not future.done():
+            raise RuntimeError('LiDAR service timed out; outcome unknown, do not retry automatically')
+        response=future.result()
+        if not response.success:
+            raise RuntimeError('LiDAR service failed: '+response.message)
+        return response.message
+    finally:
+        node.destroy_client(client)
+
+
 def topic_names(prefix):
     return {key: prefix+'/'+suffix for key,suffix in {
         'lidar':'lidar', 'imu':'imu', 'odom':'odometry', 'cloud':'cloud_registered',
@@ -113,17 +138,7 @@ class ROSObserver:
         self.thread=threading.Thread(target=spin,daemon=True); self.thread.start()
 
     def lidar(self, on):
-        from std_srvs.srv import SetBool
-        client=self.node.create_client(SetBool,'/astribot_lidar_control')
-        try:
-            if not client.wait_for_service(timeout_sec=5): raise RuntimeError('LiDAR control service unavailable')
-            req=SetBool.Request(); req.data=on
-            future=client.call_async(req); deadline=time.monotonic()+15
-            while not future.done() and time.monotonic()<deadline: time.sleep(.05)
-            if not future.done(): raise RuntimeError('LiDAR service timed out; outcome unknown, do not retry automatically')
-            response=future.result()
-            if not response.success: raise RuntimeError('LiDAR service failed: '+response.message)
-        finally: self.node.destroy_client(client)
+        return lidar_control(self.node, on)
 
     def camera(self, on):
         from std_srvs.srv import SetBool

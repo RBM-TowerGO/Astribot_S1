@@ -12,6 +12,10 @@ class CommandGuard(Node):
     def __init__(self):
         super().__init__('command_guard')
         self.declare_parameter('backend','sim')
+        self.declare_parameter('max_linear_speed', .1)
+        self.max_linear_speed = float(self.get_parameter('max_linear_speed').value)
+        if not 0 < self.max_linear_speed <= .3:
+            raise ValueError('Simulation max_linear_speed must be in (0, 0.3]')
         if self.get_parameter('backend').value!='sim':
             raise RuntimeError('Hardware backend is not implemented')
         self.pub=self.create_publisher(Twist,'/cmd_vel',10)
@@ -23,7 +27,7 @@ class CommandGuard(Node):
         self.create_timer(.02,self.tick)
     def command(self,m):
         try:
-            self.target=checked_command([m.linear.x,m.linear.y,m.linear.z,m.angular.x,m.angular.y,m.angular.z])
+            self.target=checked_command([m.linear.x,m.linear.y,m.linear.z,m.angular.x,m.angular.y,m.angular.z], max_v=self.max_linear_speed)
             self.last_cmd=self.get_clock().now().nanoseconds*1e-9
             self.wall_cmd=time.monotonic()
         except ValueError as e:

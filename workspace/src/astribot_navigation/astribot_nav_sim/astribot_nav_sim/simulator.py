@@ -23,7 +23,7 @@ class Simulator(Node):
         super().__init__('towergo_simulator')
         if os.environ.get('ROS_DOMAIN_ID')!='125':
             raise RuntimeError('Offline simulator requires ROS_DOMAIN_ID=125')
-        for k,v in [('scenario','room'),('seed',42),('noise',False),('mapping',False),('rate',2.),('map_yaml','')]: self.declare_parameter(k,v)
+        for k,v in [('max_linear_speed', .1),('scenario','room'),('seed',42),('noise',False),('mapping',False),('rate',2.),('map_yaml','')]: self.declare_parameter(k,v)
         self.scenario=self.get_parameter('scenario').value
         self.segments=geometry(self.scenario)
         self.rng=np.random.default_rng(self.get_parameter('seed').value)
@@ -41,6 +41,9 @@ class Simulator(Node):
             self.navigation_enabled = False
             self.create_subscription(PoseWithCovarianceStamped, '/sim/reset_pose', self.reset_pose, 1)
             self.create_subscription(Bool, '/sim/navigation_enabled', self.navigation_gate, 1)
+        self.max_linear_speed = float(self.get_parameter('max_linear_speed').value)
+        if not 0 < self.max_linear_speed <= .3:
+            raise ValueError('Simulation max_linear_speed must be in (0, 0.3]')
         self.dt=.02; self.command=(0.,0.); self.command_time=-10.; self.wall_command=0.
         self.sensors_enabled=True; self.paused=False
         self.clock_pub=self.create_publisher(ClockMsg,'/clock',10)
@@ -89,7 +92,7 @@ class Simulator(Node):
     def on_command(self,m):
         vals=[m.linear.x,m.linear.y,m.linear.z,m.angular.x,m.angular.y,m.angular.z]
         valid=all(math.isfinite(x) for x in vals) and all(abs(vals[i])<1e-9 for i in (1,2,3,4))
-        self.command=(min(MAX_LINEAR_SPEED,max(0.,m.linear.x)),
+        self.command=(min(self.max_linear_speed,max(0.,m.linear.x)),
                       min(MAX_ANGULAR_SPEED,max(-MAX_ANGULAR_SPEED,m.angular.z))) if valid else (0.,0.)
         self.command_time=self.tick_count*self.dt; self.wall_command=time.monotonic()
         if not self.navigation_enabled: self.command=(0.,0.)

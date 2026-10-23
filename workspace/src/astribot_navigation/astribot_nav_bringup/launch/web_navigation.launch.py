@@ -44,7 +44,7 @@ def generate_launch_description():
         OpaqueFunction(function=validate),
         OpaqueFunction(function=prepare_collision_map),
         IncludeLaunchDescription(PythonLaunchDescriptionSource(str(Path(share)/'launch/offline_navigation.launch.py')),
-            launch_arguments={'map':LaunchConfiguration('map'), 'sim_map':LaunchConfiguration('map'),
+            launch_arguments={'max_linear_speed':'0.3', 'map':LaunchConfiguration('map'), 'sim_map':LaunchConfiguration('map'),
                               'collision_map':LaunchConfiguration('collision_map'),
                               'navigation_bt':str(Path(share)/'config/web_navigation.xml'),
                               'rate':LaunchConfiguration('rate'), 'noise':'true', 'scan_source':'dual',

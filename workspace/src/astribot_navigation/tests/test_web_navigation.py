@@ -81,3 +81,34 @@ def test_collision_revokes_simulation_permission_immediately():
     assert fake.stop_pending and gates==[False] and '已停止' in fake.state['error']
     WebNavigation.collision(fake,S(data=True))
     assert gates==[False] and len(events)==1
+
+
+@pytest.mark.parametrize('value', [.02, .08, .1, .3])
+def test_navigation_speed_range(value):
+    from nav_web import navigation_speed
+    assert navigation_speed(value) == value
+
+
+@pytest.mark.parametrize('value', [0, -.1, .301, float('nan'), float('inf')])
+def test_navigation_speed_rejects_invalid_values(value):
+    from nav_web import navigation_speed
+    with pytest.raises(ValueError): navigation_speed(value)
+
+
+@pytest.mark.parametrize('success,cancelled,ready,expected', [
+    (True,False,True,True), (False,False,True,False),
+    (True,True,True,False), (True,False,False,False)])
+def test_goal_requires_speed_acknowledgement(success,cancelled,ready,expected):
+    sent=[]; gates=[]
+    future=S(result=lambda:S(result=S(successful=success,reason='rejected')))
+    fake=S(lock=threading.RLock(),speed_future=future,stop_pending=cancelled,
+           state={'ready':ready},busy=True,set_gate=gates.append,
+           send_navigation_goal=sent.append)
+    WebNavigation.speed_applied(fake,future,[1.,2.,0.],.3)
+    assert bool(sent)==expected
+    if not expected: assert not fake.busy and gates==[False]
+
+
+def test_stale_speed_reply_cannot_start_goal():
+    fake=S(lock=threading.RLock(),speed_future=None)
+    WebNavigation.speed_applied(fake,object(),[1.,2.,0.],.3)

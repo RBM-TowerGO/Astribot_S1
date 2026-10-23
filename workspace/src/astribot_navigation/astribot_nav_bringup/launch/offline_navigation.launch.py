@@ -45,6 +45,7 @@ def navigation_nodes(context):
 def generate_launch_description():
     p=get_package_share_directory('astribot_nav_bringup')
     return LaunchDescription([
+        DeclareLaunchArgument('max_linear_speed',default_value='0.1'),
         DeclareLaunchArgument('map'),DeclareLaunchArgument('sim_map',default_value=''),
         DeclareLaunchArgument('controller_config',default_value=''),
         DeclareLaunchArgument('collision_map',default_value=''),
@@ -54,5 +55,5 @@ def generate_launch_description():
         DeclareLaunchArgument('cost_scaling_factor',default_value='3.0'),
         OpaqueFunction(function=check),
         IncludeLaunchDescription(PythonLaunchDescriptionSource(os.path.join(p,'launch','simulation.launch.py')),
-            launch_arguments={'mapping':'false','map_yaml':LaunchConfiguration('sim_map')}.items()),
+            launch_arguments={'max_linear_speed':LaunchConfiguration('max_linear_speed'),'mapping':'false','map_yaml':LaunchConfiguration('sim_map')}.items()),
         OpaqueFunction(function=navigation_nodes)])

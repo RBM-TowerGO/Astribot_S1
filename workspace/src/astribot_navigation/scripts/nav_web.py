@@ -18,6 +18,7 @@ from rclpy.node import Node
 from rclpy.parameter import Parameter
 from rclpy.qos import qos_profile_sensor_data
 from rcl_interfaces.msg import Log
+from rcl_interfaces.srv import SetParametersAtomically
 from geometry_msgs.msg import PoseWithCovarianceStamped, Twist
 from nav_msgs.msg import Odometry, Path as NavPath
 from nav2_msgs.action import NavigateToPose
@@ -26,6 +27,13 @@ from std_msgs.msg import Bool
 from tf2_ros import Buffer, TransformListener
 from rclpy.time import Time
 from astribot_nav_sim.grid_world import GridWorld
+
+
+def navigation_speed(value):
+    speed = float(value)
+    if not math.isfinite(speed) or not .02 <= speed <= .3:
+        raise ValueError('前进速度须在 0.02–0.30 m/s 之间')
+    return speed
 
 
 def pose_values(p):
@@ -42,9 +50,11 @@ class WebNavigation(Node):
         self.state = dict(mode='simulation', status='请选择起点', pose=None, truth=None,
                           trajectory=[], truth_trajectory=[], plan=[], local_plan=[], start=None,
                           goal=None, velocity=[0., 0.], command_velocity=[0.,0.], collisions=0, distance_remaining=None,
-                          max_linear=.1, max_angular=.1, ready=False, initialized=False,
+                          max_linear=.3, max_angular=.1, requested_speed=.08, ready=False, initialized=False,
                           error='', diagnostics=[], generation=0)
         self.action = ActionClient(self, NavigateToPose, '/navigate_to_pose')
+        self.speed_client = self.create_client(SetParametersAtomically, '/controller_server/set_parameters_atomically')
+        self.speed_future = None
         self.lifecycle = self.create_client(GetState, '/bt_navigator/get_state')
         self.lifecycle_future = None; self.lifecycle_check_at = 0.
         self.nav_active = False; self.lifecycle_reply_at = 0.
@@ -143,7 +153,7 @@ class WebNavigation(Node):
     def set_gate(self, enabled):
         self.gate.publish(Bool(data=enabled))
 
-    def execute(self, command, values):
+    def execute(self, command, values, speed=.08):
         if command == 'stop':
             self.set_gate(False); self.stop_pending = True
             if self.goal_handle: self.goal_handle.cancel_goal_async()
@@ -180,10 +190,39 @@ class WebNavigation(Node):
                               distance_remaining=None, plan=[], local_plan=[])
             self.event(message)
             return
+        speed = navigation_speed(speed)
+        if not self.speed_client.service_is_ready():
+            raise ValueError('速度设置服务尚未就绪，请稍后再试')
         self.stop_pending = False; self.busy = True; self.goal_handle = None
-        self.state.update(goal=values, status='正在提交导航目标', plan=[], local_plan=[],
+        self.state.update(goal=values, status='正在应用前进速度', plan=[], local_plan=[],
                           error='', diagnostics=[], distance_remaining=None)
-        self.event('提交导航目标 x=%.2f y=%.2f yaw=%.1f°' % (values[0], values[1], math.degrees(values[2])))
+        request = SetParametersAtomically.Request()
+        request.parameters = [Parameter('FollowPath.desired_linear_vel', value=speed).to_parameter_msg()]
+        self.speed_future = self.speed_client.call_async(request)
+        self.speed_requested_at = time.monotonic()
+        self.speed_future.add_done_callback(lambda future: self.speed_applied(future, values, speed))
+
+    def speed_applied(self, future, values, speed):
+        with self.lock:
+            if future is not self.speed_future: return
+            self.speed_future = None
+            try:
+                result = future.result().result
+                if not result.successful: raise ValueError('控制器拒绝速度设置：'+result.reason)
+                self.state['requested_speed'] = speed
+                if self.stop_pending or not self.state['ready']:
+                    self.busy = False; self.set_gate(False)
+                    self.state['status'] = '任务已取消，未开始导航'
+                    return
+                self.send_navigation_goal(values)
+            except Exception as exc:
+                self.busy = False; self.set_gate(False)
+                self.state.update(status='速度设置或目标提交失败', error=str(exc))
+
+    def send_navigation_goal(self, values):
+        self.state['status'] = '正在提交导航目标'
+        self.event('提交导航目标 x=%.2f y=%.2f yaw=%.1f°，前进速度 %.2f m/s' %
+                   (values[0], values[1], math.degrees(values[2]), self.state['requested_speed']))
         goal = NavigateToPose.Goal(); goal.pose.header.frame_id = 'map'
         goal.pose.header.stamp = self.get_clock().now().to_msg()
         goal.pose.pose.position.x, goal.pose.pose.position.y = values[:2]
@@ -278,14 +317,17 @@ class WebNavigation(Node):
                     if self.goal_handle: self.goal_handle.cancel_goal_async()
                     self.state['status'] = '位姿或仿真数据过期，已停止模拟运动'
             try:
-                command, values = self.commands.get_nowait()
-                self.execute(command, values)
+                command, values, speed = self.commands.get_nowait()
+                self.execute(command, values, speed)
             except queue.Empty: pass
             except Exception as exc:
                 self.state['status'] = str(exc); self.state['error'] = str(exc)
+            if self.speed_future is not None and now-self.speed_requested_at > 5.:
+                self.speed_future = None; self.busy = False; self.set_gate(False)
+                self.state.update(status='速度设置超时，未开始导航', error='请检查控制器后重试')
             self.state['busy'] = self.busy
             # Simulation motion lease: a dead web process cannot leave motion enabled.
-            self.set_gate(self.busy and not self.stop_pending and self.state['ready'])
+            self.set_gate(self.busy and self.speed_future is None and not self.stop_pending and self.state['ready'])
 
 
 def handler(node):
@@ -319,7 +361,8 @@ def handler(node):
                 if command != 'stop':
                     values = [float(obj[k]) for k in ('x','y','yaw')]
                     if not node.grid.safe(values): raise ValueError('当前选点或朝向下矩形轮廓空间不足，请挪动位置或调整朝向')
-                node.commands.put_nowait((command, values))
+                speed = navigation_speed(obj.get('speed', .08)) if command == 'goal' else .08
+                node.commands.put_nowait((command, values, speed))
                 self.send(202, b'{"queued":true}', 'application/json')
             except (ValueError, KeyError, TypeError, queue.Full) as exc:
                 self.send(400, json.dumps({'error':str(exc)}, ensure_ascii=False).encode(), 'application/json')
