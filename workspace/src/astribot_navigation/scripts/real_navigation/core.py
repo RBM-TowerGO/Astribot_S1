@@ -6,6 +6,36 @@ from pathlib import Path
 import secrets
 
 
+SCAN_MAX_SOURCE_AGE = .8
+BROWSER_LEASE_SECONDS = 2.0
+LOCALIZATION_MAX_SOURCE_AGE = .8
+
+
+def localization_fresh(receive_age,source_age):
+    # AMCL follows the derived scan pipeline; receipt still has a strict watchdog.
+    return 0<=receive_age<.5 and -.05<=source_age<=LOCALIZATION_MAX_SOURCE_AGE
+
+
+def sensor_fresh(key,receive_age,source_age):
+    # Derived scan projection may lag a few frames. Raw lidars, IMU and LIO
+    # still require 0.5 s freshness, and every stream must keep arriving.
+    maximum=SCAN_MAX_SOURCE_AGE if key=='scan' else .5
+    return 0<=receive_age<.5 and -.05<=source_age<=maximum
+
+
+class Convergence:
+    """Require a continuous valid localization window, not time since clicking."""
+    def __init__(self,duration=2.):
+        self.duration=duration;self.since=None
+
+    def reset(self):self.since=None
+
+    def update(self,valid,now):
+        if not valid:self.since=None
+        elif self.since is None:self.since=now
+        return self.since is not None and now-self.since>=self.duration
+
+
 def speed(value):
     if isinstance(value, bool):
         raise ValueError('速度必须是数字')
@@ -61,6 +91,10 @@ def validate_config(config, hardware=False):
         raise ValueError('Invalid obstacle height')
     if not 0 < config['slice_thickness'] <= .5:
         raise ValueError('Invalid slice thickness')
+    for box in config.get('self_filter_boxes',[]):
+        lower,upper=np.asarray(box['min'],float),np.asarray(box['max'],float)
+        if lower.shape!=(3,) or upper.shape!=(3,) or not np.isfinite([lower,upper]).all() or not (lower<upper).all():
+            raise ValueError('Invalid self filter box')
     if not hardware:
         return
     speed(config['max_speed'])
@@ -85,7 +119,7 @@ class Lease:
             raise ValueError('Invalid browser session')
         if self.owner and self.owner != owner and (self.active or now < self.until):
             raise ValueError('另一浏览器持有控制许可；当前页面只读')
-        self.owner, self.until = owner, now + .5
+        self.owner, self.until = owner, now + BROWSER_LEASE_SECONDS
 
     def begin(self, owner, now):
         self.claim(owner, now)
@@ -99,7 +133,7 @@ class Lease:
     def heartbeat(self, owner, task, now):
         if self.owner != owner or self.task != task or not self.active or now >= self.until:
             return False
-        self.until = now + .5
+        self.until = now + BROWSER_LEASE_SECONDS
         return True
 
     def valid(self, task, now):
@@ -129,6 +163,7 @@ class Drive:
         self.fault = None
         self.moving = False
         self.target_sent = False
+        self.tracking = None
 
     def prepare(self, task, value):
         if self.fault or self.task:
@@ -167,6 +202,23 @@ class Drive:
         if getattr(self.backend, 'requires_restart', False):
             self.fault = self.fault or '停车已锁定；需重新启动会话'
 
+    def cancel_stationary(self, now, stationary):
+        """Release a task only when already stopped; otherwise use vendor stop."""
+        try:
+            p,received=self.backend.feedback()
+            safe=(stationary and self.backend.has_control() and not self.fault and
+                  len(p)==3 and all(math.isfinite(v) for v in p) and
+                  -.02<=now-received<self.config['feedback_timeout'] and
+                  math.hypot(self.target[0]-p[0],self.target[1]-p[1])<.005 and
+                  abs(self.target[2]-p[2])<.01 and self.command_value==(0.,0.))
+            if not safe:
+                self.stop('数据失效时未确认静止，已执行保护停止');return False
+            self.task=None;self.command_value=(0.,0.);self.moving=False
+            self.command_time=self.permit_time=-math.inf
+            return True
+        except Exception as exc:
+            self.stop('静止确认失败：'+str(exc));return False
+
     def tick(self, now):
         dt = now-self.last_tick
         self.last_tick = now
@@ -188,8 +240,14 @@ class Drive:
                 raise RuntimeError('导航指令超时')
             v,w = self.command_value
             candidate = [self.target[0]+v*.01, self.target[1], self.target[2]+w*.01]
-            if math.hypot(candidate[0]-p[0], candidate[1]-p[1]) > self.config['max_position_error'] or abs(candidate[2]-p[2])>self.config['max_yaw_error']:
-                raise RuntimeError('底盘目标超前量超过控制限制')
+            position_error=math.hypot(candidate[0]-p[0],candidate[1]-p[1])
+            yaw_error=abs(candidate[2]-p[2])
+            self.tracking=dict(target=list(candidate),feedback=list(p),position_error_m=position_error,
+                               yaw_error_rad=yaw_error,feedback_receive_age_s=now-received,
+                               tick_interval_s=dt,sampled_at=now)
+            if position_error > self.config['max_position_error'] or yaw_error > self.config['max_yaw_error']:
+                raise RuntimeError('底盘目标超前量超过控制限制：位置 %.4f/%.4f m，角度 %.4f/%.4f rad' %
+                                   (position_error,self.config['max_position_error'],yaw_error,self.config['max_yaw_error']))
             if (v,w)==(0.,0.):
                 # Normal controller pause follows keyboard teleop: no increment,
                 # resend only our last commanded target. This is NOT a brake.
@@ -206,3 +264,11 @@ class Drive:
         except Exception as exc:
             self.stop(str(exc))
             return (0.,0.)
+
+
+def navigation_command(command, command_age, feedback_age):
+    """Hold zero during a live Nav2 recovery; never reuse an old velocity."""
+    if command_age<.3:return tuple(command)
+    if feedback_age>=1.:raise RuntimeError('Nav2 动作反馈超时')
+    if command_age>=15.:raise RuntimeError('Nav2 连续 15 秒没有速度输出')
+    return (0.,0.)

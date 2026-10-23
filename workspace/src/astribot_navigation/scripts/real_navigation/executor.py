@@ -1,5 +1,6 @@
 """Separate SDK process. JSON messages carry task IDs, source times and deadlines."""
 import json
+import math
 import os
 from pathlib import Path
 import sys
@@ -7,6 +8,7 @@ import time
 import signal
 import yaml
 from .core import Drive, validate_config
+from .stability import Window
 from .chassis_interface import ChassisInterface
 from .vendor_stop import stop_chassis
 
@@ -152,6 +154,10 @@ def main():
                 last_sequence = data['sequence']
                 if data['op']=='stop':
                     drive.stop()
+                elif data['op']=='cancel_stationary':
+                    span=settling.span(now)
+                    confirmed=bool(span is not None and len(span)==3 and math.hypot(span[0],span[1])<.005 and span[2]<.01)
+                    drive.cancel_stationary(now,confirmed)
                 elif data['op']=='prepare':
                     drive.prepare(data['task'],data['speed'])
                     drive.permit(data['task'],now)
@@ -163,6 +169,8 @@ def main():
                 drive.stop(str(exc))
         node.create_subscription(String,'executor_control',control,1)
         last_status = 0.
+        settling=Window(.15)
+        last_settling_feedback=None
         while rclpy.ok():
             rclpy.spin_once(node,timeout_sec=.001)
             now = time.monotonic()
@@ -170,8 +178,20 @@ def main():
                 continue
             command = drive.tick(now)
             if now-last_status >= .05:
+                stationary=False;span=None
+                try:
+                    p,received=backend.feedback()
+                    observed=time.monotonic()
+                    if 0<=observed-received<config['feedback_timeout']:
+                        if received!=last_settling_feedback:
+                            settling.add(observed,p);last_settling_feedback=received
+                        span=settling.span(observed)
+                        stationary=bool(span is not None and len(span)==3 and
+                                        math.hypot(span[0],span[1])<.005 and span[2]<.01)
+                    else:settling.rows.clear()
+                except Exception:settling.rows.clear()
                 status.publish(String(data=json.dumps(dict(task=drive.task, speed=drive.limit, fault=drive.fault,
-                                                         command=command, rights=backend.has_control(),sent=now))))
+                                                         command=command, rights=backend.has_control(),sent=now,tracking=drive.tracking,stationary=stationary,settling_span=span))))
                 last_status=now
     except KeyboardInterrupt:
         pass

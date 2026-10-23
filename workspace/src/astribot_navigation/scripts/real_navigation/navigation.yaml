@@ -13,13 +13,16 @@ imu_from_lidar:
   - [0.0, 0.0, 0.0, 1.0]
 rear_origin_in_front: [0.001, -0.496, 0.084]
 # Preview envelope only: replace with measured fixed-posture whole-robot projection.
-footprint: [[0.4, 0.35], [0.4, -0.35], [-0.4, -0.35], [-0.4, 0.35]]
-self_filter: [[-0.3431, -0.331], [0.3269, -0.331], [0.3269, 0.331], [-0.3431, 0.331]]
-footprint_padding: 0.06
+footprint: [[0.335, 0.33], [0.335, -0.33], [-0.335, -0.33], [-0.335, 0.33]]
+# User-confirmed robot body envelope in base XY, at every height.
+# Confirmed extent: forward 0.50 m, rearward 0.40 m, left/right 0.40 m.
+self_filter: [[-0.40, -0.40], [0.50, -0.40], [0.50, 0.40], [-0.40, 0.40]]
+footprint_padding: 0.02
+collision_time_horizon: 1.5
 slice_height: 0.054
 slice_thickness: 0.10
 obstacle_min_height: 0.02
 obstacle_max_height: 2.0
-feedback_timeout: 0.1
-max_position_error: 0.03
+feedback_timeout: 0.15
+max_position_error: 0.10
 max_yaw_error: 0.05

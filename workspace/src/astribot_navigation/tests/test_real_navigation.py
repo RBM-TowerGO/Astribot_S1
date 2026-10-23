@@ -26,6 +26,39 @@ class NavigationTests(unittest.TestCase):
         self.config=yaml.safe_load((ROOT/'scripts/real_navigation/navigation.yaml').read_text())
         self.config['max_speed']=.3
 
+    def test_tracking_fault_records_actual_position_and_yaw_errors(self):
+        b=Backend();d=Drive(b,self.config,0.)
+        d.prepare('sample',.05);d.permit('sample',.01);d.command('sample',.05,0.,.01)
+        b.p[0]=-.12;b.now=.01
+        d.tick(.01)
+        self.assertIn('位置',d.fault)
+        self.assertAlmostEqual(d.tracking['position_error_m'],.1205)
+        self.assertEqual(d.tracking['feedback'],b.p)
+        self.assertEqual(b.stops,1)
+        frozen=dict(d.tracking);d.tick(.02)
+        self.assertEqual(d.tracking,frozen)
+
+    def test_stationary_cancel_allows_only_explicit_new_task(self):
+        b,d=self.drive();b.now=.01;d.command('t',0.,0.,.01)
+        self.assertTrue(d.cancel_stationary(.01,True))
+        self.assertIsNone(d.task);self.assertIsNone(d.fault);self.assertEqual(b.stops,0)
+        self.assertFalse(d.command('t',.05,0.,.02))
+        d.tick(.02);self.assertEqual(b.sent,[])
+        d.prepare('new',.05);d.permit('new',.03);d.command('new',.05,0.,.03)
+        b.now=.03;d.tick(.03);self.assertEqual(len(b.sent),1)
+
+    def test_stationary_cancel_does_not_bypass_protective_stop(self):
+        for kind in ('moving_command','unstable','stale','outstanding_target','lost_rights'):
+            b,d=self.drive();b.now=.01;confirmed=True;d.command('t',0.,0.,.01)
+            if kind=='moving_command':d.command('t',.05,0.,.01)
+            if kind=='unstable':confirmed=False
+            if kind=='stale':b.now=-1.
+            if kind=='outstanding_target':d.target[0]+=.02
+            if kind=='lost_rights':b.rights=False
+            self.assertFalse(d.cancel_stationary(.01,confirmed),kind)
+            self.assertIsNone(d.task);self.assertIsNotNone(d.fault)
+            self.assertEqual(b.stops,0 if kind=='lost_rights' else 1)
+
     def test_speed_boundaries(self):
         for x in (0,.001,.02,.3):self.assertEqual(speed(x),x)
         for x in (-.001,.301,float('nan'),float('inf'),True):
@@ -54,8 +87,8 @@ class NavigationTests(unittest.TestCase):
 
     def test_heartbeat_cannot_revive(self):
         lease=Lease();task=lease.begin('a'*32,0)
-        self.assertFalse(lease.heartbeat('a'*32,task,.5))
-        self.assertFalse(lease.valid(task,.5))
+        self.assertFalse(lease.heartbeat('a'*32,task,2.))
+        self.assertFalse(lease.valid(task,2.))
 
     def test_cancel_invalidates_old_response(self):
         lease=Lease();old=lease.begin('a'*32,0);lease.stop();new=lease.begin('a'*32,.1)
@@ -157,6 +190,28 @@ class NavigationTests(unittest.TestCase):
         for _ in range(100):g.imu([0,0,1])
         g.pose(1.,np.eye(4))
         with self.assertRaises(ValueError):g.pose(.9,np.eye(4))
+
+    def test_confirmed_body_envelope_filters_all_heights_preserves_external_points(self):
+        g=Geometry(self.config)
+        body=np.array([[.38,.32,.81],[.45,-.32,.81],[.38,.32,.10],
+                       [.38,.32,1.8],[.45,0.,.81],[-.39,-.39,.81]])
+        external=np.array([[.52,.32,.81],[.38,.41,.81],[.38,-.41,.81],
+                           [-.41,0.,.81],[.52,-.32,.81]])
+        points=(np.vstack([body,external])-g.base_lidar[:3,3])@np.linalg.inv(g.base_lidar[:3,:3]).T
+        for rear in (False,True):
+            obstacle,_=g.cloud(points,np.eye(4),rear)
+            origin=g.base_lidar[:3,3].copy()
+            if rear:origin+=g.base_lidar[:3,:3]@np.asarray(self.config['rear_origin_in_front'])
+            self.assertTrue(np.allclose(obstacle+origin,external))
+        body[:,2]=self.config['slice_height']
+        points=(body-g.base_lidar[:3,3])@np.linalg.inv(g.base_lidar[:3,:3]).T
+        _,ranges=g.cloud(points,np.eye(4))
+        self.assertFalse(np.isfinite(ranges).any())
+
+    def test_invalid_structure_filter_box_rejected(self):
+        for box in ({'min':[0,0,1],'max':[1,1,0]}, {'min':[0,0,0],'max':[1,1,float('nan')]}):
+            config=copy.deepcopy(self.config);config['self_filter_boxes']=[box]
+            with self.assertRaisesRegex(ValueError,'self filter box'):validate_config(config)
 
     def test_rear_cloud_preserves_ray_origin(self):
         g=Geometry(self.config);points=np.array([[2.,0.,.1],[3.,0.,.1]])

@@ -25,6 +25,8 @@ class Adapter : public rclcpp::Node {
   bool failed = false, started = false;
   int64_t last_imu = -1;
   uint64_t windows = 0;
+  std::array<uint64_t, 2> invalid_timestamp_frames{};
+  bool drop_invalid_timestamp_frames = false;
   double max_callback_ms = 0;
   Clock::time_point last_output = Clock::now();
   rclcpp::Publisher<livox_ros_driver2::msg::CustomMsg>::SharedPtr pub;
@@ -56,6 +58,7 @@ class Adapter : public rclcpp::Node {
       add(prefix + "gap_discarded", fusion.gap_discarded[s]);
       add(prefix + "expired_points", fusion.expired[s]);
       add(prefix + "buffered_points", fusion.queue[s].size());
+      add(prefix + "invalid_timestamp_frames", invalid_timestamp_frames[s]);
     }
     add("windows", windows);
     add("skipped_windows", fusion.skipped_windows);
@@ -166,6 +169,14 @@ class Adapter : public rclcpp::Node {
       if (!output.empty())
         diagnostic();
     } catch (const std::exception &e) {
+      if (drop_invalid_timestamp_frames &&
+          std::string(e.what()) == "Invalid absolute point timestamp") {
+        ++invalid_timestamp_frames[sensor];
+        reason = "Dropped malformed timestamp frame; waiting for valid dual windows";
+        diagnostic();
+        RCLCPP_WARN(get_logger(), "%s: dropped invalid timestamp frame", sensor ? "back" : "front");
+        return;
+      }
       fault(std::string(sensor ? "back: " : "front: ") + e.what());
     }
   }
@@ -195,6 +206,7 @@ class Adapter : public rclcpp::Node {
 
 public:
   Adapter() : Node("towergo_dual_livox") {
+    drop_invalid_timestamp_frames = declare_parameter("drop_invalid_timestamp_frames", false);
     if (declare_parameter("coordinate_contract", std::string("unverified")) !=
         "both_raw_topics_already_in_front_lidar_frame")
       throw std::runtime_error(

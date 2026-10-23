@@ -19,7 +19,8 @@ if ROS_TEST:
 
 @unittest.skipUnless(ROS_TEST, 'Requires isolated Domain 125 ROS environment')
 
-class AdapterROS(unittest.TestCase):
+class AdapterCase(unittest.TestCase):
+    adapter_parameters=[]
     @classmethod
     def setUpClass(cls):
         if os.environ.get('ROS_DOMAIN_ID')!='125' or os.environ.get('ROS_LOCALHOST_ONLY')!='1':
@@ -38,6 +39,7 @@ class AdapterROS(unittest.TestCase):
         self.node.create_subscription(Bool,remap[names[5]],lambda m:self.fault.append(m.data),QoSProfile(depth=1,durability=DurabilityPolicy.TRANSIENT_LOCAL))
         exe=get_package_prefix('towergo_dual_livox')+'/lib/towergo_dual_livox/dual_adapter'
         cmd=[exe,'--ros-args','-r','__node:='+token+'_adapter','-p','coordinate_contract:=both_raw_topics_already_in_front_lidar_frame','-p','imu_acceleration_unit:=g']
+        cmd+=self.adapter_parameters
         for a,b in remap.items():cmd+=['-r',a+':='+b]
         self.proc=subprocess.Popen(cmd,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,start_new_session=True)
         self.spin_until(lambda:self.front.get_subscription_count()>0 and self.back.get_subscription_count()>0 and self.node.count_publishers(remap[names[3]])>0,5)
@@ -54,6 +56,8 @@ class AdapterROS(unittest.TestCase):
         m.height=1;m.width=11;m.point_step=26;m.row_step=286
         m.fields=[PointField(name=k,offset=off,datatype=typ,count=1) for k,off,typ in [('x',0,7),('y',4,7),('z',8,7),('intensity',12,7),('tag',16,2),('line',17,2),('timestamp',18,8)]]
         m.data=b''.join(struct.pack('<ffffBBd',1.,2.,3.,20.,0,line,float(ns+i*10000000 if not bad_time else ns-10000000)) for i in range(11));return m
+
+class AdapterROS(AdapterCase):
     def test_both_sensors_keep_time_and_rear_lines(self):
         self.front.publish(self.cloud(10**9));self.back.publish(self.cloud(10**9));self.spin_until(lambda:bool(self.out),2)
         out=self.out[0];self.assertEqual(out.timebase,10**9);self.assertEqual(out.point_num,20)
@@ -92,5 +96,19 @@ class AdapterROS(unittest.TestCase):
         self.front.publish(self.cloud(10**9));self.back.publish(self.cloud(10**9));self.spin_until(lambda:bool(self.out),2)
         count=len(self.out);self.front.publish(self.cloud(1110000000));self.spin_until(lambda:bool(self.fault),3)
         self.assertEqual(len(self.out),count)
+
+class NavigationTimestampROS(AdapterCase):
+    adapter_parameters=['-p','drop_invalid_timestamp_frames:=true']
+    def test_invalid_frame_is_dropped_and_valid_dual_data_recovers(self):
+        self.front.publish(self.cloud(10**9,bad_time=True))
+        self.back.publish(self.cloud(10**9))
+        for stamp in [1110000000,1220000000,1330000000]:
+            self.front.publish(self.cloud(stamp))
+            self.back.publish(self.cloud(stamp))
+            rclpy.spin_once(self.node,timeout_sec=.03)
+        self.spin_until(lambda:bool(self.out),2)
+        self.assertFalse(self.fault)
+        self.assertTrue(all(m.timebase>=1100000000 for m in self.out))
+
 
 if __name__=='__main__':unittest.main(verbosity=2)

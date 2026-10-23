@@ -1,8 +1,17 @@
 """Gravity-level odometry and timestamp-matched dual LiDAR projection."""
 from collections import deque
+import copy
+from mapping_slice import Poses
 import math
 import numpy as np
 from scipy.spatial.transform import Rotation, Slerp
+
+
+def rotate_unit_quaternions(quaternions,points):
+    """Vectorized rotation; Poses.interpolate already returns unit quaternions."""
+    q=np.asarray(quaternions)
+    twice=2*np.cross(q[:,:3],points)
+    return points+q[:,3,None]*twice+np.cross(q[:,:3],twice)
 
 
 def matrix(p,q):
@@ -13,6 +22,29 @@ def matrix(p,q):
     return out
 
 
+class PoseSnapshot:
+    """Immutable interpolation arrays shared by workers until the next LIO pose."""
+    def __init__(self,history):
+        self.gap=history.gap
+        self.ts=np.array([r[0] for r in history.data],dtype=np.int64)
+        self.positions=np.asarray([r[1] for r in history.data])
+        self.quaternions=np.asarray([r[2] for r in history.data])
+
+    def interpolate(self,ns):
+        ok=np.zeros(len(ns),bool)
+        if len(self.ts)<2:return ok,np.empty((0,3)),np.empty((0,4))
+        idx=np.clip(np.searchsorted(self.ts,ns,side='right')-1,0,len(self.ts)-2)
+        ok=(ns>=self.ts[0])&(ns<=self.ts[-1])&(self.ts[idx+1]-self.ts[idx]<=self.gap)
+        idx=idx[ok];a=((ns[ok]-self.ts[idx])/(self.ts[idx+1]-self.ts[idx]))[:,None]
+        p=self.positions[idx]*(1-a)+self.positions[idx+1]*a
+        q0=self.quaternions[idx];q1=self.quaternions[idx+1].copy()
+        dot=np.sum(q0*q1,axis=1);q1[dot<0]*=-1;dot=np.abs(dot).clip(0,1)
+        theta=np.arccos(dot)[:,None];den=np.sin(theta);close=dot>.9995;den[close]=1
+        q=(np.sin((1-a)*theta)*q0+np.sin(a*theta)*q1)/den
+        q[close]=(q0*(1-a)+q1*a)[close];q/=np.linalg.norm(q,axis=1)[:,None]
+        return ok,p,q
+
+
 class Geometry:
     def __init__(self, config):
         self.config=config
@@ -21,6 +53,8 @@ class Geometry:
         self.imu_base=self.imu_lidar @ np.linalg.inv(self.base_lidar)
         self.origin=None
         self.poses=deque(maxlen=256)
+        self.history=Poses(300000000)
+        self.history.data=deque(maxlen=256)
         self.gravity=[]
         self.fault=None
         self.continuity_epoch=0
@@ -55,29 +89,30 @@ class Geometry:
             # Preserve the odometry origin and jump checks, but never interpolate
             # across missing history. Consumers invalidate any active task.
             self.poses.clear()
+            self.history=Poses(300000000)
+            self.history.data=deque(maxlen=256)
             self.continuity_epoch+=1
         self.poses.append((stamp,base))
+        self.history.add(int(round(stamp*1e9)),base[:3,3],Rotation.from_matrix(base[:3,:3]).as_quat(),'tg_nav_odom')
         return base
 
+    def snapshot(self):
+        result=copy.copy(self)
+        result.poses=deque(self.poses,maxlen=256)
+        result.history=PoseSnapshot(self.history)
+        return result
+
     def at(self, stamp):
-        for (ta,a),(tb,b) in zip(self.poses,list(self.poses)[1:]):
-            if ta <= stamp <= tb and tb-ta <= .3:
-                f=(stamp-ta)/(tb-ta)
-                t=np.eye(4);t[:3,3]=a[:3,3]*(1-f)+b[:3,3]*f
-                t[:3,:3]=Slerp([ta,tb],Rotation.from_matrix([a[:3,:3],b[:3,:3]]))([stamp]).as_matrix()[0]
-                return t
-        return None
+        good,positions,quaternions=self.history.interpolate(np.array([int(round(stamp*1e9))],dtype=np.int64))
+        if not good.all():return None
+        return matrix(positions[0],quaternions[0])
 
     def deskew(self, points, stamps, reference):
-        from mapping_slice import Poses
-        history=Poses(300000000)
-        for stamp,pose in self.poses:
-            history.add(int(round(stamp*1e9)),pose[:3,3],Rotation.from_matrix(pose[:3,:3]).as_quat(),'tg_nav_odom')
-        good,positions,quaternions=history.interpolate(stamps)
+        good,positions,quaternions=self.history.interpolate(stamps)
         if not good.all():
             return None
         base=points @ self.base_lidar[:3,:3].T+self.base_lidar[:3,3]
-        world=Rotation.from_quat(quaternions).apply(base)+positions
+        world=rotate_unit_quaternions(quaternions,base)+positions
         current_base=(world-reference[:3,3])@reference[:3,:3]
         return (current_base-self.base_lidar[:3,3])@self.base_lidar[:3,:3]
 
@@ -87,7 +122,12 @@ class Geometry:
         points=points[np.isfinite(points).all(axis=1)]
         base=points @ self.base_lidar[:3,:3].T+self.base_lidar[:3,3]
         radius=np.linalg.norm(base[:,:2],axis=1)
-        base=base[(radius>=.15)&(radius<=20)&~inside_polygon(base[:,:2],np.asarray(self.config['self_filter']))]
+        self_points=inside_polygon(base[:,:2],np.asarray(self.config['self_filter']))
+        # Only the confirmed structure volumes; keep obstacles above/below and
+        # beside them. Apply in body coordinates before gravity/world projection.
+        for box in self.config.get('self_filter_boxes',[]):
+            self_points |= np.all((base>=box['min'])&(base<=box['max']),axis=1)
+        base=base[(radius>=.15)&(radius<=20)&~self_points]
         world=base @ pose[:3,:3].T+pose[:3,3]
         keep=(world[:,2]>=self.config['obstacle_min_height'])&(world[:,2]<=self.config['obstacle_max_height'])
         origin=self.base_lidar[:3,3].copy()

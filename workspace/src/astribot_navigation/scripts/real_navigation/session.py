@@ -36,6 +36,7 @@ def nav_params(config,mapfile,replay):
     base['map_server']['ros__parameters'].update(yaml_filename=str(mapfile),frame_id='tg_nav_map')
     base['amcl']['ros__parameters'].update(update_min_d=0.,update_min_a=0.,transform_tolerance=.1)
     cp=base['controller_server']['ros__parameters'];cp['FollowPath']['desired_linear_vel']=.05
+    cp['FollowPath']['max_allowed_time_to_collision_up_to_carrot']=config.get('collision_time_horizon',1.5)
     cp['odom_topic']='/towergo/nav/odom'
     for name in ('global_costmap','local_costmap'):
         p=base[name][name]['ros__parameters']
@@ -49,10 +50,10 @@ def nav_params(config,mapfile,replay):
                 marking=True,clearing=True,obstacle_max_range=10.,raytrace_max_range=12.,
                 min_obstacle_height=config['obstacle_min_height'],max_obstacle_height=config['obstacle_max_height'],
                 expected_update_rate=.5,observation_persistence=0.)
-        p['inflation_layer'].update(inflation_radius=.6,cost_scaling_factor=5.)
+        p['inflation_layer'].update(inflation_radius=.2,cost_scaling_factor=5.)
     bt=base['bt_navigator']['ros__parameters']
     bt['default_nav_through_poses_bt_xml']=str(REPO/'astribot_nav_bringup/config/navigation_through.xml')
-    bt['default_nav_to_pose_bt_xml']=str(REPO/'astribot_nav_bringup/config/web_navigation.xml')
+    bt['default_nav_to_pose_bt_xml']=str(HERE/'navigation.xml')
     bt['plugin_lib_names']=['nav2_compute_path_through_poses_action_bt_node','nav2_compute_path_to_pose_action_bt_node','nav2_follow_path_action_bt_node','nav2_pipeline_sequence_bt_node',
         'nav2_rate_controller_bt_node','nav2_recovery_node_bt_node','nav2_wait_action_bt_node']
     # Namespace parameters match all node fully-qualified names, including nested costmaps.
@@ -111,13 +112,14 @@ def main():
     from tg_mapping import parameters,topic_names
     import rclpy
     from rclpy.signals import SignalHandlerOptions
+    from rclpy.executors import SingleThreadedExecutor
     from .web import Web,server
     run=Path(args.output_root)/('navigation_'+datetime.datetime.now().strftime('%Y%m%d_%H%M%S')+'_'+uuid.uuid4().hex[:6])
     run.mkdir(parents=True)
     (run/'config.yaml').write_text(yaml.safe_dump(config));(run/'nav2.yaml').write_text(yaml.safe_dump(nav_params(config,mapfile,bool(args.replay))))
     report=dict(mode=args.mode,replay=args.replay,map=str(mapfile),map_sha256=digest(mapfile),image_sha256=digest(image),
                 max_speed=config['max_speed'],started=time.time(),status='starting',processes={})
-    procs={};node=None;http=None;interrupted=False
+    procs={};node=None;http=None;executor=None;interrupted=False
     def spawn(name,cmd):
         proc=OwnedProcess(name,cmd,log=run/(name+'.log'))
         procs[name]=proc;report['processes'][name]={'pid':proc.proc.pid,'command':cmd}
@@ -130,24 +132,33 @@ def main():
                       '-p','use_sim_time:='+str(bool(args.replay)).lower()],signal_handler_options=SignalHandlerOptions.NO)
     try:
         node=Web(config,str(mapfile),args.mode,run)
+        # Keep the node attached: rclpy.spin_once(node) removes/re-adds it
+        # on every callback and repeatedly rebuilds this large wait set.
+        executor=SingleThreadedExecutor();executor.add_node(node)
         http=server(node,args.port)  # Bind before starting any owned processes.
         # Discover existing publishers before reusing the keyboard SLAM sensor startup.
         deadline=time.monotonic()+2
-        while time.monotonic()<deadline:rclpy.spin_once(node,timeout_sec=.05)
+        while time.monotonic()<deadline:executor.spin_once(timeout_sec=.05)
         if node.count_publishers('/towergo/nav/odom')>1 or node.count_publishers('/towergo/nav/lio/odometry'):
             raise RuntimeError('已有真机导航会话，请先结束原会话')
         if args.replay and (node.count_publishers('/clock') or any(node.count_publishers(t) for t in REQUIRED_RAW_TOPICS)):
             raise RuntimeError('回放 Domain 已有传感器或时钟发布者')
         report['sensor_startup']=start_live_sensors(
-            node, bool(args.replay), lambda: rclpy.spin_once(node, timeout_sec=.05))
+            node, bool(args.replay), lambda: executor.spin_once(timeout_sec=.05))
         # Device service success means requested, not that sensor data is ready.
         # The existing live-data health checks determine readiness in the UI.
         topics=topic_names('/towergo/nav/lio')
         base=Path(get_package_share_directory('fast_lio'))/'config/mid360.yaml'
-        (run/'lio.yaml').write_text(yaml.safe_dump(parameters(base,topics,bool(args.replay))))
+        lio_parameters=parameters(base,topics,bool(args.replay))
+        # Navigation derives both obstacle clouds directly from raw sensors.
+        # The registered visualization cloud is unused; avoid transforming and
+        # serializing it on FAST-LIO's real-time estimation thread.
+        lio_parameters['/**']['ros__parameters']['publish']['scan_publish_en']=False
+        (run/'lio.yaml').write_text(yaml.safe_dump(lio_parameters))
         sim=str(bool(args.replay)).lower()
         adapter=Path(get_package_prefix('towergo_dual_livox'))/'lib/towergo_dual_livox/dual_adapter'
         cmd=[str(adapter),'--ros-args','-p','imu_acceleration_unit:=g','-p','use_sim_time:='+sim,
+             '-p','drop_invalid_timestamp_frames:=true',
              '-p','coordinate_contract:=both_raw_topics_already_in_front_lidar_frame','-p','reliable_input:='+sim,
              '-r','__node:=navigation_dual_adapter']
         for old,new in {'/towergo/lio/lidar':topics['lidar'],'/towergo/lio/imu':topics['imu'],'/towergo/mapping_fault':topics['fault'],'/diagnostics':topics['diagnostics']}.items():cmd+=['-r',old+':='+new]
@@ -164,7 +175,7 @@ def main():
         report['status']='running';atomic_json(run/'session.json',report)
         start=time.monotonic();maxima={'front':0,'back':0,'scan':0};ready_seen=False
         while rclpy.ok() and not interrupted and (not args.duration or time.monotonic()-start<args.duration):
-            rclpy.spin_once(node,timeout_sec=.02)
+            executor.spin_once(timeout_sec=.02)
             for name,p in procs.items():
                 if p.poll() is not None:
                     if name=='player' and p.poll()==0:interrupted=True;break
@@ -187,13 +198,14 @@ def main():
         if node:
             node.stop('会话结束')
             end=time.monotonic()+.3
-            while rclpy.ok() and time.monotonic()<end:rclpy.spin_once(node,timeout_sec=.02)
+            while rclpy.ok() and time.monotonic()<end:executor.spin_once(timeout_sec=.02)
         for name in ('executor','player','nav2','fastlio','adapter'):
             if name in procs:
                 try:procs[name].stop()
                 except Exception as exc:report.setdefault('shutdown_errors',[]).append(str(exc))
         if http:http.shutdown();http.server_close()
-        if node:node.log.close();node.destroy_node()
+        if executor:executor.shutdown()
+        if node:node.sensors.close();node.log.close();node.destroy_node()
         rclpy.try_shutdown();report['ended']=time.time();atomic_json(run/'session.json',report)
 
 if __name__=='__main__':main()
