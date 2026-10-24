@@ -26,36 +26,31 @@ class NavigationTests(unittest.TestCase):
         self.config=yaml.safe_load((ROOT/'scripts/real_navigation/navigation.yaml').read_text())
         self.config['max_speed']=.3
 
-    def test_tracking_fault_records_actual_position_and_yaw_errors(self):
-        b=Backend();d=Drive(b,self.config,0.)
-        d.prepare('sample',.05);d.permit('sample',.01);d.command('sample',.05,0.,.01)
-        b.p[0]=-.12;b.now=.01
-        d.tick(.01)
-        self.assertIn('位置',d.fault)
-        self.assertAlmostEqual(d.tracking['position_error_m'],.1205)
-        self.assertEqual(d.tracking['feedback'],b.p)
-        self.assertEqual(b.stops,1)
-        frozen=dict(d.tracking);d.tick(.02)
-        self.assertEqual(d.tracking,frozen)
+    def test_tracking_warning_records_errors_without_latching(self):
+        b,d=self.drive();b.now=.01;d.tick(.01)
+        b.p[0]-=.12;b.now=.02
+        before=d.target[:];d.tick(.02)
+        self.assertIsNone(d.fault);self.assertIn('偏差',d.warning)
+        self.assertAlmostEqual(d.tracking['position_error_m'],.12)
+        self.assertEqual(d.target,before);self.assertEqual(b.stops,0)
 
     def test_stationary_cancel_allows_only_explicit_new_task(self):
         b,d=self.drive();b.now=.01;d.command('t',0.,0.,.01)
         self.assertTrue(d.cancel_stationary(.01,True))
-        self.assertIsNone(d.task);self.assertIsNone(d.fault);self.assertEqual(b.stops,0)
+        self.assertIsNone(d.task);self.assertIsNone(d.fault)
         self.assertFalse(d.command('t',.05,0.,.02))
-        d.tick(.02);self.assertEqual(b.sent,[])
-        d.prepare('new',.05);d.permit('new',.03);d.command('new',.05,0.,.03)
-        b.now=.03;d.tick(.03);self.assertEqual(len(b.sent),1)
+        with self.assertRaises(ValueError):d.prepare('early',.05)
+        for now in (.02,.08,.14,.18):b.now=now;d.tick(now)
+        self.assertFalse(d.holding);self.assertEqual(b.stops,0)
+        d.prepare('new',.05);d.permit('new',.19);d.command('new',.05,0.,.19)
+        b.now=.19;d.tick(.19);self.assertEqual(len(b.sent),1)
 
-    def test_stationary_cancel_does_not_bypass_protective_stop(self):
-        for kind in ('moving_command','unstable','stale','outstanding_target','lost_rights'):
-            b,d=self.drive();b.now=.01;confirmed=True;d.command('t',0.,0.,.01)
-            if kind=='moving_command':d.command('t',.05,0.,.01)
-            if kind=='unstable':confirmed=False
+    def test_data_cancel_with_bad_feedback_or_rights_still_stops(self):
+        for kind in ('stale','lost_rights'):
+            b,d=self.drive();b.now=.01
             if kind=='stale':b.now=-1.
-            if kind=='outstanding_target':d.target[0]+=.02
             if kind=='lost_rights':b.rights=False
-            self.assertFalse(d.cancel_stationary(.01,confirmed),kind)
+            self.assertFalse(d.cancel_stationary(.01,False))
             self.assertIsNone(d.task);self.assertIsNotNone(d.fault)
             self.assertEqual(b.stops,0 if kind=='lost_rights' else 1)
 
@@ -106,12 +101,12 @@ class NavigationTests(unittest.TestCase):
 
     def test_no_catchup(self):
         b,d=self.drive();b.now=.2;d.tick(.2)
-        self.assertTrue(d.fault);self.assertEqual(b.sent,[]);self.assertEqual(b.stops,1)
+        self.assertIsNone(d.fault);self.assertIn('延迟',d.warning);self.assertEqual(b.sent,[]);self.assertEqual(b.stops,0)
 
     def test_timeout(self):
         b,d=self.drive()
         for t in (.05,.1,.15,.2,.25,.31):b.now=t;d.tick(t)
-        self.assertIn('指令超时',d.fault)
+        self.assertIn('指令超时',d.warning);self.assertIsNone(d.fault);self.assertIsNone(d.task)
 
     def test_control_loss_no_send_or_stop(self):
         b,d=self.drive();b.rights=False;b.now=.01;d.tick(.01)
@@ -123,7 +118,7 @@ class NavigationTests(unittest.TestCase):
 
     def test_following_error(self):
         b,d=self.drive();b.p[0]=-.2;b.now=.01;d.tick(.01)
-        self.assertIn('超前',d.fault);self.assertEqual(b.sent,[])
+        self.assertIsNone(d.fault);self.assertAlmostEqual(d.target[0],-.199)
 
     def test_stop_invalidates_command(self):
         b,d=self.drive();d.stop()
@@ -151,7 +146,7 @@ class NavigationTests(unittest.TestCase):
         d.command("t",0.,0.,.02)
         for now in (.02,.1,.18,.26,.33):
             b.now=now;d.permit("t",now);d.tick(now)
-        self.assertIn("指令超时",d.fault);self.assertEqual(b.stops,1)
+        self.assertIn("指令超时",d.warning);self.assertIsNone(d.fault);self.assertEqual(b.stops,0)
         self.assertIsNone(d.task)
 
     def test_cancel_during_pause_calls_stop_and_rejects_old_task(self):

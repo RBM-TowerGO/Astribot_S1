@@ -180,12 +180,12 @@ def test_stale_sensor_still_faults_even_when_nav2_is_recovering():
     tick=next(n for n in cls.body if isinstance(n,ast.FunctionDef) and n.name=='_tick')
     block=next(n for n in tick.body if isinstance(n,ast.If) and ast.unparse(n.test)=='self.lease.active')
     stopped=[]
-    node=SimpleNamespace(lease=SimpleNamespace(active=True,task='task'),valid=lambda task:True,
+    node=SimpleNamespace(phase='running',pause_allowed=lambda *a:False,lease=SimpleNamespace(active=True,task='task'),valid=lambda task:True,
         state={'ready':False,'ready_checks':{'sensors':False}},sensors=SimpleNamespace(stamps={'scan':1.1},error=None),
         executor_state={},active_lifecycle=True,lifecycle_at=2.,
         stop=lambda reason,result,**kw:stopped.append((reason,result,kw)))
     exec(compile(ast.fix_missing_locations(ast.Module(body=[block],type_ignores=[])),'stale-sensor','exec'),
-         dict(self=node,now=2.,ros_now=2.,localized=True,execution=True,json=json))
+         dict(self=node,now=2.,ros_now=2.,tf_ok=False,localized=True,execution=True,json=json))
     assert len(stopped)==1 and stopped[0][1]=='fault'
     assert stopped[0][2]['recoverable'] is True
     assert '传感器未就绪' in stopped[0][0] and '0.9' in stopped[0][0]

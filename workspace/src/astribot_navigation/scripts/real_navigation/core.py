@@ -149,7 +149,7 @@ class Lease:
 
 
 class Drive:
-    """100 Hz latest-only local-coordinate integrator; never catches up."""
+    """Feedback-governed local-coordinate targets; never integrates missed time."""
     def __init__(self, backend, config, now):
         self.backend, self.config = backend, config
         self.target = list(backend.desired())
@@ -164,15 +164,23 @@ class Drive:
         self.moving = False
         self.target_sent = False
         self.tracking = None
+        self.warning = None
+        self.holding = False
+        self.hold_since = None
+        self.hold_deadline = None
+        self.hold_sample = None
+        self.seed_target = False
 
     def prepare(self, task, value):
-        if self.fault or self.task:
+        if self.fault or self.task or self.holding:
             raise ValueError('执行器未就绪')
         value = speed(value)
         if not 0 < value <= self.config['max_speed']:
             raise ValueError('速度超过配置的导航上限')
         self.target = list(self.backend.desired())
         self.target_sent = False
+        self.seed_target = True
+        self.warning = None
         self.task, self.limit = task, value
         self.command_time = self.permit_time = -math.inf
         self.command_value = (0.,0.)
@@ -190,6 +198,7 @@ class Drive:
 
     def stop(self, reason=None):
         self.task = None
+        self.holding = False
         self.command_value = (0.,0.)
         self.moving = False
         if reason:
@@ -202,68 +211,114 @@ class Drive:
         if getattr(self.backend, 'requires_restart', False):
             self.fault = self.fault or '停车已锁定；需重新启动会话'
 
-    def cancel_stationary(self, now, stationary):
-        """Release a task only when already stopped; otherwise use vendor stop."""
+    def feedback(self, now):
+        p,received=self.backend.feedback()
+        if (len(p)!=3 or not all(math.isfinite(x) for x in p) or
+                not -.02<=now-received<=self.config['feedback_timeout']):
+            raise RuntimeError('底盘反馈无效或超时')
+        return list(p),received
+
+    def suspend(self, now, reason):
+        """Cancel the task and request a measured-position hold; verify settling.
+        This is a target request, not a claimed physical brake guarantee.
+        """
         try:
-            p,received=self.backend.feedback()
-            safe=(stationary and self.backend.has_control() and not self.fault and
-                  len(p)==3 and all(math.isfinite(v) for v in p) and
-                  -.02<=now-received<self.config['feedback_timeout'] and
-                  math.hypot(self.target[0]-p[0],self.target[1]-p[1])<.005 and
-                  abs(self.target[2]-p[2])<.01 and self.command_value==(0.,0.))
-            if not safe:
-                self.stop('数据失效时未确认静止，已执行保护停止');return False
+            if self.fault: return False
+            if not self.backend.has_control(): raise RuntimeError('底盘控制权丢失')
+            p,received=self.feedback(now)
             self.task=None;self.command_value=(0.,0.);self.moving=False
             self.command_time=self.permit_time=-math.inf
+            self.warning=reason+'；已取消任务，确认静止后请重新提交'
+            if not self.holding:
+                self.target=p
+                if self.target_sent:
+                    self.backend.send(list(p))
+                self.holding=True;self.hold_since=now;self.hold_deadline=now+3.
+                self.hold_sample=(list(p),received)
             return True
         except Exception as exc:
-            self.stop('静止确认失败：'+str(exc));return False
+            self.stop(str(exc));return False
+
+    def cancel_stationary(self, now, stationary):
+        # Compatibility endpoint: settling is now verified here from SDK feedback.
+        return self.suspend(now,'导航数据失效')
 
     def tick(self, now):
-        dt = now-self.last_tick
-        self.last_tick = now
+        dt=now-self.last_tick;self.last_tick=now
         try:
-            if self.fault:
+            if self.fault:return (0.,0.)
+            if not math.isfinite(dt) or dt<=0:raise RuntimeError('控制时钟无效')
+            if not self.backend.has_control():raise RuntimeError('底盘控制权丢失')
+            p,received=self.feedback(now)
+            if self.holding:
+                previous,previous_stamp=self.hold_sample
+                close=(math.hypot(p[0]-previous[0],p[1]-previous[1])<.005
+                       and abs(p[2]-previous[2])<.01)
+                if not close:
+                    self.hold_sample=(list(p),received);self.hold_since=now
+                if self.target_sent:self.backend.send(list(self.target))
+                if close and received!=previous_stamp and now-self.hold_since>=.15:
+                    self.holding=False
+                elif now>=self.hold_deadline:
+                    raise RuntimeError('位置保持请求后未确认静止')
                 return (0.,0.)
-            if not 0 < dt <= .1:
-                raise RuntimeError('控制周期停顿，不补发位移')
-            if not self.backend.has_control():
-                raise RuntimeError('底盘控制权丢失')
-            p, received = self.backend.feedback()
-            if len(p)!=3 or not all(math.isfinite(x) for x in p) or not -.02 <= now-received <= self.config['feedback_timeout']:
-                raise RuntimeError('底盘反馈无效或超时')
-            if not self.task:
+            if not self.task:return (0.,0.)
+            if now-self.permit_time>=.5:
+                self.suspend(now,'运动许可失效');return (0.,0.)
+            if now-self.command_time>=.3:
+                self.suspend(now,'导航指令超时');return (0.,0.)
+            if dt>.1:
+                self.warning='控制周期延迟 %.3f s；本周期不推进目标，不补发位移'%dt
                 return (0.,0.)
-            if now-self.permit_time >= .5:
-                raise RuntimeError('运动许可失效')
-            if now-self.command_time >= .3:
-                raise RuntimeError('导航指令超时')
-            v,w = self.command_value
-            candidate = [self.target[0]+v*.01, self.target[1], self.target[2]+w*.01]
-            position_error=math.hypot(candidate[0]-p[0],candidate[1]-p[1])
-            yaw_error=abs(candidate[2]-p[2])
-            self.tracking=dict(target=list(candidate),feedback=list(p),position_error_m=position_error,
-                               yaw_error_rad=yaw_error,feedback_receive_age_s=now-received,
-                               tick_interval_s=dt,sampled_at=now)
-            if position_error > self.config['max_position_error'] or yaw_error > self.config['max_yaw_error']:
-                raise RuntimeError('底盘目标超前量超过控制限制：位置 %.4f/%.4f m，角度 %.4f/%.4f rad' %
-                                   (position_error,self.config['max_position_error'],yaw_error,self.config['max_yaw_error']))
+            if self.seed_target:
+                # Explicit new task discards a previous desired-position backlog.
+                # Seed only after obtaining fresh native SDK feedback.
+                self.target=list(p);self.seed_target=False
+            v,w=self.command_value
+            before=list(self.target)
             if (v,w)==(0.,0.):
-                # Normal controller pause follows keyboard teleop: no increment,
-                # resend only our last commanded target. This is NOT a brake.
-                # Cancellation, stale inputs and faults use stop() separately.
+                # Withdraw unexecuted lead instead of retaining a residual move.
                 if self.target_sent:
-                    self.backend.send(list(self.target))
-                self.moving = False
+                    self.target=list(p);self.backend.send(list(p))
+                self.moving=False
+                self.tracking=dict(target=list(self.target),feedback=p,position_error_m=math.hypot(self.target[0]-p[0],self.target[1]-p[1]),
+                    yaw_error_rad=abs(self.target[2]-p[2]),feedback_receive_age_s=now-received,
+                    tick_interval_s=dt,sampled_at=now,requested_command=[v,w],
+                    applied_command=[0.,0.],governor_scale=1.)
                 return (0.,0.)
-            self.target = candidate
-            self.backend.send(candidate)
-            self.target_sent = True
-            self.moving = True
-            return v,w
+            step=min(dt,.01)
+            delta=[v*step,0.,w*step]
+            limits=(self.config['max_position_error'],self.config['max_yaw_error'])
+            gap=math.hypot(before[0]-p[0],before[1]-p[1])
+            angle=abs(before[2]-p[2])
+            # Smoothly reduce advance over the upper half of the lead budget.
+            ratio=max(gap/limits[0],angle/limits[1])
+            scale=max(0.,min(1.,2.*(1.-ratio)))
+            # A preexisting discrepancy only inhibits growth; it never latches.
+            # Allow an angular command that reduces an existing yaw discrepancy.
+            if gap<limits[0] and angle>=limits[1] and (before[2]-p[2])*delta[2]<0:
+                scale=max(0.,min(1.,2.*(1.-gap/limits[0])))
+            candidate=[before[i]+delta[i]*scale for i in range(3)]
+            # Bound each accepted increment; numerical edge cases cannot wind up.
+            if (math.hypot(candidate[0]-p[0],candidate[1]-p[1])>max(gap,limits[0])+1e-12 or
+                abs(candidate[2]-p[2])>max(angle,limits[1])+1e-12):
+                scale=0.;candidate=before
+            applied=(v*scale,w*scale)
+            self.warning=('底盘跟随偏差：位置 %.3f m、角度 %.3f rad；目标推进 %.0f%%，仅告警'
+                          %(gap,angle,100*scale)) if scale<.999 else None
+            self.tracking=dict(target=list(candidate),feedback=list(p),
+                position_error_m=math.hypot(candidate[0]-p[0],candidate[1]-p[1]),
+                yaw_error_rad=abs(candidate[2]-p[2]),feedback_receive_age_s=now-received,
+                tick_interval_s=dt,sampled_at=now,requested_command=[v,w],
+                applied_command=list(applied),governor_scale=scale)
+            self.target=candidate
+            # Do not send an inherited target if no motion has been requested yet.
+            if scale>0 or self.target_sent:
+                self.backend.send(list(candidate));self.target_sent=True
+            self.moving=bool(applied[0] or applied[1])
+            return applied
         except Exception as exc:
-            self.stop(str(exc))
-            return (0.,0.)
+            self.stop(str(exc));return (0.,0.)
 
 
 def navigation_command(command, command_age, feedback_age):

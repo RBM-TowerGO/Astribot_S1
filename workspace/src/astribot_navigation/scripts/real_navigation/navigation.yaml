@@ -25,4 +25,8 @@ obstacle_min_height: 0.02
 obstacle_max_height: 2.0
 feedback_timeout: 0.15
 max_position_error: 0.10
-max_yaw_error: 0.05
+max_yaw_error: 0.10
+
+# Validated by isolated real-AMCL stationary/turning A/B; no zero-threshold resampling.
+amcl_update_min_d: 0.05
+amcl_update_min_a: 0.05

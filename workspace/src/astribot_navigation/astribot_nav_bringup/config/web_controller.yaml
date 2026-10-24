@@ -13,7 +13,7 @@ planner_server:
       max_iterations: 1000000
       cost_penalty: 3.0
       analytic_expansion_max_length: 4.0
-      smooth_path: false
+      smooth_path: true
 controller_server:
   ros__parameters:
     # A fresh global plan may take longer than the 0.3 s base tolerance.

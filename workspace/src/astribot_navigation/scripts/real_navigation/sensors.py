@@ -158,7 +158,6 @@ class Sensors:
         started=time.monotonic()
         from sensor_msgs_py import point_cloud2
         from std_msgs.msg import Header
-        from sensor_msgs.msg import LaserScan
         results,error=self.worker.take()
         if error:self.fail(error)
         if self.error:return
@@ -174,52 +173,64 @@ class Sensors:
                 self.scans[key]=(stamp,ranges)
                 self.scan_history[key].append((stamp,ranges))
                 self.metrics.add(key+'_output_source_age_s',now-stamp)
-                if len(self.scans)!=2:continue
-                # Match actual acquisition times, not whichever callbacks
-                # happened to finish last. Keep only bounded recent history.
-                pair=match_scans(self.scan_history,now,self.latest_scan_source_stamp)
-                if pair is None:
-                    self.metrics.count('scan_pair_unmatched');continue
-                front,back=pair
-                # Reproject both scans to one measured reference time before fusion.
-                # Project the measured endpoints into the latest recorded LIO pose.
-                # This uses a real transform, never extrapolation or wall-clock time.
-                # Retain the OLDEST contributing acquisition for health gates;
-                # a newer projection frame must never renew old observations.
-                source_stamp=min(front[0],back[0])
-                reference_stamp=self.last_pose[0]
-                reference_ns=self.last_pose_stamp_ns
-                if max(front[0],back[0])>reference_stamp:continue
-                if self.latest_scan and reference_stamp<=self.latest_scan[0]:continue
-                reference=self.geometry.at(reference_stamp)
-                if reference is None:
-                    self.metrics.count('scan_reference_pose_missing');continue
-                origin=self.geometry.base_lidar[:3,3]
-                merged=np.full(720,np.nan)
-                for scan_stamp,scan_ranges in (front,back):
-                    pose=self.geometry.at(scan_stamp)
-                    if pose is None:
-                        self.metrics.count('scan_source_pose_missing');break
-                    base=scan_points(scan_ranges)+origin
-                    world=base@pose[:3,:3].T+pose[:3,3]
-                    local=(world-reference[:3,3])@reference[:3,:3]-origin
-                    bins=np.floor((np.arctan2(local[:,1],local[:,0])+math.pi)/(2*math.pi)*720+.5).astype(int)%720
-                    values=np.full(720,np.inf)
-                    np.minimum.at(values,bins,np.linalg.norm(local[:,:2],axis=1))
-                    values[~np.isfinite(values)]=np.nan
-                    merged=np.fmin(merged,values)
-                else:
-                    scan=LaserScan();scan.header.stamp=rclpy.time.Time(nanoseconds=reference_ns).to_msg();scan.header.frame_id=FRAME['front']
-                    scan.angle_min=-math.pi;scan.angle_increment=2*math.pi/720;scan.angle_max=-math.pi+719*scan.angle_increment
-                    scan.range_min=.15;scan.range_max=20.;scan.scan_time=.1;scan.ranges=merged.tolist()
-                    self.latest_scan=(reference_stamp,scan_points(merged).tolist())
-                    self.latest_scan_source_stamp=source_stamp;self.latest_scan_stamp_ns=reference_ns
-                    self.scan_pub.publish(scan);self.received['scan']=time.monotonic();self.stamps['scan']=source_stamp
-                    self.metrics.add('scan_source_age_s',now-source_stamp)
-                    self.metrics.add('scan_reference_age_s',now-reference_stamp)
             except Exception as exc:self.fail(str(exc))
 
+        # Collect the complete result batch first. Retry the retained pair even
+        # without new cloud results: LIO may now provide a newer reference pose.
+        if not self.error:
+            try:self.publish_cached_scan(self.node.get_clock().now().nanoseconds*1e-9)
+            except Exception as exc:self.fail(str(exc))
         self.metrics.add('flush_ms',(time.monotonic()-started)*1000)
+
+    def publish_cached_scan(self,now):
+        """Publish the newest complete, fresh pair at most once per reference."""
+        from sensor_msgs.msg import LaserScan
+        if len(self.scans)!=2 or self.last_pose is None:return
+        # Match actual acquisition times, not whichever callbacks
+        # happened to finish last. Keep only bounded recent history.
+        pair=match_scans(self.scan_history,now,self.latest_scan_source_stamp)
+        if pair is None:
+            self.metrics.count('scan_pair_unmatched');return
+        front,back=pair
+        # Reproject both scans to one measured reference time before fusion.
+        # Project the measured endpoints into the latest recorded LIO pose.
+        # This uses a real transform, never extrapolation or wall-clock time.
+        # Retain the OLDEST contributing acquisition for health gates;
+        # a newer projection frame must never renew old observations.
+        source_stamp=min(front[0],back[0])
+        reference_stamp=self.last_pose[0]
+        reference_ns=self.last_pose_stamp_ns
+        if max(front[0],back[0])>reference_stamp:
+            self.metrics.count('scan_waiting_reference');return
+        if self.latest_scan and reference_stamp<=self.latest_scan[0]:
+            self.metrics.count('scan_waiting_new_reference');return
+        reference=self.geometry.at(reference_stamp)
+        if reference is None:
+            self.metrics.count('scan_reference_pose_missing');return
+        origin=self.geometry.base_lidar[:3,3]
+        merged=np.full(720,np.nan)
+        for scan_stamp,scan_ranges in (front,back):
+            pose=self.geometry.at(scan_stamp)
+            if pose is None:
+                self.metrics.count('scan_source_pose_missing');break
+            base=scan_points(scan_ranges)+origin
+            world=base@pose[:3,:3].T+pose[:3,3]
+            local=(world-reference[:3,3])@reference[:3,:3]-origin
+            bins=np.floor((np.arctan2(local[:,1],local[:,0])+math.pi)/(2*math.pi)*720+.5).astype(int)%720
+            values=np.full(720,np.inf)
+            np.minimum.at(values,bins,np.linalg.norm(local[:,:2],axis=1))
+            values[~np.isfinite(values)]=np.nan
+            merged=np.fmin(merged,values)
+        else:
+            scan=LaserScan();scan.header.stamp=rclpy.time.Time(nanoseconds=reference_ns).to_msg();scan.header.frame_id=FRAME['front']
+            scan.angle_min=-math.pi;scan.angle_increment=2*math.pi/720;scan.angle_max=-math.pi+719*scan.angle_increment
+            scan.range_min=.15;scan.range_max=20.;scan.scan_time=.1;scan.ranges=merged.tolist()
+            self.latest_scan=(reference_stamp,scan_points(merged).tolist())
+            self.latest_scan_source_stamp=source_stamp;self.latest_scan_stamp_ns=reference_ns
+            self.scan_pub.publish(scan);self.received['scan']=time.monotonic();self.stamps['scan']=source_stamp
+            self.metrics.add('scan_source_age_s',now-source_stamp)
+            self.metrics.add('scan_reference_age_s',now-reference_stamp)
+            self.metrics.count('scan_published')
 
     def healthy(self):
         now=time.monotonic()

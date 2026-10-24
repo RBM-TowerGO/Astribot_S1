@@ -1,3 +1,4 @@
+#include "straight_route.hpp"
 #include <algorithm>
 #include <cmath>
 #include <memory>
@@ -29,17 +30,43 @@ public:
     const geometry_msgs::msg::PoseStamped & start,
     const geometry_msgs::msg::PoseStamped & goal) override
   {
-    auto plan = nav2_smac_planner::SmacPlannerLattice::createPlan(start, goal);
-    if (plan.poses.empty()) {return plan;}
     auto * map = costmap_ros_->getCostmap();
     std::unique_lock<nav2_costmap_2d::Costmap2D::mutex_t> lock(*map->getMutex());
     nav2_costmap_2d::FootprintCollisionChecker<nav2_costmap_2d::Costmap2D *> checker(map);
     const auto footprint = costmap_ros_->getRobotFootprint();
+    auto free = [&](towergo_route::Pose p) {
+      unsigned int mx,my;
+      if (!map->worldToMap(p.x,p.y,mx,my) || map->getCost(mx,my)>=nav2_costmap_2d::INSCRIBED_INFLATED_OBSTACLE) return false;
+      const double cost=checker.footprintCostAtPose(p.x,p.y,p.yaw,footprint);
+      return cost>=0. && cost<nav2_costmap_2d::LETHAL_OBSTACLE;
+    };
+    const towergo_route::Pose from{start.pose.position.x,start.pose.position.y,tf2::getYaw(start.pose.orientation)};
+    const towergo_route::Pose to{goal.pose.position.x,goal.pose.position.y,tf2::getYaw(goal.pose.orientation)};
+    auto straight=towergo_route::straight(from,to,free);
+    if (!straight.empty()) {
+      nav_msgs::msg::Path path;path.header=goal.header;
+      for (auto p:straight) {
+        auto pose=goal;pose.pose.position.x=p.x;pose.pose.position.y=p.y;
+        tf2::Quaternion q;q.setRPY(0.,0.,p.yaw);pose.pose.orientation=tf2::toMsg(q);
+        path.poses.push_back(pose);
+      }
+      return path;
+    }
+    // Obstacle detours still use the footprint-aware lattice, but the user's
+    // terminal yaw is excluded from translation planning.
+    auto arrival=goal;
+    tf2::Quaternion arrival_q;
+    arrival_q.setRPY(0.,0.,std::atan2(to.y-from.y,to.x-from.x));
+    arrival.pose.orientation=tf2::toMsg(arrival_q);
+    lock.unlock();
+    auto plan = nav2_smac_planner::SmacPlannerLattice::createPlan(start, arrival);
+    if (plan.poses.empty()) {return plan;}
+    lock.lock();
     const auto & last = plan.poses.back().pose;
     const double dx = goal.pose.position.x - last.position.x;
     const double dy = goal.pose.position.y - last.position.y;
     const double yaw = tf2::getYaw(last.orientation);
-    const double delta = tf2::getYaw(goal.pose.orientation) - yaw;
+    const double delta = tf2::getYaw(arrival.pose.orientation) - yaw;
     const double dyaw = std::atan2(std::sin(delta), std::cos(delta));
     // The lattice tolerance is a local endpoint connection, never a shortcut
     // across an unfinished route. Reject unexpectedly distant endpoints.
@@ -62,6 +89,11 @@ public:
         throw nav2_core::PlannerException("Exact goal rotation intersects obstacle or unknown");
       }
     }
+    const towergo_route::Pose arrived{to.x,to.y,tf2::getYaw(arrival.pose.orientation)};
+    if (!towergo_route::segment(arrived,to,free)) {
+      throw nav2_core::PlannerException("Final in-place rotation intersects obstacle or unknown");
+    }
+    plan.poses.push_back(arrival);
     plan.poses.push_back(goal);
     return plan;
   }

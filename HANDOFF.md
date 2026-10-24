@@ -152,3 +152,20 @@ bash scripts/tg-navigation.sh --mode hardware --check
 ## 提交范围
 
 保存导航工作区的当前源码、测试及文档，包括本次会话前已存在的仿真网页/速度设置改动，作为可继续开发的检查点。不提交运行 pycache、数据目录及其链接变化、现场日志、临时 navigation.before_user_confirmation 配置备份；这些现有工作区内容原样保留。此次不 push。
+
+
+## 2026-10-24 定位漂移修复
+
+详见 `workspace/src/astribot_navigation/docs/LOCALIZATION_DRIFT_REPORT.md`。真实 AMCL 隔离 A/B 复现零更新门槛下的静止漂移；默认改为 0.05 m / 0.05 rad，并接入独立扫描地图质量、预期更新检查、最后可信位置和一次性静止局部恢复。保留仅二维静态地图导航。新会话默认限时限大小诊断录包；不自动续走、不解除执行器故障。真机进程未重启，需用户重启后低速转弯与静止验收。证据位于 `workspace/data/reports/localization_validation_20261024/`。
+
+## 2026-10-24 底盘目标推进修复
+详见 workspace/src/astribot_navigation/docs/DRIVE_GOVERNOR.md。普通跟踪误差改为目标推进限幅与告警；数据中断取消任务、请求反馈位置保持并确认静止；恢复后仅手动新任务。实际停车效果待用户验收，已锁定 SDK 不自动复位。
+
+## 2026-10-24 扫描停更修复
+Sensors.flush 先批量收集全部完成结果，再发布最新完整配对；空批次定时器也重试缓存。原有时间与双雷达约束保留。详见 workspace/src/astribot_navigation/docs/SCAN_PUBLISH_RETRY.md。当前进程需重启加载，真实停更改善尚待观察。
+
+## 2026-10-24 短时扫描 / TF 暂停自动恢复（用户明确变更）
+详见 workspace/src/astribot_navigation/docs/DATA_PAUSE.md。仅运行中的扫描/TF过期可暂停，连续恢复2秒、SDK确认静止且旧Nav2动作结束后，新任务重新规划原目标。10秒总期限；手动停止、定位失配、原始输入/反馈失效、控制权丢失等取消，绝不自动恢复。此规则覆盖旧文档中对短时扫描/TF过期的一律禁止续走，其余不变。未重启真机进程，实测待用户执行。
+
+## 2026-10-24 直线优先与终点朝向分离
+ExactGoalLattice 新增经过完整轮廓检查的直线优先路径，最终朝向留给 RPP 到点后原地转向；直线不通时仍用 lattice 绕障，终点旋转单独检查。详见 workspace/src/astribot_navigation/docs/STRAIGHT_ROUTE.md。不改变静态地图、碰撞检查、速度和到点容差。需重启服务，实机效果待用户验收。

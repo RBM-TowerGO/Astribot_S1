@@ -191,7 +191,7 @@ def main():
                     else:settling.rows.clear()
                 except Exception:settling.rows.clear()
                 status.publish(String(data=json.dumps(dict(task=drive.task, speed=drive.limit, fault=drive.fault,
-                                                         command=command, rights=backend.has_control(),sent=now,tracking=drive.tracking,stationary=stationary,settling_span=span))))
+                                                         command=command, rights=backend.has_control(),sent=now,tracking=drive.tracking,stationary=stationary,settling_span=span,warning=drive.warning,holding=drive.holding))))
                 last_status=now
     except KeyboardInterrupt:
         pass

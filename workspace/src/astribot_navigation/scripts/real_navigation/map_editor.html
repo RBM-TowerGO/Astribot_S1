@@ -1,0 +1,36 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>TowerGO 地图清理</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#111827;color:#e5edf7;font:15px system-ui}main{display:grid;grid-template-columns:310px 1fr;height:100vh}aside{padding:22px;overflow:auto;border-right:1px solid #344155}h1{font-size:22px}p{line-height:1.6;color:#aab9ce}button,input{font:inherit}button{padding:10px;margin:4px 0;background:#26384d;border:1px solid #56708e;color:white;border-radius:6px;cursor:pointer}button:disabled{opacity:.4}button.active{background:#24634f}input[type=number]{width:90px;padding:6px}canvas{width:100%;height:100%;display:block;touch-action:none}section{min-width:0;overflow:hidden}#message{height:110px;overflow:auto;color:#ffce80;white-space:pre-wrap}#selection{height:48px}textarea{width:100%;height:130px;background:#192536;color:#cde5ff}label{display:block;margin:15px 0}
+</style><main><aside><h1>地图障碍清理</h1><p>框选行人残影，将选区改为空闲区域。原地图保留，保存生成新地图。</p>
+<button id="select" class="active" onclick="mode('select')">框选擦除</button> <button id="pan" onclick="mode('pan')">拖动地图</button>
+<button onclick="fit()">适应地图</button><div id="selection">拖拽框选需要清理的区域</div>
+<button id="erase" disabled>抹除选区</button> <button id="undo" disabled onclick="act({op:'undo'})">撤销</button>
+<label><input id="show" type="checkbox" checked onchange="draw()"> 显示膨胀区（橙色）</label>
+<label>膨胀半径 <input id="radius" type="number" min="0" max="2" step=".05" value=".2"> m</label>
+<p>膨胀层按地图格分辨率取整预览。机器人轮廓用于尺寸参考；并非所有橙色格都会触发碰撞。</p>
+<label><input id="body" type="checkbox" checked onchange="draw()"> 光标处显示机器人轮廓</label>
+<label>参考朝向 <input id="angle" type="number" value="0" step="15" onchange="draw()"> °</label>
+<button id="save" onclick="act({op:'save'})">保存地图与膨胀配置</button><div id="message"></div>
+<textarea id="command" readonly placeholder="保存后显示使用新地图的导航启动命令"></textarea>
+<p>滚轮缩放。框选后点击抹除；Ctrl/Cmd+Z 撤销，Esc 取消选区。保存不会切换正在运行的导航地图。</p></aside><section><canvas id="map"></canvas></section></main>
+<script>
+const $=id=>document.getElementById(id),cv=$('map'),ctx=cv.getContext('2d'),token='__TOKEN__';
+let state,img,overlay,scale=1,ox=0,oy=0,tool='select',down=null,rect=null,hover=null,busy=false;
+function mode(m){tool=m;down=null;rect=null;for(const k of ['select','pan'])$(k).classList.toggle('active',m===k);draw()}
+function point(e){const r=cv.getBoundingClientRect();return[(e.clientX-r.left-ox)/scale,(e.clientY-r.top-oy)/scale]}
+function fit(){if(!state)return;scale=Math.min((cv.clientWidth-40)/state.width,(cv.clientHeight-40)/state.height);ox=(cv.clientWidth-state.width*scale)/2;oy=(cv.clientHeight-state.height*scale)/2;draw()}
+function resize(){cv.width=cv.clientWidth*devicePixelRatio;cv.height=cv.clientHeight*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);draw()}
+function draw(){ctx.clearRect(0,0,cv.clientWidth,cv.clientHeight);if(!img)return;ctx.save();ctx.translate(ox,oy);ctx.scale(scale,scale);ctx.imageSmoothingEnabled=false;ctx.drawImage(img,0,0);if($('show').checked&&overlay)ctx.drawImage(overlay,0,0);
+if(rect){ctx.fillStyle='#40aaff44';ctx.strokeStyle='#159bff';ctx.lineWidth=2/scale;ctx.fillRect(rect[0],rect[1],rect[2]-rect[0],rect[3]-rect[1]);ctx.strokeRect(rect[0],rect[1],rect[2]-rect[0],rect[3]-rect[1])}
+if(hover&&$('body').checked){ctx.save();ctx.translate(...hover);ctx.rotate(-Number($('angle').value)*Math.PI/180);ctx.strokeStyle='#00ad70';ctx.lineWidth=2/scale;ctx.beginPath();state.footprint.forEach((p,i)=>{const x=(p[0]+Math.sign(p[0])*state.padding)/state.resolution,y=-(p[1]+Math.sign(p[1])*state.padding)/state.resolution;i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.closePath();ctx.stroke();ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(.5/state.resolution,0);ctx.stroke();ctx.restore()}ctx.restore();$('erase').disabled=busy||!rect||rect[0]===rect[2]||rect[1]===rect[3];$('undo').disabled=busy||!state.undo;$('save').disabled=busy}
+async function refresh(first=false){state=await(await fetch('/api/state')).json();const load=url=>new Promise((resolve,reject)=>{const i=new Image();i.onload=()=>resolve(i);i.onerror=reject;i.src=url+'?r='+state.revision});[img,overlay]=await Promise.all([load('/map.png'),load('/inflation.png')]);$('radius').value=state.radius;first?fit():draw()}
+async function act(obj){if(busy)return;busy=true;draw();try{const r=await fetch('/api/edit',{method:'POST',headers:{'Content-Type':'application/json','X-Session-Token':token},body:JSON.stringify({...obj,revision:state.revision})});const v=await r.json();if(!r.ok)throw Error(v.error);if(v.saved){$('message').textContent=v.message+'\n'+v.saved;$('command').value=v.command}else{$('message').textContent='修改成功，地图已更新；保存后用于下次导航';rect=null;await refresh()}}catch(e){$('message').textContent=e.message;await refresh()}finally{busy=false;draw()}}
+$('erase').addEventListener('click',()=>{if(rect)void act({op:'erase',rect:rect.slice()})});
+cv.onpointerdown=e=>{if(!state||busy)return;cv.setPointerCapture(e.pointerId);down={p:point(e),x:e.clientX,y:e.clientY,ox,oy};if(tool==='select')rect=null};
+cv.onpointermove=e=>{hover=point(e);if(down){if(tool==='pan'){ox=down.ox+e.clientX-down.x;oy=down.oy+e.clientY-down.y}else{const p=point(e),a=down.p;rect=[Math.max(0,Math.min(state.width,Math.floor(Math.min(a[0],p[0])))),Math.max(0,Math.min(state.height,Math.floor(Math.min(a[1],p[1])))),Math.max(0,Math.min(state.width,Math.ceil(Math.max(a[0],p[0])))),Math.max(0,Math.min(state.height,Math.ceil(Math.max(a[1],p[1]))))];$('selection').textContent=((rect[2]-rect[0])*state.resolution).toFixed(2)+' × '+((rect[3]-rect[1])*state.resolution).toFixed(2)+' m'}}draw()};
+cv.onpointerup=()=>{down=null};cv.onpointercancel=()=>{down=null;rect=null;draw()};
+cv.onwheel=e=>{e.preventDefault();if(!state)return;const p=point(e),next=Math.max(.05,Math.min(40,scale*(e.deltaY<0?1.15:1/1.15)));ox+=p[0]*(scale-next);oy+=p[1]*(scale-next);scale=next;draw()};
+$('radius').onchange=()=>act({op:'radius',radius:Number($('radius').value)});
+document.onkeydown=e=>{if(e.target.matches('input,textarea'))return;if(e.key==='Escape'){rect=null;draw()}if((e.ctrlKey||e.metaKey)&&e.key==='z'){e.preventDefault();act({op:'undo'})}};
+window.onresize=resize;resize();refresh(true).catch(e=>$('message').textContent=e.message);
+</script></html>

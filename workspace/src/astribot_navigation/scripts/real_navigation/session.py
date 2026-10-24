@@ -34,7 +34,7 @@ def nav_params(config,mapfile,replay):
             for value in obj:rewrite(value)
     rewrite(base)
     base['map_server']['ros__parameters'].update(yaml_filename=str(mapfile),frame_id='tg_nav_map')
-    base['amcl']['ros__parameters'].update(update_min_d=0.,update_min_a=0.,transform_tolerance=.1)
+    base['amcl']['ros__parameters'].update(update_min_d=config.get('amcl_update_min_d',0.),update_min_a=config.get('amcl_update_min_a',0.),transform_tolerance=.1)
     cp=base['controller_server']['ros__parameters'];cp['FollowPath']['desired_linear_vel']=.05
     cp['FollowPath']['max_allowed_time_to_collision_up_to_carrot']=config.get('collision_time_horizon',1.5)
     cp['odom_topic']='/towergo/nav/odom'
@@ -42,15 +42,12 @@ def nav_params(config,mapfile,replay):
         p=base[name][name]['ros__parameters']
         p['footprint']=json.dumps(config['footprint']);p['footprint_padding']=config['footprint_padding']
         p['track_unknown_space']=True
-        p['plugins']=['static_layer','obstacle_layer','inflation_layer']
+        # User-selected static-map navigation. Live scans remain localization/preview only.
+        p['plugins']=['static_layer','inflation_layer']
+        p.pop('obstacle_layer',None)
+        p.pop('voxel_layer',None)
         p['static_layer']={'plugin':'nav2_costmap_2d::StaticLayer','map_topic':'/towergo/nav/map','map_subscribe_transient_local':True}
-        p['obstacle_layer']={'plugin':'nav2_costmap_2d::ObstacleLayer','observation_sources':'front back'}
-        for key in ('front','back'):
-            p['obstacle_layer'][key]=dict(topic='/towergo/nav/obstacles/'+key,data_type='PointCloud2',sensor_frame='tg_nav_'+key,
-                marking=True,clearing=True,obstacle_max_range=10.,raytrace_max_range=12.,
-                min_obstacle_height=config['obstacle_min_height'],max_obstacle_height=config['obstacle_max_height'],
-                expected_update_rate=.5,observation_persistence=0.)
-        p['inflation_layer'].update(inflation_radius=.2,cost_scaling_factor=5.)
+        p['inflation_layer'].update(inflation_radius=float(config.get('inflation_radius',.2)),cost_scaling_factor=5.)
     bt=base['bt_navigator']['ros__parameters']
     bt['default_nav_through_poses_bt_xml']=str(REPO/'astribot_nav_bringup/config/navigation_through.xml')
     bt['default_nav_to_pose_bt_xml']=str(HERE/'navigation.xml')
@@ -82,16 +79,23 @@ def parser():
     p.add_argument('--mode',choices=['observe','hardware','mock'],default='observe')
     p.add_argument('--port',type=int,default=8767)
     p.add_argument('--replay',help='原始双雷达/IMU bag；隔离 Domain 125，不加载 SDK')
+    p.add_argument('--replay-rate',type=float,default=1.,help='隔离回放倍率（0.5–1）')
     p.add_argument('--duration',type=float,default=0,help='验证会话最长秒数；0 为持续运行')
     p.add_argument('--output-root',default=str(WORKSPACE/'data/reports/real_navigation'))
+    p.add_argument('--diagnostic-seconds',type=float,default=600.,help='完整诊断录包时长；0 禁用，默认 600 秒')
+    p.add_argument('--diagnostic-max-bytes',type=int,default=2147483648,help='诊断录包总大小上限（默认 2 GiB）')
     p.add_argument('--check',action='store_true',help='检查配置和依赖，不启动节点')
     return p
 
 
 def main():
     args=parser().parse_args()
+    if not .5<=args.replay_rate<=1:raise ValueError('回放倍率必须在 0.5–1；更慢会超出逐帧等待期限')
+    if args.diagnostic_seconds<0 or args.diagnostic_max_bytes<0:raise ValueError('诊断记录限制必须非负')
     config=yaml.safe_load(Path(args.config).read_text())
     validate_config(config,args.mode=='hardware')
+    inflation=float(config.get('inflation_radius',.2))
+    if not 0<=inflation<=2:raise ValueError('膨胀半径必须在 0–2 m')
     if args.mode=='mock':
         if not args.replay:raise ValueError('mock 仅用于隔离录包回放')
         config['max_speed']=.3
@@ -118,7 +122,7 @@ def main():
     run.mkdir(parents=True)
     (run/'config.yaml').write_text(yaml.safe_dump(config));(run/'nav2.yaml').write_text(yaml.safe_dump(nav_params(config,mapfile,bool(args.replay))))
     report=dict(mode=args.mode,replay=args.replay,map=str(mapfile),map_sha256=digest(mapfile),image_sha256=digest(image),
-                max_speed=config['max_speed'],started=time.time(),status='starting',processes={})
+                config_sha256=digest(run/'config.yaml'),max_speed=config['max_speed'],started=time.time(),status='starting',processes={})
     procs={};node=None;http=None;executor=None;interrupted=False
     def spawn(name,cmd):
         proc=OwnedProcess(name,cmd,log=run/(name+'.log'))
@@ -169,15 +173,41 @@ def main():
         spawn('fastlio',cmd)
         spawn('nav2',['ros2','launch',str(HERE/'launch.py'),'params:='+str(run/'nav2.yaml')])
         if args.mode in ('hardware','mock'):spawn('executor',[sys.executable,'-m','real_navigation.executor',str(run/'config.yaml'),args.mode])
+        if args.diagnostic_seconds and args.diagnostic_max_bytes:
+            diagnostic_topics=[*REQUIRED_RAW_TOPICS,'/towergo/nav/lio/odometry','/towergo/nav/odom',
+                '/towergo/nav/scan','/towergo/nav/amcl_pose','/towergo/nav/tf','/towergo/nav/tf_static',
+                '/towergo/nav/executor_status','/towergo/nav/executor_control','/towergo/nav/cmd_vel_nav',
+                '/astribot_chassis/joint_space_states','/towergo/nav/map','/clock']
+            qos={t:dict(reliability='best_effort',durability='volatile',history='keep_last',depth=10)
+                 for t in diagnostic_topics}
+            for t in ('/towergo/nav/tf_static','/towergo/nav/map'):
+                qos[t]=dict(reliability='reliable',durability='transient_local',history='keep_last',depth=1)
+            (run/'diagnostic_qos.yaml').write_text(yaml.safe_dump(qos))
+            spawn('diagnostic_recorder',['ros2','bag','record','-s','mcap','-o',str(run/'diagnostic_bag'),
+                '--qos-profile-overrides-path',str(run/'diagnostic_qos.yaml'),
+                '--max-bag-size','268435456','--max-cache-size','67108864',*diagnostic_topics])
+            report['diagnostics']=dict(status='recording',seconds=args.diagnostic_seconds,max_bytes=args.diagnostic_max_bytes)
         if args.replay:
-            spawn('player',['ros2','bag','play',str(Path(args.replay).resolve()),'--clock','--rate','1.0','--delay','2','--topics',*REQUIRED_RAW_TOPICS])
+            spawn('player',['ros2','bag','play',str(Path(args.replay).resolve()),'--clock','--rate',str(args.replay_rate),'--delay','2','--topics',*REQUIRED_RAW_TOPICS])
         print('真机导航 '+args.mode+'：http://127.0.0.1:'+str(args.port)+'\n记录目录：'+str(run),flush=True)
         report['status']='running';atomic_json(run/'session.json',report)
+        diagnostic_check=0.;diagnostic_stopping=False
         start=time.monotonic();maxima={'front':0,'back':0,'scan':0};ready_seen=False
         while rclpy.ok() and not interrupted and (not args.duration or time.monotonic()-start<args.duration):
             executor.spin_once(timeout_sec=.02)
+            if 'diagnostic_recorder' in procs and not diagnostic_stopping and time.monotonic()-diagnostic_check>=1:
+                diagnostic_check=time.monotonic()
+                size=sum(p.stat().st_size for p in (run/'diagnostic_bag').glob('*') if p.is_file())
+                if time.monotonic()-start>=args.diagnostic_seconds or size>=args.diagnostic_max_bytes:
+                    proc=procs['diagnostic_recorder'].proc
+                    if proc.poll() is None:proc.send_signal(signal.SIGINT)
+                    diagnostic_stopping=True;report['diagnostics'].update(status='bounded_stop',bytes=size)
             for name,p in procs.items():
                 if p.poll() is not None:
+                    if name=='diagnostic_recorder':
+                        report['diagnostics']['exit_code']=p.poll()
+                        if not diagnostic_stopping:report['diagnostics']['status']='recorder_exited'
+                        continue
                     if name=='player' and p.poll()==0:interrupted=True;break
                     log_path = run / (name + '.log')
                     try:
@@ -199,13 +229,13 @@ def main():
             node.stop('会话结束')
             end=time.monotonic()+.3
             while rclpy.ok() and time.monotonic()<end:executor.spin_once(timeout_sec=.02)
-        for name in ('executor','player','nav2','fastlio','adapter'):
+        for name in ('diagnostic_recorder','executor','player','nav2','fastlio','adapter'):
             if name in procs:
                 try:procs[name].stop()
                 except Exception as exc:report.setdefault('shutdown_errors',[]).append(str(exc))
         if http:http.shutdown();http.server_close()
         if executor:executor.shutdown()
-        if node:node.sensors.close();node.log.close();node.destroy_node()
+        if node:node.quality.close();node.sensors.close();node.log.close();node.destroy_node()
         rclpy.try_shutdown();report['ended']=time.time();atomic_json(run/'session.json',report)
 
 if __name__=='__main__':main()
