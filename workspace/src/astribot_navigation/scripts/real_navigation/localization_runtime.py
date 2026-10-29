@@ -7,6 +7,7 @@ import numpy as np
 from scipy.spatial.transform import Rotation
 from .localization import MapMatcher, QualityMonitor, Recovery, UpdateExpectation
 from .core import SCAN_MAX_SOURCE_AGE
+from .confidence import StaticReassessment
 
 
 class LocalizationRuntime:
@@ -23,17 +24,20 @@ class LocalizationRuntime:
         self.empty=Empty
         self.nudge=web.create_client(Empty,'/towergo/nav/request_nomotion_update')
         self.nudge_future=None
+        self.reassessment=StaticReassessment();self.previous_amcl_odom=None
+        self.amcl_log=(web.run/'amcl_diagnostics.jsonl').open('a',buffering=1)
 
     def reset(self, cancel_recovery=True):
         self.generation+=1;self.monitor.reset();self.expectation.reset();self.last_scan=None;self.packet=None
         self.nudges=0;self.last_nudge=0.
+        self.reassessment.reset();self.previous_amcl_odom=None;self.web.confidence.reset()
         if cancel_recovery:self.recovery.cancel()
 
     def cancel(self):
-        self.generation+=1;self.recovery.cancel();self.recovery.status='canceled'
+        self.generation+=1;self.recovery.cancel();self.recovery.status='canceled';self.reassessment.reset()
 
     def close(self):
-        self.cancel();self.pool.shutdown(wait=True,cancel_futures=True);self.log.close()
+        self.cancel();self.pool.shutdown(wait=True,cancel_futures=True);self.log.close();self.amcl_log.close()
 
     def compute(self, packet):
         started=time.monotonic()
@@ -77,7 +81,7 @@ class LocalizationRuntime:
                     odom_from_base=odom.tolist() if odom is not None else None,
                     map_from_odom=(np.asarray(fused['map_from_base'])@np.linalg.inv(odom)).tolist() if odom is not None else None,
                     amcl_stamp=w.amcl_stamp if math.isfinite(w.amcl_stamp) and w.amcl_stamp>0 else None,
-                    amcl_covariance=w.amcl_cov if math.isfinite(w.amcl_cov) else None,
+                    amcl_covariance=w.amcl_cov if math.isfinite(w.amcl_cov) else None,amcl_confidence=w.confidence.snapshot(),
                     executor=w.executor_state,command=list(w.cmd),sensors=sensors,**fused)
 
     def tick(self, now):
@@ -136,7 +140,7 @@ class LocalizationRuntime:
                 pass # Freshness expires if the exact-time transform remains unavailable.
         if r.status=='verifying':
             good=(self.monitor.usable(now) and self.monitor.state.get('status')=='trusted' and
-                  w.amcl_stamp>r.published_stamp and self.amcl_is_current(now) and w.amcl_cov<.25)
+                  w.amcl_stamp>r.published_stamp and self.amcl_is_current(now) and not w.confidence.blocked)
             if r.verify(now,good,w.amcl_stamp):
                 w.initial_message=None
                 w.localization.update(status='succeeded',reason='定位恢复，请重新提交目标')
@@ -157,12 +161,56 @@ class LocalizationRuntime:
         if (w.initial_message is not None or r.status=='verifying') and stationary and sensors_ready:
             if self.nudges<3 and now-self.last_nudge>=1 and self.nudge.service_is_ready() and (self.nudge_future is None or self.nudge_future.done()):
                 self.nudge_future=self.nudge.call_async(self.empty.Request());self.nudges+=1;self.last_nudge=now
+        self.tick_reassessment(now,stationary,sensors_ready)
         return self.monitor.usable(now) and r.status not in ('waiting_stationary','collecting','searching','manual_required')
 
-    def observe_amcl(self, stamp):
+    def tick_reassessment(self, now, stationary, sensors_ready):
+        w=self.web;r=self.recovery
+        # Re-evaluate uncertainty only after a confirmed hold; never reset pose or resume a goal.
+        confidence=w.confidence
+        eligible=(confidence.blocked and confidence.details['valid'] and bool(confidence.details.get('reason'))
+                  and w.localization.get('status')=='recovering' and w.initial_message is None
+                  and r.status in ('idle','succeeded') and stationary and sensors_ready
+                  and not w.executor_state.get('fault') and not w.executor_state.get('holding')
+                  and w.executor_state.get('rights') and w.executor_state.get('task') is None
+                  and not w.state['busy'] and not w.lease.active and w.phase=='idle'
+                  and self.monitor.usable(now) and self.monitor.state.get('status')=='trusted'
+                  and w.refresh_initialization_transform() and w.amcl_active and now-w.amcl_lifecycle_at<3)
+        due=self.reassessment.due(now,eligible,w.amcl_stamp)
+        if due and self.nudge.service_is_ready() and (self.nudge_future is None or self.nudge_future.done()):
+            self.nudge_future=self.nudge.call_async(self.empty.Request())
+            self.reassessment.sent(now,w.amcl_stamp)
+            w.event('协方差静止重评估：第 %d / 3 次' % self.reassessment.count)
+        if confidence.status=='trusted' and self.reassessment.status!='manual_required':self.reassessment.reset()
+        if self.reassessment.status=='manual_required' and w.localization.get('status')=='recovering':
+            w.localization.update(status='manual_required',reason='静止重评估超时，请手动重新选点')
+            w.state.update(initialized=False,ready=False,status='静止重评估超时，请手动重新选点')
+        w.state['localization_reassessment']=self.reassessment.snapshot()
+
+    def observe_amcl(self, stamp, covariance):
         pose=self.web.sensors.geometry.at(stamp)
+        odom=None;delta=None
         if pose is not None:
-            self.expectation.observe(stamp,[pose[0,3],pose[1,3],math.atan2(pose[1,0],pose[0,0])])
+            odom=[float(pose[0,3]),float(pose[1,3]),math.atan2(pose[1,0],pose[0,0])]
+            self.expectation.observe(stamp,odom)
+            if self.previous_amcl_odom is not None:
+                previous_stamp,previous=self.previous_amcl_odom
+                dx,dy=odom[0]-previous[0],odom[1]-previous[1]
+                yaw=math.atan2(math.sin(odom[2]-previous[2]),math.cos(odom[2]-previous[2]))
+                c,s=math.cos(previous[2]),math.sin(previous[2])
+                delta=dict(previous_stamp=previous_stamp,dt=stamp-previous_stamp,
+                           x_m=c*dx+s*dy,y_m=-s*dx+c*dy,translation_m=math.hypot(dx,dy),yaw_rad=yaw)
+            self.previous_amcl_odom=(stamp,odom)
+        else:self.previous_amcl_odom=None
+        def finite(v):return float(v) if math.isfinite(v) else None
+        w=self.web
+        self.amcl_log.write(json.dumps(dict(wall_time=time.time(),received_monotonic=time.monotonic(),
+            stamp=stamp,source_age_s=w.get_clock().now().nanoseconds*1e-9-stamp,
+            localization_id=w.localization_id,covariance=[finite(v) for v in covariance],
+            sigma_x_m=math.sqrt(covariance[0]) if math.isfinite(covariance[0]) and covariance[0]>=0 else None,
+            sigma_y_m=math.sqrt(covariance[7]) if math.isfinite(covariance[7]) and covariance[7]>=0 else None,
+            sigma_yaw_deg=math.degrees(math.sqrt(covariance[35])) if math.isfinite(covariance[35]) and covariance[35]>=0 else None,
+            odom=odom,odom_delta=delta,executor=w.executor_state,command=list(w.cmd)),allow_nan=False)+'\n')
 
     def amcl_is_current(self, now):
         w=self.web

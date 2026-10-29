@@ -32,7 +32,7 @@ def setup():
     n=S(worker=S(take=lambda:(batch[:],None)),error=None,
         geometry=S(continuity_epoch=0,at=lambda t:np.eye(4),base_lidar=np.eye(4)),
         metrics=Metrics(),node=S(get_clock=lambda:S(now=lambda:S(nanoseconds=int(clock[0]*1e9)))),
-        cloud_pub={k:Publisher() for k in ('front','back')},obstacles={},
+        cloud_pub={k:Publisher() for k in ('front','back')},obstacles={},recovery_clouds={},
         scans={k:(10.1,ranges) for k in ('front','back')},
         scan_history={k:deque([(10.1,ranges)],maxlen=6) for k in ('front','back')},
         latest_scan_source_stamp=10.,last_pose=(10.3,np.eye(4)),last_pose_stamp_ns=10300000000,

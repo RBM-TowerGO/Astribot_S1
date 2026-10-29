@@ -158,6 +158,8 @@ def test_corridor_translation_ambiguity_is_rejected(tmp_path):
 def test_runtime_cancel_invalidates_search_and_blocks_automatic_restart():
     from real_navigation.localization_runtime import LocalizationRuntime
     runtime=LocalizationRuntime.__new__(LocalizationRuntime)
+    from real_navigation.confidence import StaticReassessment
+    runtime.reassessment=StaticReassessment()
     runtime.generation=0;runtime.recovery=Recovery();runtime.recovery.begin([0,0,0],0)
     generation=runtime.recovery.generation;runtime.cancel()
     assert runtime.recovery.status=='canceled'

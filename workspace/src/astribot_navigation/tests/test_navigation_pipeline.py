@@ -40,8 +40,8 @@ def test_idle_scan_gap_preserves_fresh_localization_but_not_invalid_pose():
     code=compile(ast.fix_missing_locations(ast.Module(body=[block],type_ignores=[])),'localization-state','exec')
     for valid in [True,False]:
         node=SimpleNamespace(initial_message=None,state={'initialized':True,'sensors_ready':False,'busy':False},
-            sensors=SimpleNamespace(error=None),localization={'status':'succeeded'},phase='idle',mode='observe')
-        exec(code,dict(self=node,localized=valid,healthy=False,settled=False))
+            sensors=SimpleNamespace(error=None),confidence=SimpleNamespace(blocked=False),localization={'status':'succeeded'},phase='idle',mode='observe')
+        exec(code,dict(self=node,localized=valid,healthy=False,settled=False,quality_ok=True))
         assert node.state['initialized']==valid
         assert node.localization['status']==('succeeded' if valid else 'recovering')
     node=SimpleNamespace(initial_message=None,state={'initialized':False,'sensors_ready':True,'busy':False},
@@ -215,7 +215,9 @@ def test_scan_latency_tolerance_is_bounded_without_weakening_other_streams():
     from real_navigation.core import sensor_fresh
     assert sensor_fresh('scan',.1,.535)
     assert sensor_fresh('scan',.1,.8)
-    assert not sensor_fresh('scan',.1,.801)
+    assert sensor_fresh('scan',.1,.834)  # Observed latency at the false pause.
+    assert sensor_fresh('scan',.1,1.0)
+    assert not sensor_fresh('scan',.1,1.001)
     assert not sensor_fresh('scan',.5,.535)  # Actual stream loss is still rejected.
     for key in ['front','back','imu','lio']:
         assert sensor_fresh(key,.1,.135)
@@ -244,6 +246,9 @@ def test_less_conservative_projection_preserves_real_footprint_collision():
         width=60,height=60,free=np.ones((60,60),bool))
     for point in [[.44158,-.32868],[.44124,.32132]]:
         x,y=np.floor((np.array(point)-grid.origin[:2])/.05).astype(int);grid.free[y,x]=False
+    # Historical narrow envelope for the original projection regression.
+    assert not safe_pose(grid,[0.,0.,0.],np.asarray(config['footprint']),config['footprint_padding'])
+    config=dict(config,footprint=[[.335,.33],[.335,-.33],[-.335,-.33],[-.335,.33]],footprint_padding=.02)
     footprint=np.asarray(config['footprint'])
     assert safe_pose(grid,[0.,0.,0.],footprint,config['footprint_padding'])
     # Snapshot's forward occupied cells used to be inside the 2 s projection.

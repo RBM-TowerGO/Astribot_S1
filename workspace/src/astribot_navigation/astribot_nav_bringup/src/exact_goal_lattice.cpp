@@ -1,4 +1,5 @@
 #include "straight_route.hpp"
+#include "route_collision.hpp"
 #include <algorithm>
 #include <cmath>
 #include <memory>
@@ -22,6 +23,10 @@ public:
     std::shared_ptr<tf2_ros::Buffer> tf,
     std::shared_ptr<nav2_costmap_2d::Costmap2DROS> costmap_ros) override
   {
+    auto node=parent.lock();
+    const auto key=name+".prefer_straight_route";
+    if(!node->has_parameter(key))node->declare_parameter<bool>(key,true);
+    prefer_straight_=node->get_parameter(key).as_bool();
     costmap_ros_ = costmap_ros;
     nav2_smac_planner::SmacPlannerLattice::configure(parent, name, tf, costmap_ros);
   }
@@ -38,11 +43,11 @@ public:
       unsigned int mx,my;
       if (!map->worldToMap(p.x,p.y,mx,my) || map->getCost(mx,my)>=nav2_costmap_2d::INSCRIBED_INFLATED_OBSTACLE) return false;
       const double cost=checker.footprintCostAtPose(p.x,p.y,p.yaw,footprint);
-      return cost>=0. && cost<nav2_costmap_2d::LETHAL_OBSTACLE;
+      return cost>=0. && cost<nav2_costmap_2d::LETHAL_OBSTACLE && towergo_route::footprint_free(map,footprint,p);
     };
     const towergo_route::Pose from{start.pose.position.x,start.pose.position.y,tf2::getYaw(start.pose.orientation)};
     const towergo_route::Pose to{goal.pose.position.x,goal.pose.position.y,tf2::getYaw(goal.pose.orientation)};
-    auto straight=towergo_route::straight(from,to,free);
+    auto straight=prefer_straight_?towergo_route::straight(from,to,free):std::vector<towergo_route::Pose>{};
     if (!straight.empty()) {
       nav_msgs::msg::Path path;path.header=goal.header;
       for (auto p:straight) {
@@ -95,10 +100,27 @@ public:
     }
     plan.poses.push_back(arrival);
     plan.poses.push_back(goal);
+    // Recheck every interpolated pose after lattice/postprocessing and exact
+    // endpoint stitching, including obstacles enclosed by the full rectangle.
+    towergo_route::Pose previous=from;
+    size_t sample_index=0;
+    for(const auto & sample:plan.poses){
+      towergo_route::Pose current{sample.pose.position.x,sample.pose.position.y,tf2::getYaw(sample.pose.orientation)};
+      towergo_route::Pose rejected{};
+      auto audited_free=[&](towergo_route::Pose p){if(!free(p)){rejected=p;return false;}return true;};
+      if(!towergo_route::segment(previous,current,audited_free)) {
+        unsigned int rx=0,ry=0;const bool in_map=map->worldToMap(rejected.x,rejected.y,rx,ry);
+        RCLCPP_WARN(_node.lock()->get_logger(),"Rejected center cost=%u full_footprint_free=%d",in_map?map->getCost(rx,ry):255,towergo_route::footprint_free(map,footprint,rejected));
+        RCLCPP_WARN(_node.lock()->get_logger(),"Clearance rejected sample %zu/%zu at (%.6f, %.6f, %.6f), from (%.6f, %.6f, %.6f)",sample_index,plan.poses.size(),rejected.x,rejected.y,rejected.yaw,from.x,from.y,from.yaw);
+        throw nav2_core::PlannerException("Planned route violates full footprint clearance");
+      }
+      previous=current;++sample_index;
+    }
     return plan;
   }
 
 private:
+  bool prefer_straight_=true;
   std::shared_ptr<nav2_costmap_2d::Costmap2DROS> costmap_ros_;
 };
 }  // namespace astribot_nav_bringup

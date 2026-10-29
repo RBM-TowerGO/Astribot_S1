@@ -24,7 +24,7 @@ def coordinator():
     w.sensors=S(error=None,recovering_until=0,received={k:100 for k in ('front','back','imu','lio')},stamps={k:100 for k in ('front','back','imu','lio')})
     w.quality=S(monitor=S(invalid=False,state={'status':'trusted'}),recovery=S(status='idle'))
     w.executor_at=100;w.executor_state={'rights':True,'stationary':True,'task':None}
-    w.amcl_cov=.05;w.amcl_active=True;w.amcl_lifecycle_at=100;w.active_lifecycle=True;w.lifecycle_at=100
+    w.confidence=S(blocked=False);w.amcl_cov=.05;w.amcl_active=True;w.amcl_lifecycle_at=100;w.active_lifecycle=True;w.lifecycle_at=100
     w.goal_attempt=1;w.action_finished=False;w.goal_handle=S(cancel_goal_async=lambda:w.events.append('cancel'))
     w.lease=S(owner='owner',stop=lambda:w.events.append('lease revoked'))
     w.state={'goal':[1,2,.3],'requested_speed':.05};w.localization={}
@@ -84,10 +84,12 @@ def test_stop_clears_pause_and_invalidates_old_action():
     tree=ast.parse((ROOT/'scripts/real_navigation/web.py').read_text())
     cls=next(n for n in tree.body if isinstance(n,ast.ClassDef) and n.name=='Web')
     fn=next(n for n in cls.body if isinstance(n,ast.FunctionDef) and n.name=='stop')
-    ns={};exec(compile(ast.fix_missing_locations(ast.Module(body=fn.body[:3],type_ignores=[])),'stop-prefix','exec'),{'self':(w:=coordinator())})
+    end=next(i+1 for i,n in enumerate(fn.body) if isinstance(n,ast.Assign) and any(isinstance(t,ast.Attribute) and t.attr=='goal_attempt' for t in n.targets))
+    ns={};exec(compile(ast.fix_missing_locations(ast.Module(body=fn.body[:end],type_ignores=[])),'stop-prefix','exec'),{'self':(w:=coordinator())})
+    assert w.retreat is None and w.state['recovery'] is None
     assert w.data_pause is None and w.goal_attempt==3
 
-@pytest.mark.parametrize('browser_valid,tf_ok,scan_age,expected',[(True,False,.1,'pause'),(True,True,.81,'pause'),(False,False,.1,'stop')])
+@pytest.mark.parametrize('browser_valid,tf_ok,scan_age,expected',[(True,False,.1,'pause'),(True,True,1.01,'pause'),(False,False,.1,'stop')])
 def test_actual_dispatch_prioritizes_manual_lease_loss(browser_valid,tf_ok,scan_age,expected):
     import json
     import sys
@@ -105,3 +107,14 @@ def test_actual_dispatch_prioritizes_manual_lease_loss(browser_valid,tf_ok,scan_
          dict(self=w,now=100,ros_now=100,tf_ok=tf_ok,sensor_fresh=sensor_fresh,json=json))
     assert bool(w.stops)==(expected=='stop')
     assert (w.phase=='paused')==(expected=='pause')
+
+
+def test_data_pause_does_not_reset_retreat_attempt_budget():
+    w=coordinator();w.recovery_attempts=1;w.action_finished=True
+    begin=w.begin
+    def restarting(obj):
+        w.recovery_attempts=0;begin(obj)
+    w.begin=restarting
+    fresh(w,100);w.tick_data_pause(100,100,True)
+    fresh(w,102.01);w.tick_data_pause(102.01,102.01,True)
+    assert len(w.starts)==1 and w.recovery_attempts==1

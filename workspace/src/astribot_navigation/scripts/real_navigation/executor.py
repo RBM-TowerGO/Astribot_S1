@@ -162,6 +162,9 @@ def main():
                     drive.prepare(data['task'],data['speed'])
                     drive.permit(data['task'],now)
                     drive.command(data['task'],0.,0.,now)
+                elif data['op']=='backup_command':
+                    drive.permit(data['task'],now)
+                    drive.backup_command(data['task'],data['v'],now)
                 elif data['op']=='command':
                     drive.permit(data['task'],now)
                     drive.command(data['task'],data['v'],data['w'],now)

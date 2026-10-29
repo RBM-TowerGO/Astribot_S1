@@ -1,0 +1,7 @@
+<class_libraries>
+<library path="towergo_stop_turn_planner"><class type="towergo::StopTurnPlanner" base_class_type="nav2_core::GlobalPlanner"><description>Collision checked straight edges with mandatory stopped corners.</description></class></library>
+<library path="towergo_stop_turn_controller">
+<class type="towergo::StopTurnController" base_class_type="nav2_core::Controller"><description>Separate translation and rotation with fresh SDK stopped confirmation.</description></class>
+<class type="towergo::StopTurnGoalChecker" base_class_type="nav2_core::GoalChecker"><description>Position, final heading and SDK stopped confirmation.</description></class>
+</library>
+</class_libraries>

@@ -6,9 +6,21 @@ from pathlib import Path
 import secrets
 
 
-SCAN_MAX_SOURCE_AGE = .8
+SCAN_MAX_SOURCE_AGE = 1.0
 BROWSER_LEASE_SECONDS = 2.0
 LOCALIZATION_MAX_SOURCE_AGE = .8
+
+
+def costmap_inflation_radius(config):
+    """Smac's center-cost fast path must cover every padded footprint corner."""
+    requested=float(config.get('inflation_radius',.85))
+    padding=float(config['footprint_padding'])
+    outer=max(math.hypot(abs(x)+padding,abs(y)+padding) for x,y in config['footprint'])
+    # Cover cell discretization as well as the circumscribed footprint radius.
+    minimum=math.ceil((outer+math.sqrt(2)*.05)/.05)*.05
+    if not math.isfinite(requested) or not 0<=requested<=2 or minimum>2:
+        raise ValueError('膨胀半径或机身尺寸超出支持范围')
+    return max(requested,minimum)
 
 
 def localization_fresh(receive_age,source_age):
@@ -192,6 +204,16 @@ class Drive:
         self.command_time = now
         return True
 
+    def backup_command(self,task,v,now):
+        # Only the explicitly gated coordinator recovery uses signed velocity.
+        # Ordinary navigation remains forward-only via command()/limited().
+        if not self.task or task!=self.task or self.fault:return False
+        if not math.isfinite(v) or not -.03<=v<=0:
+            raise ValueError('回退恢复仅允许 0–0.03 m/s 的直线后退')
+        self.command_value=(max(v,-self.limit),0.)
+        self.command_time=now
+        return True
+
     def permit(self, task, now):
         if task == self.task and not self.fault:
             self.permit_time = now
@@ -241,7 +263,7 @@ class Drive:
 
     def cancel_stationary(self, now, stationary):
         # Compatibility endpoint: settling is now verified here from SDK feedback.
-        return self.suspend(now,'导航数据失效')
+        return self.suspend(now,'导航任务结束或取消')
 
     def tick(self, now):
         dt=now-self.last_tick;self.last_tick=now
@@ -291,20 +313,24 @@ class Drive:
             limits=(self.config['max_position_error'],self.config['max_yaw_error'])
             gap=math.hypot(before[0]-p[0],before[1]-p[1])
             angle=abs(before[2]-p[2])
-            # Smoothly reduce advance over the upper half of the lead budget.
-            ratio=max(gap/limits[0],angle/limits[1])
-            scale=max(0.,min(1.,2.*(1.-ratio)))
-            # A preexisting discrepancy only inhibits growth; it never latches.
-            # Allow an angular command that reduces an existing yaw discrepancy.
-            if gap<limits[0] and angle>=limits[1] and (before[2]-p[2])*delta[2]<0:
-                scale=max(0.,min(1.,2.*(1.-gap/limits[0])))
+            # No proportional throttling for normal tracking lag. Advance at
+            # the requested rate, clipped only to the remaining hard budget.
+            scale=1.
+            # Clip the increment to the remaining budget instead of rejecting
+            # the entire tick at the boundary (which creates zero-speed pulses).
+            if delta[0]:
+                radius=max(gap,limits[0])
+                dx=before[0]-p[0];dy=before[1]-p[1]
+                edge=math.sqrt(max(0.,radius*radius-dy*dy))
+                available=(edge-dx) if delta[0]>0 else (edge+dx)
+                scale=min(scale,max(0.,available/abs(delta[0])))
+            if delta[2]:
+                radius=max(angle,limits[1]);offset=before[2]-p[2]
+                available=radius-offset if delta[2]>0 else radius+offset
+                scale=min(scale,max(0.,available/abs(delta[2])))
             candidate=[before[i]+delta[i]*scale for i in range(3)]
-            # Bound each accepted increment; numerical edge cases cannot wind up.
-            if (math.hypot(candidate[0]-p[0],candidate[1]-p[1])>max(gap,limits[0])+1e-12 or
-                abs(candidate[2]-p[2])>max(angle,limits[1])+1e-12):
-                scale=0.;candidate=before
             applied=(v*scale,w*scale)
-            self.warning=('底盘跟随偏差：位置 %.3f m、角度 %.3f rad；目标推进 %.0f%%，仅告警'
+            self.warning=('底盘跟随偏差接近领先预算：位置 %.3f m、角度 %.3f rad；领先预算增量裁剪 %.0f%%'
                           %(gap,angle,100*scale)) if scale<.999 else None
             self.tracking=dict(target=list(candidate),feedback=list(p),
                 position_error_m=math.hypot(candidate[0]-p[0],candidate[1]-p[1]),
@@ -327,3 +353,22 @@ def navigation_command(command, command_age, feedback_age):
     if feedback_age>=1.:raise RuntimeError('Nav2 动作反馈超时')
     if command_age>=15.:raise RuntimeError('Nav2 连续 15 秒没有速度输出')
     return (0.,0.)
+
+
+def nav2_failure_reason(log_path,status,start_offset=0):
+    """Use only this goal's log region; never attribute an older task's error."""
+    import re
+    generic='Nav2 导航未成功（动作状态 %s）'%status
+    try:
+        with Path(log_path).open('rb') as stream:
+            end=stream.seek(0,2)
+            stream.seek(max(start_offset,end-32768))
+            lines=stream.read().decode('utf-8',errors='replace').splitlines()
+        for line in reversed(lines):
+            match=re.search(r'Timed out while waiting for action server to acknowledge goal request for (\w+)',line)
+            if match:return generic+'：动作请求应答超时（'+match.group(1)+'）'
+        for line in reversed(lines):
+            for text,reason in [('no valid path found','没有满足机身边界与转弯半径的路径'),('Starting point in lethal space','起点不满足碰撞边界，请检查实际位置与定位'),('Planned route violates full footprint clearance','路径不满足完整机身避障余量'),('Failed to make progress','控制器持续未取得进展'),('No valid trajectories','控制器没有可行轨迹'),('detected collision ahead','控制器预测到前方碰撞'),('Collision detected ahead','控制器预测到前方碰撞')]:
+                if text in line:return generic+'：'+reason
+    except OSError:pass
+    return generic

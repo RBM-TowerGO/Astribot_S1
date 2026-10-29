@@ -1,0 +1,5 @@
+<library path="towergo_lio_motion_model">
+  <class type="towergo::LioPlanarMotionModel" base_class_type="nav2_amcl::MotionModel">
+    <description>Direct planar LIO increments with translation and yaw dependent noise.</description>
+  </class>
+</library>

@@ -34,7 +34,7 @@ class Sensors:
         self.latest_scan_source_stamp=None;self.latest_scan_stamp_ns=None
         self.recovering_until=0.
         self.received={};self.stamps={};self.frames={};self.error=None;self.last_pose=None;self.last_pose_stamp_ns=None
-        self.planar_speed=0.;self.velocity=[0.,0.];self.scans={};self.obstacles={}
+        self.planar_speed=0.;self.velocity=[0.,0.];self.scans={};self.obstacles={};self.recovery_clouds={}
         self.scan_history={k:deque(maxlen=6) for k in ('front','back')}
         self.odom_pub=node.create_publisher(Odometry,NS+'odom',10)
         self.scan_pub=node.create_publisher(LaserScan,NS+'scan',qos_profile_sensor_data)
@@ -125,7 +125,7 @@ class Sensors:
             if t is None:return
             if epoch!=self.geometry.continuity_epoch:
                 self.settling.rows.clear()
-                self.last_pose=None;self.latest_scan=None;self.scans={};self.obstacles={}
+                self.last_pose=None;self.latest_scan=None;self.scans={};self.obstacles={};self.recovery_clouds={}
                 self.latest_scan_source_stamp=None;self.latest_scan_stamp_ns=None
                 for history in self.scan_history.values():history.clear()
                 self.received.pop('scan',None)
@@ -169,6 +169,7 @@ class Sensors:
                 source_stamp=rclpy.time.Time(nanoseconds=int(round(stamp*1e9))).to_msg()
                 header=Header();header.stamp=source_stamp;header.frame_id=FRAME[key]
                 self.cloud_pub[key].publish(point_cloud2.create_cloud_xyz32(header,points))
+                self.recovery_clouds[key]=(stamp,points)
                 self.obstacles[key]=(stamp,points[::max(1,len(points)//600)].tolist())
                 self.scans[key]=(stamp,ranges)
                 self.scan_history[key].append((stamp,ranges))

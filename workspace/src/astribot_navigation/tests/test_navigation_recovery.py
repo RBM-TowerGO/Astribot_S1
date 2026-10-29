@@ -256,3 +256,22 @@ def test_stop_requires_fresh_independent_sdk_confirmation(stationary,age):
     stop_evidence_fixture(obj);obj.mode='hardware';obj.executor_at=10.-age;obj.executor_state={'stationary':stationary}
     exec(compile(ast.fix_missing_locations(ast.Module(body=[block],type_ignores=[])),'stop-block','exec'),{'self':obj,'now':10.})
     assert obj.phase=='stopping' and obj.still_since is None
+
+
+def test_nav2_failure_reason_uses_only_current_goal_logs(tmp_path):
+    from real_navigation.core import nav2_failure_reason
+    log=tmp_path/'nav2.log'
+    log.write_text('Timed out while waiting for action server to acknowledge goal request for compute_path_to_pose\n')
+    offset=log.stat().st_size
+    assert 'compute_path_to_pose' in nav2_failure_reason(log,6)
+    assert nav2_failure_reason(log,6,offset)=='Nav2 导航未成功（动作状态 6）'
+    with log.open('a') as f:f.write('Failed to make progress\n')
+    assert '未取得进展' in nav2_failure_reason(log,6,offset)
+    assert '动作状态 6' in nav2_failure_reason(tmp_path/'missing',6)
+
+
+def test_rpp_collision_warning_is_reported_as_navigation_cause(tmp_path):
+    from real_navigation.core import nav2_failure_reason
+    log=tmp_path/'nav2.log'
+    log.write_text('RegulatedPurePursuitController detected collision ahead!\nController patience exceeded\nGoal failed\n')
+    assert '预测到前方碰撞' in nav2_failure_reason(log,6)

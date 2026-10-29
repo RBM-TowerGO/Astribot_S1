@@ -130,3 +130,25 @@ def test_web_cancels_lease_when_executor_canceled_task():
     exec(compile(ast.fix_missing_locations(ast.Module(body=[block],type_ignores=[])),'web-test','exec'),
          dict(self=node,now=1.,ros_now=1.,tf_ok=False,localized=True,execution=True,json=json))
     assert stopped==[(('指令过期','fault'),{'recoverable':True})]
+
+
+@pytest.mark.parametrize('gap',[.052,.075,.08,.086,.095])
+def test_normal_tracking_lag_keeps_full_requested_speed(gap):
+    p,d=setup();step(p,d,v=.05,w=0.)
+    d.target=[p.p[0]+gap,p.p[1],p.p[2]]
+    p.now+=.01
+    d.permit('task',p.now);d.command('task',.05,0.,p.now)
+    assert d.tick(p.now)==pytest.approx((.05,0.))
+    assert d.warning is None
+
+def test_inward_yaw_correction_continues_without_growing_existing_error():
+    p,d=setup();step(p,d,v=.05,w=0.)
+    # Exercise numerical boundary clipping with an inward yaw correction: the
+    # positional budget must remain bounded while a valid increment is retained.
+    d.target=[p.p[0]+.0799,p.p[1],p.p[2]+.101]
+    p.now+=.01
+    d.command('task',.05,-.05,p.now);d.permit('task',p.now)
+    v,w=d.tick(p.now)
+    assert v>0 and w<0
+    assert d.tracking['position_error_m']<=.1+1e-12
+    assert d.tracking['yaw_error_rad']<.101

@@ -12,12 +12,14 @@ imu_from_lidar:
   - [0.0, 0.0, 1.0, 0.04412]
   - [0.0, 0.0, 0.0, 1.0]
 rear_origin_in_front: [0.001, -0.496, 0.084]
-# Preview envelope only: replace with measured fixed-posture whole-robot projection.
-footprint: [[0.335, 0.33], [0.335, -0.33], [-0.335, -0.33], [-0.335, 0.33]]
+# Include the previously user-confirmed fixed-posture body projection.
+footprint: [[0.50, 0.40], [0.50, -0.40], [-0.40, -0.40], [-0.40, 0.40]]
 # User-confirmed robot body envelope in base XY, at every height.
 # Confirmed extent: forward 0.50 m, rearward 0.40 m, left/right 0.40 m.
 self_filter: [[-0.40, -0.40], [0.50, -0.40], [0.50, 0.40], [-0.40, 0.40]]
-footprint_padding: 0.02
+footprint_padding: 0.05
+inflation_radius: 0.85
+planning_turning_radius: 1.0
 collision_time_horizon: 1.5
 slice_height: 0.054
 slice_thickness: 0.10

@@ -11,7 +11,7 @@ import sys
 import time
 import uuid
 import yaml
-from .core import validate_config,digest
+from .core import validate_config,digest,costmap_inflation_radius
 
 HERE=Path(__file__).resolve().parent
 REPO=HERE.parents[1]
@@ -34,10 +34,21 @@ def nav_params(config,mapfile,replay):
             for value in obj:rewrite(value)
     rewrite(base)
     base['map_server']['ros__parameters'].update(yaml_filename=str(mapfile),frame_id='tg_nav_map')
-    base['amcl']['ros__parameters'].update(update_min_d=config.get('amcl_update_min_d',0.),update_min_a=config.get('amcl_update_min_a',0.),transform_tolerance=.1)
+    base['amcl']['ros__parameters'].update(update_min_d=config.get('amcl_update_min_d',0.),update_min_a=config.get('amcl_update_min_a',0.),transform_tolerance=.1,robot_model_type='towergo::LioPlanarMotionModel')
+    radius=float(config.get('planning_turning_radius',1.0))
+    if radius not in (.5,1.0):raise ValueError('当前运动基元支持 0.5 或 1.0 m 转弯半径')
+    planner=base['planner_server']['ros__parameters']['GridBased']
+    planner.update(lattice_filepath='/opt/ros/humble/share/nav2_smac_planner/sample_primitives/5cm_resolution/%sm_turning_radius/ackermann/output.json'%format(radius,'g'),
+                   prefer_straight_route=False,smooth_path=False,tolerance=.05)
     cp=base['controller_server']['ros__parameters'];cp['FollowPath']['desired_linear_vel']=.05
     cp['FollowPath']['max_allowed_time_to_collision_up_to_carrot']=config.get('collision_time_horizon',1.5)
     cp['odom_topic']='/towergo/nav/odom'
+    # Continuous curved following: normal path curvature must not trigger the
+    # stopped-corner state machine. Initial/terminal alignment remains allowed.
+    cp['FollowPath']['plugin']='nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController'
+    cp['FollowPath'].update(use_rotate_to_heading=True,rotate_to_heading_min_angle=.7,
+                           lookahead_dist=.5,use_velocity_scaled_lookahead_dist=False)
+    cp['goal_checker'].update(plugin='nav2_controller::SimpleGoalChecker')
     for name in ('global_costmap','local_costmap'):
         p=base[name][name]['ros__parameters']
         p['footprint']=json.dumps(config['footprint']);p['footprint_padding']=config['footprint_padding']
@@ -47,8 +58,11 @@ def nav_params(config,mapfile,replay):
         p.pop('obstacle_layer',None)
         p.pop('voxel_layer',None)
         p['static_layer']={'plugin':'nav2_costmap_2d::StaticLayer','map_topic':'/towergo/nav/map','map_subscribe_transient_local':True}
-        p['inflation_layer'].update(inflation_radius=float(config.get('inflation_radius',.2)),cost_scaling_factor=5.)
+        p['inflation_layer'].update(inflation_radius=costmap_inflation_radius(config),cost_scaling_factor=5.)
     bt=base['bt_navigator']['ros__parameters']
+    # Action acknowledgement is not a sensor watchdog. On the loaded Orin,
+    # the generic 20 ms budget can abort a healthy concurrent replan.
+    bt.update(default_server_timeout=1000,bt_loop_duration=50)
     bt['default_nav_through_poses_bt_xml']=str(REPO/'astribot_nav_bringup/config/navigation_through.xml')
     bt['default_nav_to_pose_bt_xml']=str(HERE/'navigation.xml')
     bt['plugin_lib_names']=['nav2_compute_path_through_poses_action_bt_node','nav2_compute_path_to_pose_action_bt_node','nav2_follow_path_action_bt_node','nav2_pipeline_sequence_bt_node',
@@ -176,7 +190,7 @@ def main():
         if args.diagnostic_seconds and args.diagnostic_max_bytes:
             diagnostic_topics=[*REQUIRED_RAW_TOPICS,'/towergo/nav/lio/odometry','/towergo/nav/odom',
                 '/towergo/nav/scan','/towergo/nav/amcl_pose','/towergo/nav/tf','/towergo/nav/tf_static',
-                '/towergo/nav/executor_status','/towergo/nav/executor_control','/towergo/nav/cmd_vel_nav',
+                '/towergo/nav/executor_status','/towergo/nav/executor_control','/towergo/nav/cmd_vel_nav','/towergo/nav/route_execution',
                 '/astribot_chassis/joint_space_states','/towergo/nav/map','/clock']
             qos={t:dict(reliability='best_effort',durability='volatile',history='keep_last',depth=10)
                  for t in diagnostic_topics}
